@@ -274,27 +274,41 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+This product is aimed at individuals planning to go overseas/frequent travellers.
+
+* has a need to keep track of a large amount of relevant locations and attractions at the locations
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* needs to draft a suitable trip plan that stays within budget
+* wants detailed information on locations of interest
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage locations of interest faster than typical travel management sites
+
+Maplet can store useful information on locations and attractions:
+1. Opening hours
+2. Price
+3. Travel time 
+4. Rating
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                       |
+|----------|--------------------------------------------|------------------------------|-----------------------------------------------------------------------|
+| `* * *`  | user                                       | add a location               | record information about a location                                   |
+| `* * *`  | user                                       | delete a location            | remove unneeded / outdated information                                |
+| `* * *`  | user                                       | list a location              | locate details on that location without going through the entire list |
+| `* * *`  | user                                       | list all locations           | keep track of all locations of interest                               |
+| `* *`    | user                                       | Edit location details        | correct an error, or to add new information about an existing entry   |
+| `* *`    | user                                       | Filter location by distance  | find the closest location to me                                       |
+| `* *`    | user                                       | Filter location              | see all the attractions at a specific location                        |
+| `* *`    | user                                       | Add attractions              | record information about an attraction (in / near a location)         |
+| `* *`    | user                                       | compare locations            | see the attractions to make decisions for future trips                |
+| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                |
 
 *{More to be added}*
 
