@@ -332,6 +332,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. When retrieving or saving location data, the system should respond within 2 seconds.
+5. When the user filters locations based on an order (distance, rating, …), the system should take less than 3 seconds
+6. The system must should be able to handle 100 simultaneous users query without degradation
+7. All user data (travel plans, ratings, reviews, …) should be stored securely in the database
+8. The system should require user authentication before retrieve personal data
+9. The system should be able to handle 1000 users in the database without failing the performance NFRs.
+10. The system should be able to handle growing number of locations and user-content
+11. New user should take less than 5 minutes to set up account and start using application’s features
+12. User with disabilities should have access to all features
+
 
 *{More to be added}*
 
