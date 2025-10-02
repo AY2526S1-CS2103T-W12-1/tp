@@ -20,15 +20,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: QA Tester
 
-### Jane Doe
+### Wang Boqian
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/retribob.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/Retribob)]
+[[portfolio](https://github.com/Retribob)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Documentation
 
 ### nob-s
 
