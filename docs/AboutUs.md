@@ -17,7 +17,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](https://github.com/jonchng)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilities: QA Tester
 
 ### Jane Doe
 
