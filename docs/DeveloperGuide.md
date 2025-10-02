@@ -311,10 +311,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                   | list all locations             | keep track of all locations of interest                                          |
 | `* *`    | user                   | Edit location details          | correct an error, or to add new information about an existing entry              |
 | `* *`    | user                   | Filter location by distance    | find the closest location to me                                                  |
-| `* *`    | user                   | Filter location                | see all the attractions at a specific location                                   |
-| `* *`    | user                   | Add attractions                | record information about an attraction (in / near a location)                    |
+| `* *`    | user                   | Filter location                | find locations that fit my specifications                                        |
+| `* *`    | user                   | Add attractions                | record information about an attraction (in a location)                           |
 | `* *`    | user                   | compare locations              | see the attractions to make decisions for future trips                           |
-| `*`      | Financially aware user | Add cost (if applicable)       | See the cost related to each attraction/location for planning                    |
+| `*`      | Financially aware user | Add cost (if applicable)       | See the cost related to each attraction for planning                             |
 | `*`      | Trip planner           | Add opening hours              | track when the location opens for future reference                               |
 | `*`      | Trip planner           | Edit opening hours             | update opening hours on new information / errors                                 |
 | `*`      | Trip planner           | Check opening hours            | check if the attraction is open at the time of my intended visit                 |
