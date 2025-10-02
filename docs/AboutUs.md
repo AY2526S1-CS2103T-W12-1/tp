@@ -40,15 +40,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Code Quality + Integration
 
-### Jean Doe
+### Xirnic
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/xirnic.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/Xirnic)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Testing
 
 ### James Doe
 
