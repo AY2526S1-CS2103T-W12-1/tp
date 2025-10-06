@@ -300,32 +300,98 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Maplet` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+
+**Use case: UC1 - List attractions**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User chooses to list attractions at a location
+2.  Maplet shows a list of attractions at the location
 
     Use case ends.
 
 **Extensions**
 
+* 1a. User does not specify location
+
+    * 1a1. Maplet shows a list of all attractions
+  
+      Use case ends.
+
 * 2a. The list is empty.
 
   Use case ends.
 
+
+**Use case: UC2 - Add attraction**
+
+**MSS**
+
+1.  User chooses to add attraction
+2.  User enters the required attraction details
+3.  Maplet adds new attraction to list
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Details are in the wrong format
+
+    * 2a1. Maplet prompts the user for correct format
+    * 2a2. User enters correct attraction details
+
+      Steps 2a1-2a2 are repeated until the details entered are correct.</br>
+      Use case resumes at step 3.
+
+
+**Use case: UC3 - Delete attraction**
+
+**MSS**
+
+1.  User chooses to <u>list attractions (UC1)</u> to see index of attractions
+2.  User chooses to delete an attraction in the list 
+3.  User enters index of attraction to delete
+4.  Maplet deletes the attraction
+
+    Use case ends.
+
+**Extensions**
+
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. Maplet prompts the user for valid index
+    * 3a2. User enters valid index
+  
+      Steps 3a1-3a2 are repeated until index entered is valid.</br>
+      Use case resumes at step 4.
 
-      Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: UC4 - Find attraction**
+
+**MSS**
+
+1.  User chooses to find an attraction with a keyword
+2.  User enters keyword
+3.  Maplet shows a list of attractions related to keyword
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. No keyword is given.
+
+    * 2a1. Maplet prompts the user for valid keyword
+    * 2a2. User enters valid keyword
+
+      Steps 2a1-2a2 are repeated until keyword entered is valid.</br>
+      Use case resumes at step 3.
+
+* 3a. The list is empty
+
+  Use case ends.
+
 
 ### Non-Functional Requirements
 
