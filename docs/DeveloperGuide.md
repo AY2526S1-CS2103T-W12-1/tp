@@ -288,32 +288,27 @@ This product is aimed at individuals planning to go overseas/frequent travellers
 
 Maplet can store useful information on locations and attractions:
 
-For locations (cities?):
-1. Country of location
-2. Attractions within the location
-3. Location distance from user
-
 For attractions (within the location):
 1. Opening hours
 2. Price
 3. Rating
 
-
+Attractions are grouped by locations and have activities associated with them.
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                | I want to …​                   | So that I can…​                                                                  |
 |----------|------------------------|--------------------------------|----------------------------------------------------------------------------------|
-| `* * *`  | user                   | add a location                 | record information about a location                                              |
-| `* * *`  | user                   | delete a location              | remove unneeded / outdated information                                           |
-| `* * *`  | user                   | list a location                | locate details on that location without going through the entire list            |
-| `* * *`  | user                   | list all locations             | keep track of all locations of interest                                          |
-| `* *`    | user                   | Edit location details          | correct an error, or to add new information about an existing entry              |
-| `* *`    | user                   | Filter location by distance    | find the closest location to me                                                  |
-| `* *`    | user                   | Filter location                | find locations that fit my specifications                                        |
-| `* *`    | user                   | Add attractions                | record information about an attraction (in a location)                           |
-| `* *`    | user                   | compare locations              | see the attractions to make decisions for future trips                           |
+| `* * *`  | user                   | add an attraction              | record information about an attraction                                           |
+| `* * *`  | user                   | delete an attraction           | remove unneeded / outdated information                                           |
+| `* * *`  | user                   | list attractions               | locate details on that attraction without going through the entire list          |
+| `* * *`  | user                   | list all attractions           | keep track of all attractions of interest                                        |
+| `* *`    | user                   | Edit attraction details        | correct an error, or to add new information about an existing entry              |
+| `* *`    | user                   | Filter attractions by distance | find the closest attraction to me                                                |
+| `* *`    | user                   | Filter attractions             | find attractions that fit my specifications                                      |
+| `* *`    | user                   | Add attraction to location     | group attractions by location                                                    |
+| `* *`    | user                   | compare locations              | see which location better fits my needs                                          |
 | `*`      | Financially aware user | Add cost (if applicable)       | See the cost related to each attraction for planning                             |
 | `*`      | Trip planner           | Add opening hours              | track when the location opens for future reference                               |
 | `*`      | Trip planner           | Edit opening hours             | update opening hours on new information / errors                                 |
