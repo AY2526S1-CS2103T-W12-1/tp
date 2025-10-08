@@ -338,11 +338,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Attraction**: A single place of interest
-* **Activity**: A thing to be done at an attraction
-* **Location**: A location can contain any number of attractions
-* **Itinerary**: An itenerary refers to a list of attractions to be visited, as well as the time spent at each attraction
-
+* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
