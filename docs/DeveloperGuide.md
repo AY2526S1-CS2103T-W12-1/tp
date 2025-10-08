@@ -274,27 +274,52 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+This product is aimed at individuals planning to go overseas/frequent travellers.
+
+* has a need to keep track of a large amount of relevant locations and attractions at the locations
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* needs to draft a suitable trip plan that stays within budget
+* wants detailed information on locations of interest
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage locations of interest faster than typical travel management sites
 
+Maplet can store useful information on locations and attractions:
 
+For attractions (within the location):
+1. Opening hours
+2. Price
+3. Rating
+
+Attractions are grouped by locations and have activities associated with them.
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​                | I want to …​                   | So that I can…​                                                                  |
+|----------|------------------------|--------------------------------|----------------------------------------------------------------------------------|
+| `* * *`  | user                   | add an attraction              | record information about an attraction                                           |
+| `* * *`  | user                   | delete an attraction           | remove unneeded / outdated information                                           |
+| `* * *`  | user                   | list attractions               | locate details on that attraction without going through the entire list          |
+| `* * *`  | user                   | list all attractions           | keep track of all attractions of interest                                        |
+| `* *`    | user                   | Edit attraction details        | correct an error, or to add new information about an existing entry              |
+| `* *`    | user                   | Filter attractions by distance | find the closest attraction to me                                                |
+| `* *`    | user                   | Filter attractions             | find attractions that fit my specifications                                      |
+| `* *`    | user                   | Add attraction to location     | group attractions by location                                                    |
+| `* *`    | user                   | compare locations              | see which location better fits my needs                                          |
+| `*`      | Financially aware user | Add cost (if applicable)       | See the cost related to each attraction for planning                             |
+| `*`      | Trip planner           | Add opening hours              | track when the location opens for future reference                               |
+| `*`      | Trip planner           | Edit opening hours             | update opening hours on new information / errors                                 |
+| `*`      | Trip planner           | Check opening hours            | check if the attraction is open at the time of my intended visit                 |
+| `*`      | Trip planner           | Add activities to attractions  | record the associated activities of an attraction                                |
+| `*`      | Trip planner           | Sort attractions by activities | Find available attractions for the activity to be planned                        |
+| `*`      | Trip planner           | create itinerary               | plan a list of activities and attractions for the day, verified by opening hours |
+| `*`      | Trip planner           | edit itinerary                 | edit a list of activities and attractions for the day, verified by opening hours |
+| `*`      | Trip planner           | delete itinerary               | remove a list of activities and attractions for the day                          |
+| `*`      | Experienced User       | user single letter commands    | more quickly perform operations                                                  |
+| `*`      | Experienced User       | export trip details            | access my trip details without opening the program                               |
 
 *{More to be added}*
 
