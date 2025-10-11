@@ -197,9 +197,9 @@ public class EditCommand extends Command {
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
         }
-        
+
         public void setActivities(Activities activities) { this.activities = activities; }
-        
+
         public Optional<Activities> getActivities() { return Optional.ofNullable(activities); }
 
         /**

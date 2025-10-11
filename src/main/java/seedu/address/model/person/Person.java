@@ -54,7 +54,7 @@ public class Person {
     public Address getAddress() {
         return address;
     }
-    
+
     public Activities getActivities() { return activities; }
 
     /**

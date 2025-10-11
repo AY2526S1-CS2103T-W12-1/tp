@@ -342,7 +342,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. User does not specify location
 
     * 1a1. Maplet shows a list of all attractions
-  
+
       Use case ends.
 
 * 2a. The list is empty.
@@ -376,7 +376,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User chooses to <u>list attractions (UC1)</u> to see index of attractions
-2.  User chooses to delete an attraction in the list 
+2.  User chooses to delete an attraction in the list
 3.  User enters index of attraction to delete
 4.  Maplet deletes the attraction
 
@@ -388,7 +388,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3a1. Maplet prompts the user for valid index
     * 3a2. User enters valid index
-  
+
       Steps 3a1-3a2 are repeated until index entered is valid.</br>
       Use case resumes at step 4.
 

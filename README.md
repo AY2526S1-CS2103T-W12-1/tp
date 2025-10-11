@@ -11,7 +11,7 @@ or are frequent travellers.
 
 Maplet can store important information on locations such as:
 1. opening hours
-2. price 
+2. price
 3. travel time etc.
 
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).

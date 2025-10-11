@@ -15,7 +15,7 @@ public class Activities {
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
-    
+
     public final String activities;
 
     public Activities(String remark) {
@@ -27,7 +27,7 @@ public class Activities {
      * Returns true if a given string is a valid Activities.
      */
     public static boolean isValidActivities(String test) { return true; }
-    
+
     @Override
     public String toString() { return activities; }
 
@@ -36,15 +36,15 @@ public class Activities {
         if (other == this) {
             return true;
         }
-        
+    
         if (!(other instanceof Activities)) {
             return false;
         }
-        
+    
         Activities otherActivities = (Activities) other;
         return activities.equals(otherActivities.activities);
     }
-    
+
     @Override
     public int hashCode() {
         return activities.hashCode();
