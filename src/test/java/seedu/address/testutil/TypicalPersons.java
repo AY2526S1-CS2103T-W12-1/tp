@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.Maplet;
 import seedu.address.model.person.Person;
 
 /**
@@ -60,14 +60,14 @@ public class TypicalPersons {
     private TypicalPersons() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code Maplet} with all the typical persons.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static Maplet getTypicalMaplet() {
+        Maplet maplet = new Maplet();
         for (Person person : getTypicalPersons()) {
-            ab.addPerson(person);
+            maplet.addPerson(person);
         }
-        return ab;
+        return maplet;
     }
 
     public static List<Person> getTypicalPersons() {

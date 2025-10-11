@@ -78,7 +78,7 @@ The `UI` component uses the JavaFx UI framework. The layout of these UI parts ar
 The `UI` component,
 
 * executes user commands using the `Logic` component.
-* listens for changes to `Model` data so that the UI can be updated with the modified data.
+* listens for changes to `Model` data so that the UI ca be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
@@ -90,7 +90,7 @@ Here's a (partial) class diagram of the `Logic` component:
 
 <puml src="diagrams/LogicClassDiagram.puml" width="550"/>
 
-The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as an example.
+The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as a example.
 
 <puml src="diagrams/DeleteSequenceDiagram.puml" alt="Interactions Inside the Logic Component for the `delete 1` Command" />
 
@@ -101,10 +101,10 @@ The sequence diagram below illustrates the interactions within the `Logic` compo
 
 How the `Logic` component works:
 
-1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to delete a person).<br>
-   Note that although this is shown as a single step in the diagram above (for simplicity), in the code it can take several interactions (between the command object and the `Model`) to achieve.
+1. When `Logic` is called upon to execute a command, it is passed to a `MapletParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
+1. This results in a `Command` object (more precisely, a object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
+1. The command ca communicate with the `Model` when it is executed (e.g. to delete a person).<br>
+   Note that although this is shown as a single step in the diagram above (for simplicity), in the code it ca take several interactions (between the command object and the `Model`) to achieve.
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -112,8 +112,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <puml src="diagrams/ParserClasses.puml" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `MapletParser` class creates a `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `MapletParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they ca be treated similarly where possible e.g, during testing.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -123,14 +123,14 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the Maplet data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as a unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <box type="info" seamless>
 
-**Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+**Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `Maplet`, which `Person` references. This allows `Maplet` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
 <puml src="diagrams/BetterModelClassDiagram.puml" width="450" />
 
@@ -144,8 +144,8 @@ The `Model` component,
 <puml src="diagrams/StorageClassDiagram.puml" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* ca save both Maplet data and user preference data in JSON format, and read them back into corresponding objects.
+* inherits from both `MapletStorage` and `UserPrefStorage`, which means it ca be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -162,47 +162,47 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The proposed undo/redo mechanism is facilitated by `VersionedMaplet`. It extends `Maplet` with an undo/redo history, stored internally as a `mapletStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+* `VersionedMaplet#commit()` — Saves the current Maplet state in its history.
+* `VersionedMaplet#undo()` — Restores the previous Maplet state from its history.
+* `VersionedMaplet#redo()` — Restores a previously undone Maplet state from its history.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+These operations are exposed in the `Model` interface as `Model#commitMaplet()`, `Model#undoMaplet()` and `Model#redoMaplet()` respectively.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+Given below is a example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `VersionedMaplet` will be initialized with the initial Maplet state, and the `currentStatePointer` pointing to that single Maplet state.
 
 <puml src="diagrams/UndoRedoState0.puml" alt="UndoRedoState0" />
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th person in the Maplet. The `delete` command calls `Model#commitMaplet()`, causing the modified state of the Maplet after the `delete 5` command executes to be saved in the `mapletStateList`, and the `currentStatePointer` is shifted to the newly inserted Maplet state.
 
 <puml src="diagrams/UndoRedoState1.puml" alt="UndoRedoState1" />
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitMaplet()`, causing another modified Maplet state to be saved into the `mapletStateList`.
 
 <puml src="diagrams/UndoRedoState2.puml" alt="UndoRedoState2" />
 
 <box type="info" seamless>
 
-**Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+**Note:** If a command fails its execution, it will not call `Model#commitMaplet()`, so the Maplet state will not be saved into the `mapletStateList`.
 
 </box>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoMaplet()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous Maplet state, and restores the Maplet to that state.
 
 <puml src="diagrams/UndoRedoState3.puml" alt="UndoRedoState3" />
 
 
 <box type="info" seamless>
 
-**Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+**Note:** If the `currentStatePointer` is at index 0, pointing to the initial Maplet state, then there are no previous Maplet states to restore. The `undo` command uses `Model#canUndoMaplet()` to check if this is the case. If so, it will return a error to the user rather
+tha attempting to perform the undo.
 
 </box>
 
-The following sequence diagram shows how an undo operation goes through the `Logic` component:
+The following sequence diagram shows how a undo operation goes through the `Logic` component:
 
 <puml src="diagrams/UndoSequenceDiagram-Logic.puml" alt="UndoSequenceDiagram-Logic" />
 
@@ -212,23 +212,23 @@ The following sequence diagram shows how an undo operation goes through the `Log
 
 </box>
 
-Similarly, how an undo operation goes through the `Model` component is shown below:
+Similarly, how a undo operation goes through the `Model` component is shown below:
 
 <puml src="diagrams/UndoSequenceDiagram-Model.puml" alt="UndoSequenceDiagram-Model" />
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite — it calls `Model#redoMaplet()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the Maplet to that state.
 
 <box type="info" seamless>
 
-**Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+**Note:** If the `currentStatePointer` is at index `mapletStateList.size() - 1`, pointing to the latest Maplet state, then there are no undone Maplet states to restore. The `redo` command uses `Model#canRedoMaplet()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </box>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the Maplet, such as `list`, will usually not call `Model#commitMaplet()`, `Model#undoMaplet()` or `Model#redoMaplet()`. Thus, the `mapletStateList` remains unchanged.
 
 <puml src="diagrams/UndoRedoState4.puml" alt="UndoRedoState4" />
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitMaplet()`. Since the `currentStatePointer` is not pointing at the end of the `mapletStateList`, all Maplet states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
 <puml src="diagrams/UndoRedoState5.puml" alt="UndoRedoState5" />
 
@@ -240,7 +240,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
+* **Alternative 1 (current choice):** Saves the entire Maplet.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
 
@@ -278,15 +278,15 @@ This product is aimed at individuals planning to go overseas/frequent travellers
 
 * has a need to keep track of a large amount of relevant locations and attractions at the locations
 * prefer desktop apps over other types
-* can type fast
+* ca type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
-* needs to draft a suitable trip plan that stays within budget
+* needs to draft a suitable trip pla that stays within budget
 * wants detailed information on locations of interest
 
-**Value proposition**: manage locations of interest faster than typical travel management sites
+**Value proposition**: manage locations of interest faster tha typical travel management sites
 
-Maplet can store useful information on locations and attractions:
+Maplet ca store useful information on locations and attractions:
 
 For attractions (within the location):
 1. Opening hours
@@ -300,11 +300,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                | I want to …​                   | So that I can…​                                                                  |
 |----------|------------------------|--------------------------------|----------------------------------------------------------------------------------|
-| `* * *`  | user                   | add an attraction              | record information about an attraction                                           |
-| `* * *`  | user                   | delete an attraction           | remove unneeded / outdated information                                           |
+| `* * *`  | user                   | add a attraction              | record information about an attraction                                           |
+| `* * *`  | user                   | delete a attraction           | remove unneeded / outdated information                                           |
 | `* * *`  | user                   | list attractions               | locate details on that attraction without going through the entire list          |
 | `* * *`  | user                   | list all attractions           | keep track of all attractions of interest                                        |
-| `* *`    | user                   | Edit attraction details        | correct an error, or to add new information about an existing entry              |
+| `* *`    | user                   | Edit attraction details        | correct a error, or to add new information about an existing entry              |
 | `* *`    | user                   | Filter attractions by distance | find the closest attraction to me                                                |
 | `* *`    | user                   | Filter attractions             | find attractions that fit my specifications                                      |
 | `* *`    | user                   | Add attraction to location     | group attractions by location                                                    |
@@ -313,9 +313,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | Trip planner           | Add opening hours              | track when the location opens for future reference                               |
 | `*`      | Trip planner           | Edit opening hours             | update opening hours on new information / errors                                 |
 | `*`      | Trip planner           | Check opening hours            | check if the attraction is open at the time of my intended visit                 |
-| `*`      | Trip planner           | Add activities to attractions  | record the associated activities of an attraction                                |
+| `*`      | Trip planner           | Add activities to attractions  | record the associated activities of a attraction                                |
 | `*`      | Trip planner           | Sort attractions by activities | Find available attractions for the activity to be planned                        |
-| `*`      | Trip planner           | create itinerary               | plan a list of activities and attractions for the day, verified by opening hours |
+| `*`      | Trip planner           | create itinerary               | pla a list of activities and attractions for the day, verified by opening hours |
 | `*`      | Trip planner           | edit itinerary                 | edit a list of activities and attractions for the day, verified by opening hours |
 | `*`      | Trip planner           | delete itinerary               | remove a list of activities and attractions for the day                          |
 | `*`      | Experienced User       | user single letter commands    | more quickly perform operations                                                  |
@@ -376,7 +376,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User chooses to <u>list attractions (UC1)</u> to see index of attractions
-2.  User chooses to delete an attraction in the list 
+2.  User chooses to delete a attraction in the list 
 3.  User enters index of attraction to delete
 4.  Maplet deletes the attraction
 
@@ -397,7 +397,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User chooses to find an attraction with a keyword
+1.  User chooses to find a attraction with a keyword
 2.  User enters keyword
 3.  Maplet shows a list of attractions related to keyword
 
@@ -422,15 +422,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands tha using the mouse.
 4. When retrieving or saving location data, the system should respond within 2 seconds.
-5. When the user filters locations based on an order (distance, rating, …), the system should take less than 3 seconds
+5. When the user filters locations based on a order (distance, rating, …), the system should take less than 3 seconds
 6. The system must should be able to handle 100 simultaneous users query without degradation
 7. All user data (travel plans, ratings, reviews, …) should be stored securely in the database
 8. The system should require user authentication before retrieve personal data
 9. The system should be able to handle 1000 users in the database without failing the performance NFRs.
 10. The system should be able to handle growing number of locations and user-content
-11. New user should take less than 5 minutes to set up account and start using application’s features
+11. New user should take less tha 5 minutes to set up account and start using application’s features
 12. User with disabilities should have access to all features
 
 
@@ -440,8 +440,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Attraction**: A single place of interest
-* **Activity**: A thing to be done at an attraction
-* **Location**: A location can contain any number of attractions
+* **Activity**: A thing to be done at a attraction
+* **Location**: A location ca contain any number of attractions
 * **Itinerary**: An itenerary refers to a list of attractions to be visited, as well as the time spent at each attraction
 
 
@@ -462,13 +462,13 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the jar file and copy into a empty folder
 
    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+   1. Resize the window to a optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
@@ -487,7 +487,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `delete 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger tha the list size)<br>
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
