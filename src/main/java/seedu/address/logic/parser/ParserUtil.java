@@ -95,7 +95,12 @@ public class ParserUtil {
         }
         return new Email(trimmedEmail);
     }
-
+    /**
+     * Parses a {@code String activities} into an {@code Activities}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code activities} is invalid.
+     */
     public static Activities parseActivities(String activities) throws ParseException {
         requireNonNull(activities);
         String trimmedActivities = activities.trim();

@@ -17,10 +17,15 @@ public class Activities {
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
     public final String activities;
-
-    public Activities(String remark) {
-        requireNonNull(remark);
-        activities = remark;
+    
+    /**
+     * Constructs a {@code Activities}.
+     *
+     * @param activities A valid activities.
+     */
+    public Activities(String activities) {
+        requireNonNull(activities);
+        this.activities = activities;
     }
 
     /**
