@@ -232,7 +232,7 @@ Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Sinc
 
 <puml src="diagrams/UndoRedoState5.puml" alt="UndoRedoState5" />
 
-The following activity diagram summarizes what happens when a user executes a new command:
+The following activities diagram summarizes what happens when a user executes a new command:
 
 <puml src="diagrams/CommitActivityDiagram.puml" width="250" />
 
@@ -314,7 +314,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | Trip planner           | Edit opening hours             | update opening hours on new information / errors                                 |
 | `*`      | Trip planner           | Check opening hours            | check if the attraction is open at the time of my intended visit                 |
 | `*`      | Trip planner           | Add activities to attractions  | record the associated activities of an attraction                                |
-| `*`      | Trip planner           | Sort attractions by activities | Find available attractions for the activity to be planned                        |
+| `*`      | Trip planner           | Sort attractions by activities | Find available attractions for the activities to be planned                        |
 | `*`      | Trip planner           | create itinerary               | plan a list of activities and attractions for the day, verified by opening hours |
 | `*`      | Trip planner           | edit itinerary                 | edit a list of activities and attractions for the day, verified by opening hours |
 | `*`      | Trip planner           | delete itinerary               | remove a list of activities and attractions for the day                          |
