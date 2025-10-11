@@ -36,11 +36,11 @@ public class Activities {
         if (other == this) {
             return true;
         }
-    
+
         if (!(other instanceof Activities)) {
             return false;
         }
-    
+
         Activities otherActivities = (Activities) other;
         return activities.equals(otherActivities.activities);
     }
