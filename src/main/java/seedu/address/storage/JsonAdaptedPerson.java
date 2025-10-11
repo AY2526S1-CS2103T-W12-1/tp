@@ -105,7 +105,7 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
         final Address modelAddress = new Address(address);
-        
+
         final Activities modelActivities = new Activities(activities);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
