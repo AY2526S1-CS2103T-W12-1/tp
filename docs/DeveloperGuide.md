@@ -232,7 +232,7 @@ Step 6. The user executes `clear`, which calls `Model#commitMaplet()`. Since the
 
 <puml src="diagrams/UndoRedoState5.puml" alt="UndoRedoState5" />
 
-The following activity diagram summarizes what happens when a user executes a new command:
+The following activities diagram summarizes what happens when a user executes a new command:
 
 <puml src="diagrams/CommitActivityDiagram.puml" width="250" />
 
@@ -313,9 +313,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | Trip planner           | Add opening hours              | track when the location opens for future reference                               |
 | `*`      | Trip planner           | Edit opening hours             | update opening hours on new information / errors                                 |
 | `*`      | Trip planner           | Check opening hours            | check if the attraction is open at the time of my intended visit                 |
-| `*`      | Trip planner           | Add activities to attractions  | record the associated activities of a attraction                                |
-| `*`      | Trip planner           | Sort attractions by activities | Find available attractions for the activity to be planned                        |
-| `*`      | Trip planner           | create itinerary               | pla a list of activities and attractions for the day, verified by opening hours |
+| `*`      | Trip planner           | Add activities to attractions  | record the associated activities of an attraction                                |
+| `*`      | Trip planner           | Sort attractions by activities | Find available attractions for the activities to be planned                        |
+| `*`      | Trip planner           | create itinerary               | plan a list of activities and attractions for the day, verified by opening hours |
 | `*`      | Trip planner           | edit itinerary                 | edit a list of activities and attractions for the day, verified by opening hours |
 | `*`      | Trip planner           | delete itinerary               | remove a list of activities and attractions for the day                          |
 | `*`      | Experienced User       | user single letter commands    | more quickly perform operations                                                  |
@@ -342,7 +342,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. User does not specify location
 
     * 1a1. Maplet shows a list of all attractions
-  
+
       Use case ends.
 
 * 2a. The list is empty.
@@ -376,7 +376,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User chooses to <u>list attractions (UC1)</u> to see index of attractions
-2.  User chooses to delete a attraction in the list 
+2.  User chooses to delete an attraction in the list
 3.  User enters index of attraction to delete
 4.  Maplet deletes the attraction
 
@@ -388,7 +388,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3a1. Maplet prompts the user for valid index
     * 3a2. User enters valid index
-  
+
       Steps 3a1-3a2 are repeated until index entered is valid.</br>
       Use case resumes at step 4.
 
