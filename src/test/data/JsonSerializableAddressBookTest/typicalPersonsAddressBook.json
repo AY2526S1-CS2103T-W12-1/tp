@@ -3,44 +3,51 @@
   "persons" : [ {
     "name" : "Alice Pauline",
     "priority" : "9",
-    "email" : "alice@example.com",
+    "contact" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
+    "activities": "Sightseeing",
     "tags" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
     "priority" : "8",
-    "email" : "johnd@example.com",
+    "contact" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
+    "activities": "Sightseeing",
     "tags" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
     "priority" : "7",
-    "email" : "heinz@example.com",
+    "contact": "heinz@example.com",
     "address" : "wall street",
+    "activities": "Sightseeing",
     "tags" : [ ]
   }, {
     "name" : "Daniel Meier",
     "priority" : "6",
-    "email" : "cornelia@example.com",
+    "contact" : "cornelia@example.com",
     "address" : "10th street",
+    "activities": "Sightseeing",
     "tags" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
     "priority" : "5",
-    "email" : "werner@example.com",
+    "contact" : "werner@example.com",
     "address" : "michegan ave",
+    "activities": "Sightseeing",
     "tags" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "priority" : "4",
-    "email" : "lydia@example.com",
+    "contact" : "lydia@example.com",
     "address" : "little tokyo",
+    "activities": "Sightseeing",
     "tags" : [ ]
   }, {
     "name" : "George Best",
     "priority" : "3",
-    "email" : "anna@example.com",
+    "contact" : "anna@example.com",
     "address" : "4th street",
+    "activities": "Sightseeing",
     "tags" : [ ]
   } ]
 }

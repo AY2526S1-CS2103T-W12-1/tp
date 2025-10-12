@@ -11,7 +11,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Person in the Maplet.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
@@ -19,21 +19,23 @@ public class Person {
     // Identity fields
     private final Name name;
     private final Priority priority;
-    private final Email email;
+    private final Contact contact;
 
     // Data fields
     private final Address address;
+    private final Activities activities;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Priority priority, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, priority, email, address, tags);
+    public Person(Name name, Priority priority, Contact contact, Address address, Activities activities, Set<Tag> tags) {
+        requireAllNonNull(name, priority, contact, address, tags);
         this.name = name;
         this.priority = priority;
-        this.email = email;
+        this.contact = contact;
         this.address = address;
+        this.activities = activities;
         this.tags.addAll(tags);
     }
 
@@ -45,12 +47,16 @@ public class Person {
         return priority;
     }
 
-    public Email getEmail() {
-        return email;
+    public Contact getContact() {
+        return contact;
     }
 
     public Address getAddress() {
         return address;
+    }
+
+    public Activities getActivities() {
+        return activities;
     }
 
     /**
@@ -92,15 +98,16 @@ public class Person {
         Person otherPerson = (Person) other;
         return name.equals(otherPerson.name)
                 && priority.equals(otherPerson.priority)
-                && email.equals(otherPerson.email)
+                && contact.equals(otherPerson.contact)
                 && address.equals(otherPerson.address)
+                && activities.equals(otherPerson.activities)
                 && tags.equals(otherPerson.tags);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, priority, email, address, tags);
+        return Objects.hash(name, priority, contact, address, tags);
     }
 
     @Override
@@ -108,8 +115,9 @@ public class Person {
         return new ToStringBuilder(this)
                 .add("name", name)
                 .add("priority", priority)
-                .add("email", email)
+                .add("contact", contact)
                 .add("address", address)
+                .add("activities", activities)
                 .add("tags", tags)
                 .toString();
     }

@@ -1,8 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ACTIVITIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -21,15 +22,16 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Activities;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
+import seedu.address.model.person.Contact;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Priority;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing person in the Maplet.
  */
 public class EditCommand extends Command {
 
@@ -40,17 +42,18 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PRIORITY + "PRIORITY] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_PRIORITY + "PHONE] "
+            + "[" + PREFIX_CONTACT + "CONTACT] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_ACTIVITIES + "ACTIVITIES] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PRIORITY + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_CONTACT + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the Maplet.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -96,12 +99,13 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Priority updatedPriority = editPersonDescriptor.getPriority().orElse(personToEdit.getPriority());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
+        Priority updatedPhone = editPersonDescriptor.getPriority().orElse(personToEdit.getPriority());
+        Contact updatedContact = editPersonDescriptor.getContact().orElse(personToEdit.getContact());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Activities updatedActivities = editPersonDescriptor.getActivities().orElse(personToEdit.getActivities());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPriority, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPriority, updatedContact, updatedAddress, updatedActivities, updatedTags);
     }
 
     @Override
@@ -135,8 +139,9 @@ public class EditCommand extends Command {
     public static class EditPersonDescriptor {
         private Name name;
         private Priority priority;
-        private Email email;
+        private Contact contact;
         private Address address;
+        private Activities activities;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -148,8 +153,9 @@ public class EditCommand extends Command {
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
             setPriority(toCopy.priority);
-            setEmail(toCopy.email);
+            setContact(toCopy.contact);
             setAddress(toCopy.address);
+            setActivities(toCopy.activities);
             setTags(toCopy.tags);
         }
 
@@ -157,7 +163,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, priority, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, priority, contact, address, tags);
         }
 
         public void setName(Name name) {
@@ -176,12 +182,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(priority);
         }
 
-        public void setEmail(Email email) {
-            this.email = email;
+        public void setContact(Contact contact) {
+            this.contact = contact;
         }
 
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
+        public Optional<Contact> getContact() {
+            return Optional.ofNullable(contact);
         }
 
         public void setAddress(Address address) {
@@ -190,6 +196,14 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setActivities(Activities activities) {
+            this.activities = activities;
+        }
+
+        public Optional<Activities> getActivities() {
+            return Optional.ofNullable(activities);
         }
 
         /**
@@ -223,8 +237,9 @@ public class EditCommand extends Command {
             EditPersonDescriptor otherEditPersonDescriptor = (EditPersonDescriptor) other;
             return Objects.equals(name, otherEditPersonDescriptor.name)
                     && Objects.equals(priority, otherEditPersonDescriptor.priority)
-                    && Objects.equals(email, otherEditPersonDescriptor.email)
+                    && Objects.equals(contact, otherEditPersonDescriptor.contact)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
+                    && Objects.equals(activities, otherEditPersonDescriptor.activities)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags);
         }
 
@@ -233,8 +248,9 @@ public class EditCommand extends Command {
             return new ToStringBuilder(this)
                     .add("name", name)
                     .add("priority", priority)
-                    .add("email", email)
+                    .add("contact", contact)
                     .add("address", address)
+                    .add("activities", activities)
                     .add("tags", tags)
                     .toString();
         }

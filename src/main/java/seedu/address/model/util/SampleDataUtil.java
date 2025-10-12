@@ -4,44 +4,45 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.Maplet;
+import seedu.address.model.ReadOnlyMaplet;
+import seedu.address.model.person.Activities;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
+import seedu.address.model.person.Contact;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Priority;
 import seedu.address.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code Maplet} with sample data.
  */
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[] {
-            new Person(new Name("Alex Yeoh"), new Priority("8"), new Email("alexyeoh@example.com"),
-                new Address("Blk 30 Geylang Street 29, #06-40"),
+            new Person(new Name("Alex Yeoh"), new Priority("8"), new Contact("alexyeoh@example.com"),
+                new Address("Blk 30 Geylang Street 29, #06-40"), new Activities("see the world"),
                 getTagSet("friends")),
-            new Person(new Name("Bernice Yu"), new Priority("7"), new Email("berniceyu@example.com"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
+            new Person(new Name("Bernice Yu"), new Priority("7"), new Contact("berniceyu@example.com"),
+                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), new Activities("eat good food"),
                 getTagSet("colleagues", "friends")),
-            new Person(new Name("Charlotte Oliveiro"), new Priority("6"), new Email("charlotte@example.com"),
-                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
+            new Person(new Name("Charlotte Oliveiro"), new Priority("6"), new Contact("charlotte@example.com"),
+                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), new Activities("visiting museums"),
                 getTagSet("neighbours")),
-            new Person(new Name("David Li"), new Priority("1"), new Email("lidavid@example.com"),
-                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
+            new Person(new Name("David Li"), new Priority("1"), new Contact("lidavid@example.com"),
+                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), new Activities("go hiking"),
                 getTagSet("family")),
-            new Person(new Name("Irfan Ibrahim"), new Priority("2"), new Email("irfan@example.com"),
-                new Address("Blk 47 Tampines Street 20, #17-35"),
+            new Person(new Name("Irfan Ibrahim"), new Priority("2"), new Contact("irfan@example.com"),
+                new Address("Blk 47 Tampines Street 20, #17-35"), new Activities("see the eiffel tower"),
                 getTagSet("classmates")),
-            new Person(new Name("Roy Balakrishnan"), new Priority("3"), new Email("royb@example.com"),
-                new Address("Blk 45 Aljunied Street 85, #11-31"),
+            new Person(new Name("Roy Balakrishnan"), new Priority("3"), new Contact("royb@example.com"),
+                new Address("Blk 45 Aljunied Street 85, #11-31"), new Activities("go and watch football matches"),
                 getTagSet("colleagues"))
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlyMaplet getSampleMaplet() {
+        Maplet sampleAb = new Maplet();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
         }

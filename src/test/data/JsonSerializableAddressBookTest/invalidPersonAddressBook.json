@@ -2,7 +2,8 @@
   "persons": [ {
     "name": "Hans Muster",
     "priority": "9",
-    "email": "invalid@email!3e",
+    "contact": "invalid@email!3e",
+    "activities": "Sightseeing",
     "address": "4th street"
   } ]
 }

@@ -1,7 +1,7 @@
 {
   "baseUrl": "",
   "titlePrefix": "Maplet",
-  "titleSuffix": "AddressBook Level-3",
+  "titleSuffix": "Maplet Level-3",
   "faviconPath": "images/SeEduLogo.png",
   "style": {
     "codeTheme": "light"
