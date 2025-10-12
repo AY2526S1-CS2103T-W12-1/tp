@@ -11,7 +11,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Person in the Maplet.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
@@ -23,6 +23,7 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final Activities activities;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
@@ -34,6 +35,7 @@ public class Person {
         this.phone = phone;
         this.contact = contact;
         this.address = address;
+        this.activities = activities;
         this.tags.addAll(tags);
     }
 
@@ -52,6 +54,8 @@ public class Person {
     public Address getAddress() {
         return address;
     }
+
+    public Activities getActivities() { return activities; }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -94,6 +98,7 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && contact.equals(otherPerson.contact)
                 && address.equals(otherPerson.address)
+                && activities.equals(otherPerson.activities)
                 && tags.equals(otherPerson.tags);
     }
 
@@ -110,6 +115,7 @@ public class Person {
                 .add("phone", phone)
                 .add("contact", contact)
                 .add("address", address)
+                .add("activities", activities)
                 .add("tags", tags)
                 .toString();
     }

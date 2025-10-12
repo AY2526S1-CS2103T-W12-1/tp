@@ -9,6 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Activities;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Contact;
 import seedu.address.model.person.Name;
@@ -94,7 +95,20 @@ public class ParserUtil {
         }
         return new Contact(trimmedContact);
     }
-
+    /**
+     * Parses a {@code String activities} into an {@code Activities}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code activities} is invalid.
+     */
+    public static Activities parseActivities(String activities) throws ParseException {
+        requireNonNull(activities);
+        String trimmedActivities = activities.trim();
+        if (!Activities.isValidActivities(trimmedActivities)) {
+            throw new ParseException(Activities.MESSAGE_CONSTRAINTS);
+        }
+        return new Activities(trimmedActivities);
+    }
     /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.

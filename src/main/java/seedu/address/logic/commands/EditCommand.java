@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ACTIVITIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -21,6 +22,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Activities;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Contact;
 import seedu.address.model.person.Name;
@@ -29,7 +31,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing person in the Maplet.
  */
 public class EditCommand extends Command {
 
@@ -43,6 +45,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_CONTACT + "CONTACT] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_ACTIVITIES + "ACTIVITIES] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -50,7 +53,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the Maplet.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -99,6 +102,7 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Contact updatedContact = editPersonDescriptor.getContact().orElse(personToEdit.getContact());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Activities updatedActivities = editPersonDescriptor.getActivities().orElse(personToEdit.getActivities());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedName, updatedPhone, updatedContact, updatedAddress, updatedTags);
@@ -137,6 +141,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Contact contact;
         private Address address;
+        private Activities activities;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -150,6 +155,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setContact(toCopy.contact);
             setAddress(toCopy.address);
+            setActivities(toCopy.activities);
             setTags(toCopy.tags);
         }
 
@@ -192,6 +198,10 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
+        public void setActivities(Activities activities) { this.activities = activities; }
+
+        public Optional<Activities> getActivities() { return Optional.ofNullable(activities); }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -225,6 +235,7 @@ public class EditCommand extends Command {
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(contact, otherEditPersonDescriptor.contact)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
+                    && Objects.equals(activities, otherEditPersonDescriptor.activities)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags);
         }
 
@@ -235,6 +246,7 @@ public class EditCommand extends Command {
                     .add("phone", phone)
                     .add("contact", contact)
                     .add("address", address)
+                    .add("activities", activities)
                     .add("tags", tags)
                     .toString();
         }

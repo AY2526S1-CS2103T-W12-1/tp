@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.person.Activities;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Contact;
 import seedu.address.model.person.Name;
@@ -28,6 +29,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String contact;
     private final String address;
+    private final String activities;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -35,12 +37,13 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("contact") String contact, @JsonProperty("address") String address,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+             @JsonProperty("contact") String contact, @JsonProperty("address") String address,
+             @JsonProperty("activities") String activities, @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phone = phone;
         this.contact = contact;
         this.address = address;
+        this.activities = activities;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -54,6 +57,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         contact = source.getContact().value;
         address = source.getAddress().value;
+        activities = source.getActivities().activities;
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -102,8 +106,17 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (activities == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Activities.class.getSimpleName()));
+        }
+        if (!Activities.isValidActivities(activities)) {
+            throw new IllegalValueException(Activities.MESSAGE_CONSTRAINTS);
+        }
+        final Activities modelActivities = new Activities(activities);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelContact, modelAddress, modelTags);
+        return new Person(modelName, modelPhone, modelContact, modelAddress, modelActivities, modelTags);
     }
 
 }

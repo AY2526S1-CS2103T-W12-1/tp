@@ -6,12 +6,12 @@
 
 # Maplet
 
-An address book that stores **locations**. Maplet caters to individuals that are planning to go overseas
+A Maplet that stores **locations**. Maplet caters to individuals that are planning to go overseas
 or are frequent travellers.
 
 Maplet can store important information on locations such as:
 1. opening hours
-2. price 
+2. price
 3. travel time etc.
 
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
@@ -27,7 +27,7 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
   * trip planner
   * Storing locations of interest
 
-* The project is based on an ongoing software project for a desktop application (called _AddressBook_) used for managing contact details.
+* The project is based on an ongoing software project for a desktop application (called _Maplet_) used for managing contact details.
   * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
   * It comes with a **reasonable level of user and developer documentation**.
 
