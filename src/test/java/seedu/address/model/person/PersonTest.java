@@ -73,7 +73,7 @@ public class PersonTest {
         Person editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different phone -> returns false
+        // different priority -> returns false
         editedAlice = new PersonBuilder(ALICE).withPriority(VALID_PRIORITY_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
@@ -92,7 +92,8 @@ public class PersonTest {
 
     @Test
     public void toStringMethod() {
-        String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPriority()
+        String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName()
+                + ", priority=" + ALICE.getPriority()
                 + ", contact=" + ALICE.getContact() + ", address=" + ALICE.getAddress()
                 + ", activities=" + ALICE.getActivities() + ", tags=" + ALICE.getTags() + "}";
         assertEquals(expected, ALICE.toString());

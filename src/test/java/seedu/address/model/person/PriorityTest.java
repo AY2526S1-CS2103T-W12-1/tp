@@ -21,10 +21,10 @@ public class PriorityTest {
 
     @Test
     public void isValidPriority() {
-        // null phone number
+        // null priority number
         assertThrows(NullPointerException.class, () -> Priority.isValidPriority(null));
 
-        // invalid phone numbers
+        // invalid priority numbers
         assertFalse(Priority.isValidPriority("")); // empty string
         assertFalse(Priority.isValidPriority(" ")); // spaces only
         assertFalse(Priority.isValidPriority("100")); // outside of range

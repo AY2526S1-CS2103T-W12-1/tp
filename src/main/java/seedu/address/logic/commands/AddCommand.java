@@ -24,7 +24,7 @@ public class AddCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the Maplet. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_PRIORITY + "PHONE "
+            + PREFIX_PRIORITY + "PRIORITY "
             + PREFIX_CONTACT + "CONTACT "
             + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_ACTIVITIES + "ACTIVITIES "

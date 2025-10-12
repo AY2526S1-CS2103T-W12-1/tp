@@ -42,7 +42,7 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PRIORITY + "PHONE] "
+            + "[" + PREFIX_PRIORITY + "PRIORITY] "
             + "[" + PREFIX_CONTACT + "CONTACT] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_ACTIVITIES + "ACTIVITIES] "
@@ -99,7 +99,7 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Priority updatedPhone = editPersonDescriptor.getPriority().orElse(personToEdit.getPriority());
+        Priority updatedPriority = editPersonDescriptor.getPriority().orElse(personToEdit.getPriority());
         Contact updatedContact = editPersonDescriptor.getContact().orElse(personToEdit.getContact());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Activities updatedActivities = editPersonDescriptor.getActivities().orElse(personToEdit.getActivities());

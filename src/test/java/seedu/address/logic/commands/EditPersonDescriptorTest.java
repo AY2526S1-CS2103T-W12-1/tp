@@ -40,7 +40,7 @@ public class EditPersonDescriptorTest {
         EditPersonDescriptor editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        // different phone -> returns false
+        // different priority -> returns false
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withPriority(VALID_PRIORITY_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
