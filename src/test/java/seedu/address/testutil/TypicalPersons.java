@@ -1,13 +1,22 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PRIORITY_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PRIORITY_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.person.Person;
-
-import static seedu.address.logic.commands.CommandTestUtil.*;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
@@ -22,15 +31,15 @@ public class TypicalPersons {
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPriority("8")
             .withTags("owesMoney", "friends").build();
-    public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPriority("5")
+    public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPriority("7")
             .withEmail("heinz@example.com").withAddress("wall street").build();
-    public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPriority("3")
+    public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPriority("6")
             .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends").build();
-    public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPriority("4")
+    public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPriority("5")
             .withEmail("werner@example.com").withAddress("michegan ave").build();
-    public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPriority("2")
+    public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPriority("4")
             .withEmail("lydia@example.com").withAddress("little tokyo").build();
-    public static final Person GEORGE = new PersonBuilder().withName("George Best").withPriority("7")
+    public static final Person GEORGE = new PersonBuilder().withName("George Best").withPriority("3")
             .withEmail("anna@example.com").withAddress("4th street").build();
 
     // Manually added

@@ -40,10 +40,10 @@ public class PriorityTest {
 
     @Test
     public void equals() {
-        Priority priority = new Priority("999");
+        Priority priority = new Priority("9");
 
         // same values -> returns true
-        assertTrue(priority.equals(new Priority("999")));
+        assertTrue(priority.equals(new Priority("9")));
 
         // same object -> returns true
         assertTrue(priority.equals(priority));
@@ -55,6 +55,6 @@ public class PriorityTest {
         assertFalse(priority.equals(5.0f));
 
         // different values -> returns false
-        assertFalse(priority.equals(new Priority("995")));
+        assertFalse(priority.equals(new Priority("8")));
     }
 }
