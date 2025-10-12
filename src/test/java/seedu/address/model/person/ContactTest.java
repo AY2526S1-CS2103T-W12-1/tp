@@ -34,4 +34,41 @@ public class ContactTest {
         assertTrue(Contact.isValidContact("alice@example.com")); // valid email
         assertTrue(Contact.isValidContact("1234567")); // valid phone
     }
+
+    @Test
+    public void equals() {
+        Contact contact1 = new Contact("alice@example.com");
+        Contact contact2 = new Contact("alice@example.com");
+        Contact contact3 = new Contact("bob@example.com");
+
+        // same object -> true
+        assertTrue(contact1.equals(contact1));
+
+        // same values -> true
+        assertTrue(contact1.equals(contact2));
+
+        // different values -> false
+        assertFalse(contact1.equals(contact3));
+
+        // different type -> false
+        assertFalse(contact1.equals(42));
+
+        // null -> false
+        assertFalse(contact1.equals(null));
+    }
+
+    @Test
+    public void hashCode_sameValue_sameHash() {
+        Contact c1 = new Contact("alice@example.com");
+        Contact c2 = new Contact("alice@example.com");
+        assertTrue(c1.hashCode() == c2.hashCode());
+    }
+
+    @Test
+    public void toString_returnsValue() {
+        Contact contact = new Contact("alice@example.com");
+        assertTrue(contact.toString().equals("alice@example.com"));
+    }
+
+
 }
