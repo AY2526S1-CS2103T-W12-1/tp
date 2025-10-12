@@ -6,16 +6,16 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.attraction.Attraction;
+import seedu.address.model.attraction.UniqueAttractionList;
 
 /**
  * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Duplicates are not allowed (by .isSameAttraction comparison)
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
-    private final UniquePersonList persons;
+    private final UniqueAttractionList attractions;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,13 +25,13 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
+        attractions = new UniqueAttractionList();
     }
 
     public AddressBook() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an AddressBook using the Attractions in the {@code toBeCopied}
      */
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
@@ -41,11 +41,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the attraction list with {@code attractions}.
+     * {@code attractions} must not contain duplicate attractions.
      */
-    public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
+    public void setAttractions(List<Attraction> attractions) {
+        this.attractions.setAttractions(attractions);
     }
 
     /**
@@ -54,44 +54,45 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setAttractions(newData.getAttractionList());
     }
 
-    //// person-level operations
+    //// attraction-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a attraction with the same identity as {@code attraction} exists in the address book.
      */
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return persons.contains(person);
+    public boolean hasAttraction(Attraction attraction) {
+        requireNonNull(attraction);
+        return attractions.contains(attraction);
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a attraction to the address book.
+     * The attraction must not already exist in the address book.
      */
-    public void addPerson(Person p) {
-        persons.add(p);
+    public void addAttraction(Attraction p) {
+        attractions.add(p);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * Replaces the given attraction {@code target} in the list with {@code editedAttraction}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The attraction identity of {@code editedAttraction} must not be the same as another existing attraction in the
+     * address book.
      */
-    public void setPerson(Person target, Person editedPerson) {
-        requireNonNull(editedPerson);
+    public void setAttraction(Attraction target, Attraction editedAttraction) {
+        requireNonNull(editedAttraction);
 
-        persons.setPerson(target, editedPerson);
+        attractions.setAttraction(target, editedAttraction);
     }
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
-    public void removePerson(Person key) {
-        persons.remove(key);
+    public void removeAttraction(Attraction key) {
+        attractions.remove(key);
     }
 
     //// util methods
@@ -99,13 +100,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("persons", persons)
+                .add("attractions", attractions)
                 .toString();
     }
 
     @Override
-    public ObservableList<Person> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+    public ObservableList<Attraction> getAttractionList() {
+        return attractions.asUnmodifiableObservableList();
     }
 
     @Override
@@ -120,11 +121,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
 
         AddressBook otherAddressBook = (AddressBook) other;
-        return persons.equals(otherAddressBook.persons);
+        return attractions.equals(otherAddressBook.attractions);
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return attractions.hashCode();
     }
 }
