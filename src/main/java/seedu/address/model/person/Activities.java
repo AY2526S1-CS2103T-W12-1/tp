@@ -17,7 +17,7 @@ public class Activities {
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
     public final String activities;
-    
+
     /**
      * Constructs a {@code Activities}.
      *
