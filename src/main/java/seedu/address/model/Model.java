@@ -35,44 +35,44 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' Maplet file path.
      */
-    Path getAddressBookFilePath();
+    Path getMapletFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' Maplet data file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setMapletFilePath(Path mapletFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces Maplet data with the data in {@code maplet}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setMaplet(ReadOnlyMaplet maplet);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the Maplet */
+    ReadOnlyMaplet getMaplet();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in the Maplet.
      */
     boolean hasPerson(Person person);
 
     /**
      * Deletes the given person.
-     * The person must exist in the address book.
+     * The person must exist in the Maplet.
      */
     void deletePerson(Person target);
 
     /**
      * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * {@code person} must not already exist in the Maplet.
      */
     void addPerson(Person person);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * {@code target} must exist in the Maplet.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the Maplet.
      */
     void setPerson(Person target, Person editedPerson);
 
