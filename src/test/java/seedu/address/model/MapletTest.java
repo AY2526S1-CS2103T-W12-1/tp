@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.getTypicalMaplet;
+import static seedu.address.testutil.TypicalAttractions.ALICE;
+import static seedu.address.testutil.TypicalAttractions.getTypicalMaplet;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -18,9 +18,9 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.attraction.Attraction;
+import seedu.address.model.attraction.exceptions.DuplicateAttractionException;
+import seedu.address.testutil.AttractionBuilder;
 
 public class MapletTest {
 
@@ -28,7 +28,7 @@ public class MapletTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), maplet.getPersonList());
+        assertEquals(Collections.emptyList(), maplet.getAttractionList());
     }
 
     @Test
@@ -44,64 +44,64 @@ public class MapletTest {
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
-        // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+    public void resetData_withDuplicateAttractions_throwsDuplicateAttractionException() {
+        // Two attractions with the same identity fields
+        Attraction editedAlice = new AttractionBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        MapletStub newData = new MapletStub(newPersons);
+        List<Attraction> newAttractions = Arrays.asList(ALICE, editedAlice);
+        MapletStub newData = new MapletStub(newAttractions);
 
-        assertThrows(DuplicatePersonException.class, () -> maplet.resetData(newData));
+        assertThrows(DuplicateAttractionException.class, () -> maplet.resetData(newData));
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> maplet.hasPerson(null));
+    public void hasAttraction_nullAttraction_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> maplet.hasAttraction(null));
     }
 
     @Test
-    public void hasPerson_personNotInMaplet_returnsFalse() {
-        assertFalse(maplet.hasPerson(ALICE));
+    public void hasAttraction_attractionNotInMaplet_returnsFalse() {
+        assertFalse(maplet.hasAttraction(ALICE));
     }
 
     @Test
-    public void hasPerson_personInMaplet_returnsTrue() {
-        maplet.addPerson(ALICE);
-        assertTrue(maplet.hasPerson(ALICE));
+    public void hasAttraction_attractionInMaplet_returnsTrue() {
+        maplet.addAttraction(ALICE);
+        assertTrue(maplet.hasAttraction(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInMaplet_returnsTrue() {
-        maplet.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+    public void hasAttraction_attractionWithSameIdentityFieldsInMaplet_returnsTrue() {
+        maplet.addAttraction(ALICE);
+        Attraction editedAlice = new AttractionBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(maplet.hasPerson(editedAlice));
+        assertTrue(maplet.hasAttraction(editedAlice));
     }
 
     @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> maplet.getPersonList().remove(0));
+    public void getAttractionList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> maplet.getAttractionList().remove(0));
     }
 
     @Test
     public void toStringMethod() {
-        String expected = Maplet.class.getCanonicalName() + "{persons=" + maplet.getPersonList() + "}";
+        String expected = Maplet.class.getCanonicalName() + "{attractions=" + maplet.getAttractionList() + "}";
         assertEquals(expected, maplet.toString());
     }
 
     /**
-     * A stub ReadOnlyMaplet whose persons list can violate interface constraints.
+     * A stub ReadOnlyMaplet whose attractions list can violate interface constraints.
      */
     private static class MapletStub implements ReadOnlyMaplet {
-        private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Attraction> attractions = FXCollections.observableArrayList();
 
-        MapletStub(Collection<Person> persons) {
-            this.persons.setAll(persons);
+        MapletStub(Collection<Attraction> attractions) {
+            this.attractions.setAll(attractions);
         }
 
         @Override
-        public ObservableList<Person> getPersonList() {
-            return persons;
+        public ObservableList<Attraction> getAttractionList() {
+            return attractions;
         }
     }
 

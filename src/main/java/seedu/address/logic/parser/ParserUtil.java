@@ -9,11 +9,11 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Activities;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Contact;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Priority;
+import seedu.address.model.attraction.Activities;
+import seedu.address.model.attraction.Address;
+import seedu.address.model.attraction.Contact;
+import seedu.address.model.attraction.Name;
+import seedu.address.model.attraction.Priority;
 import seedu.address.model.tag.Tag;
 
 /**

@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.attraction.Attraction;
 
 /**
  * Represents the in-memory model of the Maplet data.
@@ -21,7 +21,7 @@ public class ModelManager implements Model {
 
     private final Maplet maplet;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Attraction> filteredAttractions;
 
     /**
      * Initializes a ModelManager with the given Maplet and userPrefs.
@@ -33,7 +33,7 @@ public class ModelManager implements Model {
 
         this.maplet = new Maplet(maplet);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.maplet.getPersonList());
+        filteredAttractions = new FilteredList<>(this.maplet.getAttractionList());
     }
 
     public ModelManager() {
@@ -88,44 +88,44 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return maplet.hasPerson(person);
+    public boolean hasAttraction(Attraction attraction) {
+        requireNonNull(attraction);
+        return maplet.hasAttraction(attraction);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        maplet.removePerson(target);
+    public void deleteAttraction(Attraction target) {
+        maplet.removeAttraction(target);
     }
 
     @Override
-    public void addPerson(Person person) {
-        maplet.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addAttraction(Attraction attraction) {
+        maplet.addAttraction(attraction);
+        updateFilteredAttractionList(PREDICATE_SHOW_ALL_ATTRACTIONS);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setAttraction(Attraction target, Attraction editedAttraction) {
+        requireAllNonNull(target, editedAttraction);
 
-        maplet.setPerson(target, editedPerson);
+        maplet.setAttraction(target, editedAttraction);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Attraction List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Attraction} backed by the internal list of
      * {@code versionedMaplet}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Attraction> getFilteredAttractionList() {
+        return filteredAttractions;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredAttractionList(Predicate<Attraction> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredAttractions.setPredicate(predicate);
     }
 
     @Override
@@ -142,7 +142,7 @@ public class ModelManager implements Model {
         ModelManager otherModelManager = (ModelManager) other;
         return maplet.equals(otherModelManager.maplet)
                 && userPrefs.equals(otherModelManager.userPrefs)
-                && filteredPersons.equals(otherModelManager.filteredPersons);
+                && filteredAttractions.equals(otherModelManager.filteredAttractions);
     }
 
 }

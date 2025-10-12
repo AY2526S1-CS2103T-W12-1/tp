@@ -6,36 +6,36 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.Maplet;
 import seedu.address.model.ReadOnlyMaplet;
-import seedu.address.model.person.Activities;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Contact;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Priority;
+import seedu.address.model.attraction.Activities;
+import seedu.address.model.attraction.Address;
+import seedu.address.model.attraction.Attraction;
+import seedu.address.model.attraction.Contact;
+import seedu.address.model.attraction.Name;
+import seedu.address.model.attraction.Priority;
 import seedu.address.model.tag.Tag;
 
 /**
  * Contains utility methods for populating {@code Maplet} with sample data.
  */
 public class SampleDataUtil {
-    public static Person[] getSamplePersons() {
-        return new Person[] {
-            new Person(new Name("Alex Yeoh"), new Priority("8"), new Contact("alexyeoh@example.com"),
+    public static Attraction[] getSampleAttractions() {
+        return new Attraction[] {
+            new Attraction(new Name("Alex Yeoh"), new Priority("8"), new Contact("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"), new Activities("see the world"),
                 getTagSet("friends")),
-            new Person(new Name("Bernice Yu"), new Priority("7"), new Contact("berniceyu@example.com"),
+            new Attraction(new Name("Bernice Yu"), new Priority("7"), new Contact("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), new Activities("eat good food"),
                 getTagSet("colleagues", "friends")),
-            new Person(new Name("Charlotte Oliveiro"), new Priority("6"), new Contact("charlotte@example.com"),
+            new Attraction(new Name("Charlotte Oliveiro"), new Priority("6"), new Contact("charlotte@example.com"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), new Activities("visiting museums"),
                 getTagSet("neighbours")),
-            new Person(new Name("David Li"), new Priority("1"), new Contact("lidavid@example.com"),
+            new Attraction(new Name("David Li"), new Priority("1"), new Contact("lidavid@example.com"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), new Activities("go hiking"),
                 getTagSet("family")),
-            new Person(new Name("Irfan Ibrahim"), new Priority("2"), new Contact("irfan@example.com"),
+            new Attraction(new Name("Irfan Ibrahim"), new Priority("2"), new Contact("irfan@example.com"),
                 new Address("Blk 47 Tampines Street 20, #17-35"), new Activities("see the eiffel tower"),
                 getTagSet("classmates")),
-            new Person(new Name("Roy Balakrishnan"), new Priority("3"), new Contact("royb@example.com"),
+            new Attraction(new Name("Roy Balakrishnan"), new Priority("3"), new Contact("royb@example.com"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"), new Activities("go and watch football matches"),
                 getTagSet("colleagues"))
         };
@@ -43,8 +43,8 @@ public class SampleDataUtil {
 
     public static ReadOnlyMaplet getSampleMaplet() {
         Maplet sampleAb = new Maplet();
-        for (Person samplePerson : getSamplePersons()) {
-            sampleAb.addPerson(samplePerson);
+        for (Attraction sampleAttraction : getSampleAttractions()) {
+            sampleAb.addAttraction(sampleAttraction);
         }
         return sampleAb;
     }

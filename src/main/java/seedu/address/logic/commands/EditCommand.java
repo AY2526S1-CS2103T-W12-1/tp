@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ATTRACTIONS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -22,23 +22,23 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Activities;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Contact;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Priority;
+import seedu.address.model.attraction.Activities;
+import seedu.address.model.attraction.Address;
+import seedu.address.model.attraction.Attraction;
+import seedu.address.model.attraction.Contact;
+import seedu.address.model.attraction.Name;
+import seedu.address.model.attraction.Priority;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the Maplet.
+ * Edits the details of an existing attraction in the Maplet.
  */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the attraction identified "
+            + "by the index number used in the displayed attraction list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
@@ -51,61 +51,64 @@ public class EditCommand extends Command {
             + PREFIX_PRIORITY + "91234567 "
             + PREFIX_CONTACT + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_ATTRACTION_SUCCESS = "Edited Attraction: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the Maplet.";
+    public static final String MESSAGE_DUPLICATE_ATTRACTION = "This attraction already exists in the Maplet.";
 
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditAttractionDescriptor editAttractionDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param index of the attraction in the filtered attraction list to edit
+     * @param editAttractionDescriptor details to edit the attraction with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(Index index, EditAttractionDescriptor editAttractionDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editAttractionDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editAttractionDescriptor = new EditAttractionDescriptor(editAttractionDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Attraction> lastShownList = model.getFilteredAttractionList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_ATTRACTION_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Attraction attractionToEdit = lastShownList.get(index.getZeroBased());
+        Attraction editedAttraction = createEditedAttraction(attractionToEdit, editAttractionDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (!attractionToEdit.isSameAttraction(editedAttraction) && model.hasAttraction(editedAttraction)) {
+            throw new CommandException(MESSAGE_DUPLICATE_ATTRACTION);
         }
 
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
+        model.setAttraction(attractionToEdit, editedAttraction);
+        model.updateFilteredAttractionList(PREDICATE_SHOW_ALL_ATTRACTIONS);
+        return new CommandResult(String.format(MESSAGE_EDIT_ATTRACTION_SUCCESS, Messages.format(editedAttraction)));
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Attraction} with the details of {@code attractionToEdit}
+     * edited with {@code editAttractionDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+    private static Attraction createEditedAttraction(
+            Attraction attractionToEdit, EditAttractionDescriptor editAttractionDescriptor) {
+        assert attractionToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Priority updatedPriority = editPersonDescriptor.getPriority().orElse(personToEdit.getPriority());
-        Contact updatedContact = editPersonDescriptor.getContact().orElse(personToEdit.getContact());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Activities updatedActivities = editPersonDescriptor.getActivities().orElse(personToEdit.getActivities());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Name updatedName = editAttractionDescriptor.getName().orElse(attractionToEdit.getName());
+        Priority updatedPriority = editAttractionDescriptor.getPriority().orElse(attractionToEdit.getPriority());
+        Contact updatedContact = editAttractionDescriptor.getContact().orElse(attractionToEdit.getContact());
+        Address updatedAddress = editAttractionDescriptor.getAddress().orElse(attractionToEdit.getAddress());
+        Activities updatedActivities = editAttractionDescriptor
+                .getActivities().orElse(attractionToEdit.getActivities());
+        Set<Tag> updatedTags = editAttractionDescriptor.getTags().orElse(attractionToEdit.getTags());
 
-        return new Person(updatedName, updatedPriority, updatedContact, updatedAddress, updatedActivities, updatedTags);
+        return new Attraction(
+                updatedName, updatedPriority, updatedContact, updatedAddress, updatedActivities, updatedTags);
     }
 
     @Override
@@ -121,22 +124,22 @@ public class EditCommand extends Command {
 
         EditCommand otherEditCommand = (EditCommand) other;
         return index.equals(otherEditCommand.index)
-                && editPersonDescriptor.equals(otherEditCommand.editPersonDescriptor);
+                && editAttractionDescriptor.equals(otherEditCommand.editAttractionDescriptor);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("index", index)
-                .add("editPersonDescriptor", editPersonDescriptor)
+                .add("editAttractionDescriptor", editAttractionDescriptor)
                 .toString();
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the attraction with. Each non-empty field value will replace the
+     * corresponding field value of the attraction.
      */
-    public static class EditPersonDescriptor {
+    public static class EditAttractionDescriptor {
         private Name name;
         private Priority priority;
         private Contact contact;
@@ -144,13 +147,13 @@ public class EditCommand extends Command {
         private Activities activities;
         private Set<Tag> tags;
 
-        public EditPersonDescriptor() {}
+        public EditAttractionDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditAttractionDescriptor(EditAttractionDescriptor toCopy) {
             setName(toCopy.name);
             setPriority(toCopy.priority);
             setContact(toCopy.contact);
@@ -230,17 +233,17 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditAttractionDescriptor)) {
                 return false;
             }
 
-            EditPersonDescriptor otherEditPersonDescriptor = (EditPersonDescriptor) other;
-            return Objects.equals(name, otherEditPersonDescriptor.name)
-                    && Objects.equals(priority, otherEditPersonDescriptor.priority)
-                    && Objects.equals(contact, otherEditPersonDescriptor.contact)
-                    && Objects.equals(address, otherEditPersonDescriptor.address)
-                    && Objects.equals(activities, otherEditPersonDescriptor.activities)
-                    && Objects.equals(tags, otherEditPersonDescriptor.tags);
+            EditAttractionDescriptor otherEditAttractionDescriptor = (EditAttractionDescriptor) other;
+            return Objects.equals(name, otherEditAttractionDescriptor.name)
+                    && Objects.equals(priority, otherEditAttractionDescriptor.priority)
+                    && Objects.equals(contact, otherEditAttractionDescriptor.contact)
+                    && Objects.equals(address, otherEditAttractionDescriptor.address)
+                    && Objects.equals(activities, otherEditAttractionDescriptor.activities)
+                    && Objects.equals(tags, otherEditAttractionDescriptor.tags);
         }
 
         @Override

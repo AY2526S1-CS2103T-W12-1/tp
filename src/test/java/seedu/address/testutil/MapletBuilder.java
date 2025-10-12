@@ -1,12 +1,12 @@
 package seedu.address.testutil;
 
 import seedu.address.model.Maplet;
-import seedu.address.model.person.Person;
+import seedu.address.model.attraction.Attraction;
 
 /**
  * A utility class to help with building Maplet objects.
  * Example usage: <br>
- *     {@code Maplet ab = new MapletBuilder().withPerson("John", "Doe").build();}
+ *     {@code Maplet ab = new MapletBuilder().withAttraction("John", "Doe").build();}
  */
 public class MapletBuilder {
 
@@ -21,10 +21,10 @@ public class MapletBuilder {
     }
 
     /**
-     * Adds a new {@code Person} to the {@code Maplet} that we are building.
+     * Adds a new {@code Attraction} to the {@code Maplet} that we are building.
      */
-    public MapletBuilder withPerson(Person person) {
-        maplet.addPerson(person);
+    public MapletBuilder withAttraction(Attraction attraction) {
+        maplet.addAttraction(attraction);
         return this;
     }
 
