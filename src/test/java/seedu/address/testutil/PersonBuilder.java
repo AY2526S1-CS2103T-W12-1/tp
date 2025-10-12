@@ -5,7 +5,7 @@ import java.util.Set;
 
 import seedu.address.model.person.Activities;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
+import seedu.address.model.person.Contact;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -19,13 +19,13 @@ public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_EMAIL = "amy@gmail.com";
+    public static final String DEFAULT_CONTACT = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_ACTIVITIES = "Sightseeing";
 
     private Name name;
     private Phone phone;
-    private Email email;
+    private Contact contact;
     private Address address;
     private Activities activities;
     private Set<Tag> tags;
@@ -36,7 +36,7 @@ public class PersonBuilder {
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
-        email = new Email(DEFAULT_EMAIL);
+        contact = new Contact(DEFAULT_CONTACT);
         address = new Address(DEFAULT_ADDRESS);
         activities = new Activities(DEFAULT_ACTIVITIES);
         tags = new HashSet<>();
@@ -48,7 +48,7 @@ public class PersonBuilder {
     public PersonBuilder(Person personToCopy) {
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
-        email = personToCopy.getEmail();
+        contact = personToCopy.getContact();
         address = personToCopy.getAddress();
         activities = personToCopy.getActivities();
         tags = new HashSet<>(personToCopy.getTags());
@@ -94,15 +94,15 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
+     * Sets the {@code Contact} of the {@code Person} that we are building.
      */
-    public PersonBuilder withEmail(String email) {
-        this.email = new Email(email);
+    public PersonBuilder withContact(String contact) {
+        this.contact = new Contact(contact);
         return this;
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, activities, tags);
+        return new Person(name, phone, contact, address, activities, tags);
     }
 
 }

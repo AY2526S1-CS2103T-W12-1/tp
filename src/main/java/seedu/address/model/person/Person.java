@@ -19,7 +19,7 @@ public class Person {
     // Identity fields
     private final Name name;
     private final Phone phone;
-    private final Email email;
+    private final Contact contact;
 
     // Data fields
     private final Address address;
@@ -29,11 +29,11 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Activities activities, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Contact contact, Address address, Activities activities, Set<Tag> tags) {
+        requireAllNonNull(name, phone, contact, address, tags);
         this.name = name;
         this.phone = phone;
-        this.email = email;
+        this.contact = contact;
         this.address = address;
         this.activities = activities;
         this.tags.addAll(tags);
@@ -47,15 +47,17 @@ public class Person {
         return phone;
     }
 
-    public Email getEmail() {
-        return email;
+    public Contact getContact() {
+        return contact;
     }
 
     public Address getAddress() {
         return address;
     }
 
-    public Activities getActivities() { return activities; }
+    public Activities getActivities() {
+        return activities;
+    }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -96,7 +98,7 @@ public class Person {
         Person otherPerson = (Person) other;
         return name.equals(otherPerson.name)
                 && phone.equals(otherPerson.phone)
-                && email.equals(otherPerson.email)
+                && contact.equals(otherPerson.contact)
                 && address.equals(otherPerson.address)
                 && activities.equals(otherPerson.activities)
                 && tags.equals(otherPerson.tags);
@@ -105,7 +107,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, activities, tags);
+        return Objects.hash(name, phone, contact, address, tags);
     }
 
     @Override
@@ -113,7 +115,7 @@ public class Person {
         return new ToStringBuilder(this)
                 .add("name", name)
                 .add("phone", phone)
-                .add("email", email)
+                .add("contact", contact)
                 .add("address", address)
                 .add("activities", activities)
                 .add("tags", tags)

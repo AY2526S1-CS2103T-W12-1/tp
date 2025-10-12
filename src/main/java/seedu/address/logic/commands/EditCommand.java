@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ACTIVITIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -24,7 +24,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Activities;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
+import seedu.address.model.person.Contact;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -43,13 +43,13 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_CONTACT + "CONTACT] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_ACTIVITIES + "ACTIVITIES] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_CONTACT + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -100,12 +100,12 @@ public class EditCommand extends Command {
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
+        Contact updatedContact = editPersonDescriptor.getContact().orElse(personToEdit.getContact());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Activities updatedActivities = editPersonDescriptor.getActivities().orElse(personToEdit.getActivities());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedActivities, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedContact, updatedAddress, updatedActivities, updatedTags);
     }
 
     @Override
@@ -139,7 +139,7 @@ public class EditCommand extends Command {
     public static class EditPersonDescriptor {
         private Name name;
         private Phone phone;
-        private Email email;
+        private Contact contact;
         private Address address;
         private Activities activities;
         private Set<Tag> tags;
@@ -153,7 +153,7 @@ public class EditCommand extends Command {
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
-            setEmail(toCopy.email);
+            setContact(toCopy.contact);
             setAddress(toCopy.address);
             setActivities(toCopy.activities);
             setTags(toCopy.tags);
@@ -163,7 +163,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, activities, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, contact, address, tags);
         }
 
         public void setName(Name name) {
@@ -182,12 +182,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(phone);
         }
 
-        public void setEmail(Email email) {
-            this.email = email;
+        public void setContact(Contact contact) {
+            this.contact = contact;
         }
 
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
+        public Optional<Contact> getContact() {
+            return Optional.ofNullable(contact);
         }
 
         public void setAddress(Address address) {
@@ -198,9 +198,13 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        public void setActivities(Activities activities) { this.activities = activities; }
+        public void setActivities(Activities activities) {
+            this.activities = activities;
+        }
 
-        public Optional<Activities> getActivities() { return Optional.ofNullable(activities); }
+        public Optional<Activities> getActivities() {
+            return Optional.ofNullable(activities);
+        }
 
         /**
          * Sets {@code tags} to this object's {@code tags}.
@@ -233,7 +237,7 @@ public class EditCommand extends Command {
             EditPersonDescriptor otherEditPersonDescriptor = (EditPersonDescriptor) other;
             return Objects.equals(name, otherEditPersonDescriptor.name)
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
-                    && Objects.equals(email, otherEditPersonDescriptor.email)
+                    && Objects.equals(contact, otherEditPersonDescriptor.contact)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
                     && Objects.equals(activities, otherEditPersonDescriptor.activities)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags);
@@ -244,7 +248,7 @@ public class EditCommand extends Command {
             return new ToStringBuilder(this)
                     .add("name", name)
                     .add("phone", phone)
-                    .add("email", email)
+                    .add("contact", contact)
                     .add("address", address)
                     .add("activities", activities)
                     .add("tags", tags)
