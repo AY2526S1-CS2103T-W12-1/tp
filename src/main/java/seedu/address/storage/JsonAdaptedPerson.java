@@ -105,7 +105,14 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
         final Address modelAddress = new Address(address);
-
+        
+        if (activities == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, 
+                    Activities.class.getSimpleName()));
+        }
+        if (!Activities.isValidActivities(activities)) {
+            throw new IllegalValueException(Activities.MESSAGE_CONSTRAINTS);
+        }
         final Activities modelActivities = new Activities(activities);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);

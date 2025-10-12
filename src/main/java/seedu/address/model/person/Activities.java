@@ -1,6 +1,7 @@
 package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Person's remark in the address book.
@@ -25,13 +26,14 @@ public class Activities {
      */
     public Activities(String activities) {
         requireNonNull(activities);
+        checkArgument(isValidActivities(activities), MESSAGE_CONSTRAINTS);
         this.activities = activities;
     }
 
     /**
      * Returns true if a given string is a valid Activities.
      */
-    public static boolean isValidActivities(String test) { return true; }
+    public static boolean isValidActivities(String test) { return test.matches(VALIDATION_REGEX); }
 
     @Override
     public String toString() { return activities; }
