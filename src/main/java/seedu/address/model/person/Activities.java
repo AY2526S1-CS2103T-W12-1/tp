@@ -33,10 +33,14 @@ public class Activities {
     /**
      * Returns true if a given string is a valid Activities.
      */
-    public static boolean isValidActivities(String test) { return test.matches(VALIDATION_REGEX); }
+    public static boolean isValidActivities(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
 
     @Override
-    public String toString() { return activities; }
+    public String toString() {
+        return activities;
+    }
 
     @Override
     public boolean equals(Object other) {

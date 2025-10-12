@@ -29,7 +29,7 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Contact contact, Address address, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Contact contact, Address address, Activities activities, Set<Tag> tags) {
         requireAllNonNull(name, phone, contact, address, tags);
         this.name = name;
         this.phone = phone;
@@ -55,7 +55,9 @@ public class Person {
         return address;
     }
 
-    public Activities getActivities() { return activities; }
+    public Activities getActivities() {
+        return activities;
+    }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}

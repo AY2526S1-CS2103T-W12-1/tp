@@ -105,7 +105,7 @@ public class EditCommand extends Command {
         Activities updatedActivities = editPersonDescriptor.getActivities().orElse(personToEdit.getActivities());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedContact, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedContact, updatedAddress, updatedActivities, updatedTags);
     }
 
     @Override
@@ -198,9 +198,13 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        public void setActivities(Activities activities) { this.activities = activities; }
+        public void setActivities(Activities activities) {
+            this.activities = activities;
+        }
 
-        public Optional<Activities> getActivities() { return Optional.ofNullable(activities); }
+        public Optional<Activities> getActivities() {
+            return Optional.ofNullable(activities);
+        }
 
         /**
          * Sets {@code tags} to this object's {@code tags}.
