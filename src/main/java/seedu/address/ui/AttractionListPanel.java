@@ -11,28 +11,28 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.attraction.Attraction;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of attractions.
  */
 public class AttractionListPanel extends UiPart<Region> {
     private static final String FXML = "AttractionListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(AttractionListPanel.class);
 
     @FXML
-    private ListView<Attraction> personListView;
+    private ListView<Attraction> attractionListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code AttractionListPanel} with the given {@code ObservableList}.
      */
     public AttractionListPanel(ObservableList<Attraction> attractionList) {
         super(FXML);
-        personListView.setItems(attractionList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
+        attractionListView.setItems(attractionList);
+        attractionListView.setCellFactory(listView -> new AttractionListViewCell());
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Attraction} using a {@code AttractionCard}.
      */
-    class PersonListViewCell extends ListCell<Attraction> {
+    class AttractionListViewCell extends ListCell<Attraction> {
         @Override
         protected void updateItem(Attraction attraction, boolean empty) {
             super.updateItem(attraction, empty);
