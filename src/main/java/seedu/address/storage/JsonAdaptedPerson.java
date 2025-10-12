@@ -15,7 +15,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Contact;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.Priority;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -26,7 +26,7 @@ class JsonAdaptedPerson {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
     private final String name;
-    private final String phone;
+    private final String priority;
     private final String contact;
     private final String address;
     private final String activities;
@@ -36,11 +36,11 @@ class JsonAdaptedPerson {
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("priority") String priority,
              @JsonProperty("contact") String contact, @JsonProperty("address") String address,
              @JsonProperty("activities") String activities, @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
-        this.phone = phone;
+        this.priority = priority;
         this.contact = contact;
         this.address = address;
         this.activities = activities;
@@ -54,7 +54,7 @@ class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
-        phone = source.getPhone().value;
+        priority = source.getPriority().value;
         contact = source.getContact().value;
         address = source.getAddress().value;
         activities = source.getActivities().activities;
@@ -82,13 +82,14 @@ class JsonAdaptedPerson {
         }
         final Name modelName = new Name(name);
 
-        if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+        if (priority == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Priority.class.getSimpleName()));
         }
-        if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        if (!Priority.isValidPriority(priority)) {
+            throw new IllegalValueException(Priority.MESSAGE_CONSTRAINTS);
         }
-        final Phone modelPhone = new Phone(phone);
+        final Priority modelPriority = new Priority(priority);
 
         if (contact == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Contact.class.getSimpleName()));
@@ -116,7 +117,7 @@ class JsonAdaptedPerson {
         final Activities modelActivities = new Activities(activities);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelContact, modelAddress, modelActivities, modelTags);
+        return new Person(modelName, modelPriority, modelContact, modelAddress, modelActivities, modelTags);
     }
 
 }

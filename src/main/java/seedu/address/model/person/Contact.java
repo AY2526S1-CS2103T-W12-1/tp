@@ -42,7 +42,7 @@ public class Contact {
      */
     public static boolean isValidContact(String test) {
         requireNonNull(test);
-        return test.matches(EMAIL_VALIDATION_REGEX) || Phone.isValidPhone(test);
+        return test.matches(EMAIL_VALIDATION_REGEX) || Priority.isValidPriority(test);
     }
 
     @Override

@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CONTACT_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PRIORITY_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
@@ -33,7 +33,7 @@ public class PersonTest {
         assertFalse(ALICE.isSamePerson(null));
 
         // same name, all other attributes different -> returns true
-        Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withContact(VALID_CONTACT_BOB)
+        Person editedAlice = new PersonBuilder(ALICE).withPriority(VALID_PRIORITY_BOB).withContact(VALID_CONTACT_BOB)
                 .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
@@ -73,8 +73,8 @@ public class PersonTest {
         Person editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different phone -> returns false
-        editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
+        // different priority -> returns false
+        editedAlice = new PersonBuilder(ALICE).withPriority(VALID_PRIORITY_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different contact -> returns false
@@ -92,7 +92,8 @@ public class PersonTest {
 
     @Test
     public void toStringMethod() {
-        String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
+        String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName()
+                + ", priority=" + ALICE.getPriority()
                 + ", contact=" + ALICE.getContact() + ", address=" + ALICE.getAddress()
                 + ", activities=" + ALICE.getActivities() + ", tags=" + ALICE.getTags() + "}";
         assertEquals(expected, ALICE.toString());

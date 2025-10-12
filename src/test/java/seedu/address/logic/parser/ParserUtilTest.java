@@ -17,18 +17,18 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Contact;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.Priority;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_PHONE = "+651234";
+    private static final String INVALID_PRIORITY = "20";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_CONTACT = "example.com";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_PHONE = "123456";
+    private static final String VALID_PRIORITY = "5";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_CONTACT = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
@@ -80,26 +80,26 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parsePhone_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((String) null));
+    public void parsePriority_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parsePriority((String) null));
     }
 
     @Test
-    public void parsePhone_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parsePhone(INVALID_PHONE));
+    public void parsePriority_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parsePriority(INVALID_PRIORITY));
     }
 
     @Test
-    public void parsePhone_validValueWithoutWhitespace_returnsPhone() throws Exception {
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(VALID_PHONE));
+    public void parsePriority_validValueWithoutWhitespace_returnsPriority() throws Exception {
+        Priority expectedPriority = new Priority(VALID_PRIORITY);
+        assertEquals(expectedPriority, ParserUtil.parsePriority(VALID_PRIORITY));
     }
 
     @Test
-    public void parsePhone_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {
-        String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
+    public void parsePriority_validValueWithWhitespace_returnsTrimmedPriority() throws Exception {
+        String priorityWithWhitespace = WHITESPACE + VALID_PRIORITY + WHITESPACE;
+        Priority expectedPriority = new Priority(VALID_PRIORITY);
+        assertEquals(expectedPriority, ParserUtil.parsePriority(priorityWithWhitespace));
     }
 
     @Test

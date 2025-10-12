@@ -18,7 +18,7 @@ public class Person {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
+    private final Priority priority;
     private final Contact contact;
 
     // Data fields
@@ -29,10 +29,11 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Contact contact, Address address, Activities activities, Set<Tag> tags) {
-        requireAllNonNull(name, phone, contact, address, tags);
+    public Person(Name name, Priority priority, Contact contact,
+                  Address address, Activities activities, Set<Tag> tags) {
+        requireAllNonNull(name, priority, contact, address, tags);
         this.name = name;
-        this.phone = phone;
+        this.priority = priority;
         this.contact = contact;
         this.address = address;
         this.activities = activities;
@@ -43,8 +44,8 @@ public class Person {
         return name;
     }
 
-    public Phone getPhone() {
-        return phone;
+    public Priority getPriority() {
+        return priority;
     }
 
     public Contact getContact() {
@@ -97,7 +98,7 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return name.equals(otherPerson.name)
-                && phone.equals(otherPerson.phone)
+                && priority.equals(otherPerson.priority)
                 && contact.equals(otherPerson.contact)
                 && address.equals(otherPerson.address)
                 && activities.equals(otherPerson.activities)
@@ -107,14 +108,14 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, contact, address, tags);
+        return Objects.hash(name, priority, contact, address, tags);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("name", name)
-                .add("phone", phone)
+                .add("priority", priority)
                 .add("contact", contact)
                 .add("address", address)
                 .add("activities", activities)

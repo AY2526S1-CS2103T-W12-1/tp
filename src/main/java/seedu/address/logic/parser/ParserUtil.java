@@ -13,7 +13,7 @@ import seedu.address.model.person.Activities;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Contact;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.Priority;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -52,18 +52,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String phone} into a {@code Phone}.
+     * Parses a {@code String priority} into a {@code Priority}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code phone} is invalid.
+     * @throws ParseException if the given {@code priority} is invalid.
      */
-    public static Phone parsePhone(String phone) throws ParseException {
-        requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+    public static Priority parsePriority(String priority) throws ParseException {
+        requireNonNull(priority);
+        String trimmedPriority = priority.trim();
+        if (!Priority.isValidPriority(trimmedPriority)) {
+            throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
         }
-        return new Phone(trimmedPhone);
+        return new Priority(trimmedPriority);
     }
 
     /**

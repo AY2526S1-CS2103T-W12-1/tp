@@ -5,7 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ACTIVITIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -27,7 +27,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Contact;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.Priority;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -42,13 +42,13 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_PRIORITY + "PRIORITY] "
             + "[" + PREFIX_CONTACT + "CONTACT] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_ACTIVITIES + "ACTIVITIES] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
+            + PREFIX_PRIORITY + "91234567 "
             + PREFIX_CONTACT + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
@@ -99,13 +99,13 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
+        Priority updatedPriority = editPersonDescriptor.getPriority().orElse(personToEdit.getPriority());
         Contact updatedContact = editPersonDescriptor.getContact().orElse(personToEdit.getContact());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Activities updatedActivities = editPersonDescriptor.getActivities().orElse(personToEdit.getActivities());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedContact, updatedAddress, updatedActivities, updatedTags);
+        return new Person(updatedName, updatedPriority, updatedContact, updatedAddress, updatedActivities, updatedTags);
     }
 
     @Override
@@ -138,7 +138,7 @@ public class EditCommand extends Command {
      */
     public static class EditPersonDescriptor {
         private Name name;
-        private Phone phone;
+        private Priority priority;
         private Contact contact;
         private Address address;
         private Activities activities;
@@ -152,7 +152,7 @@ public class EditCommand extends Command {
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
-            setPhone(toCopy.phone);
+            setPriority(toCopy.priority);
             setContact(toCopy.contact);
             setAddress(toCopy.address);
             setActivities(toCopy.activities);
@@ -163,7 +163,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, contact, address, tags);
+            return CollectionUtil.isAnyNonNull(name, priority, contact, address, tags);
         }
 
         public void setName(Name name) {
@@ -174,12 +174,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setPhone(Phone phone) {
-            this.phone = phone;
+        public void setPriority(Priority priority) {
+            this.priority = priority;
         }
 
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
+        public Optional<Priority> getPriority() {
+            return Optional.ofNullable(priority);
         }
 
         public void setContact(Contact contact) {
@@ -236,7 +236,7 @@ public class EditCommand extends Command {
 
             EditPersonDescriptor otherEditPersonDescriptor = (EditPersonDescriptor) other;
             return Objects.equals(name, otherEditPersonDescriptor.name)
-                    && Objects.equals(phone, otherEditPersonDescriptor.phone)
+                    && Objects.equals(priority, otherEditPersonDescriptor.priority)
                     && Objects.equals(contact, otherEditPersonDescriptor.contact)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
                     && Objects.equals(activities, otherEditPersonDescriptor.activities)
@@ -247,7 +247,7 @@ public class EditCommand extends Command {
         public String toString() {
             return new ToStringBuilder(this)
                     .add("name", name)
-                    .add("phone", phone)
+                    .add("priority", priority)
                     .add("contact", contact)
                     .add("address", address)
                     .add("activities", activities)

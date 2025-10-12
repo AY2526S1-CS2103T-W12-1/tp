@@ -5,7 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ACTIVITIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.commons.util.ToStringBuilder;
@@ -24,14 +24,14 @@ public class AddCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the Maplet. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_PHONE + "PHONE "
+            + PREFIX_PRIORITY + "PRIORITY "
             + PREFIX_CONTACT + "CONTACT "
             + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_ACTIVITIES + "ACTIVITIES "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
-            + PREFIX_PHONE + "98765432 "
+            + PREFIX_PRIORITY + "9 "
             + PREFIX_CONTACT + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_ACTIVITIES + "bowling "
