@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.Maplet;
 import seedu.address.model.ReadOnlyMaplet;
-import seedu.address.model.person.Person;
+import seedu.address.model.attraction.Attraction;
 
 /**
  * An Immutable Maplet that is serializable to JSON format.
@@ -19,16 +19,16 @@ import seedu.address.model.person.Person;
 @JsonRootName(value = "maplet")
 class JsonSerializableMaplet {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_ATTRACTION = "Attractions list contains duplicate attraction(s).";
 
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedAttraction> attractions = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableMaplet} with the given persons.
+     * Constructs a {@code JsonSerializableMaplet} with the given attractions.
      */
     @JsonCreator
-    public JsonSerializableMaplet(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
-        this.persons.addAll(persons);
+    public JsonSerializableMaplet(@JsonProperty("attractions") List<JsonAdaptedAttraction> attractions) {
+        this.attractions.addAll(attractions);
     }
 
     /**
@@ -37,7 +37,8 @@ class JsonSerializableMaplet {
      * @param source future changes to this will not affect the created {@code JsonSerializableMaplet}.
      */
     public JsonSerializableMaplet(ReadOnlyMaplet source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        attractions.addAll(source.getAttractionList().stream().map(JsonAdaptedAttraction::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -47,12 +48,12 @@ class JsonSerializableMaplet {
      */
     public Maplet toModelType() throws IllegalValueException {
         Maplet maplet = new Maplet();
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Person person = jsonAdaptedPerson.toModelType();
-            if (maplet.hasPerson(person)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+        for (JsonAdaptedAttraction jsonAdaptedAttraction : attractions) {
+            Attraction attraction = jsonAdaptedAttraction.toModelType();
+            if (maplet.hasAttraction(attraction)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_ATTRACTION);
             }
-            maplet.addPerson(person);
+            maplet.addAttraction(attraction);
         }
         return maplet;
     }

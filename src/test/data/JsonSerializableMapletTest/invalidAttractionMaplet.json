@@ -1,0 +1,9 @@
+{
+  "attractions": [ {
+    "name": "Hans Muster",
+    "priority": "9",
+    "contact": "invalid@email!3e",
+    "address": "4th street",
+    "activities": "Sightseeing"
+  } ]
+}

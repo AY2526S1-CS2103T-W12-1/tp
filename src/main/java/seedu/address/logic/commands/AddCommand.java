@@ -12,16 +12,16 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.attraction.Attraction;
 
 /**
- * Adds a person to the Maplet.
+ * Adds a attraction to the Maplet.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the Maplet. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a attraction to the Maplet. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PRIORITY + "PRIORITY "
@@ -39,27 +39,27 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New address added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This address already exists in the Maplet";
+    public static final String MESSAGE_DUPLICATE_ATTRACTION = "This address already exists in the Maplet";
 
-    private final Person toAdd;
+    private final Attraction toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Attraction}
      */
-    public AddCommand(Person person) {
-        requireNonNull(person);
-        toAdd = person;
+    public AddCommand(Attraction attraction) {
+        requireNonNull(attraction);
+        toAdd = attraction;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (model.hasAttraction(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_ATTRACTION);
         }
 
-        model.addPerson(toAdd);
+        model.addAttraction(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 

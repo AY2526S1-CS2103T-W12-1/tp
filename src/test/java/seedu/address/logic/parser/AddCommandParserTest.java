@@ -34,128 +34,129 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalPersons.AMY;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalAttractions.AMY;
+import static seedu.address.testutil.TypicalAttractions.BOB;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.model.person.Activities;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Contact;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Priority;
+import seedu.address.model.attraction.Activities;
+import seedu.address.model.attraction.Address;
+import seedu.address.model.attraction.Attraction;
+import seedu.address.model.attraction.Contact;
+import seedu.address.model.attraction.Name;
+import seedu.address.model.attraction.Priority;
 import seedu.address.model.tag.Tag;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.AttractionBuilder;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        Attraction expectedAttraction = new AttractionBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PRIORITY_DESC_BOB + CONTACT_DESC_BOB
-                + ADDRESS_DESC_BOB + ACTIVITIES_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + ACTIVITIES_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedAttraction));
 
 
         // multiple tags - all accepted
-        Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        Attraction expectedAttractionMultipleTags = new AttractionBuilder(BOB)
+                .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser,
                 NAME_DESC_BOB + PRIORITY_DESC_BOB + CONTACT_DESC_BOB + ADDRESS_DESC_BOB
                         + ACTIVITIES_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-                new AddCommand(expectedPersonMultipleTags));
+                new AddCommand(expectedAttractionMultipleTags));
     }
 
     @Test
     public void parse_repeatedNonTagValue_failure() {
-        String validExpectedPersonString = NAME_DESC_BOB + PRIORITY_DESC_BOB + CONTACT_DESC_BOB
+        String validExpectedAttractionString = NAME_DESC_BOB + PRIORITY_DESC_BOB + CONTACT_DESC_BOB
                 + ADDRESS_DESC_BOB + ACTIVITIES_DESC_BOB + TAG_DESC_FRIEND;
 
         // multiple names
-        assertParseFailure(parser, NAME_DESC_AMY + validExpectedPersonString,
+        assertParseFailure(parser, NAME_DESC_AMY + validExpectedAttractionString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME));
 
         // multiple priorities
-        assertParseFailure(parser, PRIORITY_DESC_AMY + validExpectedPersonString,
+        assertParseFailure(parser, PRIORITY_DESC_AMY + validExpectedAttractionString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PRIORITY));
 
         // multiple contacts
-        assertParseFailure(parser, CONTACT_DESC_AMY + validExpectedPersonString,
+        assertParseFailure(parser, CONTACT_DESC_AMY + validExpectedAttractionString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_CONTACT));
 
         // multiple addresses
-        assertParseFailure(parser, ADDRESS_DESC_AMY + validExpectedPersonString,
+        assertParseFailure(parser, ADDRESS_DESC_AMY + validExpectedAttractionString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_ADDRESS));
 
         // multiple activities
-        assertParseFailure(parser, ACTIVITIES_DESC_AMY + validExpectedPersonString,
+        assertParseFailure(parser, ACTIVITIES_DESC_AMY + validExpectedAttractionString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_ACTIVITIES));
 
         // multiple fields repeated
         assertParseFailure(parser,
-                validExpectedPersonString
+                validExpectedAttractionString
                         + PRIORITY_DESC_AMY + CONTACT_DESC_AMY + NAME_DESC_AMY + ADDRESS_DESC_AMY + ACTIVITIES_DESC_AMY
-                        + validExpectedPersonString,
+                        + validExpectedAttractionString,
                 Messages.getErrorMessageForDuplicatePrefixes(
                         PREFIX_NAME, PREFIX_ADDRESS, PREFIX_CONTACT, PREFIX_PRIORITY, PREFIX_ACTIVITIES));
 
         // invalid value followed by valid value
 
         // invalid name
-        assertParseFailure(parser, INVALID_NAME_DESC + validExpectedPersonString,
+        assertParseFailure(parser, INVALID_NAME_DESC + validExpectedAttractionString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME));
 
         // invalid contact
-        assertParseFailure(parser, INVALID_CONTACT_DESC + validExpectedPersonString,
+        assertParseFailure(parser, INVALID_CONTACT_DESC + validExpectedAttractionString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_CONTACT));
 
         // invalid phone
-        assertParseFailure(parser, INVALID_PRIORITY_DESC + validExpectedPersonString,
+        assertParseFailure(parser, INVALID_PRIORITY_DESC + validExpectedAttractionString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PRIORITY));
 
         // invalid address
-        assertParseFailure(parser, INVALID_ADDRESS_DESC + validExpectedPersonString,
+        assertParseFailure(parser, INVALID_ADDRESS_DESC + validExpectedAttractionString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_ADDRESS));
 
         // invalid activities
-        assertParseFailure(parser, INVALID_ACTIVITIES_DESC + validExpectedPersonString,
+        assertParseFailure(parser, INVALID_ACTIVITIES_DESC + validExpectedAttractionString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_ACTIVITIES));
 
         // valid value followed by invalid value
 
         // invalid name
-        assertParseFailure(parser, validExpectedPersonString + INVALID_NAME_DESC,
+        assertParseFailure(parser, validExpectedAttractionString + INVALID_NAME_DESC,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME));
 
         // invalid contact
-        assertParseFailure(parser, validExpectedPersonString + INVALID_CONTACT_DESC,
+        assertParseFailure(parser, validExpectedAttractionString + INVALID_CONTACT_DESC,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_CONTACT));
 
         // invalid phone
-        assertParseFailure(parser, validExpectedPersonString + INVALID_PRIORITY_DESC,
+        assertParseFailure(parser, validExpectedAttractionString + INVALID_PRIORITY_DESC,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PRIORITY));
 
         // invalid address
-        assertParseFailure(parser, validExpectedPersonString + INVALID_ADDRESS_DESC,
+        assertParseFailure(parser, validExpectedAttractionString + INVALID_ADDRESS_DESC,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_ADDRESS));
 
         // invalid activities
-        assertParseFailure(parser, validExpectedPersonString + INVALID_ACTIVITIES_DESC,
+        assertParseFailure(parser, validExpectedAttractionString + INVALID_ACTIVITIES_DESC,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_ACTIVITIES));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        Attraction expectedAttraction = new AttractionBuilder(AMY).withTags().build();
         assertParseSuccess(parser,
                 NAME_DESC_AMY + PRIORITY_DESC_AMY + CONTACT_DESC_AMY + ADDRESS_DESC_AMY + ACTIVITIES_DESC_AMY,
-                new AddCommand(expectedPerson));
+                new AddCommand(expectedAttraction));
     }
 
     @Test

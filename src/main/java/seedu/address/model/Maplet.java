@@ -6,16 +6,16 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.attraction.Attraction;
+import seedu.address.model.attraction.UniqueAttractionList;
 
 /**
  * Wraps all data at the Maplet level.
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Duplicates are not allowed (by .isSameAttraction comparison)
  */
 public class Maplet implements ReadOnlyMaplet {
 
-    private final UniquePersonList persons;
+    private final UniqueAttractionList attractions;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,13 +25,13 @@ public class Maplet implements ReadOnlyMaplet {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
+        attractions = new UniqueAttractionList();
     }
 
     public Maplet() {}
 
     /**
-     * Creates a Maplet using the Persons in the {@code toBeCopied}
+     * Creates a Maplet using the Attractions in the {@code toBeCopied}
      */
     public Maplet(ReadOnlyMaplet toBeCopied) {
         this();
@@ -41,11 +41,11 @@ public class Maplet implements ReadOnlyMaplet {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the attraction list with {@code attractions}.
+     * {@code attractions} must not contain duplicate attractions.
      */
-    public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
+    public void setAttractions(List<Attraction> attractions) {
+        this.attractions.setAttractions(attractions);
     }
 
     /**
@@ -54,44 +54,45 @@ public class Maplet implements ReadOnlyMaplet {
     public void resetData(ReadOnlyMaplet newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setAttractions(newData.getAttractionList());
     }
 
-    //// person-level operations
+    //// attraction-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the Maplet.
+     * Returns true if a attraction with the same identity as {@code attraction} exists in the Maplet.
      */
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return persons.contains(person);
+    public boolean hasAttraction(Attraction attraction) {
+        requireNonNull(attraction);
+        return attractions.contains(attraction);
     }
 
     /**
-     * Adds a person to the Maplet.
-     * The person must not already exist in the Maplet.
+     * Adds a attraction to the Maplet.
+     * The attraction must not already exist in the Maplet.
      */
-    public void addPerson(Person p) {
-        persons.add(p);
+    public void addAttraction(Attraction p) {
+        attractions.add(p);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * Replaces the given attraction {@code target} in the list with {@code editedAttraction}.
      * {@code target} must exist in the Maplet.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the Maplet.
+     * The attraction identity of {@code editedAttraction} must not be the same as another existing attraction in the
+     * Maplet.
      */
-    public void setPerson(Person target, Person editedPerson) {
-        requireNonNull(editedPerson);
+    public void setAttraction(Attraction target, Attraction editedAttraction) {
+        requireNonNull(editedAttraction);
 
-        persons.setPerson(target, editedPerson);
+        attractions.setAttraction(target, editedAttraction);
     }
 
     /**
      * Removes {@code key} from this {@code Maplet}.
      * {@code key} must exist in the Maplet.
      */
-    public void removePerson(Person key) {
-        persons.remove(key);
+    public void removeAttraction(Attraction key) {
+        attractions.remove(key);
     }
 
     //// util methods
@@ -99,13 +100,13 @@ public class Maplet implements ReadOnlyMaplet {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("persons", persons)
+                .add("attractions", attractions)
                 .toString();
     }
 
     @Override
-    public ObservableList<Person> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+    public ObservableList<Attraction> getAttractionList() {
+        return attractions.asUnmodifiableObservableList();
     }
 
     @Override
@@ -120,11 +121,11 @@ public class Maplet implements ReadOnlyMaplet {
         }
 
         Maplet otherMaplet = (Maplet) other;
-        return persons.equals(otherMaplet.persons);
+        return attractions.equals(otherMaplet.attractions);
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return attractions.hashCode();
     }
 }

@@ -3,10 +3,10 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.HOON;
-import static seedu.address.testutil.TypicalPersons.IDA;
-import static seedu.address.testutil.TypicalPersons.getTypicalMaplet;
+import static seedu.address.testutil.TypicalAttractions.ALICE;
+import static seedu.address.testutil.TypicalAttractions.HOON;
+import static seedu.address.testutil.TypicalAttractions.IDA;
+import static seedu.address.testutil.TypicalAttractions.getTypicalMaplet;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -51,13 +51,13 @@ public class JsonMapletStorageTest {
     }
 
     @Test
-    public void readMaplet_invalidPersonMaplet_throwDataLoadingException() {
-        assertThrows(DataLoadingException.class, () -> readMaplet("invalidPersonMaplet.json"));
+    public void readMaplet_invalidAttractionMaplet_throwDataLoadingException() {
+        assertThrows(DataLoadingException.class, () -> readMaplet("invalidAttractionMaplet.json"));
     }
 
     @Test
-    public void readMaplet_invalidAndValidPersonMaplet_throwDataLoadingException() {
-        assertThrows(DataLoadingException.class, () -> readMaplet("invalidAndValidPersonMaplet.json"));
+    public void readMaplet_invalidAndValidAttractionMaplet_throwDataLoadingException() {
+        assertThrows(DataLoadingException.class, () -> readMaplet("invalidAndValidAttractionMaplet.json"));
     }
 
     @Test
@@ -72,14 +72,14 @@ public class JsonMapletStorageTest {
         assertEquals(original, new Maplet(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addPerson(HOON);
-        original.removePerson(ALICE);
+        original.addAttraction(HOON);
+        original.removeAttraction(ALICE);
         jsonMapletStorage.saveMaplet(original, filePath);
         readBack = jsonMapletStorage.readMaplet(filePath).get();
         assertEquals(original, new Maplet(readBack));
 
         // Save and read without specifying file path
-        original.addPerson(IDA);
+        original.addAttraction(IDA);
         jsonMapletStorage.saveMaplet(original); // file path not specified
         readBack = jsonMapletStorage.readMaplet().get(); // file path not specified
         assertEquals(original, new Maplet(readBack));

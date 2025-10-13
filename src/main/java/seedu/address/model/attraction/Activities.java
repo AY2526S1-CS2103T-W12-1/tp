@@ -1,0 +1,63 @@
+package seedu.address.model.attraction;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
+/**
+ * Represents a Attraction's remark in the address book.
+ * Guarantees: immutable; is always valid
+ */
+public class Activities {
+
+    public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
+
+    /*
+     * The first character of the address must not be a whitespace,
+     * otherwise " " (a blank string) becomes a valid input.
+     */
+    public static final String VALIDATION_REGEX = "[^\\s].*";
+
+    public final String activities;
+
+    /**
+     * Constructs a {@code Activities}.
+     *
+     * @param activities A valid activities.
+     */
+    public Activities(String activities) {
+        requireNonNull(activities);
+        checkArgument(isValidActivities(activities), MESSAGE_CONSTRAINTS);
+        this.activities = activities;
+    }
+
+    /**
+     * Returns true if a given string is a valid Activities.
+     */
+    public static boolean isValidActivities(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
+
+    @Override
+    public String toString() {
+        return activities;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Activities)) {
+            return false;
+        }
+
+        Activities otherActivities = (Activities) other;
+        return activities.equals(otherActivities.activities);
+    }
+
+    @Override
+    public int hashCode() {
+        return activities.hashCode();
+    }
+}
