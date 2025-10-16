@@ -99,7 +99,7 @@ Format: `list`
 
 ### Editing a attraction : `edit`
 
-Edits an existing attraction in the Maplet.
+Edits an existing attraction in Maplet.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [c/CONTACT] [a/ADDRESS] [t/TAG]…​`
 
@@ -111,7 +111,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [c/CONTACT] [a/ADDRESS] [t/TAG]…​`
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/9 c/johndoe@example.com` Edits the priority value and contact detail of the 1st attraction to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 1 p/9 c/orangerestaurant@example.com` Edits the priority value and contact detail of the 1st attraction to be `9` and `orangerestaurant@example.com` respectively.
 *  `edit 2 n/Golden Star t/` Edits the name of the 2nd attraction to be `Golden Star` and clears all existing tags.
 
 ### Locating attractions by name: `find`
@@ -129,8 +129,8 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `find Golden` returns `Golden Studios` and `Golden Fries`
-* `find Coffee Tea` returns `Runald's Coffee`, `Milk Tea Central`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find Coffee Tea` returns `Runalds Coffee`, `Milk Tea Central`<br>
+  ![result for 'find Coffee Tea'](images/findCoffeeTeaResult.png)
 
 ### Deleting a attraction : `delete`
 
@@ -160,17 +160,17 @@ Format: `exit`
 
 ### Saving the data
 
-Maplet data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Maplet data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-Maplet data are saved automatically as a JSON file `[JAR file location]/data/maplet.json`. Advanced users are welcome to update data directly by editing that data file.
+Maplet data is saved automatically as a JSON file `[JAR file location]/data/maplet.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <box type="warning" seamless>
 
 **Caution:**
 If your changes to the data file makes its format invalid, Maplet will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the Maplet to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+Furthermore, certain edits can cause Maplet to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
 ### Archiving data files `[coming in v2.0]`
