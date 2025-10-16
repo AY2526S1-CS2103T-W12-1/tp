@@ -4,10 +4,9 @@
   pageNav: 3
 ---
 
-# AB-3 User Guide
+# Maplet User Guide
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
-
+Maplet caters to individuals that are **planning to go overseas** or are **frequent travellers**. Maplet is a **desktop app for managing places you want to visit**, optimized for use via a **Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Maplet can get your trip planning tasks done faster than traditional GUI apps.
 <!-- * Table of Contents -->
 <page-nav-print />
 
@@ -18,24 +17,24 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 1. Ensure you have Java `17` or above installed in your Computer.<br>
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
-1. Download the latest `.jar` file from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-W12-1/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar maplet.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+   * `list` : Lists all attractions.
 
-   * `add n/John Doe p/98765432 c/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/Eiffel Tower p/9 c/example@gmail.com, a/Paris, act/climb tower t/bucket list t/with friends`: Adds an attraction called Eiffel Tower
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+   * `delete 3` : Deletes the 3rd attraction shown in the current list.
 
-   * `clear` : Deletes all contacts.
+   * `clear` : Deletes all attractions.
 
    * `exit` : Exits the app.
 
@@ -50,16 +49,16 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 **Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/Eiffel Tower`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/NAME [t/TAG]` can be used as `n/Eiffel Tower t/bucket list` or as `n/Eiffel Tower`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/bucket list`, `t/bucket list t/with friends` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PRIORITY_NUMBER`, `p/PRIORITY_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME p/PRIORITY`, `p/PRIORITY n/NAME` is also acceptable.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -76,24 +75,24 @@ Shows a message explaining how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding an attraction: `add`
 
-Adds a person to the address book.
+Adds an attraction to Maplet.
 
-Format: `add n/NAME p/PHONE_NUMBER c/CONTACT a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME p/PRIORITY c/CONTACT a/ADDRESS act/ACTIVITIES [t/TAG]…​`
 
 <box type="tip" seamless>
 
-**Tip:** A person can have any number of tags (including 0)
+**Tip:** An attraction can have any number of tags (including 0)
 </box>
 
 Examples:
-* `add n/John Doe p/98765432 c/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend c/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/Big ben a/London, c/hello@gmail.com, p/5, act/listen to ben`
+* `add n/Eiffel Tower p/9 c/example@gmail.com, a/Paris, act/climb tower t/bucket list t/with friends`
 
-### Listing all persons : `list`
+### Listing all attractions : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all attraction in Maplet.
 
 Format: `list`
 
