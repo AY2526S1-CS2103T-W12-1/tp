@@ -20,24 +20,28 @@ import seedu.address.model.tag.Tag;
 public class SampleDataUtil {
     public static Attraction[] getSampleAttractions() {
         return new Attraction[] {
-            new Attraction(new Name("Alex Yeoh"), new Priority("8"), new Contact("alexyeoh@example.com"),
-                new Address("Blk 30 Geylang Street 29, #06-40"), new Activities("see the world"),
-                getTagSet("friends")),
-            new Attraction(new Name("Bernice Yu"), new Priority("7"), new Contact("berniceyu@example.com"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), new Activities("eat good food"),
-                getTagSet("colleagues", "friends")),
-            new Attraction(new Name("Charlotte Oliveiro"), new Priority("6"), new Contact("charlotte@example.com"),
-                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), new Activities("visiting museums"),
-                getTagSet("neighbours")),
-            new Attraction(new Name("David Li"), new Priority("1"), new Contact("lidavid@example.com"),
-                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), new Activities("go hiking"),
-                getTagSet("family")),
-            new Attraction(new Name("Irfan Ibrahim"), new Priority("2"), new Contact("irfan@example.com"),
-                new Address("Blk 47 Tampines Street 20, #17-35"), new Activities("see the eiffel tower"),
-                getTagSet("classmates")),
-            new Attraction(new Name("Roy Balakrishnan"), new Priority("3"), new Contact("royb@example.com"),
-                new Address("Blk 45 Aljunied Street 85, #11-31"), new Activities("go and watch football matches"),
-                getTagSet("colleagues"))
+            new Attraction(new Name("Universal Studios Singapore"), new Priority("8"),
+                    new Contact("testcontact@gmail"),
+                new Address("8 Sentosa Gateway 098269"),
+                    new Activities("ride a rollercoaster"),
+                getTagSet("Amusement")),
+            new Attraction(new Name("Gardens by the Bay"), new Priority("7"), new Contact("testcontact@gmail.com"),
+                new Address("18 Marina Gardens Dr, Singapore 018953"), new Activities("see supertree"),
+                getTagSet("Park")),
+            new Attraction(new Name("Singapore Botanic Gardens"), new Priority("6"),
+                    new Contact("testcontact@gmail.com"),
+                new Address("1 Cluny R, Singapore 259569"), new Activities("take photos of orchids"),
+                getTagSet("Park", "Historical")),
+            new Attraction(new Name("Marina Bay Sands Singapore"), new Priority("1"),
+                    new Contact("testcontact@gmail.com"),
+                new Address("10 Bayfront Ave, Singapore 018956"), new Activities("sightseeing"),
+                getTagSet("Hotel")),
+            new Attraction(new Name("Singapore Zoo"), new Priority("2"), new Contact("testcontact@gmail.com"),
+                new Address("80 Mandai Lake Rd, 729826"), new Activities("see an elephant"),
+                getTagSet("Zoo")),
+            new Attraction(new Name("Singapore Flyer"), new Priority("3"), new Contact("testcontact@gmail.com"),
+                new Address("30 Raffles Ave, Singapore 039803"), new Activities("take pictures of view"),
+                getTagSet("Ride"))
         };
     }
 
