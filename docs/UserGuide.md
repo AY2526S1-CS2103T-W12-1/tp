@@ -19,7 +19,7 @@ Maplet caters to individuals that are **planning to go overseas** or are **frequ
 
 1. Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-W12-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar maplet.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
@@ -38,7 +38,7 @@ Maplet caters to individuals that are **planning to go overseas** or are **frequ
 
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+   * 5. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -92,62 +92,62 @@ Examples:
 
 ### Listing all attractions : `list`
 
-Shows a list of all attraction in Maplet.
+Shows a list of all attractions in Maplet.
 
 Format: `list`
 
-### Editing a person : `edit`
+### Editing a attraction : `edit`
 
-Edits an existing person in the address book.
+Edits an existing attraction in Maplet.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [c/CONTACT] [a/ADDRESS] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the attraction at the specified `INDEX`. The index refers to the index number shown in the displayed attraction list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
+* When editing tags, the existing tags of the attraction will be removed i.e adding of tags is not cumulative.
+* You can remove all the attraction’s tags by typing `t/` without
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/9 c/johndoe@example.com` Edits the priority value and contact detail of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 p/9 c/orangerestaurant@example.com` Edits the priority value and contact detail of the 1st attraction to be `9` and `orangerestaurant@example.com` respectively.
+*  `edit 2 n/Golden Star t/` Edits the name of the 2nd attraction to be `Golden Star` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Locating attractions by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds attractions whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* The search is case-insensitive. e.g `milk` will match `Milk`
+* The order of the keywords does not matter. e.g. `Tea Milk` will match `Milk Tea`
 * Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Only full words will be matched e.g. `Gold` will not match `Golden`
+* Attractions matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Golden Stop` will return `Golden Studios`, `Golden Star`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find Golden` returns `Golden Studios` and `Golden Fries`
+* `find Coffee Tea` returns `Runalds Coffee`, `Milk Tea Central`<br>
+  ![result for 'find Coffee Tea'](images/findCoffeeTeaResult.png)
 
-### Deleting a person : `delete`
+### Deleting a attraction : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified attraction from Maplet.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the attraction at the specified `INDEX`.
+* The index refers to the index number shown in the displayed attraction list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd attraction in the address book.
+* `find Cat Cafe` followed by `delete 1` deletes the 1st attraction in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from Maplet.
 
 Format: `clear`
 
@@ -159,17 +159,17 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Maplet data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+Maplet data is saved automatically as a JSON file `[JAR file location]/data/maplet.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <box type="warning" seamless>
 
 **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+If your changes to the data file makes its format invalid, Maplet will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
+Furthermore, certain edits can cause Maplet to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
 ### Archiving data files `[coming in v2.0]`
@@ -196,10 +196,10 @@ _Details coming soon ..._
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PRIORITY_NUMBER c/CONTACT a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 c/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add**    | `add n/NAME p/PRIORITY_NUMBER c/CONTACT a/ADDRESS [t/TAG]…​` <br> e.g., `add n/Universal Village p/4 c/UniVillage@example.com a/123, Clementi Rd, 1234665 t/movies t/leisure`
 **Clear**  | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PRIORITY_NUMBER] [c/CONTACT] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee c/jameslee@example.com`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Edit**   | `edit INDEX [n/NAME] [p/PRIORITY_NUMBER] [c/CONTACT] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/Golden Studios c/GoldenSS@example.com`
+**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Golden Studios`
 **List**   | `list`
 **Help**   | `help`
