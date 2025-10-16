@@ -51,7 +51,7 @@ public class AttractionCard extends UiPart<Region> {
         this.attraction = attraction;
         id.setText(displayedIndex + ". ");
         name.setText(attraction.getName().fullName);
-        priority.setText(attraction.getPriority().value);
+        priority.setText("Priority: " + attraction.getPriority().value);
         address.setText(attraction.getAddress().value);
         contact.setText(attraction.getContact().value);
         activities.setText(attraction.getActivities().activities);
