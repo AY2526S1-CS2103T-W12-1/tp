@@ -1,10 +1,6 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-
-import seedu.address.logic.Messages;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import seedu.address.logic.commands.AddCommand;
 import static seedu.address.logic.commands.CommandTestUtil.ACTIVITIES_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ACTIVITIES_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
@@ -17,6 +13,7 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_CONTACT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PRIORITY_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PRIORITY_OUT_OF_RANGE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
@@ -31,15 +28,20 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PRIORITY_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ACTIVITIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.testutil.TypicalAttractions.AMY;
+import static seedu.address.testutil.TypicalAttractions.BOB;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.Messages;
+import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.attraction.Activities;
 import seedu.address.model.attraction.Address;
 import seedu.address.model.attraction.Attraction;
@@ -47,8 +49,6 @@ import seedu.address.model.attraction.Contact;
 import seedu.address.model.attraction.Name;
 import seedu.address.model.attraction.Priority;
 import seedu.address.testutil.AttractionBuilder;
-import static seedu.address.testutil.TypicalAttractions.AMY;
-import static seedu.address.testutil.TypicalAttractions.BOB;
 
 public class AddCommandParserTest {
 

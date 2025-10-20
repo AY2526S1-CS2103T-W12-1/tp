@@ -1,25 +1,25 @@
 package seedu.address.logic.commands;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.exceptions.CommandException;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ACTIVITIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.testutil.Assert.assertThrows;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Maplet;
 import seedu.address.model.Model;
 import seedu.address.model.attraction.Attraction;
 import seedu.address.model.attraction.NameContainsKeywordsPredicate;
-import static seedu.address.testutil.Assert.assertThrows;
 import seedu.address.testutil.EditAttractionDescriptorBuilder;
 
 /**
@@ -55,8 +55,9 @@ public class CommandTestUtil {
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PRIORITY_DESC = " " + PREFIX_PRIORITY + "a"; // 'a' not allowed in priority
-    public static final String INVALID_PRIORITY_OUT_OF_RANGE_DESC
-            = " " + PREFIX_PRIORITY + "11"; // outside allowed 1-10 range
+    // outside allowed 1-10 range
+    public static final String INVALID_PRIORITY_OUT_OF_RANGE_DESC =
+            " " + PREFIX_PRIORITY + "11";
     public static final String INVALID_CONTACT_DESC = " " + PREFIX_CONTACT + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_ACTIVITIES_DESC = " " + PREFIX_ACTIVITIES + " "; //no empty string activities
