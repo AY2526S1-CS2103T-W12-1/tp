@@ -4,15 +4,15 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Attraction's remark in the address book.
- * Guarantees: immutable; is always valid
+ * Represents an attraction's description in the Maplet.
+ * Guarantees: immutable; is always valid.
  */
 public class Activities {
 
-    public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Descriptions can take any values, but they should not be blank.";
 
     /*
-     * The first character of the address must not be a whitespace,
+     * The first character of the description must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";

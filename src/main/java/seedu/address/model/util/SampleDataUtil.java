@@ -22,7 +22,7 @@ public class SampleDataUtil {
         return new Attraction[] {
             new Attraction(new Name("Universal Studios Singapore"),
                     new Priority("8"),
-                    new Contact("testcontact@gmail"),
+                    new Contact("testcontact@gmail.com"),
                     new Address("8 Sentosa Gateway 098269"),
                     new Activities("ride a rollercoaster"),
                     getTagSet("Amusement")),

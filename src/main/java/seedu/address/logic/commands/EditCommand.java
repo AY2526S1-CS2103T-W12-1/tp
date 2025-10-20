@@ -1,18 +1,10 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ACTIVITIES;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ATTRACTIONS;
-
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import static java.util.Objects.requireNonNull;
 import java.util.Optional;
 import java.util.Set;
 
@@ -21,7 +13,14 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ACTIVITIES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import seedu.address.model.Model;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ATTRACTIONS;
 import seedu.address.model.attraction.Activities;
 import seedu.address.model.attraction.Address;
 import seedu.address.model.attraction.Attraction;
@@ -41,15 +40,16 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed attraction list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PRIORITY + "PRIORITY] "
+            + "[" + PREFIX_NAME + "ATTRACTION_NAME] "
+            + "[" + PREFIX_PRIORITY + "PRIORITY_LEVEL] "
             + "[" + PREFIX_CONTACT + "CONTACT] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_ACTIVITIES + "ACTIVITIES] "
+            + "[" + PREFIX_ACTIVITIES + "DESCRIPTION/ACTIVITY] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PRIORITY + "91234567 "
-            + PREFIX_CONTACT + "johndoe@example.com";
+            + PREFIX_PRIORITY + "5 "
+            + PREFIX_CONTACT + "info@example.com "
+            + PREFIX_ACTIVITIES + "Reserve tour";
 
     public static final String MESSAGE_EDIT_ATTRACTION_SUCCESS = "Edited Attraction: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -92,8 +92,8 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Attraction} with the details of {@code attractionToEdit}
-     * edited with {@code editAttractionDescriptor}.
+     * Creates and returns a {@code Attraction} with the details of
+     * {@code attractionToEdit} edited with {@code editAttractionDescriptor}.
      */
     private static Attraction createEditedAttraction(
             Attraction attractionToEdit, EditAttractionDescriptor editAttractionDescriptor) {
@@ -136,10 +136,11 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the attraction with. Each non-empty field value will replace the
-     * corresponding field value of the attraction.
+     * Stores the details to edit the attraction with. Each non-empty field
+     * value will replace the corresponding field value of the attraction.
      */
     public static class EditAttractionDescriptor {
+
         private Name name;
         private Priority priority;
         private Contact contact;
@@ -147,11 +148,12 @@ public class EditCommand extends Command {
         private Activities activities;
         private Set<Tag> tags;
 
-        public EditAttractionDescriptor() {}
+        public EditAttractionDescriptor() {
+        }
 
         /**
-         * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
+         * Copy constructor. A defensive copy of {@code tags} is used
+         * internally.
          */
         public EditAttractionDescriptor(EditAttractionDescriptor toCopy) {
             setName(toCopy.name);
@@ -166,7 +168,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, priority, contact, address, tags);
+            return CollectionUtil.isAnyNonNull(name, priority, contact, address, activities, tags);
         }
 
         public void setName(Name name) {
@@ -210,16 +212,16 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
+         * Sets {@code tags} to this object's {@code tags}. A defensive copy of
+         * {@code tags} is used internally.
          */
         public void setTags(Set<Tag> tags) {
             this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
         /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
+         * Returns an unmodifiable tag set, which throws
+         * {@code UnsupportedOperationException} if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
         public Optional<Set<Tag>> getTags() {
