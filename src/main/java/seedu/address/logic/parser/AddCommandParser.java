@@ -40,6 +40,10 @@ public class AddCommandParser implements Parser<AddCommand> {
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PRIORITY, PREFIX_CONTACT)) {
+            ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PRIORITY, PREFIX_CONTACT,
+                    PREFIX_ADDRESS, PREFIX_ACTIVITIES, PREFIX_TAG);
+        }
 
         argMultimap.verifyNoDuplicatePrefixesFor(
                 PREFIX_NAME, PREFIX_PRIORITY, PREFIX_CONTACT, PREFIX_ADDRESS, PREFIX_ACTIVITIES);
