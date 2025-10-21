@@ -1,6 +1,8 @@
 package seedu.address.model.util;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -12,58 +14,76 @@ import seedu.address.model.attraction.Attraction;
 import seedu.address.model.attraction.Contact;
 import seedu.address.model.attraction.Name;
 import seedu.address.model.attraction.Priority;
+import seedu.address.model.itinerary.Itinerary;
+import seedu.address.model.itinerary.ItineraryName;
 import seedu.address.model.tag.Tag;
 
 /**
  * Contains utility methods for populating {@code Maplet} with sample data.
  */
 public class SampleDataUtil {
+
     public static Attraction[] getSampleAttractions() {
-        return new Attraction[] {
+        return new Attraction[]{
             new Attraction(new Name("Universal Studios Singapore"),
-                    new Priority("8"),
-                    new Contact("testcontact@gmail.com"),
-                    new Address("8 Sentosa Gateway 098269"),
-                    new Activities("ride a rollercoaster"),
-                    getTagSet("Amusement")),
+            new Priority("8"),
+            new Contact("testcontact@gmail.com"),
+            new Address("8 Sentosa Gateway 098269"),
+            new Activities("ride a rollercoaster"),
+            getTagSet("Amusement")),
             new Attraction(new Name("Gardens by the Bay"),
-                    new Priority("7"), new Contact("testcontact@gmail.com"),
-                    new Address("18 Marina Gardens Dr, Singapore 018953"),
-                    new Activities("see supertree"),
-                    getTagSet("Park")),
+            new Priority("7"), new Contact("testcontact@gmail.com"),
+            new Address("18 Marina Gardens Dr, Singapore 018953"),
+            new Activities("see supertree"),
+            getTagSet("Park")),
             new Attraction(new Name("Singapore Botanic Gardens"),
-                    new Priority("6"),
-                    new Contact("testcontact@gmail.com"),
-                    new Address("1 Cluny R, Singapore 259569"),
-                    new Activities("take photos of orchids"),
-                    getTagSet("Park", "Historical")),
+            new Priority("6"),
+            new Contact("testcontact@gmail.com"),
+            new Address("1 Cluny R, Singapore 259569"),
+            new Activities("take photos of orchids"),
+            getTagSet("Park", "Historical")),
             new Attraction(new Name("Marina Bay Sands Singapore"),
-                    new Priority("1"),
-                    new Contact("testcontact@gmail.com"),
-                    new Address("10 Bayfront Ave, Singapore 018956"),
-                    new Activities("sightseeing"),
-                    getTagSet("Hotel")),
+            new Priority("1"),
+            new Contact("testcontact@gmail.com"),
+            new Address("10 Bayfront Ave, Singapore 018956"),
+            new Activities("sightseeing"),
+            getTagSet("Hotel")),
             new Attraction(new Name("Singapore Zoo"),
-                    new Priority("2"),
-                    new Contact("testcontact@gmail.com"),
-                    new Address("80 Mandai Lake Rd, 729826"),
-                    new Activities("see an elephant"),
-                    getTagSet("Zoo")),
+            new Priority("2"),
+            new Contact("testcontact@gmail.com"),
+            new Address("80 Mandai Lake Rd, 729826"),
+            new Activities("see an elephant"),
+            getTagSet("Zoo")),
             new Attraction(new Name("Singapore Flyer"),
-                    new Priority("3"),
-                    new Contact("testcontact@gmail.com"),
-                    new Address("30 Raffles Ave, Singapore 039803"),
-                    new Activities("take pictures of view"),
-                    getTagSet("Ride"))
+            new Priority("3"),
+            new Contact("testcontact@gmail.com"),
+            new Address("30 Raffles Ave, Singapore 039803"),
+            new Activities("take pictures of view"),
+            getTagSet("Ride"))
         };
     }
 
     public static ReadOnlyMaplet getSampleMaplet() {
         Maplet sampleAb = new Maplet();
-        for (Attraction sampleAttraction : getSampleAttractions()) {
+        Attraction[] sampleAttractions = getSampleAttractions();
+        for (Attraction sampleAttraction : sampleAttractions) {
             sampleAb.addAttraction(sampleAttraction);
         }
+        for (Itinerary itinerary : getSampleItineraries(sampleAttractions)) {
+            sampleAb.addItinerary(itinerary);
+        }
         return sampleAb;
+    }
+
+    public static Itinerary[] getSampleItineraries(Attraction[] attractions) {
+        return new Itinerary[]{
+            new Itinerary(new ItineraryName("Singapore"),
+            LocalDateTime.of(2025, 10, 21, 10, 0),
+            List.of(attractions[0], attractions[1], attractions[2])),
+            new Itinerary(new ItineraryName("Singapore 2"),
+            LocalDateTime.of(2025, 10, 21, 9, 0),
+            List.of(attractions[3], attractions[4]))
+        };
     }
 
     /**
