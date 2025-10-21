@@ -68,6 +68,31 @@ public class AddItineraryCommandTest {
     }
 
     @Test
+    public void execute_duplicateItinerary_throwsCommandException() {
+        Attraction attraction = new AttractionBuilder().withName("Universal Studios").build();
+        ModelStubWithItinerary modelStub = new ModelStubWithItinerary(attraction);
+
+        List<Index> attractionIndexes = List.of(Index.fromOneBased(1));
+        AddItineraryCommand command = new AddItineraryCommand(VALID_ITINERARY_NAME, attractionIndexes);
+
+        assertThrows(CommandException.class,
+                AddItineraryCommand.MESSAGE_DUPLICATE_ITINERARY, () -> command.execute(modelStub));
+    }
+
+    @Test
+    public void execute_duplicateAttractionReference_throwsCommandException() {
+        Attraction attraction = new AttractionBuilder().withName("Universal Studios").build();
+        ModelStubAcceptingItineraryAdded modelStub =
+                new ModelStubAcceptingItineraryAdded(List.of(attraction));
+
+        List<Index> attractionIndexes = Arrays.asList(Index.fromOneBased(1), Index.fromOneBased(1));
+        AddItineraryCommand command = new AddItineraryCommand(VALID_ITINERARY_NAME, attractionIndexes);
+
+        assertThrows(CommandException.class,
+                AddItineraryCommand.MESSAGE_DUPLICATE_ATTRACTION_REFERENCE, () -> command.execute(modelStub));
+    }
+
+    @Test
     public void equals() {
         List<Index> firstIndexes = List.of(Index.fromOneBased(1));
         List<Index> secondIndexes = List.of(Index.fromOneBased(1), Index.fromOneBased(2));
@@ -90,6 +115,24 @@ public class AddItineraryCommandTest {
 
         // different values -> returns false
         assertFalse(firstCommand.equals(secondCommand));
+    }
+
+    @Test
+    public void hashCode_sameValues_sameHash() {
+        List<Index> indexes = List.of(Index.fromOneBased(1));
+        AddItineraryCommand command1 = new AddItineraryCommand(VALID_ITINERARY_NAME, indexes);
+        AddItineraryCommand command2 = new AddItineraryCommand(VALID_ITINERARY_NAME, indexes);
+        assertEquals(command1.hashCode(), command2.hashCode());
+    }
+
+    @Test
+    public void toStringMethod() {
+        List<Index> indexes = List.of(Index.fromOneBased(1));
+        AddItineraryCommand command = new AddItineraryCommand(VALID_ITINERARY_NAME, indexes);
+        String expected = AddItineraryCommand.class.getCanonicalName()
+                + "{itineraryName=" + VALID_ITINERARY_NAME
+                + ", attractionIndexes=" + indexes + "}";
+        assertEquals(expected, command.toString());
     }
 
     /**
@@ -195,6 +238,37 @@ public class AddItineraryCommandTest {
         @Override
         public void updateFilteredItineraryList(Predicate<Itinerary> predicate) {
             throw new AssertionError("This method should not be called.");
+        }
+    }
+
+    /**
+     * A Model stub that already contains an itinerary with the same name.
+     */
+    private static class ModelStubWithItinerary extends ModelStub {
+
+        private final Itinerary itinerary;
+        private final ObservableList<Attraction> attractions = FXCollections.observableArrayList();
+
+        ModelStubWithItinerary(Attraction attraction) {
+            requireNonNull(attraction);
+            attractions.add(attraction);
+            this.itinerary = new Itinerary(VALID_ITINERARY_NAME, LocalDateTime.now(), List.of(attraction));
+        }
+
+        @Override
+        public boolean hasItinerary(Itinerary itinerary) {
+            requireNonNull(itinerary);
+            return this.itinerary.isSameItinerary(itinerary);
+        }
+
+        @Override
+        public ObservableList<Attraction> getFilteredAttractionList() {
+            return attractions;
+        }
+
+        @Override
+        public void updateFilteredItineraryList(Predicate<Itinerary> predicate) {
+            // no-op for testing
         }
     }
 

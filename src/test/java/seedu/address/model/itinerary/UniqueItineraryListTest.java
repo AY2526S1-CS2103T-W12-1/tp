@@ -198,4 +198,29 @@ public class UniqueItineraryListTest {
         }
         assertEquals(2, count);
     }
+
+    @Test
+    public void setItineraries_singleItineraryList_success() {
+        List<Itinerary> singleItineraryList = Collections.singletonList(JAPAN_TRIP);
+        uniqueItineraryList.setItineraries(singleItineraryList);
+        UniqueItineraryList expectedList = new UniqueItineraryList();
+        expectedList.add(JAPAN_TRIP);
+        assertEquals(expectedList, uniqueItineraryList);
+    }
+
+    @Test
+    public void setItineraries_emptyList_success() {
+        uniqueItineraryList.add(JAPAN_TRIP);
+        uniqueItineraryList.setItineraries(Collections.emptyList());
+        UniqueItineraryList expectedList = new UniqueItineraryList();
+        assertEquals(expectedList, uniqueItineraryList);
+    }
+
+    @Test
+    public void equals_differentList_returnsFalse() {
+        uniqueItineraryList.add(JAPAN_TRIP);
+        UniqueItineraryList otherList = new UniqueItineraryList();
+        otherList.add(EUROPE_TOUR);
+        assertFalse(uniqueItineraryList.equals(otherList));
+    }
 }
