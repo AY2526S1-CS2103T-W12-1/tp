@@ -14,6 +14,7 @@ import seedu.address.model.attraction.Address;
 import seedu.address.model.attraction.Contact;
 import seedu.address.model.attraction.Name;
 import seedu.address.model.attraction.Priority;
+import seedu.address.model.itinerary.ItineraryName;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -108,6 +109,21 @@ public class ParserUtil {
             throw new ParseException(Activities.MESSAGE_CONSTRAINTS);
         }
         return new Activities(trimmedActivities);
+    }
+
+    /**
+     * Parses a {@code String itineraryName} into an {@code ItineraryName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code itineraryName} is invalid.
+     */
+    public static ItineraryName parseItineraryName(String itineraryName) throws ParseException {
+        requireNonNull(itineraryName);
+        String trimmedName = itineraryName.trim();
+        if (!ItineraryName.isValidName(trimmedName)) {
+            throw new ParseException(ItineraryName.MESSAGE_CONSTRAINTS);
+        }
+        return new ItineraryName(trimmedName);
     }
     /**
      * Parses a {@code String tag} into a {@code Tag}.

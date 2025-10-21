@@ -1,6 +1,7 @@
 package seedu.address.model.itinerary;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents an itinerary's name in the Maplet. Guarantees: immutable; is valid
@@ -16,7 +17,17 @@ public class ItineraryName {
      */
     public ItineraryName(String name) {
         requireNonNull(name);
-        fullName = name;
+        String trimmedName = name.trim();
+        checkArgument(isValidName(trimmedName), MESSAGE_CONSTRAINTS);
+        fullName = trimmedName;
+    }
+
+    /**
+     * Returns true if a given string is a valid itinerary name.
+     */
+    public static boolean isValidName(String test) {
+        requireNonNull(test);
+        return !test.trim().isEmpty();
     }
 
     @Override
