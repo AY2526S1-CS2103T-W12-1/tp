@@ -1,18 +1,19 @@
 package seedu.address.model.itinerary;
 
-import java.time.LocalDateTime;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import org.junit.jupiter.api.Test;
-
-import seedu.address.testutil.ItineraryBuilder;
 import static seedu.address.testutil.TypicalAttractions.ALICE;
 import static seedu.address.testutil.TypicalAttractions.BENSON;
 import static seedu.address.testutil.TypicalAttractions.CARL;
 import static seedu.address.testutil.TypicalItineraries.EUROPE_TOUR;
 import static seedu.address.testutil.TypicalItineraries.JAPAN_TRIP;
+
+import java.time.LocalDateTime;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.ItineraryBuilder;
 
 public class ItineraryTest {
 

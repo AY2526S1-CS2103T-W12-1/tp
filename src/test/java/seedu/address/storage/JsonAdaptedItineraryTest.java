@@ -1,23 +1,24 @@
 package seedu.address.storage;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.storage.JsonAdaptedItinerary.MISSING_FIELD_MESSAGE_FORMAT;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalAttractions.ALICE;
+import static seedu.address.testutil.TypicalAttractions.BENSON;
+import static seedu.address.testutil.TypicalItineraries.JAPAN_TRIP;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.attraction.Attraction;
 import seedu.address.model.itinerary.Itinerary;
 import seedu.address.model.itinerary.ItineraryName;
-import static seedu.address.storage.JsonAdaptedItinerary.MISSING_FIELD_MESSAGE_FORMAT;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalAttractions.ALICE;
-import static seedu.address.testutil.TypicalAttractions.BENSON;
-import static seedu.address.testutil.TypicalItineraries.JAPAN_TRIP;
 
 public class JsonAdaptedItineraryTest {
 
@@ -52,8 +53,8 @@ public class JsonAdaptedItineraryTest {
                 null, VALID_CREATED_AT, VALID_ATTRACTIONS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 ItineraryName.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage,
-                () -> itinerary.toModelType(AVAILABLE_ATTRACTIONS));
+        assertThrows(IllegalValueException.class, expectedMessage, ()
+                -> itinerary.toModelType(AVAILABLE_ATTRACTIONS));
     }
 
     @Test
@@ -68,8 +69,8 @@ public class JsonAdaptedItineraryTest {
         JsonAdaptedItinerary itinerary = new JsonAdaptedItinerary(
                 VALID_NAME, null, VALID_ATTRACTIONS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "createdAt");
-        assertThrows(IllegalValueException.class, expectedMessage,
-                () -> itinerary.toModelType(AVAILABLE_ATTRACTIONS));
+        assertThrows(IllegalValueException.class, expectedMessage, ()
+                -> itinerary.toModelType(AVAILABLE_ATTRACTIONS));
     }
 
     @Test
@@ -77,8 +78,8 @@ public class JsonAdaptedItineraryTest {
         JsonAdaptedItinerary itinerary = new JsonAdaptedItinerary(
                 VALID_NAME, INVALID_CREATED_AT, VALID_ATTRACTIONS);
         String expectedMessage = "Invalid itinerary timestamp: " + INVALID_CREATED_AT;
-        assertThrows(IllegalValueException.class, expectedMessage,
-                () -> itinerary.toModelType(AVAILABLE_ATTRACTIONS));
+        assertThrows(IllegalValueException.class, expectedMessage, ()
+                -> itinerary.toModelType(AVAILABLE_ATTRACTIONS));
     }
 
     @Test
@@ -96,8 +97,8 @@ public class JsonAdaptedItineraryTest {
         JsonAdaptedItinerary itinerary = new JsonAdaptedItinerary(
                 VALID_NAME, VALID_CREATED_AT, invalidAttractions);
         String expectedMessage = "Itinerary references missing attraction: " + MISSING_ATTRACTION;
-        assertThrows(IllegalValueException.class, expectedMessage,
-                () -> itinerary.toModelType(AVAILABLE_ATTRACTIONS));
+        assertThrows(IllegalValueException.class, expectedMessage, ()
+                -> itinerary.toModelType(AVAILABLE_ATTRACTIONS));
     }
 
     @Test

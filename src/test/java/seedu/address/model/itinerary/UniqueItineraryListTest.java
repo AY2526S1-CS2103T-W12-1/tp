@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalItineraries.EUROPE_TOUR;
 import static seedu.address.testutil.TypicalItineraries.JAPAN_TRIP;
-import static seedu.address.testutil.TypicalItineraries.SINGAPORE_VISIT;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;

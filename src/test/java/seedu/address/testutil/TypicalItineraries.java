@@ -1,18 +1,18 @@
 package seedu.address.testutil;
 
+import static seedu.address.testutil.TypicalAttractions.ALICE;
+import static seedu.address.testutil.TypicalAttractions.BENSON;
+import static seedu.address.testutil.TypicalAttractions.CARL;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.itinerary.Itinerary;
-import static seedu.address.testutil.TypicalAttractions.ALICE;
-import static seedu.address.testutil.TypicalAttractions.BENSON;
-import static seedu.address.testutil.TypicalAttractions.CARL;
 
 /**
- * A utility class containing a list of {@code Itinerary} objects to be used in
- * tests.
+ * A utility class containing a list of {@code Itinerary} objects to be used in tests.
  */
 public class TypicalItineraries {
 
