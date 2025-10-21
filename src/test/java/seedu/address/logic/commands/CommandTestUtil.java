@@ -55,6 +55,9 @@ public class CommandTestUtil {
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PRIORITY_DESC = " " + PREFIX_PRIORITY + "a"; // 'a' not allowed in priority
+    // outside allowed 1-10 range
+    public static final String INVALID_PRIORITY_OUT_OF_RANGE_DESC =
+            " " + PREFIX_PRIORITY + "11";
     public static final String INVALID_CONTACT_DESC = " " + PREFIX_CONTACT + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_ACTIVITIES_DESC = " " + PREFIX_ACTIVITIES + " "; //no empty string activities
@@ -77,7 +80,8 @@ public class CommandTestUtil {
 
     /**
      * Executes the given {@code command}, confirms that <br>
-     * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
+     * - the returned {@link CommandResult} matches
+     * {@code expectedCommandResult} <br>
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
@@ -92,8 +96,9 @@ public class CommandTestUtil {
     }
 
     /**
-     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
-     * that takes a string {@code expectedMessage}.
+     * Convenience wrapper to
+     * {@link #assertCommandSuccess(Command, Model, CommandResult, Model)} that
+     * takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
             Model expectedModel) {
@@ -105,7 +110,8 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the Maplet, filtered attraction list and selected attraction in {@code actualModel} remain unchanged
+     * - the Maplet, filtered attraction list and selected attraction in
+     * {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
@@ -117,9 +123,10 @@ public class CommandTestUtil {
         assertEquals(expectedMaplet, actualModel.getMaplet());
         assertEquals(expectedFilteredList, actualModel.getFilteredAttractionList());
     }
+
     /**
-     * Updates {@code model}'s filtered list to show only the attraction at the given {@code targetIndex} in the
-     * {@code model}'s Maplet.
+     * Updates {@code model}'s filtered list to show only the attraction at the
+     * given {@code targetIndex} in the {@code model}'s Maplet.
      */
     public static void showAttractionAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredAttractionList().size());

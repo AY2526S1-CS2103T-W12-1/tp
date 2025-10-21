@@ -15,31 +15,31 @@ import seedu.address.model.Model;
 import seedu.address.model.attraction.Attraction;
 
 /**
- * Adds a attraction to the Maplet.
+ * Adds an attraction to the Maplet.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a attraction to the Maplet. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an attraction to the Maplet. "
             + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_PRIORITY + "PRIORITY "
+            + PREFIX_NAME + "ATTRACTION_NAME "
+            + PREFIX_PRIORITY + "PRIORITY_LEVEL "
             + PREFIX_CONTACT + "CONTACT "
             + PREFIX_ADDRESS + "ADDRESS "
-            + PREFIX_ACTIVITIES + "ACTIVITIES "
+            + PREFIX_ACTIVITIES + "DESCRIPTION/ACTIVITY "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe "
-            + PREFIX_PRIORITY + "9 "
-            + PREFIX_CONTACT + "johnd@example.com "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_ACTIVITIES + "bowling "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_NAME + "Gardens by the Bay "
+            + PREFIX_PRIORITY + "7 "
+            + PREFIX_CONTACT + "info@gardens.com "
+            + PREFIX_ADDRESS + "18 Marina Gardens Dr, Singapore 018953 "
+            + PREFIX_ACTIVITIES + "Explore the Flower Dome "
+            + PREFIX_TAG + "park "
+            + PREFIX_TAG + "nature";
 
-    public static final String MESSAGE_SUCCESS = "New address added: %1$s";
-    public static final String MESSAGE_DUPLICATE_ATTRACTION = "This address already exists in the Maplet";
+    public static final String MESSAGE_SUCCESS = "New attraction added: %1$s";
+    public static final String MESSAGE_DUPLICATE_ATTRACTION = "This attraction already exists in the Maplet";
 
     private final Attraction toAdd;
 

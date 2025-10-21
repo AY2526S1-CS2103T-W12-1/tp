@@ -19,11 +19,11 @@ public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the address identified by the index number used in the displayed attraction list.\n"
+            + ": Deletes the attraction identified by the index number used in the displayed attraction list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_ATTRACTION_SUCCESS = "Deleted Address: %1$s";
+    public static final String MESSAGE_DELETE_ATTRACTION_SUCCESS = "Deleted Attraction: %1$s";
 
     private final Index targetIndex;
 
