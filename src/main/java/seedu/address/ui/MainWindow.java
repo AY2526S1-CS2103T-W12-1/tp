@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -16,6 +17,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.itinerary.Itinerary;
 
 /**
  * The Main Window. Provides the basic application layout containing a menu bar
@@ -47,6 +49,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane itineraryListPanelPlaceholder;
+
+    @FXML
+    private StackPane itineraryAttractionListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -119,8 +124,9 @@ public class MainWindow extends UiPart<Stage> {
         attractionListPanel = new AttractionListPanel(logic.getFilteredAttractionList());
         attractionListPanelPlaceholder.getChildren().add(attractionListPanel.getRoot());
 
-        itineraryListPanel = new ItineraryListPanel(logic.getFilteredItineraryList());
+        itineraryListPanel = new ItineraryListPanel(logic.getFilteredItineraryList(), this::showItineraryDetails);
         itineraryListPanelPlaceholder.getChildren().add(itineraryListPanel.getRoot());
+        showItineraryDetails(null);
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -174,6 +180,17 @@ public class MainWindow extends UiPart<Stage> {
 
     public AttractionListPanel getAttractionListPanel() {
         return attractionListPanel;
+    }
+
+    private void showItineraryDetails(Itinerary itinerary) {
+        itineraryAttractionListPanelPlaceholder.getChildren().clear();
+        if (itinerary == null) {
+            itineraryAttractionListPanelPlaceholder.getChildren()
+                    .add(new Label("Select an itinerary to view its attractions."));
+            return;
+        }
+        AttractionListPanel itineraryAttractionListPanel = new AttractionListPanel(itinerary.getAttractions());
+        itineraryAttractionListPanelPlaceholder.getChildren().add(itineraryAttractionListPanel.getRoot());
     }
 
     /**

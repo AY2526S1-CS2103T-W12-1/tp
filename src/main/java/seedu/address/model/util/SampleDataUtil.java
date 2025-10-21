@@ -78,11 +78,11 @@ public class SampleDataUtil {
     public static Itinerary[] getSampleItineraries(Attraction[] attractions) {
         return new Itinerary[]{
             new Itinerary(new ItineraryName("Singapore"),
-            LocalDateTime.of(2025, 10, 21, 10, 0),
+            LocalDateTime.of(2025, 10, 21, 9, 0),
             List.of(attractions[0], attractions[1], attractions[2])),
             new Itinerary(new ItineraryName("Singapore 2"),
-            LocalDateTime.of(2025, 10, 21, 9, 0),
-            List.of(attractions[3], attractions[4]))
+            LocalDateTime.of(2025, 10, 21, 10, 0),
+            List.of(attractions[3], attractions[4], attractions[5]))
         };
     }
 

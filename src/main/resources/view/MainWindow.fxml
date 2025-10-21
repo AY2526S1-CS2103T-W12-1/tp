@@ -61,7 +61,12 @@
               </Tab>
               <Tab text="Itinerary" closable="false">
                 <content>
-                  <StackPane fx:id="itineraryListPanelPlaceholder" />
+                  <SplitPane dividerPositions="0.35">
+                    <items>
+                      <StackPane fx:id="itineraryListPanelPlaceholder" />
+                      <StackPane fx:id="itineraryAttractionListPanelPlaceholder" />
+                    </items>
+                  </SplitPane>
                 </content>
               </Tab>
             </tabs>
