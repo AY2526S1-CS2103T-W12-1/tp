@@ -32,8 +32,12 @@ class JsonSerializableMaplet {
     @JsonCreator
     public JsonSerializableMaplet(@JsonProperty("attractions") List<JsonAdaptedAttraction> attractions,
             @JsonProperty("itineraries") List<JsonAdaptedItinerary> itineraries) {
-        this.attractions.addAll(attractions);
-        this.itineraries.addAll(itineraries);
+        if (attractions != null) {
+            this.attractions.addAll(attractions);
+        }
+        if (itineraries != null) {
+            this.itineraries.addAll(itineraries);
+        }
 
     }
 
@@ -41,7 +45,7 @@ class JsonSerializableMaplet {
      * Converts a given {@code ReadOnlyMaplet} into this class for Jackson use.
      *
      * @param source future changes to this will not affect the created
-     * {@code JsonSerializableMaplet}.
+     *     {@code JsonSerializableMaplet}.
      */
     public JsonSerializableMaplet(ReadOnlyMaplet source) {
         attractions.addAll(source.getAttractionList().stream().map(JsonAdaptedAttraction::new)
@@ -54,7 +58,7 @@ class JsonSerializableMaplet {
      * Converts this Maplet into the model's {@code Maplet} object.
      *
      * @throws IllegalValueException if there were any data constraints
-     * violated.
+     *     violated.
      */
     public Maplet toModelType() throws IllegalValueException {
         Maplet maplet = new Maplet();

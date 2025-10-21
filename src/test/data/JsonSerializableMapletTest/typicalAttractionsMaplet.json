@@ -65,24 +65,5 @@
       "tags": []
     }
   ],
-  "itineraries": [
-    {
-      "name": "Singapore",
-      "createdAt": "2025-10-21T10:00:00",
-      "attractions": [
-        "Universal Studios Singapore",
-        "Gardens by the Bay",
-        "Singapore Botanic Gardens"
-      ]
-    },
-    {
-      "name": "Singapore 2",
-      "createdAt": "2025-10-21T09:00:00",
-      "attractions": [
-        "Marina Bay Sands Singapore",
-        "Singapore Zoo",
-        "Singapore Flyer"
-      ]
-    }
-  ]
+  "itineraries": [ ]
 }

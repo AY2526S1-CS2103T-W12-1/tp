@@ -1,16 +1,18 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
+
 import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import static java.util.Objects.requireNonNull;
 import java.util.function.Predicate;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
@@ -25,7 +27,6 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.attraction.Attraction;
 import seedu.address.model.itinerary.Itinerary;
 import seedu.address.model.itinerary.ItineraryName;
-import static seedu.address.testutil.Assert.assertThrows;
 import seedu.address.testutil.AttractionBuilder;
 
 public class AddItineraryCommandTest {
@@ -36,8 +37,8 @@ public class AddItineraryCommandTest {
     public void execute_itineraryAcceptedByModel_addSuccessful() throws Exception {
         Attraction attractionOne = new AttractionBuilder().withName("Universal Studios").build();
         Attraction attractionTwo = new AttractionBuilder().withName("Gardens by the Bay").build();
-        ModelStubAcceptingItineraryAdded modelStub
-                = new ModelStubAcceptingItineraryAdded(List.of(attractionOne, attractionTwo));
+        ModelStubAcceptingItineraryAdded modelStub =
+                new ModelStubAcceptingItineraryAdded(List.of(attractionOne, attractionTwo));
 
         List<Index> attractionIndexes = Arrays.asList(Index.fromOneBased(1), Index.fromOneBased(2));
         AddItineraryCommand command = new AddItineraryCommand(VALID_ITINERARY_NAME, attractionIndexes);
@@ -55,8 +56,8 @@ public class AddItineraryCommandTest {
     @Test
     public void execute_invalidAttractionIndex_throwsCommandException() {
         Attraction attraction = new AttractionBuilder().withName("Universal Studios").build();
-        ModelStubAcceptingItineraryAdded modelStub
-                = new ModelStubAcceptingItineraryAdded(List.of(attraction));
+        ModelStubAcceptingItineraryAdded modelStub =
+                new ModelStubAcceptingItineraryAdded(List.of(attraction));
 
         AddItineraryCommand command = new AddItineraryCommand(VALID_ITINERARY_NAME,
                 List.of(Index.fromOneBased(2)));

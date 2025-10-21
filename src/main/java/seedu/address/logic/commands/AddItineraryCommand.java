@@ -1,11 +1,14 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ITINERARY_ATTRACTION_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
-import static java.util.Objects.requireNonNull;
 import java.util.Set;
 
 import javafx.collections.ObservableList;
@@ -13,8 +16,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ITINERARY_ATTRACTION_INDEX;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import seedu.address.model.Model;
 import seedu.address.model.attraction.Attraction;
 import seedu.address.model.itinerary.Itinerary;
@@ -30,17 +31,17 @@ public class AddItineraryCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a new itinerary to the Maplet. "
             + "Parameters: "
             + PREFIX_NAME + "ITINERARY_NAME "
-            + "[" + PREFIX_ITINERARY_ATTRACTION_INDEX + "ATTRACTION_INDEX]\n"
+            + "[" + PREFIX_ITINERARY_ATTRACTION_INDEX + "ATTRACTION_INDEX]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Singapore Runaround "
             + PREFIX_ITINERARY_ATTRACTION_INDEX + "1 "
             + PREFIX_ITINERARY_ATTRACTION_INDEX + "2";
 
     public static final String MESSAGE_SUCCESS = "New itinerary added: %1$s";
-    public static final String MESSAGE_DUPLICATE_ITINERARY
-            = "An itinerary with the same name already exists in the Maplet.";
-    public static final String MESSAGE_DUPLICATE_ATTRACTION_REFERENCE
-            = "Each attraction should be referenced at most once when creating an itinerary.";
+    public static final String MESSAGE_DUPLICATE_ITINERARY =
+            "An itinerary with the same name already exists in the Maplet.";
+    public static final String MESSAGE_DUPLICATE_ATTRACTION_REFERENCE =
+            "Each attraction should be referenced at most once when creating an itinerary.";
 
     private final ItineraryName itineraryName;
     private final List<Index> attractionIndexes;

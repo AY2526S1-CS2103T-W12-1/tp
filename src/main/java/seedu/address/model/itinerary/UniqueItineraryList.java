@@ -1,8 +1,9 @@
 package seedu.address.model.itinerary;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Iterator;
 import java.util.List;
-import static java.util.Objects.requireNonNull;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,8 +19,8 @@ import seedu.address.model.itinerary.exceptions.ItineraryNotFoundException;
 public class UniqueItineraryList implements Iterable<Itinerary> {
 
     private final ObservableList<Itinerary> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Itinerary> internalUnmodifiableList
-            = FXCollections.unmodifiableObservableList(internalList);
+    private final ObservableList<Itinerary> internalUnmodifiableList =
+            FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent itinerary as the given
@@ -114,6 +115,11 @@ public class UniqueItineraryList implements Iterable<Itinerary> {
     @Override
     public int hashCode() {
         return internalList.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return internalList.toString();
     }
 
     private boolean itinerariesAreUnique(List<Itinerary> itineraries) {

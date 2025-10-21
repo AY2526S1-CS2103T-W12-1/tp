@@ -20,6 +20,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.attraction.Attraction;
 import seedu.address.model.attraction.exceptions.DuplicateAttractionException;
+import seedu.address.model.itinerary.Itinerary;
 import seedu.address.testutil.AttractionBuilder;
 
 public class MapletTest {
@@ -85,14 +86,18 @@ public class MapletTest {
 
     @Test
     public void toStringMethod() {
-        String expected = Maplet.class.getCanonicalName() + "{attractions=" + maplet.getAttractionList() + "}";
+        String expected = Maplet.class.getCanonicalName()
+                + "{attractions=" + maplet.getAttractionList()
+                + ", itineraries=" + maplet.getItineraryList() + "}";
         assertEquals(expected, maplet.toString());
     }
 
     /**
-     * A stub ReadOnlyMaplet whose attractions list can violate interface constraints.
+     * A stub ReadOnlyMaplet whose attractions list can violate interface
+     * constraints.
      */
     private static class MapletStub implements ReadOnlyMaplet {
+
         private final ObservableList<Attraction> attractions = FXCollections.observableArrayList();
 
         MapletStub(Collection<Attraction> attractions) {
@@ -102,6 +107,11 @@ public class MapletTest {
         @Override
         public ObservableList<Attraction> getAttractionList() {
             return attractions;
+        }
+
+        @Override
+        public ObservableList<Itinerary> getItineraryList() {
+            return FXCollections.observableArrayList();
         }
     }
 

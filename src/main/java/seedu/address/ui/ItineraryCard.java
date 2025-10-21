@@ -15,8 +15,8 @@ import seedu.address.model.itinerary.Itinerary;
 public class ItineraryCard extends UiPart<Region> {
 
     private static final String FXML = "ItineraryListCard.fxml";
-    private static final DateTimeFormatter DATE_TIME_FORMATTER
-            = DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm");
+    private static final DateTimeFormatter DATE_TIME_FORMATTER =
+            DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm");
 
     public final Itinerary itinerary;
 
