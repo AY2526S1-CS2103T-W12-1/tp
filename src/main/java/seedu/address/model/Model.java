@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.attraction.Attraction;
+import seedu.address.model.itinerary.Itinerary;
 
 /**
  * The API of the Model component.
@@ -13,6 +14,7 @@ import seedu.address.model.attraction.Attraction;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Attraction> PREDICATE_SHOW_ALL_ATTRACTIONS = unused -> true;
+    Predicate<Itinerary> PREDICATE_SHOW_ALL_ITINERARIES = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -85,4 +87,16 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredAttractionList(Predicate<Attraction> predicate);
+
+    boolean hasItinerary(Itinerary itinerary);
+
+    void deleteItinerary(Itinerary itinerary);
+
+    void addItinerary(Itinerary itinerary);
+
+    void setItinerary(Itinerary target, Itinerary editedItinerary);
+
+    ObservableList<Itinerary> getFilteredItineraryList();
+
+    void updateFilteredItineraryList(Predicate<Itinerary> predicate);
 }

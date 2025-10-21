@@ -1,21 +1,23 @@
 package seedu.address.model;
 
-import static java.util.Objects.requireNonNull;
-
 import java.util.List;
+import static java.util.Objects.requireNonNull;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.attraction.Attraction;
 import seedu.address.model.attraction.UniqueAttractionList;
+import seedu.address.model.itinerary.Itinerary;
+import seedu.address.model.itinerary.UniqueItineraryList;
 
 /**
- * Wraps all data at the Maplet level.
- * Duplicates are not allowed (by .isSameAttraction comparison)
+ * Wraps all data at the Maplet level. Duplicates are not allowed (by
+ * .isSameAttraction comparison)
  */
 public class Maplet implements ReadOnlyMaplet {
 
     private final UniqueAttractionList attractions;
+    private final UniqueItineraryList itineraries;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -26,9 +28,11 @@ public class Maplet implements ReadOnlyMaplet {
      */
     {
         attractions = new UniqueAttractionList();
+        itineraries = new UniqueItineraryList();
     }
 
-    public Maplet() {}
+    public Maplet() {
+    }
 
     /**
      * Creates a Maplet using the Attractions in the {@code toBeCopied}
@@ -55,6 +59,7 @@ public class Maplet implements ReadOnlyMaplet {
         requireNonNull(newData);
 
         setAttractions(newData.getAttractionList());
+        setItineraries(newData.getItineraryList());
     }
 
     //// attraction-level operations
@@ -68,18 +73,18 @@ public class Maplet implements ReadOnlyMaplet {
     }
 
     /**
-     * Adds a attraction to the Maplet.
-     * The attraction must not already exist in the Maplet.
+     * Adds a attraction to the Maplet. The attraction must not already exist in
+     * the Maplet.
      */
     public void addAttraction(Attraction p) {
         attractions.add(p);
     }
 
     /**
-     * Replaces the given attraction {@code target} in the list with {@code editedAttraction}.
-     * {@code target} must exist in the Maplet.
-     * The attraction identity of {@code editedAttraction} must not be the same as another existing attraction in the
-     * Maplet.
+     * Replaces the given attraction {@code target} in the list with
+     * {@code editedAttraction}. {@code target} must exist in the Maplet. The
+     * attraction identity of {@code editedAttraction} must not be the same as
+     * another existing attraction in the Maplet.
      */
     public void setAttraction(Attraction target, Attraction editedAttraction) {
         requireNonNull(editedAttraction);
@@ -88,11 +93,57 @@ public class Maplet implements ReadOnlyMaplet {
     }
 
     /**
-     * Removes {@code key} from this {@code Maplet}.
-     * {@code key} must exist in the Maplet.
+     * Removes {@code key} from this {@code Maplet}. {@code key} must exist in
+     * the Maplet.
      */
     public void removeAttraction(Attraction key) {
         attractions.remove(key);
+    }
+
+    //// itinerary methods
+
+    /**
+     * Replaces the contents of the itinerary list with {@code itineraries}.
+     * {@code itineraries} must not contain duplicate itineraries.
+     */
+    public void setItineraries(List<Itinerary> itineraries) {
+        this.itineraries.setItineraries(itineraries);
+    }
+
+    /**
+     * Returns true if an itinerary with the same identity as {@code itinerary}
+     * exists in the Maplet.
+     */
+    public boolean hasItinerary(Itinerary itinerary) {
+        requireNonNull(itinerary);
+        return itineraries.contains(itinerary);
+    }
+
+    /**
+     * Adds the given itinerary. The itinerary must not already exist in the
+     * Maplet.
+     */
+    public void addItinerary(Itinerary itinerary) {
+        itineraries.add(itinerary);
+    }
+
+    /**
+     * Replaces the given itinerary {@code target} with {@code editedItinerary}.
+     * {@code target} must exist in the Maplet. The identity of
+     * {@code editedItinerary} must not be the same as another existing
+     * itinerary in the Maplet.
+     */
+    public void setItinerary(Itinerary target, Itinerary editedItinerary) {
+        requireNonNull(editedItinerary);
+        itineraries.setItinerary(target, editedItinerary);
+    }
+
+    /**
+     * Removes {@code itinerary} from the Maplet. {@code itinerary} must exist
+     * in the Maplet.
+     */
+    public void removeItinerary(Itinerary itinerary) {
+        itineraries.remove(itinerary);
     }
 
     //// util methods
@@ -101,12 +152,18 @@ public class Maplet implements ReadOnlyMaplet {
     public String toString() {
         return new ToStringBuilder(this)
                 .add("attractions", attractions)
+                .add("itineraries", itineraries)
                 .toString();
     }
 
     @Override
     public ObservableList<Attraction> getAttractionList() {
         return attractions.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Itinerary> getItineraryList() {
+        return itineraries.asUnmodifiableObservableList();
     }
 
     @Override
@@ -121,11 +178,13 @@ public class Maplet implements ReadOnlyMaplet {
         }
 
         Maplet otherMaplet = (Maplet) other;
-        return attractions.equals(otherMaplet.attractions);
+        return attractions.equals(otherMaplet.attractions)
+                && itineraries.equals(otherMaplet.itineraries);
     }
 
     @Override
     public int hashCode() {
-        return attractions.hashCode();
+        // Update the hashcode with prime number to account for attractions and itineraries
+        return attractions.hashCode() * 31 + itineraries.hashCode();
     }
 }
