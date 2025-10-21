@@ -1,0 +1,15 @@
+{
+  "attractions": [ {
+    "name": "Alice Pauline",
+    "priority": "9",
+    "contact": "alice@example.com",
+    "address": "123, Jurong West Ave 6, #08-111",
+    "activities": "Sightseeing",
+    "tags": [ "friends" ]
+  } ],
+  "itineraries": [ {
+    "name": "Japan Trip",
+    "createdAt": "2024-10-21T10:00:00",
+    "attractions": [ "Nonexistent Attraction" ]
+  } ]
+}
