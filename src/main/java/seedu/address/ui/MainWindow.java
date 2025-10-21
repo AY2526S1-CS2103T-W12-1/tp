@@ -4,7 +4,6 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -33,6 +32,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private AttractionListPanel attractionListPanel;
+    private ItineraryListPanel itineraryListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -119,8 +119,8 @@ public class MainWindow extends UiPart<Stage> {
         attractionListPanel = new AttractionListPanel(logic.getFilteredAttractionList());
         attractionListPanelPlaceholder.getChildren().add(attractionListPanel.getRoot());
 
-        Label itineraryPlaceholder = new Label("Your itinerary will appear here."); // TODO: Replace with actual itinerary panel and file path
-        itineraryListPanelPlaceholder.getChildren().add(itineraryPlaceholder);
+        itineraryListPanel = new ItineraryListPanel(logic.getFilteredItineraryList());
+        itineraryListPanelPlaceholder.getChildren().add(itineraryListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
