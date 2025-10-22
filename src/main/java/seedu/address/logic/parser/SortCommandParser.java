@@ -25,7 +25,7 @@ public class SortCommandParser implements Parser<SortCommand> {
         if (!hasOnlyOnePrefix(argMultimap)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
-        return new SortCommand(getSortPrefix(argMultimap));
+        return new SortCommand(getSortFieldPrefix(argMultimap));
     }
 
     private static boolean hasOnlyOnePrefix(ArgumentMultimap argumentMultimap) {
@@ -51,7 +51,7 @@ public class SortCommandParser implements Parser<SortCommand> {
         return count == 1;
     }
 
-    private static String getSortPrefix(ArgumentMultimap argumentMultimap) {
+    private static String getSortFieldPrefix(ArgumentMultimap argumentMultimap) {
         if (argumentMultimap.getValue(PREFIX_NAME).isPresent()) {
             return PREFIX_NAME.getPrefix();
         }
