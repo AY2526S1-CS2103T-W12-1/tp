@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalAttractions.ALICE;
 import static seedu.address.testutil.TypicalAttractions.getTypicalMaplet;
 import static seedu.address.testutil.TypicalItineraries.EUROPE_TOUR;
 import static seedu.address.testutil.TypicalItineraries.JAPAN_TRIP;
+import static seedu.address.testutil.TypicalLocations.SINGAPORE;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -24,6 +25,8 @@ import seedu.address.model.attraction.Attraction;
 import seedu.address.model.attraction.exceptions.DuplicateAttractionException;
 import seedu.address.model.itinerary.Itinerary;
 import seedu.address.model.itinerary.exceptions.DuplicateItineraryException;
+import seedu.address.model.location.Location;
+import seedu.address.model.location.exceptions.DuplicateLocationException;
 import seedu.address.testutil.AttractionBuilder;
 import seedu.address.testutil.ItineraryBuilder;
 
@@ -34,11 +37,13 @@ public class MapletTest {
     @Test
     public void constructor() {
         assertEquals(Collections.emptyList(), maplet.getAttractionList());
+        assertEquals(Collections.emptyList(), maplet.getLocationList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> maplet.resetData(null));
+
     }
 
     @Test
@@ -57,6 +62,12 @@ public class MapletTest {
         MapletStub newData = new MapletStub(newAttractions);
 
         assertThrows(DuplicateAttractionException.class, () -> maplet.resetData(newData));
+    }
+
+    @Test
+    public void resetData_withDuplicateLocations_throwsDuplicateLocationException() {
+        MapletStub newData = new MapletStub(Collections.singletonList(ALICE), Arrays.asList(SINGAPORE, SINGAPORE));
+        assertThrows(DuplicateLocationException.class, () -> maplet.resetData(newData));
     }
 
     @Test
@@ -89,10 +100,45 @@ public class MapletTest {
     }
 
     @Test
+    public void hasLocation_nullLocation_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> maplet.hasLocation(null));
+    }
+
+    @Test
+    public void hasLocation_locationNotInMaplet_returnsFalse() {
+        assertFalse(maplet.hasLocation(SINGAPORE));
+    }
+
+    @Test
+    public void hasLocation_locationInMaplet_returnsTrue() {
+        maplet.addLocation(SINGAPORE);
+        assertTrue(maplet.hasLocation(SINGAPORE));
+    }
+
+    @Test
+    public void hasLocationName_locationInMaplet_returnsTrue() {
+        maplet.addLocation(SINGAPORE);
+        assertTrue(maplet.hasLocationName(SINGAPORE.getName()));
+    }
+
+    @Test
+    public void removeLocation_locationExists_removesLocation() {
+        maplet.addLocation(SINGAPORE);
+        maplet.removeLocation(SINGAPORE.getName());
+        assertFalse(maplet.hasLocation(SINGAPORE));
+    }
+
+    @Test
+    public void getLocationList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> maplet.getLocationList().remove(0));
+    }
+
+    @Test
     public void toStringMethod() {
         String expected = Maplet.class.getCanonicalName()
                 + "{attractions=" + maplet.getAttractionList()
-                + ", itineraries=" + maplet.getItineraryList() + "}";
+                + ", itineraries=" + maplet.getItineraryList()
+                + ", locations=" + maplet.getLocationList() + "}";
         assertEquals(expected, maplet.toString());
     }
 
@@ -181,14 +227,25 @@ public class MapletTest {
     private static class MapletStub implements ReadOnlyMaplet {
 
         private final ObservableList<Attraction> attractions = FXCollections.observableArrayList();
+        private final ObservableList<Location> locations = FXCollections.observableArrayList();
 
         MapletStub(Collection<Attraction> attractions) {
             this.attractions.setAll(attractions);
         }
 
+        MapletStub(Collection<Attraction> attractions, Collection<Location> locations) {
+            this.attractions.setAll(attractions);
+            this.locations.setAll(locations);
+        }
+
         @Override
         public ObservableList<Attraction> getAttractionList() {
             return attractions;
+        }
+
+        @Override
+        public ObservableList<Location> getLocationList() {
+            return locations;
         }
 
         @Override

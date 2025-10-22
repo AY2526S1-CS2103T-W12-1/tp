@@ -19,6 +19,8 @@ import seedu.address.model.attraction.Attraction;
 import seedu.address.model.itinerary.Itinerary;
 import seedu.address.storage.Storage;
 import seedu.address.model.location.Location;
+import seedu.address.storage.Storage;
+
 
 /**
  * The main LogicManager of the app.

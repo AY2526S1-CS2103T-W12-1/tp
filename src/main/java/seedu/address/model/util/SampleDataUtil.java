@@ -68,12 +68,12 @@ public class SampleDataUtil {
 
     public static Location[] getSampleLocations() {
         return new Location[] {
-                new Location(new LocationName("Singapore City"),
-                        getAttractionNameSet("Gardens by the Bay", "Marina Bay Sands Singapore", "Singapore Flyer")),
-                new Location(new LocationName("Sentosa"),
-                        getAttractionNameSet("Universal Studios Singapore")),
-                new Location(new LocationName("Mandai"),
-                        getAttractionNameSet("Singapore Zoo"))
+            new Location(new LocationName("Singapore City"),
+                    getAttractionNameSet("Gardens by the Bay", "Marina Bay Sands Singapore", "Singapore Flyer")),
+            new Location(new LocationName("Sentosa"),
+                    getAttractionNameSet("Universal Studios Singapore")),
+            new Location(new LocationName("Mandai"),
+                    getAttractionNameSet("Singapore Zoo"))
         };
     }
 

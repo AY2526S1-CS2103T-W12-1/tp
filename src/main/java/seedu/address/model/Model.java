@@ -62,7 +62,6 @@ public interface Model {
     boolean hasAttraction(Attraction attraction);
 
     /**
-     *
      * Returns true if an attraction with the same identity as {@code location} exists in the Maplet.
      */
     boolean hasLocation(Location location);

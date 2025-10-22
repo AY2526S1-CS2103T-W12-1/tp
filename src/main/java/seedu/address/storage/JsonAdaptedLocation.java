@@ -70,7 +70,8 @@ class JsonAdaptedLocation {
         final Set<Name> attractionNames = new HashSet<>();
         for (String attractionNameString : attractions) {
             if (attractionNameString == null) {
-                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                        Name.class.getSimpleName()));
             }
             if (!Name.isValidName(attractionNameString)) {
                 throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
