@@ -25,6 +25,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyMaplet;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.attraction.Attraction;
+import seedu.address.model.itinerary.Itinerary;
 import seedu.address.model.location.Location;
 import seedu.address.model.location.LocationName;
 
@@ -115,16 +116,6 @@ public class DeleteLocationCommandTest {
         }
 
         @Override
-        public boolean hasLocation(Location location) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasLocationName(LocationName locationName) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void deleteAttraction(Attraction target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -135,17 +126,7 @@ public class DeleteLocationCommandTest {
         }
 
         @Override
-        public void addLocation(Location location) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void setAttraction(Attraction target, Attraction editedAttraction) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deleteLocation(LocationName locationName) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -155,12 +136,64 @@ public class DeleteLocationCommandTest {
         }
 
         @Override
+        public void updateFilteredAttractionList(Predicate<Attraction> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        //===Location====
+        @Override
+        public boolean hasLocation(Location location) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasLocationName(LocationName locationName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addLocation(Location location) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Location> getLocationList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredAttractionList(Predicate<Attraction> predicate) {
+        public void deleteLocation(LocationName locationName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        //===Itinerary===
+        @Override
+        public boolean hasItinerary(Itinerary itinerary) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteItinerary(Itinerary itinerary) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addItinerary(Itinerary itinerary) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setItinerary(Itinerary target, Itinerary editedItinerary) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Itinerary> getFilteredItineraryList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredItineraryList(Predicate<Itinerary> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }

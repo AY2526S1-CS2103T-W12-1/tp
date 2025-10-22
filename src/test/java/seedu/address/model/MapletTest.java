@@ -178,7 +178,8 @@ public class MapletTest {
                 .withAttractions()
                 .build();
         List<Itinerary> newItineraries = Arrays.asList(JAPAN_TRIP, editedJapanTrip);
-        MapletStubWithItineraries newData = new MapletStubWithItineraries(Collections.emptyList(), newItineraries);
+        MapletStubWithItineraries newData = new MapletStubWithItineraries(Collections.emptyList(),
+                newItineraries, Collections.emptyList());
 
         assertThrows(DuplicateItineraryException.class, () -> maplet.resetData(newData));
     }
@@ -261,15 +262,24 @@ public class MapletTest {
 
         private final ObservableList<Attraction> attractions = FXCollections.observableArrayList();
         private final ObservableList<Itinerary> itineraries = FXCollections.observableArrayList();
+        private final ObservableList<Location> locations = FXCollections.observableArrayList();
 
-        MapletStubWithItineraries(Collection<Attraction> attractions, Collection<Itinerary> itineraries) {
+        MapletStubWithItineraries(Collection<Attraction> attractions,
+                                  Collection<Itinerary> itineraries,
+                                  Collection<Location> locations) {
             this.attractions.setAll(attractions);
             this.itineraries.setAll(itineraries);
+            this.locations.setAll(locations);
         }
 
         @Override
         public ObservableList<Attraction> getAttractionList() {
             return attractions;
+        }
+
+        @Override
+        public ObservableList<Location> getLocationList() {
+            return locations;
         }
 
         @Override

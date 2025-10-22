@@ -97,6 +97,8 @@ public class ModelManager implements Model {
         return maplet.hasAttraction(attraction);
     }
 
+
+
     @Override
     public boolean hasLocation(Location location) {
         requireNonNull(location);
