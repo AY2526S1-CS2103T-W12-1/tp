@@ -102,6 +102,8 @@ public interface Model {
      * The attraction identity of {@code editedAttraction} must not be the same as another existing attraction in the
      * Maplet.
      */
+
+
     void setAttraction(Attraction target, Attraction editedAttraction);
 
     /** Returns an unmodifiable view of the filtered attraction list */
