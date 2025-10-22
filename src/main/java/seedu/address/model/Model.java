@@ -57,13 +57,13 @@ public interface Model {
     ReadOnlyMaplet getMaplet();
 
     /**
-     * Returns true if a attraction with the same identity as {@code attraction} exists in the Maplet.
+     * Returns true if an attraction with the same identity as {@code attraction} exists in the Maplet.
      */
     boolean hasAttraction(Attraction attraction);
 
     /**
      *
-     * Returns true if a attraction with the same identity as {@code location} exists in the Maplet.
+     * Returns true if an attraction with the same identity as {@code location} exists in the Maplet.
      */
     boolean hasLocation(Location location);
 
