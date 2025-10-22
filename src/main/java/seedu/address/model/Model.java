@@ -7,6 +7,8 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.attraction.Attraction;
 import seedu.address.model.itinerary.Itinerary;
+import seedu.address.model.location.Location;
+import seedu.address.model.location.LocationName;
 
 /**
  * The API of the Model component.
@@ -60,16 +62,39 @@ public interface Model {
     boolean hasAttraction(Attraction attraction);
 
     /**
+     *
+     * Returns true if a attraction with the same identity as {@code location} exists in the Maplet.
+     */
+    boolean hasLocation(Location location);
+
+    /**
+     * Returns true if a location with the same name as {@code locationName} exists in the Maplet.
+     */
+    boolean hasLocationName(LocationName locationName);
+
+    /**
      * Deletes the given attraction.
      * The attraction must exist in the Maplet.
      */
     void deleteAttraction(Attraction target);
 
     /**
+     * Deletes the location with {@code locationName}.
+     * The location must exist in the Maplet.
+     */
+    void deleteLocation(LocationName locationName);
+
+    /**
      * Adds the given attraction.
      * {@code attraction} must not already exist in the Maplet.
      */
     void addAttraction(Attraction attraction);
+
+    /**
+     * Adds the given location.
+     * {@code location} must not already exist in the Maplet.
+     */
+    void addLocation(Location location);
 
     /**
      * Replaces the given attraction {@code target} with {@code editedAttraction}.
@@ -81,6 +106,9 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered attraction list */
     ObservableList<Attraction> getFilteredAttractionList();
+
+    /** Returns an unmodifiable view of the locations list */
+    ObservableList<Location> getLocationList();
 
     /**
      * Updates the filter of the filtered attraction list to filter by the given {@code predicate}.

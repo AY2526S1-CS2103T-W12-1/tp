@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.location;
 
 import static java.util.Objects.requireNonNull;
 
@@ -11,6 +11,8 @@ import java.util.Set;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.attraction.Attraction;
@@ -23,7 +25,7 @@ import seedu.address.model.location.LocationName;
  */
 public class AddLocationCommand extends Command {
 
-    public static final String COMMAND_WORD = "addlocation";
+    public static final String COMMAND_WORD = "add-location";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a location to the maplet. "
             + "Parameters: "
