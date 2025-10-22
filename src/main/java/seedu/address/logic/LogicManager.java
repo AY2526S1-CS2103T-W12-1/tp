@@ -18,6 +18,7 @@ import seedu.address.model.ReadOnlyMaplet;
 import seedu.address.model.attraction.Attraction;
 import seedu.address.model.itinerary.Itinerary;
 import seedu.address.storage.Storage;
+import seedu.address.model.location.Location;
 
 /**
  * The main LogicManager of the app.
@@ -76,6 +77,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Itinerary> getFilteredItineraryList() {
         return model.getFilteredItineraryList();
+    }
+
+    @Override
+    public ObservableList<Location> getLocationList() {
+        return model.getLocationList();
     }
 
     @Override
