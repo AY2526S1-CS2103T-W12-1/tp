@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -16,10 +17,11 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.itinerary.Itinerary;
 
 /**
- * The Main Window. Provides the basic application layout containing
- * a menu bar and space where other JavaFX elements can be placed.
+ * The Main Window. Provides the basic application layout containing a menu bar
+ * and space where other JavaFX elements can be placed.
  */
 public class MainWindow extends UiPart<Stage> {
 
@@ -32,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private AttractionListPanel attractionListPanel;
+    private ItineraryListPanel itineraryListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -45,13 +48,20 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane attractionListPanelPlaceholder;
 
     @FXML
+    private StackPane itineraryListPanelPlaceholder;
+
+    @FXML
+    private StackPane itineraryAttractionListPanelPlaceholder;
+
+    @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
 
     /**
-     * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
+     * Creates a {@code MainWindow} with the given {@code Stage} and
+     * {@code Logic}.
      */
     public MainWindow(Stage primaryStage, Logic logic) {
         super(FXML, primaryStage);
@@ -78,6 +88,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -112,6 +123,10 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         attractionListPanel = new AttractionListPanel(logic.getFilteredAttractionList());
         attractionListPanelPlaceholder.getChildren().add(attractionListPanel.getRoot());
+
+        itineraryListPanel = new ItineraryListPanel(logic.getFilteredItineraryList(), this::showItineraryDetails);
+        itineraryListPanelPlaceholder.getChildren().add(itineraryListPanel.getRoot());
+        showItineraryDetails(null);
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -165,6 +180,17 @@ public class MainWindow extends UiPart<Stage> {
 
     public AttractionListPanel getAttractionListPanel() {
         return attractionListPanel;
+    }
+
+    private void showItineraryDetails(Itinerary itinerary) {
+        itineraryAttractionListPanelPlaceholder.getChildren().clear();
+        if (itinerary == null) {
+            itineraryAttractionListPanelPlaceholder.getChildren()
+                    .add(new Label("Select an itinerary to view its attractions."));
+            return;
+        }
+        AttractionListPanel itineraryAttractionListPanel = new AttractionListPanel(itinerary.getAttractions());
+        itineraryAttractionListPanelPlaceholder.getChildren().add(itineraryAttractionListPanel.getRoot());
     }
 
     /**

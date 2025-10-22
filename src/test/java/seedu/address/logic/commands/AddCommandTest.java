@@ -158,6 +158,37 @@ public class AddCommandTest {
         public void updateFilteredAttractionList(Predicate<Attraction> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public boolean hasItinerary(seedu.address.model.itinerary.Itinerary itinerary) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteItinerary(seedu.address.model.itinerary.Itinerary itinerary) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addItinerary(seedu.address.model.itinerary.Itinerary itinerary) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setItinerary(seedu.address.model.itinerary.Itinerary target,
+                seedu.address.model.itinerary.Itinerary editedItinerary) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<seedu.address.model.itinerary.Itinerary> getFilteredItineraryList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredItineraryList(Predicate<seedu.address.model.itinerary.Itinerary> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

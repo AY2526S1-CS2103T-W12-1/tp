@@ -1,6 +1,8 @@
 package seedu.address.model.util;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -12,12 +14,15 @@ import seedu.address.model.attraction.Attraction;
 import seedu.address.model.attraction.Contact;
 import seedu.address.model.attraction.Name;
 import seedu.address.model.attraction.Priority;
+import seedu.address.model.itinerary.Itinerary;
+import seedu.address.model.itinerary.ItineraryName;
 import seedu.address.model.tag.Tag;
 
 /**
  * Contains utility methods for populating {@code Maplet} with sample data.
  */
 public class SampleDataUtil {
+
     public static Attraction[] getSampleAttractions() {
         return new Attraction[] {
             new Attraction(new Name("Universal Studios Singapore"),
@@ -27,7 +32,8 @@ public class SampleDataUtil {
                     new Activities("ride a rollercoaster"),
                     getTagSet("Amusement")),
             new Attraction(new Name("Gardens by the Bay"),
-                    new Priority("7"), new Contact("testcontact@gmail.com"),
+                    new Priority("7"),
+                    new Contact("testcontact@gmail.com"),
                     new Address("18 Marina Gardens Dr, Singapore 018953"),
                     new Activities("see supertree"),
                     getTagSet("Park")),
@@ -60,10 +66,25 @@ public class SampleDataUtil {
 
     public static ReadOnlyMaplet getSampleMaplet() {
         Maplet sampleAb = new Maplet();
-        for (Attraction sampleAttraction : getSampleAttractions()) {
+        Attraction[] sampleAttractions = getSampleAttractions();
+        for (Attraction sampleAttraction : sampleAttractions) {
             sampleAb.addAttraction(sampleAttraction);
         }
+        for (Itinerary itinerary : getSampleItineraries(sampleAttractions)) {
+            sampleAb.addItinerary(itinerary);
+        }
         return sampleAb;
+    }
+
+    public static Itinerary[] getSampleItineraries(Attraction[] attractions) {
+        return new Itinerary[] {
+            new Itinerary(new ItineraryName("Singapore"),
+                    LocalDateTime.of(2025, 10, 21, 9, 0),
+                    List.of(attractions[0], attractions[1], attractions[2])),
+            new Itinerary(new ItineraryName("Singapore 2"),
+                    LocalDateTime.of(2025, 10, 21, 10, 0),
+                    List.of(attractions[3], attractions[4], attractions[5]))
+        };
     }
 
     /**
