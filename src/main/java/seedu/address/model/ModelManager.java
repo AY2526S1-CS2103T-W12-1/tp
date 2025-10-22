@@ -12,16 +12,19 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.attraction.Attraction;
+import seedu.address.model.itinerary.Itinerary;
 
 /**
  * Represents the in-memory model of the Maplet data.
  */
 public class ModelManager implements Model {
+
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final Maplet maplet;
     private final UserPrefs userPrefs;
     private final FilteredList<Attraction> filteredAttractions;
+    private final FilteredList<Itinerary> filteredItineraries;
 
     /**
      * Initializes a ModelManager with the given Maplet and userPrefs.
@@ -34,6 +37,7 @@ public class ModelManager implements Model {
         this.maplet = new Maplet(maplet);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredAttractions = new FilteredList<>(this.maplet.getAttractionList());
+        filteredItineraries = new FilteredList<>(this.maplet.getItineraryList());
     }
 
     public ModelManager() {
@@ -41,7 +45,6 @@ public class ModelManager implements Model {
     }
 
     //=========== UserPrefs ==================================================================================
-
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
         requireNonNull(userPrefs);
@@ -76,7 +79,6 @@ public class ModelManager implements Model {
     }
 
     //=========== Maplet ================================================================================
-
     @Override
     public void setMaplet(ReadOnlyMaplet maplet) {
         this.maplet.resetData(maplet);
@@ -111,11 +113,34 @@ public class ModelManager implements Model {
         maplet.setAttraction(target, editedAttraction);
     }
 
-    //=========== Filtered Attraction List Accessors =============================================================
+    // Logic duplication from attraction methods
+    @Override
+    public boolean hasItinerary(Itinerary itinerary) {
+        requireNonNull(itinerary);
+        return maplet.hasItinerary(itinerary);
+    }
 
+    @Override
+    public void deleteItinerary(Itinerary itinerary) {
+        maplet.removeItinerary(itinerary);
+    }
+
+    @Override
+    public void addItinerary(Itinerary itinerary) {
+        maplet.addItinerary(itinerary);
+        updateFilteredItineraryList(PREDICATE_SHOW_ALL_ITINERARIES);
+    }
+
+    @Override
+    public void setItinerary(Itinerary target, Itinerary editedItinerary) {
+        requireAllNonNull(target, editedItinerary);
+        maplet.setItinerary(target, editedItinerary);
+    }
+
+    //=========== Filtered Attraction List Accessors =============================================================
     /**
-     * Returns an unmodifiable view of the list of {@code Attraction} backed by the internal list of
-     * {@code versionedMaplet}
+     * Returns an unmodifiable view of the list of {@code Attraction} backed by
+     * the internal list of {@code versionedMaplet}
      */
     @Override
     public ObservableList<Attraction> getFilteredAttractionList() {
@@ -126,6 +151,17 @@ public class ModelManager implements Model {
     public void updateFilteredAttractionList(Predicate<Attraction> predicate) {
         requireNonNull(predicate);
         filteredAttractions.setPredicate(predicate);
+    }
+
+    @Override
+    public ObservableList<Itinerary> getFilteredItineraryList() {
+        return filteredItineraries;
+    }
+
+    @Override
+    public void updateFilteredItineraryList(Predicate<Itinerary> predicate) {
+        requireNonNull(predicate);
+        filteredItineraries.setPredicate(predicate);
     }
 
     @Override
@@ -142,7 +178,8 @@ public class ModelManager implements Model {
         ModelManager otherModelManager = (ModelManager) other;
         return maplet.equals(otherModelManager.maplet)
                 && userPrefs.equals(otherModelManager.userPrefs)
-                && filteredAttractions.equals(otherModelManager.filteredAttractions);
+                && filteredAttractions.equals(otherModelManager.filteredAttractions)
+                && filteredItineraries.equals(otherModelManager.filteredItineraries);
     }
 
 }

@@ -9,40 +9,40 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.attraction.Attraction;
+import seedu.address.model.itinerary.Itinerary;
 
 /**
- * Deletes a attraction identified using it's displayed index from the Maplet.
+ * Deletes an itinerary identified using its displayed index from the Maplet.
  */
-public class DeleteCommand extends Command {
+public class DeleteItineraryCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_WORD = "deleteitinerary";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the attraction identified by the index number used in the displayed attraction list.\n"
+            + ": Deletes the itinerary identified by the index number used in the displayed itinerary list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_ATTRACTION_SUCCESS = "Deleted Attraction: %1$s";
+    public static final String MESSAGE_DELETE_ITINERARY_SUCCESS = "Deleted Itinerary: %1$s";
 
     private final Index targetIndex;
 
-    public DeleteCommand(Index targetIndex) {
+    public DeleteItineraryCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Attraction> lastShownList = model.getFilteredAttractionList();
+        List<Itinerary> lastShownList = model.getFilteredItineraryList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ATTRACTION_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_ITINERARY_DISPLAYED_INDEX);
         }
 
-        Attraction attractionToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteAttraction(attractionToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_ATTRACTION_SUCCESS, Messages.format(attractionToDelete)));
+        Itinerary itineraryToDelete = lastShownList.get(targetIndex.getZeroBased());
+        model.deleteItinerary(itineraryToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_ITINERARY_SUCCESS, itineraryToDelete.getName()));
     }
 
     @Override
@@ -51,13 +51,12 @@ public class DeleteCommand extends Command {
             return true;
         }
 
-        // instanceof handles nulls
-        if (!(other instanceof DeleteCommand)) {
+        if (!(other instanceof DeleteItineraryCommand)) {
             return false;
         }
 
-        DeleteCommand otherDeleteCommand = (DeleteCommand) other;
-        return targetIndex.equals(otherDeleteCommand.targetIndex);
+        DeleteItineraryCommand otherCommand = (DeleteItineraryCommand) other;
+        return targetIndex.equals(otherCommand.targetIndex);
     }
 
     @Override

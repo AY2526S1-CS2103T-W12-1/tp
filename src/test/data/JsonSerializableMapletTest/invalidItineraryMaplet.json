@@ -6,12 +6,10 @@
     "address": "123, Jurong West Ave 6, #08-111",
     "activities": "Sightseeing",
     "tags": [ "friends" ]
-  }, {
-    "name": "Alice Pauline",
-    "priority": "9",
-    "contact": "pauline@example.com",
-    "address": "4th street",
-    "activities": "Sightseeing"
   } ],
-  "itineraries": [ ]
+  "itineraries": [ {
+    "name": "Japan Trip",
+    "createdAt": "2024-10-21T10:00:00",
+    "attractions": [ "Nonexistent Attraction" ]
+  } ]
 }
