@@ -13,7 +13,7 @@ import seedu.address.model.location.LocationName;
  */
 public class DeleteLocationCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete-location";
+    public static final String COMMAND_WORD = "deletelocation";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes the specified location. "
             + "Parameters: ln/LOCATION_NAME\n"

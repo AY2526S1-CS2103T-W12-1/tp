@@ -25,7 +25,7 @@ import seedu.address.model.location.LocationName;
  */
 public class AddLocationCommand extends Command {
 
-    public static final String COMMAND_WORD = "add-location";
+    public static final String COMMAND_WORD = "addlocation";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a location to the maplet. "
             + "Parameters: "
