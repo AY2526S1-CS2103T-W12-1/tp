@@ -123,15 +123,14 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the Maplet data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as a unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* stores the Maplet data i.e., all `Attraction`, `Itinerary`, and `Location` objects.
+* exposes unmodifiable `ObservableList`s for attractions, itineraries, and locations so that the UI automatically updates when the data changes.
+* stores a `UserPrefs` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPrefs` object.
+* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components).
 
 <box type="info" seamless>
 
-**Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `Maplet`, which `Person` references. This allows `Maplet` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
+**Note:** **Location references:** A `Location` stores the `Name` objects of the attractions it groups instead of duplicating full `Attraction` instances. This keeps locations lightweight while ensuring they stay consistent with the attraction list.
 <puml src="diagrams/BetterModelClassDiagram.puml" width="450" />
 
 </box>
@@ -157,6 +156,32 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Location management feature
+
+The location management feature lets users group attractions under named locations so that related places stay together.
+
+#### Current implementation
+
+* `AddLocationCommand` and `DeleteLocationCommand` handle the respective commands. Their parsers enforce the `ln/` prefix and the presence of at least one attraction index where needed.
+* `Location`, `LocationName`, and `UniqueLocationList` represent the domain model. A `Location` wraps a `LocationName` and a set of attraction `Name`s.
+* `Model#addLocation`, `Model#deleteLocation`, and `Model#hasLocationName` delegate to `Maplet`, which maintains the `UniqueLocationList`.
+* Persistence is handled by `JsonSerializableMaplet` and `JsonAdaptedLocation`, which validate that every referenced attraction exists when reading from disk.
+* `LocationListPanel` and `LocationCard` render the list of locations in the UI.
+
+When a user executes `addlocation ln/Singapore i/1 i/2`:
+
+1. `MapletParser` chooses `AddLocationCommandParser`, which tokenises the prefixes and converts each `i/` value into an `Index`.
+2. The command retrieves each attraction from `Model#getFilteredAttractionList()` and collects their `Name` values, rejecting out-of-range indexes or duplicates.
+3. A new `Location` is created. `Location` enforces that at least one attraction is present and throws if the set is empty.
+4. `Model#hasLocationName` prevents duplicate location names before calling `Model#addLocation`, which stores the entry in the `UniqueLocationList`.
+
+The `deletelocation` command follows the same flow but calls `Model#deleteLocation(LocationName)` to remove the entry while leaving the attractions untouched.
+
+#### Design considerations
+
+* By storing attraction `Name`s instead of full attraction objects, locations stay synchronized with the attraction list without duplicating data.
+* All persistence checks happen during deserialization (`JsonAdaptedLocation#toModelType`) so invalid data never reaches the model.
 
 ### \[Proposed\] Undo/redo feature
 
