@@ -19,7 +19,11 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.location.AddLocationCommand;
+import seedu.address.logic.commands.location.DeleteLocationCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.location.AddLocationCommandParser;
+import seedu.address.logic.parser.location.DeleteLocationCommandParser;
 
 /**
  * Parses user input.
@@ -69,6 +73,12 @@ public class MapletParser {
 
         case DeleteItineraryCommand.COMMAND_WORD:
             return new DeleteItineraryCommandParser().parse(arguments);
+
+        case AddLocationCommand.COMMAND_WORD:
+            return new AddLocationCommandParser().parse(arguments);
+
+        case DeleteLocationCommand.COMMAND_WORD:
+            return new DeleteLocationCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
