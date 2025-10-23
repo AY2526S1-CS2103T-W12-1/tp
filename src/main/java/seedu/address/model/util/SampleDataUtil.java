@@ -17,6 +17,8 @@ import seedu.address.model.attraction.Name;
 import seedu.address.model.attraction.Priority;
 import seedu.address.model.itinerary.Itinerary;
 import seedu.address.model.itinerary.ItineraryName;
+import seedu.address.model.location.Location;
+import seedu.address.model.location.LocationName;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -71,6 +73,17 @@ public class SampleDataUtil {
         };
     }
 
+    public static Location[] getSampleLocations() {
+        return new Location[] {
+            new Location(new LocationName("Singapore City"),
+                    getAttractionNameSet("Gardens by the Bay", "Marina Bay Sands Singapore", "Singapore Flyer")),
+            new Location(new LocationName("Sentosa"),
+                    getAttractionNameSet("Universal Studios Singapore")),
+            new Location(new LocationName("Mandai"),
+                    getAttractionNameSet("Singapore Zoo"))
+        };
+    }
+
     public static ReadOnlyMaplet getSampleMaplet() {
         Maplet sampleAb = new Maplet();
         Attraction[] sampleAttractions = getSampleAttractions();
@@ -79,6 +92,9 @@ public class SampleDataUtil {
         }
         for (Itinerary itinerary : getSampleItineraries(sampleAttractions)) {
             sampleAb.addItinerary(itinerary);
+        }
+        for (Location sampleLocation : getSampleLocations()) {
+            sampleAb.addLocation(sampleLocation);
         }
         return sampleAb;
     }
@@ -103,6 +119,14 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
+    /**
+     * Returns a set containing the attraction names provided.
+     */
+    public static Set<Name> getAttractionNameSet(String... names) {
+        return Arrays.stream(names)
+                .map(Name::new)
+                .collect(Collectors.toSet());
+    }
     /**
      * Returns a comment set containing the list of comments given.
      */
