@@ -38,7 +38,7 @@ Maplet caters to individuals that are **planning to go overseas** or are **frequ
 
    * `exit` : Exits the app.
 
-   * `addlocation ln\Singapore i\1`: Adds attraction with index 1 to location Singapore
+   * `addlocation ln/Singapore i/1`: Adds attraction with index 1 to location Singapore
 
 
   * 5. Refer to the [Features](#features) below for details of each command.
