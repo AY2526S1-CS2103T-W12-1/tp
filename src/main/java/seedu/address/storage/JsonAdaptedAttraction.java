@@ -16,6 +16,8 @@ import seedu.address.model.attraction.Attraction;
 import seedu.address.model.attraction.Comment;
 import seedu.address.model.attraction.Contact;
 import seedu.address.model.attraction.Name;
+import seedu.address.model.attraction.OpeningHours;
+import seedu.address.model.attraction.Price;
 import seedu.address.model.attraction.Priority;
 import seedu.address.model.tag.Tag;
 
@@ -31,6 +33,8 @@ class JsonAdaptedAttraction {
     private final String contact;
     private final String address;
     private final String activities;
+    private final String openingHours;
+    private final String price;
     private final List<JsonAdaptedComment> comments = new ArrayList<>();
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
@@ -42,6 +46,8 @@ class JsonAdaptedAttraction {
     public JsonAdaptedAttraction(@JsonProperty("name") String name, @JsonProperty("priority") String priority,
                                  @JsonProperty("contact") String contact, @JsonProperty("address") String address,
                                  @JsonProperty("activities") String activities,
+                                 @JsonProperty("openingHours") String openingHours,
+                                 @JsonProperty("price") String price,
                                  @JsonProperty("tags") List<JsonAdaptedTag> tags,
                                  @JsonProperty("comments") List<JsonAdaptedComment> comments) {
         this.name = name;
@@ -49,6 +55,8 @@ class JsonAdaptedAttraction {
         this.contact = contact;
         this.address = address;
         this.activities = activities;
+        this.openingHours = openingHours;
+        this.price = price;
 
         if (comments != null) {
             this.comments.addAll(comments);
@@ -68,6 +76,8 @@ class JsonAdaptedAttraction {
         contact = source.getContact().value;
         address = source.getAddress().value;
         activities = source.getActivities().activities;
+        openingHours = source.getOpeningHours().toString();
+        price = source.getPrice().value;
         comments.addAll(source.getComments().stream()
                 .map(JsonAdaptedComment::new)
                 .collect(Collectors.toList()));
@@ -133,10 +143,39 @@ class JsonAdaptedAttraction {
             throw new IllegalValueException(Activities.MESSAGE_CONSTRAINTS);
         }
         final Activities modelActivities = new Activities(activities);
+
+        if (!OpeningHours.isValidOpeningHours(openingHours)) {
+            throw new IllegalValueException(OpeningHours.MESSAGE_CONSTRAINTS);
+        }
+
+        final OpeningHours modelOpeningHours;
+        if (openingHours == null) {
+            modelOpeningHours = OpeningHours.NON_SPECIFIED_HOURS;
+        } else {
+            modelOpeningHours = new OpeningHours(openingHours);
+        }
+
+
+        if (price == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Price.class.getSimpleName()));
+        }
+        if (!Price.isValidPrice(price)) {
+            throw new IllegalValueException(Price.MESSAGE_CONSTRAINTS);
+        }
+        final Price modelPrice = new Price(price);
+
         final Set<Comment> modelComments = new HashSet<>(attractionComments);
         final Set<Tag> modelTags = new HashSet<>(attractionTags);
-        return new Attraction(modelName, modelPriority, modelContact, modelAddress, modelActivities,
-                modelTags, modelComments);
+        return new Attraction(
+                modelName,
+                modelPriority,
+                modelContact,
+                modelAddress,
+                modelActivities,
+                modelOpeningHours,
+                modelPrice,
+                modelTags,
+                modelComments);
     }
 
 }

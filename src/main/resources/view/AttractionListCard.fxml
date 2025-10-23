@@ -33,6 +33,8 @@
       <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
       <Label fx:id="contact" styleClass="cell_small_label" text="\$contact" />
       <Label fx:id="activities" styleClass="cell_small_label" text="\$activities" />
+      <Label fx:id="openingHours" styleClass="cell_small_label" text="\$openingHours" />
+      <Label fx:id="price" styleClass="cell_small_label" text="\$price" />
       <Button fx:id="commentsButton" styleClass="cell_big_label" text="View Comments" onAction="#openCommentWindow" >
         <VBox.margin>
           <Insets top="2" />

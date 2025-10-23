@@ -7,6 +7,8 @@ import static seedu.address.logic.commands.CommandTestUtil.ACTIVITIES_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.CONTACT_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.OPENING_HOURS_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.PRICE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PRIORITY_DESC_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAttractions.AMY;
@@ -173,7 +175,7 @@ public class LogicManagerTest {
 
         // Triggers the saveMaplet method by executing an add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PRIORITY_DESC_AMY
-                + CONTACT_DESC_AMY + ADDRESS_DESC_AMY + ACTIVITIES_DESC_AMY;
+                + CONTACT_DESC_AMY + ADDRESS_DESC_AMY + ACTIVITIES_DESC_AMY + OPENING_HOURS_DESC_AMY + PRICE_DESC_AMY;
         Attraction expectedAttraction = new AttractionBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addAttraction(expectedAttraction);

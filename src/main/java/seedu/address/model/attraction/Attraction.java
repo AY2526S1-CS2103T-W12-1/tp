@@ -24,6 +24,8 @@ public class Attraction {
     // Data fields
     private final Address address;
     private final Activities activities;
+    private final OpeningHours openingHours;
+    private final Price price;
     private final Set<Tag> tags = new HashSet<>();
     private final Set<Comment> comments = new HashSet<>();
 
@@ -31,13 +33,16 @@ public class Attraction {
      * Every field must be present and not null except for comments which are optional
      */
     public Attraction(Name name, Priority priority, Contact contact,
-                      Address address, Activities activities, Set<Tag> tags, Set<Comment> comments) {
+                      Address address, Activities activities, OpeningHours openingHours, Price price, Set<Tag> tags,
+                      Set<Comment> comments) {
         requireAllNonNull(name, priority, contact, address, tags, comments);
         this.name = name;
         this.priority = priority;
         this.contact = contact;
         this.address = address;
         this.activities = activities;
+        this.openingHours = openingHours;
+        this.price = price;
         this.tags.addAll(tags);
         this.comments.addAll(comments);
     }
@@ -60,6 +65,14 @@ public class Attraction {
 
     public Activities getActivities() {
         return activities;
+    }
+
+    public OpeningHours getOpeningHours() {
+        return openingHours;
+    }
+
+    public Price getPrice() {
+        return price;
     }
 
     //returns a copy to prevent unintentional mutation of comment attribute
@@ -109,6 +122,8 @@ public class Attraction {
                 && contact.equals(otherAttraction.contact)
                 && address.equals(otherAttraction.address)
                 && activities.equals(otherAttraction.activities)
+                && openingHours.equals(otherAttraction.openingHours)
+                && price.equals(otherAttraction.price)
                 && tags.equals(otherAttraction.tags)
                 && comments.equals(otherAttraction.comments);
     }
@@ -116,7 +131,7 @@ public class Attraction {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, priority, contact, address, tags, comments);
+        return Objects.hash(name, priority, contact, address, activities, openingHours, price, tags, comments);
     }
 
     @Override
@@ -127,6 +142,8 @@ public class Attraction {
                 .add("contact", contact)
                 .add("address", address)
                 .add("activities", activities)
+                .add("opening hours", openingHours)
+                .add("price", price)
                 .add("tags", tags)
                 .add("comments", comments)
                 .toString();

@@ -4,6 +4,8 @@
     "priority": "9",
     "contact": "invalid@email!3e",
     "activities": "Sightseeing",
+    "openingHours": "1200 - 1500",
+    "price": "20",
     "address": "4th street"
   } ]
 }

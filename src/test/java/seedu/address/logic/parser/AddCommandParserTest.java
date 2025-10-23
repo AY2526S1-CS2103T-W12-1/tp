@@ -11,13 +11,19 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_ACTIVITIES_DE
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_CONTACT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_OPENING_HOURS_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_PRICE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PRIORITY_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PRIORITY_OUT_OF_RANGE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.OPENING_HOURS_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.OPENING_HOURS_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.PRICE_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.PRICE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PRIORITY_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PRIORITY_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
@@ -32,6 +38,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ACTIVITIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OPENING_HOURS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -47,6 +55,8 @@ import seedu.address.model.attraction.Address;
 import seedu.address.model.attraction.Attraction;
 import seedu.address.model.attraction.Contact;
 import seedu.address.model.attraction.Name;
+import seedu.address.model.attraction.OpeningHours;
+import seedu.address.model.attraction.Price;
 import seedu.address.model.attraction.Priority;
 import seedu.address.testutil.AttractionBuilder;
 
@@ -60,21 +70,23 @@ public class AddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PRIORITY_DESC_BOB + CONTACT_DESC_BOB
-                + ADDRESS_DESC_BOB + ACTIVITIES_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedAttraction));
+                + ADDRESS_DESC_BOB + ACTIVITIES_DESC_BOB + OPENING_HOURS_DESC_BOB + PRICE_DESC_BOB + TAG_DESC_FRIEND,
+                new AddCommand(expectedAttraction));
 
         // multiple tags - all accepted
         Attraction expectedAttractionMultipleTags = new AttractionBuilder(BOB)
                 .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND).build();
         assertParseSuccess(parser,
                 NAME_DESC_BOB + PRIORITY_DESC_BOB + CONTACT_DESC_BOB + ADDRESS_DESC_BOB
-                        + ACTIVITIES_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                        + ACTIVITIES_DESC_BOB + OPENING_HOURS_DESC_BOB + PRICE_DESC_BOB + TAG_DESC_HUSBAND
+                        + TAG_DESC_FRIEND,
                 new AddCommand(expectedAttractionMultipleTags));
     }
 
     @Test
     public void parse_repeatedNonTagValue_failure() {
         String validExpectedAttractionString = NAME_DESC_BOB + PRIORITY_DESC_BOB + CONTACT_DESC_BOB
-                + ADDRESS_DESC_BOB + ACTIVITIES_DESC_BOB + TAG_DESC_FRIEND;
+                + ADDRESS_DESC_BOB + ACTIVITIES_DESC_BOB + OPENING_HOURS_DESC_BOB + PRICE_DESC_BOB + TAG_DESC_FRIEND;
 
         // multiple names
         assertParseFailure(parser, NAME_DESC_AMY + validExpectedAttractionString,
@@ -96,13 +108,23 @@ public class AddCommandParserTest {
         assertParseFailure(parser, ACTIVITIES_DESC_AMY + validExpectedAttractionString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_ACTIVITIES));
 
+        // multiple opening hours
+        assertParseFailure(parser, OPENING_HOURS_DESC_AMY + validExpectedAttractionString,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_OPENING_HOURS));
+
+        // multiple prices
+        assertParseFailure(parser, PRICE_DESC_AMY + validExpectedAttractionString,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PRICE));
+
         // multiple fields repeated
         assertParseFailure(parser,
                 validExpectedAttractionString
                 + PRIORITY_DESC_AMY + CONTACT_DESC_AMY + NAME_DESC_AMY + ADDRESS_DESC_AMY + ACTIVITIES_DESC_AMY
+                        + OPENING_HOURS_DESC_AMY + PRICE_DESC_AMY
                 + validExpectedAttractionString,
                 Messages.getErrorMessageForDuplicatePrefixes(
-                        PREFIX_NAME, PREFIX_ADDRESS, PREFIX_CONTACT, PREFIX_PRIORITY, PREFIX_ACTIVITIES));
+                        PREFIX_NAME, PREFIX_ADDRESS, PREFIX_CONTACT, PREFIX_PRIORITY, PREFIX_ACTIVITIES,
+                        PREFIX_OPENING_HOURS, PREFIX_PRICE));
 
         // invalid value followed by valid value
         // invalid name
@@ -125,6 +147,14 @@ public class AddCommandParserTest {
         assertParseFailure(parser, INVALID_ACTIVITIES_DESC + validExpectedAttractionString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_ACTIVITIES));
 
+        // invalid opening hours
+        assertParseFailure(parser, INVALID_OPENING_HOURS_DESC + validExpectedAttractionString,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_OPENING_HOURS));
+
+        // invalid price
+        assertParseFailure(parser, INVALID_PRICE_DESC + validExpectedAttractionString,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PRICE));
+
         // valid value followed by invalid value
         // invalid name
         assertParseFailure(parser, validExpectedAttractionString + INVALID_NAME_DESC,
@@ -145,6 +175,14 @@ public class AddCommandParserTest {
         // invalid activities
         assertParseFailure(parser, validExpectedAttractionString + INVALID_ACTIVITIES_DESC,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_ACTIVITIES));
+
+        // invalid opening hours
+        assertParseFailure(parser, validExpectedAttractionString + INVALID_OPENING_HOURS_DESC,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_OPENING_HOURS));
+
+        // invalid price
+        assertParseFailure(parser, validExpectedAttractionString + INVALID_PRICE_DESC,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PRICE));
     }
 
     @Test
@@ -152,7 +190,8 @@ public class AddCommandParserTest {
         // zero tags
         Attraction expectedAttraction = new AttractionBuilder(AMY).withTags().build();
         assertParseSuccess(parser,
-                NAME_DESC_AMY + PRIORITY_DESC_AMY + CONTACT_DESC_AMY + ADDRESS_DESC_AMY + ACTIVITIES_DESC_AMY,
+                NAME_DESC_AMY + PRIORITY_DESC_AMY + CONTACT_DESC_AMY + ADDRESS_DESC_AMY + ACTIVITIES_DESC_AMY
+                + OPENING_HOURS_DESC_AMY + PRICE_DESC_AMY,
                 new AddCommand(expectedAttraction));
     }
 
@@ -185,40 +224,57 @@ public class AddCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + PRIORITY_DESC_BOB + CONTACT_DESC_BOB + ADDRESS_DESC_BOB
-                + ACTIVITIES_DESC_BOB + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
+                + ACTIVITIES_DESC_BOB + OPENING_HOURS_DESC_BOB + PRICE_DESC_BOB + TAG_DESC_FRIEND,
+                Name.MESSAGE_CONSTRAINTS);
 
         // invalid priority format
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_PRIORITY_DESC + CONTACT_DESC_BOB + ADDRESS_DESC_BOB
-                + ACTIVITIES_DESC_BOB + TAG_DESC_FRIEND, Priority.MESSAGE_CONSTRAINTS);
+                + ACTIVITIES_DESC_BOB + OPENING_HOURS_DESC_BOB + PRICE_DESC_BOB + TAG_DESC_FRIEND,
+                Priority.MESSAGE_CONSTRAINTS);
 
         // invalid priority range
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_PRIORITY_OUT_OF_RANGE_DESC + CONTACT_DESC_BOB
-                + ADDRESS_DESC_BOB + ACTIVITIES_DESC_BOB + TAG_DESC_FRIEND, Priority.MESSAGE_CONSTRAINTS);
+                + ADDRESS_DESC_BOB + ACTIVITIES_DESC_BOB + OPENING_HOURS_DESC_BOB + PRICE_DESC_BOB + TAG_DESC_FRIEND,
+                Priority.MESSAGE_CONSTRAINTS);
 
         // invalid contact
         assertParseFailure(parser, NAME_DESC_BOB + PRIORITY_DESC_BOB + INVALID_CONTACT_DESC + ADDRESS_DESC_BOB
-                + ACTIVITIES_DESC_BOB + TAG_DESC_FRIEND, Contact.MESSAGE_CONSTRAINTS);
+                + ACTIVITIES_DESC_BOB + OPENING_HOURS_DESC_BOB + PRICE_DESC_BOB + TAG_DESC_FRIEND,
+                Contact.MESSAGE_CONSTRAINTS);
 
         // invalid address
         assertParseFailure(parser, NAME_DESC_BOB + PRIORITY_DESC_BOB + CONTACT_DESC_BOB + INVALID_ADDRESS_DESC
-                + ACTIVITIES_DESC_BOB + TAG_DESC_FRIEND, Address.MESSAGE_CONSTRAINTS);
+                + ACTIVITIES_DESC_BOB + OPENING_HOURS_DESC_BOB + PRICE_DESC_BOB + TAG_DESC_FRIEND,
+                Address.MESSAGE_CONSTRAINTS);
 
         // invalid activities
         assertParseFailure(parser, NAME_DESC_BOB + PRIORITY_DESC_BOB + CONTACT_DESC_BOB + ADDRESS_DESC_BOB
-                + INVALID_ACTIVITIES_DESC + TAG_DESC_FRIEND, Activities.MESSAGE_CONSTRAINTS);
+                + INVALID_ACTIVITIES_DESC + OPENING_HOURS_DESC_BOB + PRICE_DESC_BOB + TAG_DESC_FRIEND,
+                Activities.MESSAGE_CONSTRAINTS);
+
+        // invalid opening hours
+        assertParseFailure(parser, NAME_DESC_BOB + PRIORITY_DESC_BOB + CONTACT_DESC_BOB + ADDRESS_DESC_BOB
+                        + ACTIVITIES_DESC_BOB + INVALID_OPENING_HOURS_DESC + PRICE_DESC_BOB + TAG_DESC_FRIEND,
+                OpeningHours.MESSAGE_CONSTRAINTS);
+
+        // invalid price
+        assertParseFailure(parser, NAME_DESC_BOB + PRIORITY_DESC_BOB + CONTACT_DESC_BOB + ADDRESS_DESC_BOB
+                        + ACTIVITIES_DESC_BOB + OPENING_HOURS_DESC_BOB + INVALID_PRICE_DESC + TAG_DESC_FRIEND,
+                Price.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + PRIORITY_DESC_BOB + CONTACT_DESC_BOB + ADDRESS_DESC_BOB
-                + ACTIVITIES_DESC_BOB + INVALID_TAG_DESC + TAG_DESC_FRIEND,
+                + ACTIVITIES_DESC_BOB + OPENING_HOURS_DESC_BOB + PRICE_DESC_BOB + INVALID_TAG_DESC + TAG_DESC_FRIEND,
                 seedu.address.model.tag.Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PRIORITY_DESC_BOB + CONTACT_DESC_BOB + INVALID_ADDRESS_DESC
-                + ACTIVITIES_DESC_BOB + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
+                + ACTIVITIES_DESC_BOB + OPENING_HOURS_DESC_BOB + PRICE_DESC_BOB + TAG_DESC_FRIEND,
+                Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PRIORITY_DESC_BOB + CONTACT_DESC_BOB
-                + ADDRESS_DESC_BOB + ACTIVITIES_DESC_BOB + TAG_DESC_FRIEND,
+                + ADDRESS_DESC_BOB + ACTIVITIES_DESC_BOB + OPENING_HOURS_DESC_BOB + PRICE_DESC_BOB + TAG_DESC_FRIEND,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }

@@ -45,6 +45,10 @@ public class AttractionCard extends UiPart<Region> {
     @FXML
     private Label activities;
     @FXML
+    private Label openingHours;
+    @FXML
+    private Label price;
+    @FXML
     private FlowPane tags;
     @FXML
     private Button commentButton;
@@ -62,6 +66,8 @@ public class AttractionCard extends UiPart<Region> {
         address.setText(attraction.getAddress().value);
         contact.setText(attraction.getContact().value);
         activities.setText(attraction.getActivities().activities);
+        openingHours.setText("Opening Hours: " + attraction.getOpeningHours().toString());
+        price.setText("Price: " + attraction.getPrice().toString());
         attraction.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
