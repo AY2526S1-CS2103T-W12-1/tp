@@ -9,15 +9,22 @@ import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddItineraryCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteItineraryCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.SortCommand;
+import seedu.address.logic.commands.location.AddLocationCommand;
+import seedu.address.logic.commands.location.DeleteLocationCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.location.AddLocationCommandParser;
+import seedu.address.logic.parser.location.DeleteLocationCommandParser;
 
 /**
  * Parses user input.
@@ -56,11 +63,23 @@ public class MapletParser {
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
+        case AddItineraryCommand.COMMAND_WORD:
+            return new AddItineraryCommandParser().parse(arguments);
+
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
+
+        case DeleteItineraryCommand.COMMAND_WORD:
+            return new DeleteItineraryCommandParser().parse(arguments);
+
+        case AddLocationCommand.COMMAND_WORD:
+            return new AddLocationCommandParser().parse(arguments);
+
+        case DeleteLocationCommand.COMMAND_WORD:
+            return new DeleteLocationCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
@@ -70,6 +89,9 @@ public class MapletParser {
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+
+        case SortCommand.COMMAND_WORD:
+            return new SortCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

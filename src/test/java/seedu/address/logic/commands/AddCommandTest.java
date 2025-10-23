@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalAttractions.ALICE;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -23,6 +24,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyMaplet;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.attraction.Attraction;
+import seedu.address.model.location.Location;
+import seedu.address.model.location.LocationName;
 import seedu.address.testutil.AttractionBuilder;
 
 public class AddCommandTest {
@@ -125,6 +128,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void addLocation(Location location) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setMaplet(ReadOnlyMaplet newData) {
             throw new AssertionError("This method should not be called.");
         }
@@ -140,7 +148,22 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasLocation(Location location) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasLocationName(LocationName locationName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deleteAttraction(Attraction target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteLocation(LocationName locationName) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -155,7 +178,48 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Location> getLocationList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredAttractionList(Predicate<Attraction> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSortedAttractionList(Comparator<Attraction> comparator) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasItinerary(seedu.address.model.itinerary.Itinerary itinerary) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteItinerary(seedu.address.model.itinerary.Itinerary itinerary) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addItinerary(seedu.address.model.itinerary.Itinerary itinerary) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setItinerary(seedu.address.model.itinerary.Itinerary target,
+                seedu.address.model.itinerary.Itinerary editedItinerary) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<seedu.address.model.itinerary.Itinerary> getFilteredItineraryList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredItineraryList(Predicate<seedu.address.model.itinerary.Itinerary> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }

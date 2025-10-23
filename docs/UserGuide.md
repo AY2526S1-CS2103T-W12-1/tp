@@ -19,7 +19,7 @@ Maplet caters to individuals that are **planning to go overseas** or are **frequ
 
 1. Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-W12-1/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for Maplet.
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar maplet.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
@@ -38,7 +38,10 @@ Maplet caters to individuals that are **planning to go overseas** or are **frequ
 
    * `exit` : Exits the app.
 
-   * 5. Refer to the [Features](#features) below for details of each command.
+   * `addlocation ln/Singapore i/1`: Adds attraction with index 1 to location Singapore
+
+
+  * 5. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -78,6 +81,8 @@ Action     | Format, Examples
 **Edit**   | `edit INDEX [n/NAME] [p/PRIORITY_NUMBER] [c/CONTACT] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/Golden Studios c/GoldenSS@example.com`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Golden Studios`
 **Sort**   | `sort PREFIX`<br> e.g., `sort p/`
+**Add Location**   | `addlocation ln/LOCATION_NAME i/ATTRACTION_INDEX [i/ATTRACTION_INDEX]…`<br> e.g., `addlocation ln/Singapore i/1 i/2 i/3`
+**Delete Location**   | `deletelocation ln/LOCATION_NAME`<br> e.g., `deletelocation ln/Singapore`
 **List**   | `list`
 **Help**   | `help`
 
@@ -177,6 +182,33 @@ Format: `sort PREFIX`
 Examples:
 * `sort n/` sorts all attractions in alphabetical order of names (A to Z)
 * `sort p/` sorts all attractions in descending order of priority (Largest to Smallest)
+
+### Adding a location: `addlocation`
+
+Adds an location to Maplet.
+
+Format: `addlocation ln/LOCATION_NAME i/ATTRACTION_INDEX [i/ATTRACTION_INDEX ]…​`
+
+<box type="tip" seamless>
+
+**Tip:** An Attraction can belong many Location, but in one Location, a Attraction is unique.
+</box>
+
+Examples:
+* `addlocation ln/Singpore i/1 i/2`
+* `addlocation n/Paris i/5 i/7 i/9`
+
+### Deleting a location : `deletelocation`
+
+Deletes the specified location from Maplet.
+
+Format: `deletelocation ln/LOCATION_NAME`
+
+* Deletes the attraction with the specified name `LOCATION_NAME`.
+
+Examples:
+
+* `deletelocation ln/Singapore` deletes the location `Singapore`.
 
 ### Clearing all entries : `clear`
 

@@ -3,8 +3,11 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ACTIVITIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OPENING_HOURS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ATTRACTIONS;
@@ -25,8 +28,11 @@ import seedu.address.model.Model;
 import seedu.address.model.attraction.Activities;
 import seedu.address.model.attraction.Address;
 import seedu.address.model.attraction.Attraction;
+import seedu.address.model.attraction.Comment;
 import seedu.address.model.attraction.Contact;
 import seedu.address.model.attraction.Name;
+import seedu.address.model.attraction.OpeningHours;
+import seedu.address.model.attraction.Price;
 import seedu.address.model.attraction.Priority;
 import seedu.address.model.tag.Tag;
 
@@ -41,15 +47,21 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed attraction list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PRIORITY + "PRIORITY] "
+            + "[" + PREFIX_NAME + "ATTRACTION_NAME] "
+            + "[" + PREFIX_PRIORITY + "PRIORITY_LEVEL] "
             + "[" + PREFIX_CONTACT + "CONTACT] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_ACTIVITIES + "ACTIVITIES] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_ACTIVITIES + "DESCRIPTION/ACTIVITY] "
+            + "[" + PREFIX_OPENING_HOURS + "OPENING_HOURS] "
+            + "[" + PREFIX_PRICE + "PRICE] "
+            + "[" + PREFIX_TAG + "TAG]... "
+            + "[" + PREFIX_COMMENT + "COMMENT]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PRIORITY + "91234567 "
-            + PREFIX_CONTACT + "johndoe@example.com";
+            + PREFIX_PRIORITY + "5 "
+            + PREFIX_CONTACT + "info@example.com "
+            + PREFIX_ACTIVITIES + "Reserve tour "
+            + PREFIX_OPENING_HOURS + "1200 - 1300 "
+            + PREFIX_PRICE + "20";
 
     public static final String MESSAGE_EDIT_ATTRACTION_SUCCESS = "Edited Attraction: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -92,8 +104,8 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Attraction} with the details of {@code attractionToEdit}
-     * edited with {@code editAttractionDescriptor}.
+     * Creates and returns a {@code Attraction} with the details of
+     * {@code attractionToEdit} edited with {@code editAttractionDescriptor}.
      */
     private static Attraction createEditedAttraction(
             Attraction attractionToEdit, EditAttractionDescriptor editAttractionDescriptor) {
@@ -105,10 +117,21 @@ public class EditCommand extends Command {
         Address updatedAddress = editAttractionDescriptor.getAddress().orElse(attractionToEdit.getAddress());
         Activities updatedActivities = editAttractionDescriptor
                 .getActivities().orElse(attractionToEdit.getActivities());
+        OpeningHours updatedOpeningHours = editAttractionDescriptor
+                .getOpeningHours().orElse(attractionToEdit.getOpeningHours());
+        Price updatedPrice = editAttractionDescriptor.getPrice().orElse(attractionToEdit.getPrice());
         Set<Tag> updatedTags = editAttractionDescriptor.getTags().orElse(attractionToEdit.getTags());
+        Set<Comment> updatedComments = editAttractionDescriptor.getComments().orElse(attractionToEdit.getComments());
 
         return new Attraction(
-                updatedName, updatedPriority, updatedContact, updatedAddress, updatedActivities, updatedTags);
+                updatedName,
+                updatedPriority,
+                updatedContact,
+                updatedAddress,
+                updatedActivities,
+                updatedOpeningHours,
+                updatedPrice,
+                updatedTags, updatedComments);
     }
 
     @Override
@@ -136,22 +159,27 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the attraction with. Each non-empty field value will replace the
-     * corresponding field value of the attraction.
+     * Stores the details to edit the attraction with. Each non-empty field
+     * value will replace the corresponding field value of the attraction.
      */
     public static class EditAttractionDescriptor {
+
         private Name name;
         private Priority priority;
         private Contact contact;
         private Address address;
         private Activities activities;
+        private OpeningHours openingHours;
+        private Price price;
         private Set<Tag> tags;
+        private Set<Comment> comments;
 
-        public EditAttractionDescriptor() {}
+        public EditAttractionDescriptor() {
+        }
 
         /**
-         * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
+         * Copy constructor. A defensive copy of {@code tags} is used
+         * internally.
          */
         public EditAttractionDescriptor(EditAttractionDescriptor toCopy) {
             setName(toCopy.name);
@@ -159,14 +187,18 @@ public class EditCommand extends Command {
             setContact(toCopy.contact);
             setAddress(toCopy.address);
             setActivities(toCopy.activities);
+            setOpeningHours(toCopy.openingHours);
+            setPrice(toCopy.price);
             setTags(toCopy.tags);
+            setComments(toCopy.comments);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, priority, contact, address, tags);
+            return CollectionUtil.isAnyNonNull(name, priority, contact, address, activities, openingHours, price, tags,
+                    comments);
         }
 
         public void setName(Name name) {
@@ -209,21 +241,56 @@ public class EditCommand extends Command {
             return Optional.ofNullable(activities);
         }
 
+        public void setOpeningHours(OpeningHours openingHours) {
+            this.openingHours = openingHours;
+        }
+
+        public Optional<OpeningHours> getOpeningHours() {
+            return Optional.ofNullable(openingHours);
+        }
+
+        public void setPrice(Price price) {
+            this.price = price;
+        }
+
+        public Optional<Price> getPrice() {
+            return Optional.ofNullable(price);
+        }
+
         /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
+         * Sets {@code tags} to this object's {@code tags}. A defensive copy of
+         * {@code tags} is used internally.
          */
         public void setTags(Set<Tag> tags) {
             this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
         /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
+         * Sets {@code comments} to this object's {@code comments}. A defensive copy of
+         * {@code comments} is used internally.
+         */
+        public void setComments(Set<Comment> comments) {
+            this.comments = (comments != null) ? new HashSet<>(comments) : null;
+        }
+
+
+
+        /**
+         * Returns an unmodifiable tag set, which throws
+         * {@code UnsupportedOperationException} if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
+        /**
+         * Returns an unmodifiable comment set, which throws
+         * {@code UnsupportedOperationException} if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code comment} is null.
+         */
+        public Optional<Set<Comment>> getComments() {
+            return (comments != null) ? Optional.of(Collections.unmodifiableSet(comments)) : Optional.empty();
         }
 
         @Override
@@ -243,7 +310,10 @@ public class EditCommand extends Command {
                     && Objects.equals(contact, otherEditAttractionDescriptor.contact)
                     && Objects.equals(address, otherEditAttractionDescriptor.address)
                     && Objects.equals(activities, otherEditAttractionDescriptor.activities)
-                    && Objects.equals(tags, otherEditAttractionDescriptor.tags);
+                    && Objects.equals(openingHours, otherEditAttractionDescriptor.openingHours)
+                    && Objects.equals(price, otherEditAttractionDescriptor.price)
+                    && Objects.equals(tags, otherEditAttractionDescriptor.tags)
+                    && Objects.equals(comments, otherEditAttractionDescriptor.comments);
         }
 
         @Override
@@ -254,7 +324,10 @@ public class EditCommand extends Command {
                     .add("contact", contact)
                     .add("address", address)
                     .add("activities", activities)
+                    .add("opening hours", openingHours)
+                    .add("price", price)
                     .add("tags", tags)
+                    .add("comments", comments)
                     .toString();
         }
     }

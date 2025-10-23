@@ -11,6 +11,7 @@ public class Contact {
 
     public static final String MESSAGE_CONSTRAINTS = "Contacts should either be a valid email address of the "
             + "format local-part@domain, or a phone number containing at least 3 digits.";
+    public static final String PHONE_VALIDATION_REGEX = "[+]?\\d[\\d ]{2,}";
     private static final String SPECIAL_CHARACTERS = "+_.-";
     // alphanumeric and special characters
     private static final String ALPHANUMERIC_NO_UNDERSCORE = "[^\\W_]+"; // alphanumeric characters except underscore
@@ -21,6 +22,8 @@ public class Contact {
     private static final String DOMAIN_LAST_PART_REGEX = "(" + DOMAIN_PART_REGEX + "){2,}$";
     private static final String DOMAIN_REGEX = "(" + DOMAIN_PART_REGEX + "\\.)*" + DOMAIN_LAST_PART_REGEX;
     public static final String EMAIL_VALIDATION_REGEX = LOCAL_PART_REGEX + "@" + DOMAIN_REGEX;
+
+
 
 
 
@@ -42,7 +45,7 @@ public class Contact {
      */
     public static boolean isValidContact(String test) {
         requireNonNull(test);
-        return test.matches(EMAIL_VALIDATION_REGEX) || Priority.isValidPriority(test);
+        return test.matches(EMAIL_VALIDATION_REGEX) || test.matches(PHONE_VALIDATION_REGEX);
     }
 
     @Override

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.Scene?>
+<?import javafx.stage.Stage?>
+
+<?import javafx.scene.control.ScrollPane?>
+<fx:root title="Comments" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+    <scene>
+        <Scene width="400" height="300">
+            <ScrollPane fitToWidth="true">
+                <VBox fx:id="commentWindow" spacing="10" style="-fx-font-size: 16px;">
+                    <padding>
+                        <Insets top="10" right="10" bottom="10" left="10" />
+                    </padding>
+                </VBox>
+            </ScrollPane>
+        </Scene>
+    </scene>
+</fx:root>

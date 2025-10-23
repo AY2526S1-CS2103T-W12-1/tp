@@ -3,8 +3,11 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ACTIVITIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OPENING_HOURS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -15,31 +18,37 @@ import seedu.address.model.Model;
 import seedu.address.model.attraction.Attraction;
 
 /**
- * Adds a attraction to the Maplet.
+ * Adds an attraction to the Maplet.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a attraction to the Maplet. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an attraction to the Maplet. "
             + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_PRIORITY + "PRIORITY "
+            + PREFIX_NAME + "ATTRACTION_NAME "
+            + PREFIX_PRIORITY + "PRIORITY_LEVEL "
             + PREFIX_CONTACT + "CONTACT "
             + PREFIX_ADDRESS + "ADDRESS "
-            + PREFIX_ACTIVITIES + "ACTIVITIES "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + PREFIX_ACTIVITIES + "DESCRIPTION/ACTIVITY "
+            + PREFIX_OPENING_HOURS + "OPENING_HOURS "
+            + PREFIX_PRICE + "PRICE "
+            + "[" + PREFIX_TAG + "TAG]..."
+            + "[" + PREFIX_COMMENT + "COMMENT]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe "
-            + PREFIX_PRIORITY + "9 "
-            + PREFIX_CONTACT + "johnd@example.com "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_ACTIVITIES + "bowling "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_NAME + "Gardens by the Bay "
+            + PREFIX_PRIORITY + "7 "
+            + PREFIX_CONTACT + "info@gardens.com "
+            + PREFIX_ADDRESS + "18 Marina Gardens Dr, Singapore 018953 "
+            + PREFIX_ACTIVITIES + "Explore the Flower Dome "
+            + PREFIX_OPENING_HOURS + "1200 - 1500 "
+            + PREFIX_PRICE + "20 "
+            + PREFIX_TAG + "park "
+            + PREFIX_TAG + "nature "
+            + PREFIX_COMMENT + "Good for relaxing";
 
-    public static final String MESSAGE_SUCCESS = "New address added: %1$s";
-    public static final String MESSAGE_DUPLICATE_ATTRACTION = "This address already exists in the Maplet";
+    public static final String MESSAGE_SUCCESS = "New attraction added: %1$s";
+    public static final String MESSAGE_DUPLICATE_ATTRACTION = "This attraction already exists in the Maplet";
 
     private final Attraction toAdd;
 

@@ -6,6 +6,8 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.attraction.Attraction;
+import seedu.address.model.attraction.Name;
+import seedu.address.model.location.Location;
 
 /**
  * Container for user visible messages.
@@ -15,6 +17,7 @@ public class Messages {
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_ATTRACTION_DISPLAYED_INDEX = "The attraction index provided is invalid";
+    public static final String MESSAGE_INVALID_ITINERARY_DISPLAYED_INDEX = "The itinerary index provided is invalid";
     public static final String MESSAGE_ATTRACTIONS_LISTED_OVERVIEW = "%1$d attractions listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
@@ -45,8 +48,31 @@ public class Messages {
                 .append(attraction.getAddress())
                 .append("; Activities: ")
                 .append(attraction.getActivities())
+                .append("; Opening Hours: ")
+                .append(attraction.getOpeningHours())
+                .append("; Price: ")
+                .append(attraction.getPrice())
                 .append("; Tags: ");
         attraction.getTags().forEach(builder::append);
+
+        builder.append("; Comments: ");
+        attraction.getComments().forEach(builder::append);
+
+        return builder.toString();
+    }
+
+    /**
+     * Formats the {@code location} for display to the user.
+     */
+    public static String format(Location location) {
+        final StringBuilder builder = new StringBuilder();
+        String attractionNames = location.getAttractionNames().stream()
+                .map(Name::toString)
+                .sorted()
+                .collect(Collectors.joining(", "));
+        builder.append(location.getName())
+                .append("; Attractions: ")
+                .append(attractionNames);
         return builder.toString();
     }
 

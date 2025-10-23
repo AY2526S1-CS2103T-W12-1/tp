@@ -12,6 +12,8 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.Maplet;
 import seedu.address.model.ReadOnlyMaplet;
 import seedu.address.model.attraction.Attraction;
+import seedu.address.model.itinerary.Itinerary;
+import seedu.address.model.location.Location;
 
 /**
  * An Immutable Maplet that is serializable to JSON format.
@@ -20,31 +22,54 @@ import seedu.address.model.attraction.Attraction;
 class JsonSerializableMaplet {
 
     public static final String MESSAGE_DUPLICATE_ATTRACTION = "Attractions list contains duplicate attraction(s).";
+    public static final String MESSAGE_DUPLICATE_ITINERARY = "Itinerary list contains duplicate itinerary(ies).";
+    public static final String MESSAGE_DUPLICATE_LOCATION = "Locations list contains duplicate location(s).";
 
     private final List<JsonAdaptedAttraction> attractions = new ArrayList<>();
+    private final List<JsonAdaptedItinerary> itineraries = new ArrayList<>();
+    private final List<JsonAdaptedLocation> locations = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableMaplet} with the given attractions.
      */
     @JsonCreator
-    public JsonSerializableMaplet(@JsonProperty("attractions") List<JsonAdaptedAttraction> attractions) {
-        this.attractions.addAll(attractions);
+    public JsonSerializableMaplet(
+            @JsonProperty("attractions") List<JsonAdaptedAttraction> attractions,
+            @JsonProperty("itineraries") List<JsonAdaptedItinerary> itineraries,
+            @JsonProperty("locations") List<JsonAdaptedLocation> locations
+    ) {
+        if (attractions != null) {
+            this.attractions.addAll(attractions);
+        }
+        if (itineraries != null) {
+            this.itineraries.addAll(itineraries);
+        }
+        if (locations != null) {
+            this.locations.addAll(locations);
+        }
     }
+
 
     /**
      * Converts a given {@code ReadOnlyMaplet} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableMaplet}.
+     * @param source future changes to this will not affect the created
+     *     {@code JsonSerializableMaplet}.
      */
     public JsonSerializableMaplet(ReadOnlyMaplet source) {
         attractions.addAll(source.getAttractionList().stream().map(JsonAdaptedAttraction::new)
+                .collect(Collectors.toList()));
+        itineraries.addAll(source.getItineraryList().stream().map(JsonAdaptedItinerary::new)
+                .collect(Collectors.toList()));
+        locations.addAll(source.getLocationList().stream().map(JsonAdaptedLocation::new)
                 .collect(Collectors.toList()));
     }
 
     /**
      * Converts this Maplet into the model's {@code Maplet} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated.
+     * @throws IllegalValueException if there were any data constraints
+     *     violated.
      */
     public Maplet toModelType() throws IllegalValueException {
         Maplet maplet = new Maplet();
@@ -54,6 +79,22 @@ class JsonSerializableMaplet {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_ATTRACTION);
             }
             maplet.addAttraction(attraction);
+        }
+        List<Attraction> attractionList = maplet.getAttractionList();
+        for (JsonAdaptedItinerary jsonAdaptedItinerary : itineraries) {
+            Itinerary itinerary = jsonAdaptedItinerary.toModelType(attractionList);
+            if (maplet.hasItinerary(itinerary)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_ITINERARY);
+            }
+            maplet.addItinerary(itinerary);
+        }
+
+        for (JsonAdaptedLocation jsonAdaptedLocation : locations) {
+            Location location = jsonAdaptedLocation.toModelType(maplet.getAttractionList());
+            if (maplet.hasLocation(location)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_LOCATION);
+            }
+            maplet.addLocation(location);
         }
         return maplet;
     }

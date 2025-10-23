@@ -1,0 +1,19 @@
+{
+  "attractions" : [ {
+    "name" : "Alice Pauline",
+    "priority" : "9",
+    "contact" : "alice@example.com",
+    "address" : "123, Jurong West Ave 6, #08-111",
+    "activities" : "Sightseeing",
+    "openingHours": "1200 - 1500",
+    "price": "20",
+    "tags" : [ "friends" ]
+  } ],
+  "locations" : [ {
+    "name" : "Duplicate",
+    "attractions" : [ "Alice Pauline" ]
+  }, {
+    "name" : "Duplicate",
+    "attractions" : [ "Alice Pauline" ]
+  } ]
+}

@@ -11,9 +11,14 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.attraction.Activities;
 import seedu.address.model.attraction.Address;
+import seedu.address.model.attraction.Comment;
 import seedu.address.model.attraction.Contact;
 import seedu.address.model.attraction.Name;
+import seedu.address.model.attraction.OpeningHours;
+import seedu.address.model.attraction.Price;
 import seedu.address.model.attraction.Priority;
+import seedu.address.model.itinerary.ItineraryName;
+import seedu.address.model.location.LocationName;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -109,6 +114,51 @@ public class ParserUtil {
         }
         return new Activities(trimmedActivities);
     }
+
+    /**
+     * Parses a {@code String openingHours} into an {@code OpeningHours}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code openingHours} is invalid.
+     */
+    public static OpeningHours parseOpeningHours(String openingHours) throws ParseException {
+        requireNonNull(openingHours);
+        String trimmedOpeningHours = openingHours.trim();
+        if (!OpeningHours.isValidOpeningHours(trimmedOpeningHours)) {
+            throw new ParseException(OpeningHours.MESSAGE_CONSTRAINTS);
+        }
+        return new OpeningHours(trimmedOpeningHours);
+    }
+
+    /**
+     * Parses a {@code String price} into a {@code Price}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code price} is invalid.
+     */
+    public static Price parsePrice(String price) throws ParseException {
+        requireNonNull(price);
+        String trimmedPrice = price.trim();
+        if (!Price.isValidPrice(trimmedPrice)) {
+            throw new ParseException(Price.MESSAGE_CONSTRAINTS);
+        }
+        return new Price(trimmedPrice);
+    }
+
+    /**
+     * Parses a {@code String itineraryName} into an {@code ItineraryName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code itineraryName} is invalid.
+     */
+    public static ItineraryName parseItineraryName(String itineraryName) throws ParseException {
+        requireNonNull(itineraryName);
+        String trimmedName = itineraryName.trim();
+        if (!ItineraryName.isValidName(trimmedName)) {
+            throw new ParseException(ItineraryName.MESSAGE_CONSTRAINTS);
+        }
+        return new ItineraryName(trimmedName);
+    }
     /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
@@ -134,5 +184,47 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code Collection<String> comments} into a {@code Set<Comment>}.
+     */
+    public static Set<Comment> parseComments(Collection<String> comments) throws ParseException {
+        requireNonNull(comments);
+        final Set<Comment> commentSet = new HashSet<>();
+        for (String commentName : comments) {
+            commentSet.add(parseComment(commentName));
+        }
+        return commentSet;
+    }
+
+    /**
+     * Parses a {@code String comment} into a {@code Comment}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code comment} is invalid.
+     */
+    public static Comment parseComment(String comment) throws ParseException {
+        requireNonNull(comment);
+        String trimmedComment = comment.trim();
+        if (!Comment.isValidComment(trimmedComment)) {
+            throw new ParseException(Comment.MESSAGE_CONSTRAINTS);
+        }
+        return new Comment(trimmedComment);
+    }
+
+    /**
+     * Parses a {@code String locationName} into a {@code LocationName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code locationName} is invalid.
+     */
+    public static LocationName parseLocationName(String locationName) throws ParseException {
+        requireNonNull(locationName);
+        String trimmedLocationName = locationName.trim();
+        if (!LocationName.isValidLocationName(trimmedLocationName)) {
+            throw new ParseException(LocationName.MESSAGE_CONSTRAINTS);
+        }
+        return new LocationName(trimmedLocationName);
     }
 }

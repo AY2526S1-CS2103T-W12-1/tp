@@ -66,8 +66,11 @@ public class EditAttractionDescriptorTest {
                 + editAttractionDescriptor.getPriority().orElse(null) + ", contact="
                 + editAttractionDescriptor.getContact().orElse(null) + ", address="
                 + editAttractionDescriptor.getAddress().orElse(null) + ", activities="
+                + editAttractionDescriptor.getOpeningHours().orElse(null) + ", opening hours="
+                + editAttractionDescriptor.getPrice().orElse(null) + ", price="
                 + editAttractionDescriptor.getActivities().orElse(null) + ", tags="
-                + editAttractionDescriptor.getTags().orElse(null) + "}";
+                + editAttractionDescriptor.getTags().orElse(null) + ", comments="
+                + editAttractionDescriptor.getComments().orElse(null) + "}";
         assertEquals(expected, editAttractionDescriptor.toString());
     }
 }

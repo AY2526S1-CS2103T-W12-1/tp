@@ -8,8 +8,8 @@ import seedu.address.model.Model;
 import seedu.address.model.attraction.NameContainsKeywordsPredicate;
 
 /**
- * Finds and lists all attractions in Maplet whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Finds and lists all attractions in Maplet whose name contains any of the
+ * argument keywords. Keyword matching is case insensitive.
  */
 public class FindCommand extends Command {
 
@@ -17,8 +17,8 @@ public class FindCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all attractions whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+            + "Parameters: ATTRACTION_KEYWORD [MORE_KEYWORDS]...\n"
+            + "Example: " + COMMAND_WORD + " Marina Gardens";
 
     private final NameContainsKeywordsPredicate predicate;
 

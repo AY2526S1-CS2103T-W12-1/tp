@@ -96,7 +96,9 @@ public class AttractionTest {
         String expected = Attraction.class.getCanonicalName() + "{name=" + ALICE.getName()
                 + ", priority=" + ALICE.getPriority()
                 + ", contact=" + ALICE.getContact() + ", address=" + ALICE.getAddress()
-                + ", activities=" + ALICE.getActivities() + ", tags=" + ALICE.getTags() + "}";
+                + ", activities=" + ALICE.getActivities() + ", opening hours=" + ALICE.getOpeningHours()
+                + ", price=" + ALICE.getPrice() + ", tags=" + ALICE.getTags()
+                + ", comments=[]" + "}";
         assertEquals(expected, ALICE.toString());
     }
 

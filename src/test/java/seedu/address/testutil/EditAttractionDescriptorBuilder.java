@@ -9,8 +9,11 @@ import seedu.address.logic.commands.EditCommand.EditAttractionDescriptor;
 import seedu.address.model.attraction.Activities;
 import seedu.address.model.attraction.Address;
 import seedu.address.model.attraction.Attraction;
+import seedu.address.model.attraction.Comment;
 import seedu.address.model.attraction.Contact;
 import seedu.address.model.attraction.Name;
+import seedu.address.model.attraction.OpeningHours;
+import seedu.address.model.attraction.Price;
 import seedu.address.model.attraction.Priority;
 import seedu.address.model.tag.Tag;
 
@@ -38,7 +41,11 @@ public class EditAttractionDescriptorBuilder {
         descriptor.setPriority(attraction.getPriority());
         descriptor.setContact(attraction.getContact());
         descriptor.setAddress(attraction.getAddress());
+        descriptor.setActivities(attraction.getActivities());
+        descriptor.setOpeningHours(attraction.getOpeningHours());
+        descriptor.setPrice(attraction.getPrice());
         descriptor.setTags(attraction.getTags());
+        descriptor.setComments(attraction.getComments());
     }
 
     /**
@@ -80,6 +87,22 @@ public class EditAttractionDescriptorBuilder {
         descriptor.setActivities(new Activities(activities));
         return this;
     }
+
+    /**
+     * Sets the {@code OpeningHours} of the {@code EditAttractionDescriptor} that we are building.
+     */
+    public EditAttractionDescriptorBuilder withOpeningHours(String openingHours) {
+        descriptor.setOpeningHours(new OpeningHours(openingHours));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Price} of the {@code EditAttractionDescriptor} that we are building.
+     */
+    public EditAttractionDescriptorBuilder withPrice(String price) {
+        descriptor.setPrice(new Price(price));
+        return this;
+    }
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditAttractionDescriptor}
      * that we are building.
@@ -90,7 +113,18 @@ public class EditAttractionDescriptorBuilder {
         return this;
     }
 
+    /**
+     * Parses the {@code comments} into a {@code Set<Comment>} and set it to the {@code EditAttractionDescriptor}
+     * that we are building.
+     */
+    public EditAttractionDescriptorBuilder withComments(String... comments) {
+        Set<Comment> commentSet = Stream.of(comments).map(Comment::new).collect(Collectors.toSet());
+        descriptor.setComments(commentSet);
+        return this;
+    }
+
     public EditAttractionDescriptor build() {
         return descriptor;
     }
+
 }

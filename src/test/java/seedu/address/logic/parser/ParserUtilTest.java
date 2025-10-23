@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.attraction.Address;
+import seedu.address.model.attraction.Comment;
 import seedu.address.model.attraction.Contact;
 import seedu.address.model.attraction.Name;
 import seedu.address.model.attraction.Priority;
@@ -26,6 +27,7 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_CONTACT = "example.com";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_COMMENT = " ";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PRIORITY = "5";
@@ -33,6 +35,7 @@ public class ParserUtilTest {
     private static final String VALID_CONTACT = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_COMMENT = "This place is very expensive!!";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -193,4 +196,46 @@ public class ParserUtilTest {
 
         assertEquals(expectedTagSet, actualTagSet);
     }
+
+    @Test
+    public void parseComment_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseComment(null));
+    }
+
+    @Test
+    public void parseComment_validCommentWithWhiteSpace_returnsTrimmedComment() throws Exception {
+        String commentWithWhiteSpace = WHITESPACE + VALID_COMMENT + WHITESPACE;
+        assertEquals(ParserUtil.parseComment(commentWithWhiteSpace).toString(), VALID_COMMENT);
+    }
+
+    @Test
+    public void parseComment_validCommentWithoutWhiteSpace_returnsComment() throws Exception {
+        assertEquals(new Comment(VALID_COMMENT), ParserUtil.parseComment(VALID_COMMENT));
+    }
+
+    @Test
+    public void parseComments_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseComments(null));
+    }
+
+    @Test
+    public void parseComments_collectionWithInvalidComments_throwsParseException() {
+        assertThrows(ParseException.class, () ->
+                ParserUtil.parseComments(Arrays.asList(INVALID_COMMENT, INVALID_COMMENT)));
+    }
+
+    @Test
+    public void parseComments_emptyCollection_returnsEmptySet() throws Exception {
+        assertTrue(ParserUtil.parseComments(Collections.emptyList()).isEmpty());
+    }
+
+    @Test
+    public void parseComments_collectionWithValidComments_returnsTagSet() throws Exception {
+        Set<Comment> actualComments = ParserUtil.parseComments(Arrays.asList(VALID_COMMENT, VALID_COMMENT));
+        Set<Comment> expectedComments = new HashSet<Comment>(
+                Arrays.asList(new Comment(VALID_COMMENT), new Comment(VALID_COMMENT)));
+
+        assertEquals(expectedComments, actualComments);
+    }
+
 }

@@ -1,0 +1,21 @@
+{
+  "attractions": [ {
+    "name": "Alice Pauline",
+    "priority": "9",
+    "contact": "alice@example.com",
+    "address": "123, Jurong West Ave 6, #08-111",
+    "activities": "Sightseeing",
+    "openingHours": "1200 - 1500",
+    "price": "20",
+    "tags": [ "friends" ]
+  } ],
+  "itineraries": [ {
+    "name": "Japan Trip",
+    "createdAt": "2024-10-21T10:00:00",
+    "attractions": [ "Alice Pauline" ]
+  }, {
+    "name": "Japan Trip",
+    "createdAt": "2024-11-15T14:30:00",
+    "attractions": [ "Alice Pauline" ]
+  } ]
+}
