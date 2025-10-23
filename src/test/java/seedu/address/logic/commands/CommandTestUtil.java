@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ACTIVITIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION_ATTRACTION_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION_NAME;
@@ -47,6 +48,8 @@ public class CommandTestUtil {
     public static final String VALID_PRICE_BOB = "10";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_COMMENT_1 = "This place is very expensive";
+    public static final String VALID_COMMENT_2 = "This place is very cheap";
     public static final String VALID_LOCATION_NAME_SINGAPORE = "Singapore";
     public static final String VALID_LOCATION_NAME_SENTOSA = "Sentosa";
 
@@ -66,6 +69,10 @@ public class CommandTestUtil {
     public static final String PRICE_DESC_BOB = " " + PREFIX_PRICE + VALID_PRICE_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String COMMENT_DESC_1 = " " + PREFIX_COMMENT + VALID_COMMENT_1;
+    public static final String COMMENT_DESC_2 = " " + PREFIX_COMMENT + VALID_COMMENT_2;
+
+
     public static final String LOCATION_NAME_DESC_SINGAPORE = " "
             + PREFIX_LOCATION_NAME + VALID_LOCATION_NAME_SINGAPORE;
     public static final String LOCATION_NAME_DESC_SENTOSA = " " + PREFIX_LOCATION_NAME + VALID_LOCATION_NAME_SENTOSA;
@@ -85,6 +92,8 @@ public class CommandTestUtil {
     public static final String INVALID_OPENING_HOURS_DESC = " " + PREFIX_OPENING_HOURS + "2500 - 3200"; // 24 hour only
     public static final String INVALID_PRICE_DESC = " " + PREFIX_PRICE + "abc"; // only digits allowed in price
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    //Only white spaces are not allowed in comments
+    public static final String INVALID_COMMENT_DESC = " " + PREFIX_COMMENT + " ";
     public static final String INVALID_LOCATION_NAME_DESC = " " + PREFIX_LOCATION_NAME + "Sentosa&"; // '&' not allowed
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";

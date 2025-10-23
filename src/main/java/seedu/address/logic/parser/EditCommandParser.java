@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ACTIVITIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OPENING_HOURS;
@@ -20,6 +21,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditAttractionDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.attraction.Comment;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -36,7 +38,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PRIORITY, PREFIX_CONTACT,
-                        PREFIX_ADDRESS, PREFIX_ACTIVITIES, PREFIX_OPENING_HOURS, PREFIX_PRICE, PREFIX_TAG);
+                        PREFIX_ADDRESS, PREFIX_ACTIVITIES, PREFIX_OPENING_HOURS, PREFIX_PRICE, PREFIX_TAG,
+                        PREFIX_COMMENT);
 
         Index index;
 
@@ -75,6 +78,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_PRICE).isPresent()) {
             editAttractionDescriptor.setPrice(ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).get()));
         }
+
+        parseCommentsForEdit(argMultimap.getAllValues(PREFIX_COMMENT)).ifPresent(editAttractionDescriptor::setComments);
+
         if (!editAttractionDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
@@ -97,4 +103,14 @@ public class EditCommandParser implements Parser<EditCommand> {
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
 
+    private Optional<Set<Comment>> parseCommentsForEdit(Collection<String> comments) throws ParseException {
+        assert comments != null;
+
+        if (comments.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> commentSet = comments.size() == 1 && comments.contains("")
+                ? Collections.emptySet() : comments;
+        return Optional.of(ParserUtil.parseComments(commentSet));
+    }
 }

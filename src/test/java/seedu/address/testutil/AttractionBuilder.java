@@ -6,6 +6,7 @@ import java.util.Set;
 import seedu.address.model.attraction.Activities;
 import seedu.address.model.attraction.Address;
 import seedu.address.model.attraction.Attraction;
+import seedu.address.model.attraction.Comment;
 import seedu.address.model.attraction.Contact;
 import seedu.address.model.attraction.Name;
 import seedu.address.model.attraction.OpeningHours;
@@ -35,6 +36,7 @@ public class AttractionBuilder {
     private OpeningHours openingHours;
     private Price price;
     private Set<Tag> tags;
+    private Set<Comment> comments;
 
     /**
      * Creates a {@code AttractionBuilder} with the default details.
@@ -48,6 +50,7 @@ public class AttractionBuilder {
         openingHours = new OpeningHours(DEFAULT_OPENING_HOURS);
         price = new Price(DEFAULT_PRICE);
         tags = new HashSet<>();
+        comments = new HashSet<>();
     }
 
     /**
@@ -62,6 +65,7 @@ public class AttractionBuilder {
         openingHours = attractionToCopy.getOpeningHours();
         price = attractionToCopy.getPrice();
         tags = new HashSet<>(attractionToCopy.getTags());
+        comments = new HashSet<>(attractionToCopy.getComments());
     }
 
     /**
@@ -128,8 +132,17 @@ public class AttractionBuilder {
         return this;
     }
 
+    /**
+     * Parses the {@code comments} into a {@code Set<Comment>}
+     * and set it to the {@code Attraction} that we are building.
+     */
+    public AttractionBuilder withComments(String ... comments) {
+        this.comments = SampleDataUtil.getCommentSet(comments);
+        return this;
+    }
+
     public Attraction build() {
-        return new Attraction(name, priority, contact, address, activities, openingHours, price, tags);
+        return new Attraction(name, priority, contact, address, activities, openingHours, price, tags, comments);
     }
 
 }

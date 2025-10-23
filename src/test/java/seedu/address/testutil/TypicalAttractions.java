@@ -37,7 +37,8 @@ public class TypicalAttractions {
     public static final Attraction BENSON = new AttractionBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withContact("johnd@example.com").withPriority("8").withActivities("Sightseeing")
-            .withOpeningHours("1200 - 1500").withPrice("15").withTags("owesMoney", "friends").build();
+            .withOpeningHours("1200 - 1500").withPrice("15").withTags("owesMoney", "friends")
+            .withComments("Survived a war", "is Alive!!").build();
     public static final Attraction CARL = new AttractionBuilder().withName("Carl Kurz").withPriority("7")
             .withContact("heinz@example.com").withAddress("wall street").withActivities("Sightseeing")
             .withOpeningHours("1200 - 1500").withPrice("15").build();

@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ACTIVITIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OPENING_HOURS;
@@ -18,6 +19,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.attraction.Activities;
 import seedu.address.model.attraction.Address;
 import seedu.address.model.attraction.Attraction;
+import seedu.address.model.attraction.Comment;
 import seedu.address.model.attraction.Contact;
 import seedu.address.model.attraction.Name;
 import seedu.address.model.attraction.OpeningHours;
@@ -38,11 +40,11 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PRIORITY, PREFIX_CONTACT, PREFIX_ADDRESS,
-                        PREFIX_ACTIVITIES, PREFIX_OPENING_HOURS, PREFIX_PRICE, PREFIX_TAG);
+                        PREFIX_ACTIVITIES, PREFIX_OPENING_HOURS, PREFIX_PRICE, PREFIX_TAG, PREFIX_COMMENT);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PRIORITY, PREFIX_CONTACT)) {
             ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PRIORITY, PREFIX_CONTACT, PREFIX_ADDRESS,
-                    PREFIX_ACTIVITIES, PREFIX_OPENING_HOURS, PREFIX_PRICE, PREFIX_TAG);
+                    PREFIX_ACTIVITIES, PREFIX_OPENING_HOURS, PREFIX_PRICE, PREFIX_TAG, PREFIX_COMMENT);
         }
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS,
@@ -61,6 +63,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         OpeningHours openingHours = ParserUtil.parseOpeningHours(argMultimap.getValue(PREFIX_OPENING_HOURS).get());
         Price price = ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Set<Comment> commentList = ParserUtil.parseComments(argMultimap.getAllValues(PREFIX_COMMENT));
 
         Attraction attraction = new Attraction(
                 name,
@@ -70,7 +73,8 @@ public class AddCommandParser implements Parser<AddCommand> {
                 activities,
                 openingHours,
                 price,
-                tagList);
+                tagList,
+                commentList);
 
         return new AddCommand(attraction);
     }

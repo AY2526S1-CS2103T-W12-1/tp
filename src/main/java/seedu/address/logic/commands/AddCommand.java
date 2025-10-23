@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ACTIVITIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OPENING_HOURS;
@@ -32,7 +33,8 @@ public class AddCommand extends Command {
             + PREFIX_ACTIVITIES + "DESCRIPTION/ACTIVITY "
             + PREFIX_OPENING_HOURS + "OPENING_HOURS "
             + PREFIX_PRICE + "PRICE "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]..."
+            + "[" + PREFIX_COMMENT + "COMMENT]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Gardens by the Bay "
             + PREFIX_PRIORITY + "7 "
@@ -42,7 +44,8 @@ public class AddCommand extends Command {
             + PREFIX_OPENING_HOURS + "1200 - 1500 "
             + PREFIX_PRICE + "20 "
             + PREFIX_TAG + "park "
-            + PREFIX_TAG + "nature";
+            + PREFIX_TAG + "nature "
+            + PREFIX_COMMENT + "Good for relaxing";
 
     public static final String MESSAGE_SUCCESS = "New attraction added: %1$s";
     public static final String MESSAGE_DUPLICATE_ATTRACTION = "This attraction already exists in the Maplet";

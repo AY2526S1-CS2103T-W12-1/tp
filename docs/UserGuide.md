@@ -38,7 +38,7 @@ Maplet caters to individuals that are **planning to go overseas** or are **frequ
 
    * `exit` : Exits the app.
 
-   * `addlocation ln\Singapore i\1`: Adds attraction with index 1 to location Singapore
+   * `addlocation ln/Singapore i/1`: Adds attraction with index 1 to location Singapore
 
 
   * 5. Refer to the [Features](#features) below for details of each command.
@@ -81,7 +81,7 @@ Action     | Format, Examples
 **Edit**   | `edit INDEX [n/NAME] [p/PRIORITY_NUMBER] [c/CONTACT] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/Golden Studios c/GoldenSS@example.com`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Golden Studios`
 **Add Location**   | `addlocation ln/LOCATION_NAME i/ATTRACTION_INDEX [i/ATTRACTION_INDEX]…`<br> e.g., `addlocation ln/Singapore i/1 i/2 i/3`
-**Delete Location**   | `delete ln/LOCATION_NAME`<br> e.g., `deletelocation ln/Singapore`
+**Delete Location**   | `deletelocation ln/LOCATION_NAME`<br> e.g., `deletelocation ln/Singapore`
 **List**   | `list`
 **Help**   | `help`
 

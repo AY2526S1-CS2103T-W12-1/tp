@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ACTIVITIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OPENING_HOURS;
@@ -27,6 +28,7 @@ import seedu.address.model.Model;
 import seedu.address.model.attraction.Activities;
 import seedu.address.model.attraction.Address;
 import seedu.address.model.attraction.Attraction;
+import seedu.address.model.attraction.Comment;
 import seedu.address.model.attraction.Contact;
 import seedu.address.model.attraction.Name;
 import seedu.address.model.attraction.OpeningHours;
@@ -52,7 +54,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_ACTIVITIES + "DESCRIPTION/ACTIVITY] "
             + "[" + PREFIX_OPENING_HOURS + "OPENING_HOURS] "
             + "[" + PREFIX_PRICE + "PRICE] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]... "
+            + "[" + PREFIX_COMMENT + "COMMENT]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PRIORITY + "5 "
             + PREFIX_CONTACT + "info@example.com "
@@ -118,6 +121,7 @@ public class EditCommand extends Command {
                 .getOpeningHours().orElse(attractionToEdit.getOpeningHours());
         Price updatedPrice = editAttractionDescriptor.getPrice().orElse(attractionToEdit.getPrice());
         Set<Tag> updatedTags = editAttractionDescriptor.getTags().orElse(attractionToEdit.getTags());
+        Set<Comment> updatedComments = editAttractionDescriptor.getComments().orElse(attractionToEdit.getComments());
 
         return new Attraction(
                 updatedName,
@@ -127,7 +131,7 @@ public class EditCommand extends Command {
                 updatedActivities,
                 updatedOpeningHours,
                 updatedPrice,
-                updatedTags);
+                updatedTags, updatedComments);
     }
 
     @Override
@@ -168,6 +172,7 @@ public class EditCommand extends Command {
         private OpeningHours openingHours;
         private Price price;
         private Set<Tag> tags;
+        private Set<Comment> comments;
 
         public EditAttractionDescriptor() {
         }
@@ -185,13 +190,15 @@ public class EditCommand extends Command {
             setOpeningHours(toCopy.openingHours);
             setPrice(toCopy.price);
             setTags(toCopy.tags);
+            setComments(toCopy.comments);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, priority, contact, address, activities, openingHours, price, tags);
+            return CollectionUtil.isAnyNonNull(name, priority, contact, address, activities, openingHours, price, tags,
+                    comments);
         }
 
         public void setName(Name name) {
@@ -259,12 +266,31 @@ public class EditCommand extends Command {
         }
 
         /**
+         * Sets {@code comments} to this object's {@code comments}. A defensive copy of
+         * {@code comments} is used internally.
+         */
+        public void setComments(Set<Comment> comments) {
+            this.comments = (comments != null) ? new HashSet<>(comments) : null;
+        }
+
+
+
+        /**
          * Returns an unmodifiable tag set, which throws
          * {@code UnsupportedOperationException} if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
+        /**
+         * Returns an unmodifiable comment set, which throws
+         * {@code UnsupportedOperationException} if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code comment} is null.
+         */
+        public Optional<Set<Comment>> getComments() {
+            return (comments != null) ? Optional.of(Collections.unmodifiableSet(comments)) : Optional.empty();
         }
 
         @Override
@@ -286,7 +312,8 @@ public class EditCommand extends Command {
                     && Objects.equals(activities, otherEditAttractionDescriptor.activities)
                     && Objects.equals(openingHours, otherEditAttractionDescriptor.openingHours)
                     && Objects.equals(price, otherEditAttractionDescriptor.price)
-                    && Objects.equals(tags, otherEditAttractionDescriptor.tags);
+                    && Objects.equals(tags, otherEditAttractionDescriptor.tags)
+                    && Objects.equals(comments, otherEditAttractionDescriptor.comments);
         }
 
         @Override
@@ -300,6 +327,7 @@ public class EditCommand extends Command {
                     .add("opening hours", openingHours)
                     .add("price", price)
                     .add("tags", tags)
+                    .add("comments", comments)
                     .toString();
         }
     }

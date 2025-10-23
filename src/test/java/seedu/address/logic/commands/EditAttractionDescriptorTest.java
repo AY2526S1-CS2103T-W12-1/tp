@@ -69,7 +69,8 @@ public class EditAttractionDescriptorTest {
                 + editAttractionDescriptor.getOpeningHours().orElse(null) + ", opening hours="
                 + editAttractionDescriptor.getPrice().orElse(null) + ", price="
                 + editAttractionDescriptor.getActivities().orElse(null) + ", tags="
-                + editAttractionDescriptor.getTags().orElse(null) + "}";
+                + editAttractionDescriptor.getTags().orElse(null) + ", comments="
+                + editAttractionDescriptor.getComments().orElse(null) + "}";
         assertEquals(expected, editAttractionDescriptor.toString());
     }
 }

@@ -97,7 +97,8 @@ public class AttractionTest {
                 + ", priority=" + ALICE.getPriority()
                 + ", contact=" + ALICE.getContact() + ", address=" + ALICE.getAddress()
                 + ", activities=" + ALICE.getActivities() + ", opening hours=" + ALICE.getOpeningHours()
-                + ", price=" + ALICE.getPrice() + ", tags=" + ALICE.getTags() + "}";
+                + ", price=" + ALICE.getPrice() + ", tags=" + ALICE.getTags()
+                + ", comments=[]" + "}";
         assertEquals(expected, ALICE.toString());
     }
 
