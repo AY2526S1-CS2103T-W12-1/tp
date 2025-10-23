@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
@@ -22,9 +23,12 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.SortCommand;
+import seedu.address.logic.commands.location.AddLocationCommand;
+import seedu.address.logic.commands.location.DeleteLocationCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.attraction.Attraction;
 import seedu.address.model.attraction.NameContainsKeywordsPredicate;
+import seedu.address.model.location.LocationName;
 import seedu.address.testutil.AttractionBuilder;
 import seedu.address.testutil.AttractionUtil;
 import seedu.address.testutil.EditAttractionDescriptorBuilder;
@@ -41,6 +45,16 @@ public class MapletParserTest {
     }
 
     @Test
+    public void parseCommand_addLocation() throws Exception {
+        AddLocationCommand command = (AddLocationCommand) parser.parseCommand(
+                AddLocationCommand.COMMAND_WORD + " "
+                        + "ln/Singapore "
+                        + "i/1 i/2");
+        assertEquals(new AddLocationCommand(new LocationName("Singapore"),
+                Arrays.asList(Index.fromOneBased(1), Index.fromOneBased(2))), command);
+    }
+
+    @Test
     public void parseCommand_clear() throws Exception {
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
@@ -51,6 +65,13 @@ public class MapletParserTest {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
                 DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_ATTRACTION.getOneBased());
         assertEquals(new DeleteCommand(INDEX_FIRST_ATTRACTION), command);
+    }
+
+    @Test
+    public void parseCommand_deleteLocation() throws Exception {
+        DeleteLocationCommand command = (DeleteLocationCommand) parser.parseCommand(
+                DeleteLocationCommand.COMMAND_WORD + " " + "ln/Singapore");
+        assertEquals(new DeleteLocationCommand(new LocationName("Singapore")), command);
     }
 
     @Test

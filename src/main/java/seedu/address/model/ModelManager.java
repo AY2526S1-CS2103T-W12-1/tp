@@ -15,6 +15,8 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.attraction.Attraction;
 import seedu.address.model.itinerary.Itinerary;
+import seedu.address.model.location.Location;
+import seedu.address.model.location.LocationName;
 
 /**
  * Represents the in-memory model of the Maplet data.
@@ -99,6 +101,20 @@ public class ModelManager implements Model {
         return maplet.hasAttraction(attraction);
     }
 
+
+
+    @Override
+    public boolean hasLocation(Location location) {
+        requireNonNull(location);
+        return maplet.hasLocation(location);
+    }
+
+    @Override
+    public boolean hasLocationName(LocationName locationName) {
+        requireNonNull(locationName);
+        return maplet.hasLocationName(locationName);
+    }
+
     @Override
     public void deleteAttraction(Attraction target) {
         maplet.removeAttraction(target);
@@ -111,10 +127,20 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addLocation(Location location) {
+        maplet.addLocation(location);
+    }
+
+    @Override
     public void setAttraction(Attraction target, Attraction editedAttraction) {
         requireAllNonNull(target, editedAttraction);
 
         maplet.setAttraction(target, editedAttraction);
+    }
+
+    @Override
+    public void deleteLocation(LocationName locationName) {
+        maplet.removeLocation(locationName);
     }
 
     // Logic duplication from attraction methods
@@ -149,6 +175,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Attraction> getFilteredAttractionList() {
         return filteredAttractions;
+    }
+
+    @Override
+    public ObservableList<Location> getLocationList() {
+        return maplet.getLocationList();
     }
 
     @Override

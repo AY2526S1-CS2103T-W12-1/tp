@@ -15,6 +15,7 @@ import seedu.address.model.attraction.Contact;
 import seedu.address.model.attraction.Name;
 import seedu.address.model.attraction.Priority;
 import seedu.address.model.itinerary.ItineraryName;
+import seedu.address.model.location.LocationName;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -150,5 +151,20 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String locationName} into a {@code LocationName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code locationName} is invalid.
+     */
+    public static LocationName parseLocationName(String locationName) throws ParseException {
+        requireNonNull(locationName);
+        String trimmedLocationName = locationName.trim();
+        if (!LocationName.isValidLocationName(trimmedLocationName)) {
+            throw new ParseException(LocationName.MESSAGE_CONSTRAINTS);
+        }
+        return new LocationName(trimmedLocationName);
     }
 }

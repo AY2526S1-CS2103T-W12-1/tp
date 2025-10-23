@@ -32,7 +32,7 @@ public class ContactTest {
 
         // valid contacts
         assertTrue(Contact.isValidContact("alice@example.com")); // valid email
-        assertTrue(Contact.isValidContact("1111 1111")); // valid priority
+        assertTrue(Contact.isValidContact("+65 1111 1111")); // valid priority
     }
 
     @Test

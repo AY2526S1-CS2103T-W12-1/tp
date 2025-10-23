@@ -2,6 +2,7 @@ package seedu.address.testutil;
 
 import seedu.address.model.Maplet;
 import seedu.address.model.attraction.Attraction;
+import seedu.address.model.location.Location;
 
 /**
  * A utility class to help with building Maplet objects.
@@ -25,6 +26,14 @@ public class MapletBuilder {
      */
     public MapletBuilder withAttraction(Attraction attraction) {
         maplet.addAttraction(attraction);
+        return this;
+    }
+
+    /**
+     * Adds a new {@code Location} to the {@code Maplet} that we are building.
+     */
+    public MapletBuilder withLocation(Location location) {
+        maplet.addLocation(location);
         return this;
     }
 

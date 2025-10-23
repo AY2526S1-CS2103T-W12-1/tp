@@ -35,6 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private AttractionListPanel attractionListPanel;
     private ItineraryListPanel itineraryListPanel;
+    private LocationListPanel locationListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -52,6 +53,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane itineraryAttractionListPanelPlaceholder;
+
+    @FXML
+    private StackPane locationListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -128,6 +132,9 @@ public class MainWindow extends UiPart<Stage> {
         itineraryListPanelPlaceholder.getChildren().add(itineraryListPanel.getRoot());
         showItineraryDetails(null);
 
+        locationListPanel = new LocationListPanel(logic.getLocationList());
+        locationListPanelPlaceholder.getChildren().add(locationListPanel.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -180,6 +187,10 @@ public class MainWindow extends UiPart<Stage> {
 
     public AttractionListPanel getAttractionListPanel() {
         return attractionListPanel;
+    }
+
+    public LocationListPanel getLocationListPanel() {
+        return locationListPanel;
     }
 
     private void showItineraryDetails(Itinerary itinerary) {

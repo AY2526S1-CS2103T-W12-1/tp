@@ -24,6 +24,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyMaplet;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.attraction.Attraction;
+import seedu.address.model.location.Location;
+import seedu.address.model.location.LocationName;
 import seedu.address.testutil.AttractionBuilder;
 
 public class AddCommandTest {
@@ -126,6 +128,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void addLocation(Location location) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setMaplet(ReadOnlyMaplet newData) {
             throw new AssertionError("This method should not be called.");
         }
@@ -141,7 +148,22 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasLocation(Location location) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasLocationName(LocationName locationName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deleteAttraction(Attraction target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteLocation(LocationName locationName) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -152,6 +174,11 @@ public class AddCommandTest {
 
         @Override
         public ObservableList<Attraction> getFilteredAttractionList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Location> getLocationList() {
             throw new AssertionError("This method should not be called.");
         }
 

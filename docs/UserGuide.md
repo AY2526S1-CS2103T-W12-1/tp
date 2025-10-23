@@ -38,7 +38,10 @@ Maplet caters to individuals that are **planning to go overseas** or are **frequ
 
    * `exit` : Exits the app.
 
-   * 5. Refer to the [Features](#features) below for details of each command.
+   * `addlocation ln\Singapore i\1`: Adds attraction with index 1 to location Singapore
+
+
+  * 5. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -77,6 +80,8 @@ Action     | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit**   | `edit INDEX [n/NAME] [p/PRIORITY_NUMBER] [c/CONTACT] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/Golden Studios c/GoldenSS@example.com`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Golden Studios`
+**Add Location**   | `addlocation ln/LOCATION_NAME i/ATTRACTION_INDEX [i/ATTRACTION_INDEX]…`<br> e.g., `addlocation ln/Singapore i/1 i/2 i/3`
+**Delete Location**   | `delete ln/LOCATION_NAME`<br> e.g., `deletelocation ln/Singapore`
 **List**   | `list`
 **Help**   | `help`
 
@@ -159,6 +164,33 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd attraction in Maplet.
 * `find Cat Cafe` followed by `delete 1` deletes the 1st attraction in the results of the `find` command.
+
+### Adding a location: `addlocation`
+
+Adds an location to Maplet.
+
+Format: `addlocation ln/LOCATION_NAME i/ATTRACTION_INDEX [i/ATTRACTION_INDEX ]…​`
+
+<box type="tip" seamless>
+
+**Tip:** An Attraction can belong many Location, but in one Location, a Attraction is unique.
+</box>
+
+Examples:
+* `addlocation ln/Singpore i/1 i/2`
+* `addlocation n/Paris i/5 i/7 i/9`
+
+### Deleting a location : `deletelocation`
+
+Deletes the specified location from Maplet.
+
+Format: `deletelocation ln/LOCATION_NAME`
+
+* Deletes the attraction with the specified name `LOCATION_NAME`.
+
+Examples:
+
+* `deletelocation ln/Singapore` deletes the location `Singapore`.
 
 ### Clearing all entries : `clear`
 

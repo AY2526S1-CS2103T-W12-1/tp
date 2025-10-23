@@ -10,6 +10,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyMaplet;
 import seedu.address.model.attraction.Attraction;
 import seedu.address.model.itinerary.Itinerary;
+import seedu.address.model.location.Location;
 
 /**
  * API of the Logic component
@@ -37,6 +38,9 @@ public interface Logic {
      * Returns an unmodifiable view of the filtered list of attractions
      */
     ObservableList<Attraction> getFilteredAttractionList();
+
+    /** Returns an unmodifiable view of the locations list */
+    ObservableList<Location> getLocationList();
 
     /**
      * Returns an unmodifiable view of the filtered list of itineraries
