@@ -91,8 +91,7 @@ public class MapletParserTest {
 
     @Test
     public void parseCommand_sort() throws Exception {
-        assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD) instanceof SortCommand);
-        assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD + " /n") instanceof SortCommand);
+        assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD + " n/") instanceof SortCommand);
     }
 
     @Test
