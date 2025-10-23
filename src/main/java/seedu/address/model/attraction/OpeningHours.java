@@ -24,6 +24,7 @@ public class OpeningHours {
     public static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HHmm");
     public final LocalTime opensAt;
     public final LocalTime closesAt;
+    private final boolean pastMidnight;
 
     /**
      * Constructs an {@code OpeningHours}.
@@ -38,6 +39,7 @@ public class OpeningHours {
         matcher.matches();
         opensAt = LocalTime.parse(matcher.group("opensAt"), TIME_FORMATTER);
         closesAt = LocalTime.parse(matcher.group("closesAt"), TIME_FORMATTER);
+        pastMidnight = opensAt.isAfter(closesAt);
     }
 
     /**
@@ -64,11 +66,11 @@ public class OpeningHours {
         requireNonNull(time);
         checkArgument(isValidTime(time), TIME_CONSTRAINTS);
         LocalTime timeQuery = LocalTime.parse(time, TIME_FORMATTER);
-        if (opensAt.isAfter(closesAt)) {
-            return opensAt.isAfter(timeQuery) && closesAt.isBefore(timeQuery);
+        if (pastMidnight) {
+            return opensAt.isBefore(timeQuery) || closesAt.isAfter(timeQuery) || opensAt.equals(timeQuery);
+        } else {
+            return opensAt.equals(timeQuery) || (opensAt.isBefore(timeQuery) && closesAt.isAfter(timeQuery));
         }
-
-        return opensAt.isBefore(timeQuery) && closesAt.isAfter(timeQuery);
     }
 
     @Override
