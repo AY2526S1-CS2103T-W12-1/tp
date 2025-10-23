@@ -211,6 +211,11 @@ public class AddItineraryCommandTest {
         }
 
         @Override
+        public void updateSortedAttractionList(java.util.Comparator<Attraction> comparator) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasItinerary(Itinerary itinerary) {
             throw new AssertionError("This method should not be called.");
         }
