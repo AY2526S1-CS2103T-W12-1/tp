@@ -61,6 +61,7 @@ public class AttractionUtil {
                 openingHours -> sb.append(PREFIX_OPENING_HOURS).append(openingHours.toString()).append(" "));
         descriptor.getPrice().ifPresent(price -> sb.append(PREFIX_PRICE).append(price.value).append(" "));
 
+
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

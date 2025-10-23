@@ -12,6 +12,7 @@ import seedu.address.model.attraction.Attraction;
 import seedu.address.model.attraction.Contact;
 import seedu.address.model.attraction.Name;
 import seedu.address.model.attraction.OpeningHours;
+import seedu.address.model.attraction.Price;
 import seedu.address.model.attraction.Priority;
 import seedu.address.model.tag.Tag;
 
@@ -90,6 +91,14 @@ public class EditAttractionDescriptorBuilder {
      */
     public EditAttractionDescriptorBuilder withOpeningHours(String openingHours) {
         descriptor.setOpeningHours(new OpeningHours(openingHours));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Price} of the {@code EditAttractionDescriptor} that we are building.
+     */
+    public EditAttractionDescriptorBuilder withPrice(String price) {
+        descriptor.setPrice(new Price(price));
         return this;
     }
     /**

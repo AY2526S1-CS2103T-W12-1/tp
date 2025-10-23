@@ -85,10 +85,11 @@ public class CommandTestUtil {
         DESC_AMY = new EditAttractionDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPriority(VALID_PRIORITY_AMY).withContact(VALID_CONTACT_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withActivities(VALID_ACTIVITIES_AMY).withOpeningHours(VALID_OPENING_HOURS_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
+                .withPrice(VALID_PRICE_AMY).withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditAttractionDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPriority(VALID_PRIORITY_BOB).withContact(VALID_CONTACT_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withActivities(VALID_ACTIVITIES_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withActivities(VALID_ACTIVITIES_BOB).withPrice(VALID_PRICE_BOB)
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
     /**
