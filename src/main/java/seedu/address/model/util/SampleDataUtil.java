@@ -11,6 +11,7 @@ import seedu.address.model.ReadOnlyMaplet;
 import seedu.address.model.attraction.Activities;
 import seedu.address.model.attraction.Address;
 import seedu.address.model.attraction.Attraction;
+import seedu.address.model.attraction.Comment;
 import seedu.address.model.attraction.Contact;
 import seedu.address.model.attraction.Name;
 import seedu.address.model.attraction.Priority;
@@ -32,37 +33,43 @@ public class SampleDataUtil {
                     new Contact("testcontact@gmail.com"),
                     new Address("8 Sentosa Gateway 098269"),
                     new Activities("ride a rollercoaster"),
-                    getTagSet("Amusement")),
+                    getTagSet("Amusement"),
+                    getCommentSet("Expensive")),
             new Attraction(new Name("Gardens by the Bay"),
                     new Priority("7"),
                     new Contact("testcontact@gmail.com"),
                     new Address("18 Marina Gardens Dr, Singapore 018953"),
                     new Activities("see supertree"),
-                    getTagSet("Park")),
+                    getTagSet("Park"),
+                    getCommentSet("Expensive")),
             new Attraction(new Name("Singapore Botanic Gardens"),
                     new Priority("6"),
                     new Contact("testcontact@gmail.com"),
                     new Address("1 Cluny R, Singapore 259569"),
                     new Activities("take photos of orchids"),
-                    getTagSet("Park", "Historical")),
+                    getTagSet("Park", "Historical"),
+                    getCommentSet("Expensive")),
             new Attraction(new Name("Marina Bay Sands Singapore"),
                     new Priority("1"),
                     new Contact("testcontact@gmail.com"),
                     new Address("10 Bayfront Ave, Singapore 018956"),
                     new Activities("sightseeing"),
-                    getTagSet("Hotel")),
+                    getTagSet("Hotel"),
+                    getCommentSet("Expensive")),
             new Attraction(new Name("Singapore Zoo"),
                     new Priority("2"),
                     new Contact("testcontact@gmail.com"),
                     new Address("80 Mandai Lake Rd, 729826"),
                     new Activities("see an elephant"),
-                    getTagSet("Zoo")),
+                    getTagSet("Zoo"),
+                    getCommentSet("Expensive")),
             new Attraction(new Name("Singapore Flyer"),
                     new Priority("3"),
                     new Contact("testcontact@gmail.com"),
                     new Address("30 Raffles Ave, Singapore 039803"),
                     new Activities("take pictures of view"),
-                    getTagSet("Ride"))
+                    getTagSet("Ride"),
+                    getCommentSet("Expensive"))
         };
     }
 
@@ -120,4 +127,15 @@ public class SampleDataUtil {
                 .map(Name::new)
                 .collect(Collectors.toSet());
     }
+    /**
+     * Returns a comment set containing the list of comments given.
+     */
+    public static Set<Comment> getCommentSet(String... strings) {
+        return Arrays.stream(strings)
+                .map(Comment::new)
+                .collect(Collectors.toSet());
+    }
+
+
+
 }

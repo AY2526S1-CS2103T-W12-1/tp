@@ -50,6 +50,10 @@ public class Messages {
                 .append(attraction.getActivities())
                 .append("; Tags: ");
         attraction.getTags().forEach(builder::append);
+
+        builder.append("; Comments: ");
+        attraction.getComments().forEach(builder::append);
+
         return builder.toString();
     }
 

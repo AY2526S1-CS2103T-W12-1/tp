@@ -25,19 +25,21 @@ public class Attraction {
     private final Address address;
     private final Activities activities;
     private final Set<Tag> tags = new HashSet<>();
+    private final Set<Comment> comments = new HashSet<>();
 
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null except for comments which are optional
      */
     public Attraction(Name name, Priority priority, Contact contact,
-                      Address address, Activities activities, Set<Tag> tags) {
-        requireAllNonNull(name, priority, contact, address, tags);
+                      Address address, Activities activities, Set<Tag> tags, Set<Comment> comments) {
+        requireAllNonNull(name, priority, contact, address, tags, comments);
         this.name = name;
         this.priority = priority;
         this.contact = contact;
         this.address = address;
         this.activities = activities;
         this.tags.addAll(tags);
+        this.comments.addAll(comments);
     }
 
     public Name getName() {
@@ -58,6 +60,11 @@ public class Attraction {
 
     public Activities getActivities() {
         return activities;
+    }
+
+    //returns a copy to prevent unintentional mutation of comment attribute
+    public Set<Comment> getComments() {
+        return Collections.unmodifiableSet(comments);
     }
 
     /**
@@ -102,13 +109,14 @@ public class Attraction {
                 && contact.equals(otherAttraction.contact)
                 && address.equals(otherAttraction.address)
                 && activities.equals(otherAttraction.activities)
-                && tags.equals(otherAttraction.tags);
+                && tags.equals(otherAttraction.tags)
+                && comments.equals(otherAttraction.comments);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, priority, contact, address, tags);
+        return Objects.hash(name, priority, contact, address, tags, comments);
     }
 
     @Override
@@ -120,6 +128,7 @@ public class Attraction {
                 .add("address", address)
                 .add("activities", activities)
                 .add("tags", tags)
+                .add("comments", comments)
                 .toString();
     }
 

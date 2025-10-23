@@ -11,6 +11,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.attraction.Activities;
 import seedu.address.model.attraction.Address;
+import seedu.address.model.attraction.Comment;
 import seedu.address.model.attraction.Contact;
 import seedu.address.model.attraction.Name;
 import seedu.address.model.attraction.Priority;
@@ -151,6 +152,33 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code Collection<String> comments} into a {@code Set<Comment>}.
+     */
+    public static Set<Comment> parseComments(Collection<String> comments) throws ParseException {
+        requireNonNull(comments);
+        final Set<Comment> commentSet = new HashSet<>();
+        for (String commentName : comments) {
+            commentSet.add(parseComment(commentName));
+        }
+        return commentSet;
+    }
+
+    /**
+     * Parses a {@code String comment} into a {@code Comment}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code comment} is invalid.
+     */
+    public static Comment parseComment(String comment) throws ParseException {
+        requireNonNull(comment);
+        String trimmedComment = comment.trim();
+        if (!Comment.isValidComment(trimmedComment)) {
+            throw new ParseException(Comment.MESSAGE_CONSTRAINTS);
+        }
+        return new Comment(trimmedComment);
     }
 
     /**

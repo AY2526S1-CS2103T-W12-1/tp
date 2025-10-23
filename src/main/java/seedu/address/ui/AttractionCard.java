@@ -3,11 +3,13 @@ package seedu.address.ui;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.attraction.Attraction;
+
 
 /**
  * An UI component that displays information of a {@code Attraction}.
@@ -26,6 +28,8 @@ public class AttractionCard extends UiPart<Region> {
 
     public final Attraction attraction;
 
+    private final CommentWindow commentWindow;
+
     @FXML
     private HBox cardPane;
     @FXML
@@ -42,6 +46,9 @@ public class AttractionCard extends UiPart<Region> {
     private Label activities;
     @FXML
     private FlowPane tags;
+    @FXML
+    private Button commentButton;
+
 
     /**
      * Creates a {@code AttractionCode} with the given {@code Attraction} and index to display.
@@ -58,5 +65,19 @@ public class AttractionCard extends UiPart<Region> {
         attraction.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        commentWindow = new CommentWindow(attraction.getComments());
     }
+
+    /**
+     * function is called when the comments button is clicked
+     */
+    @FXML
+    public void openCommentWindow() {
+        if (!commentWindow.isShowing()) {
+            commentWindow.show();
+        } else {
+            commentWindow.focus();
+        }
+    }
+
 }

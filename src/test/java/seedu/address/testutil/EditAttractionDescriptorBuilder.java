@@ -9,6 +9,7 @@ import seedu.address.logic.commands.EditCommand.EditAttractionDescriptor;
 import seedu.address.model.attraction.Activities;
 import seedu.address.model.attraction.Address;
 import seedu.address.model.attraction.Attraction;
+import seedu.address.model.attraction.Comment;
 import seedu.address.model.attraction.Contact;
 import seedu.address.model.attraction.Name;
 import seedu.address.model.attraction.Priority;
@@ -39,6 +40,7 @@ public class EditAttractionDescriptorBuilder {
         descriptor.setContact(attraction.getContact());
         descriptor.setAddress(attraction.getAddress());
         descriptor.setTags(attraction.getTags());
+        descriptor.setComments(attraction.getComments());
     }
 
     /**
@@ -87,6 +89,16 @@ public class EditAttractionDescriptorBuilder {
     public EditAttractionDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+
+    /**
+     * Parses the {@code comments} into a {@code Set<Comment>} and set it to the {@code EditAttractionDescriptor}
+     * that we are building.
+     */
+    public EditAttractionDescriptorBuilder withComments(String... comments) {
+        Set<Comment> commentSet = Stream.of(comments).map(Comment::new).collect(Collectors.toSet());
+        descriptor.setComments(commentSet);
         return this;
     }
 

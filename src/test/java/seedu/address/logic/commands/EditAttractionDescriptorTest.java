@@ -67,7 +67,8 @@ public class EditAttractionDescriptorTest {
                 + editAttractionDescriptor.getContact().orElse(null) + ", address="
                 + editAttractionDescriptor.getAddress().orElse(null) + ", activities="
                 + editAttractionDescriptor.getActivities().orElse(null) + ", tags="
-                + editAttractionDescriptor.getTags().orElse(null) + "}";
+                + editAttractionDescriptor.getTags().orElse(null) + ", comments="
+                + editAttractionDescriptor.getComments().orElse(null) + "}";
         assertEquals(expected, editAttractionDescriptor.toString());
     }
 }
