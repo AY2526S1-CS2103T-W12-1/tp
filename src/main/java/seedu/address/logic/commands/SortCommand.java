@@ -1,11 +1,5 @@
 package seedu.address.logic.commands;
 
-import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.Model;
-import seedu.address.model.attraction.Attraction;
-
-import java.util.Comparator;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
@@ -13,10 +7,17 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ATTRACTIONS;
 
+import java.util.Comparator;
+
+import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.Model;
+import seedu.address.model.attraction.Attraction;
+
+
 /**
  * Sorts all attractions in the Maplet by field.
  */
-public class SortCommand extends Command{
+public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts all attractions in the Maplet by field PREFIX. "

@@ -9,15 +9,17 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.COMPARATOR_SORT_BY_ADDRESS_ASCENDING;
-import static seedu.address.model.Model.COMPARATOR_SORT_BY_NAME_ASCENDING;
 import static seedu.address.model.Model.COMPARATOR_SORT_BY_CONTACT_ASCENDING;
+import static seedu.address.model.Model.COMPARATOR_SORT_BY_NAME_ASCENDING;
 import static seedu.address.model.Model.COMPARATOR_SORT_BY_PRIORITY_DESCENDING;
+
+import java.util.Comparator;
 
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.attraction.Attraction;
 
-import java.util.Comparator;
+
 
 /**
  * Parses input arguments and creates a new SortCommand object
