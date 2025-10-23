@@ -11,6 +11,7 @@ import seedu.address.model.attraction.Address;
 import seedu.address.model.attraction.Attraction;
 import seedu.address.model.attraction.Contact;
 import seedu.address.model.attraction.Name;
+import seedu.address.model.attraction.OpeningHours;
 import seedu.address.model.attraction.Priority;
 import seedu.address.model.tag.Tag;
 
@@ -38,6 +39,9 @@ public class EditAttractionDescriptorBuilder {
         descriptor.setPriority(attraction.getPriority());
         descriptor.setContact(attraction.getContact());
         descriptor.setAddress(attraction.getAddress());
+        descriptor.setActivities(attraction.getActivities());
+        descriptor.setOpeningHours(attraction.getOpeningHours());
+        descriptor.setPrice(attraction.getPrice());
         descriptor.setTags(attraction.getTags());
     }
 
@@ -80,6 +84,14 @@ public class EditAttractionDescriptorBuilder {
         descriptor.setActivities(new Activities(activities));
         return this;
     }
+
+    /**
+     * Sets the {@code OpeningHours} of the {@code EditAttractionDescriptor} that we are building.
+     */
+    public EditAttractionDescriptorBuilder withOpeningHours(String openingHours) {
+        descriptor.setOpeningHours(new OpeningHours(openingHours));
+        return this;
+    }
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditAttractionDescriptor}
      * that we are building.
@@ -93,4 +105,5 @@ public class EditAttractionDescriptorBuilder {
     public EditAttractionDescriptor build() {
         return descriptor;
     }
+
 }

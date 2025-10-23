@@ -4,6 +4,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ACTIVITIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OPENING_HOURS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -36,6 +38,8 @@ public class AttractionUtil {
         sb.append(PREFIX_CONTACT + attraction.getContact().value + " ");
         sb.append(PREFIX_ADDRESS + attraction.getAddress().value + " ");
         sb.append(PREFIX_ACTIVITIES + attraction.getActivities().activities + " ");
+        sb.append(PREFIX_OPENING_HOURS + attraction.getOpeningHours().toString() + " ");
+        sb.append(PREFIX_PRICE + attraction.getPrice().value + " ");
         attraction.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -53,6 +57,10 @@ public class AttractionUtil {
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
         descriptor.getActivities().ifPresent(
                 activities -> sb.append(PREFIX_ACTIVITIES).append(activities.activities).append(" "));
+        descriptor.getOpeningHours().ifPresent(
+                openingHours -> sb.append(PREFIX_OPENING_HOURS).append(openingHours.toString()).append(" "));
+        descriptor.getPrice().ifPresent(price -> sb.append(PREFIX_PRICE).append(price.value).append(" "));
+
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

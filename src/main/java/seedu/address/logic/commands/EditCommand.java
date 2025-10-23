@@ -5,6 +5,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ACTIVITIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OPENING_HOURS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ATTRACTIONS;
@@ -27,6 +29,8 @@ import seedu.address.model.attraction.Address;
 import seedu.address.model.attraction.Attraction;
 import seedu.address.model.attraction.Contact;
 import seedu.address.model.attraction.Name;
+import seedu.address.model.attraction.OpeningHours;
+import seedu.address.model.attraction.Price;
 import seedu.address.model.attraction.Priority;
 import seedu.address.model.tag.Tag;
 
@@ -46,11 +50,15 @@ public class EditCommand extends Command {
             + "[" + PREFIX_CONTACT + "CONTACT] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_ACTIVITIES + "DESCRIPTION/ACTIVITY] "
+            + "[" + PREFIX_OPENING_HOURS + "OPENING_HOURS] "
+            + "[" + PREFIX_PRICE + "PRICE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PRIORITY + "5 "
             + PREFIX_CONTACT + "info@example.com "
-            + PREFIX_ACTIVITIES + "Reserve tour";
+            + PREFIX_ACTIVITIES + "Reserve tour "
+            + PREFIX_OPENING_HOURS + "1200 - 1300 "
+            + PREFIX_PRICE + "20";
 
     public static final String MESSAGE_EDIT_ATTRACTION_SUCCESS = "Edited Attraction: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -106,10 +114,20 @@ public class EditCommand extends Command {
         Address updatedAddress = editAttractionDescriptor.getAddress().orElse(attractionToEdit.getAddress());
         Activities updatedActivities = editAttractionDescriptor
                 .getActivities().orElse(attractionToEdit.getActivities());
+        OpeningHours updatedOpeningHours = editAttractionDescriptor
+                .getOpeningHours().orElse(attractionToEdit.getOpeningHours());
+        Price updatedPrice = editAttractionDescriptor.getPrice().orElse(attractionToEdit.getPrice());
         Set<Tag> updatedTags = editAttractionDescriptor.getTags().orElse(attractionToEdit.getTags());
 
         return new Attraction(
-                updatedName, updatedPriority, updatedContact, updatedAddress, updatedActivities, updatedTags);
+                updatedName,
+                updatedPriority,
+                updatedContact,
+                updatedAddress,
+                updatedActivities,
+                updatedOpeningHours,
+                updatedPrice,
+                updatedTags);
     }
 
     @Override
@@ -147,6 +165,8 @@ public class EditCommand extends Command {
         private Contact contact;
         private Address address;
         private Activities activities;
+        private OpeningHours openingHours;
+        private Price price;
         private Set<Tag> tags;
 
         public EditAttractionDescriptor() {
@@ -162,6 +182,8 @@ public class EditCommand extends Command {
             setContact(toCopy.contact);
             setAddress(toCopy.address);
             setActivities(toCopy.activities);
+            setOpeningHours(toCopy.openingHours);
+            setPrice(toCopy.price);
             setTags(toCopy.tags);
         }
 
@@ -169,7 +191,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, priority, contact, address, activities, tags);
+            return CollectionUtil.isAnyNonNull(name, priority, contact, address, activities, openingHours, price, tags);
         }
 
         public void setName(Name name) {
@@ -212,6 +234,22 @@ public class EditCommand extends Command {
             return Optional.ofNullable(activities);
         }
 
+        public void setOpeningHours(OpeningHours openingHours) {
+            this.openingHours = openingHours;
+        }
+
+        public Optional<OpeningHours> getOpeningHours() {
+            return Optional.ofNullable(openingHours);
+        }
+
+        public void setPrice(Price price) {
+            this.price = price;
+        }
+
+        public Optional<Price> getPrice() {
+            return Optional.ofNullable(price);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}. A defensive copy of
          * {@code tags} is used internally.
@@ -246,6 +284,8 @@ public class EditCommand extends Command {
                     && Objects.equals(contact, otherEditAttractionDescriptor.contact)
                     && Objects.equals(address, otherEditAttractionDescriptor.address)
                     && Objects.equals(activities, otherEditAttractionDescriptor.activities)
+                    && Objects.equals(openingHours, otherEditAttractionDescriptor.openingHours)
+                    && Objects.equals(price, otherEditAttractionDescriptor.price)
                     && Objects.equals(tags, otherEditAttractionDescriptor.tags);
         }
 
@@ -257,6 +297,8 @@ public class EditCommand extends Command {
                     .add("contact", contact)
                     .add("address", address)
                     .add("activities", activities)
+                    .add("opening hours", openingHours)
+                    .add("price", price)
                     .add("tags", tags)
                     .toString();
         }

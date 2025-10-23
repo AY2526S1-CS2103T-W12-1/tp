@@ -8,6 +8,8 @@ import seedu.address.model.attraction.Address;
 import seedu.address.model.attraction.Attraction;
 import seedu.address.model.attraction.Contact;
 import seedu.address.model.attraction.Name;
+import seedu.address.model.attraction.OpeningHours;
+import seedu.address.model.attraction.Price;
 import seedu.address.model.attraction.Priority;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -22,12 +24,16 @@ public class AttractionBuilder {
     public static final String DEFAULT_CONTACT = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_ACTIVITIES = "Sightseeing";
+    public static final String DEFAULT_OPENING_HOURS = "0000 - 2359";
+    public static final String DEFAULT_PRICE = "10";
 
     private Name name;
     private Priority priority;
     private Contact contact;
     private Address address;
     private Activities activities;
+    private OpeningHours openingHours;
+    private Price price;
     private Set<Tag> tags;
 
     /**
@@ -39,6 +45,8 @@ public class AttractionBuilder {
         contact = new Contact(DEFAULT_CONTACT);
         address = new Address(DEFAULT_ADDRESS);
         activities = new Activities(DEFAULT_ACTIVITIES);
+        openingHours = new OpeningHours(DEFAULT_OPENING_HOURS);
+        price = new Price(DEFAULT_PRICE);
         tags = new HashSet<>();
     }
 
@@ -51,6 +59,8 @@ public class AttractionBuilder {
         contact = attractionToCopy.getContact();
         address = attractionToCopy.getAddress();
         activities = attractionToCopy.getActivities();
+        openingHours = attractionToCopy.getOpeningHours();
+        price = attractionToCopy.getPrice();
         tags = new HashSet<>(attractionToCopy.getTags());
     }
 
@@ -85,6 +95,23 @@ public class AttractionBuilder {
         this.activities = new Activities(activities);
         return this;
     }
+
+    /**
+     * Sets the {@code OpeningHours} of the {@code Attraction} that we are building.
+     */
+    public AttractionBuilder withOpeningHours(String openingHours) {
+        this.openingHours = new OpeningHours(openingHours);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Price} of the {@code Attraction} that we are building.
+     */
+    public AttractionBuilder withPrice(String price) {
+        this.price = new Price(price);
+        return this;
+    }
+
     /**
      * Sets the {@code Priority} of the {@code Attraction} that we are building.
      */
@@ -102,7 +129,7 @@ public class AttractionBuilder {
     }
 
     public Attraction build() {
-        return new Attraction(name, priority, contact, address, activities, tags);
+        return new Attraction(name, priority, contact, address, activities, openingHours, price, tags);
     }
 
 }

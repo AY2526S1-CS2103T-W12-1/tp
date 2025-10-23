@@ -6,6 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ACTIVITIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OPENING_HOURS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -37,6 +39,10 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_ACTIVITIES_AMY = "Sightseeing";
     public static final String VALID_ACTIVITIES_BOB = "See temple";
+    public static final String VALID_OPENING_HOURS_AMY = "0600 - 1200";
+    public static final String VALID_OPENING_HOURS_BOB = "1100 - 1600";
+    public static final String VALID_PRICE_AMY = "15";
+    public static final String VALID_PRICE_BOB = "10";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
@@ -50,6 +56,10 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String ACTIVITIES_DESC_AMY = " " + PREFIX_ACTIVITIES + VALID_ACTIVITIES_AMY;
     public static final String ACTIVITIES_DESC_BOB = " " + PREFIX_ACTIVITIES + VALID_ACTIVITIES_BOB;
+    public static final String OPENING_HOURS_DESC_AMY = " " + PREFIX_OPENING_HOURS + VALID_OPENING_HOURS_AMY;
+    public static final String OPENING_HOURS_DESC_BOB = " " + PREFIX_OPENING_HOURS + VALID_OPENING_HOURS_BOB;
+    public static final String PRICE_DESC_AMY = " " + PREFIX_PRICE + VALID_PRICE_AMY;
+    public static final String PRICE_DESC_BOB = " " + PREFIX_PRICE + VALID_PRICE_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
@@ -61,6 +71,8 @@ public class CommandTestUtil {
     public static final String INVALID_CONTACT_DESC = " " + PREFIX_CONTACT + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_ACTIVITIES_DESC = " " + PREFIX_ACTIVITIES + " "; //no empty string activities
+    public static final String INVALID_OPENING_HOURS_DESC = " " + PREFIX_OPENING_HOURS + "2500 - 3200"; // 24 hour only
+    public static final String INVALID_PRICE_DESC = " " + PREFIX_PRICE + "abc"; // only digits allowed in price
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
@@ -72,7 +84,8 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditAttractionDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPriority(VALID_PRIORITY_AMY).withContact(VALID_CONTACT_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withActivities(VALID_ACTIVITIES_AMY).withTags(VALID_TAG_FRIEND).build();
+                .withActivities(VALID_ACTIVITIES_AMY).withOpeningHours(VALID_OPENING_HOURS_AMY)
+                .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditAttractionDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPriority(VALID_PRIORITY_BOB).withContact(VALID_CONTACT_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withActivities(VALID_ACTIVITIES_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();

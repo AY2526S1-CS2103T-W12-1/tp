@@ -5,6 +5,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ACTIVITIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OPENING_HOURS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -28,6 +30,8 @@ public class AddCommand extends Command {
             + PREFIX_CONTACT + "CONTACT "
             + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_ACTIVITIES + "DESCRIPTION/ACTIVITY "
+            + PREFIX_OPENING_HOURS + "OPENING_HOURS "
+            + PREFIX_PRICE + "PRICE "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Gardens by the Bay "
@@ -35,6 +39,8 @@ public class AddCommand extends Command {
             + PREFIX_CONTACT + "info@gardens.com "
             + PREFIX_ADDRESS + "18 Marina Gardens Dr, Singapore 018953 "
             + PREFIX_ACTIVITIES + "Explore the Flower Dome "
+            + PREFIX_OPENING_HOURS + "1200 - 1500 "
+            + PREFIX_PRICE + "20 "
             + PREFIX_TAG + "park "
             + PREFIX_TAG + "nature";
 

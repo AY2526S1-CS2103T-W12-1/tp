@@ -7,6 +7,8 @@
       "contact": "alice@example.com",
       "address": "123, Jurong West Ave 6, #08-111",
       "activities": "Sightseeing",
+      "openingHours": "1200 - 1500",
+      "price": "15",
       "tags": [
         "friends"
       ]
@@ -17,6 +19,8 @@
       "contact": "johnd@example.com",
       "address": "311, Clementi Ave 2, #02-25",
       "activities": "Sightseeing",
+      "openingHours": "1200 - 1500",
+      "price": "15",
       "tags": [
         "owesMoney",
         "friends"
@@ -28,6 +32,8 @@
       "contact": "heinz@example.com",
       "address": "wall street",
       "activities": "Sightseeing",
+      "openingHours": "1200 - 1500",
+      "price": "15",
       "tags": []
     },
     {
@@ -36,6 +42,8 @@
       "contact": "cornelia@example.com",
       "address": "10th street",
       "activities": "Sightseeing",
+      "openingHours": "1200 - 1500",
+      "price": "15",
       "tags": [
         "friends"
       ]
@@ -46,6 +54,8 @@
       "contact": "werner@example.com",
       "address": "michegan ave",
       "activities": "Sightseeing",
+      "openingHours": "1200 - 1500",
+      "price": "15",
       "tags": []
     },
     {
@@ -54,6 +64,8 @@
       "contact": "lydia@example.com",
       "address": "little tokyo",
       "activities": "Sightseeing",
+      "openingHours": "1200 - 1500",
+      "price": "15",
       "tags": []
     },
     {
@@ -62,6 +74,8 @@
       "contact": "anna@example.com",
       "address": "4th street",
       "activities": "Sightseeing",
+      "openingHours": "1200 - 1500",
+      "price": "15",
       "tags": []
     }
   ],

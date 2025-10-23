@@ -46,6 +46,10 @@ public class Messages {
                 .append(attraction.getAddress())
                 .append("; Activities: ")
                 .append(attraction.getActivities())
+                .append("; Opening Hours: ")
+                .append(attraction.getOpeningHours())
+                .append("; Price: ")
+                .append(attraction.getPrice())
                 .append("; Tags: ");
         attraction.getTags().forEach(builder::append);
         return builder.toString();

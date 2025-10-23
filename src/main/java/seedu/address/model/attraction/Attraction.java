@@ -24,19 +24,23 @@ public class Attraction {
     // Data fields
     private final Address address;
     private final Activities activities;
+    private final OpeningHours openingHours;
+    private final Price price;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Attraction(Name name, Priority priority, Contact contact,
-                      Address address, Activities activities, Set<Tag> tags) {
+                      Address address, Activities activities, OpeningHours openingHours, Price price, Set<Tag> tags) {
         requireAllNonNull(name, priority, contact, address, tags);
         this.name = name;
         this.priority = priority;
         this.contact = contact;
         this.address = address;
         this.activities = activities;
+        this.openingHours = openingHours;
+        this.price = price;
         this.tags.addAll(tags);
     }
 
@@ -58,6 +62,14 @@ public class Attraction {
 
     public Activities getActivities() {
         return activities;
+    }
+
+    public OpeningHours getOpeningHours() {
+        return openingHours;
+    }
+
+    public Price getPrice() {
+        return price;
     }
 
     /**
@@ -102,13 +114,15 @@ public class Attraction {
                 && contact.equals(otherAttraction.contact)
                 && address.equals(otherAttraction.address)
                 && activities.equals(otherAttraction.activities)
+                && openingHours.equals(otherAttraction.openingHours)
+                && price.equals(otherAttraction.price)
                 && tags.equals(otherAttraction.tags);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, priority, contact, address, tags);
+        return Objects.hash(name, priority, contact, address, activities, openingHours, price, tags);
     }
 
     @Override
@@ -119,6 +133,8 @@ public class Attraction {
                 .add("contact", contact)
                 .add("address", address)
                 .add("activities", activities)
+                .add("opening hours", openingHours)
+                .add("price", price)
                 .add("tags", tags)
                 .toString();
     }

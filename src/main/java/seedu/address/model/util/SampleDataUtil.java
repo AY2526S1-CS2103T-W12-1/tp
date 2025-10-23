@@ -13,6 +13,8 @@ import seedu.address.model.attraction.Address;
 import seedu.address.model.attraction.Attraction;
 import seedu.address.model.attraction.Contact;
 import seedu.address.model.attraction.Name;
+import seedu.address.model.attraction.OpeningHours;
+import seedu.address.model.attraction.Price;
 import seedu.address.model.attraction.Priority;
 import seedu.address.model.itinerary.Itinerary;
 import seedu.address.model.itinerary.ItineraryName;
@@ -30,36 +32,48 @@ public class SampleDataUtil {
                     new Contact("testcontact@gmail.com"),
                     new Address("8 Sentosa Gateway 098269"),
                     new Activities("ride a rollercoaster"),
+                    new OpeningHours("1100 - 1900"),
+                    new Price("50"),
                     getTagSet("Amusement")),
             new Attraction(new Name("Gardens by the Bay"),
                     new Priority("7"),
                     new Contact("testcontact@gmail.com"),
                     new Address("18 Marina Gardens Dr, Singapore 018953"),
                     new Activities("see supertree"),
+                    new OpeningHours("1200 - 1800"),
+                    new Price("20"),
                     getTagSet("Park")),
             new Attraction(new Name("Singapore Botanic Gardens"),
                     new Priority("6"),
                     new Contact("testcontact@gmail.com"),
                     new Address("1 Cluny R, Singapore 259569"),
                     new Activities("take photos of orchids"),
+                    new OpeningHours("0800 - 1900"),
+                    new Price("20"),
                     getTagSet("Park", "Historical")),
             new Attraction(new Name("Marina Bay Sands Singapore"),
                     new Priority("1"),
                     new Contact("testcontact@gmail.com"),
                     new Address("10 Bayfront Ave, Singapore 018956"),
                     new Activities("sightseeing"),
+                    new OpeningHours("1100 - 2200"),
+                    new Price("100"),
                     getTagSet("Hotel")),
             new Attraction(new Name("Singapore Zoo"),
                     new Priority("2"),
                     new Contact("testcontact@gmail.com"),
                     new Address("80 Mandai Lake Rd, 729826"),
                     new Activities("see an elephant"),
+                    new OpeningHours("1200 - 1800"),
+                    new Price("30"),
                     getTagSet("Zoo")),
             new Attraction(new Name("Singapore Flyer"),
                     new Priority("3"),
                     new Contact("testcontact@gmail.com"),
                     new Address("30 Raffles Ave, Singapore 039803"),
                     new Activities("take pictures of view"),
+                    new OpeningHours("1100 - 2000"),
+                    new Price("20"),
                     getTagSet("Ride"))
         };
     }

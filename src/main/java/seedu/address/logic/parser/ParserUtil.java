@@ -13,6 +13,8 @@ import seedu.address.model.attraction.Activities;
 import seedu.address.model.attraction.Address;
 import seedu.address.model.attraction.Contact;
 import seedu.address.model.attraction.Name;
+import seedu.address.model.attraction.OpeningHours;
+import seedu.address.model.attraction.Price;
 import seedu.address.model.attraction.Priority;
 import seedu.address.model.itinerary.ItineraryName;
 import seedu.address.model.tag.Tag;
@@ -109,6 +111,36 @@ public class ParserUtil {
             throw new ParseException(Activities.MESSAGE_CONSTRAINTS);
         }
         return new Activities(trimmedActivities);
+    }
+
+    /**
+     * Parses a {@code String openingHours} into an {@code OpeningHours}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code openingHours} is invalid.
+     */
+    public static OpeningHours parseOpeningHours(String openingHours) throws ParseException {
+        requireNonNull(openingHours);
+        String trimmedOpeningHours = openingHours.trim();
+        if (!OpeningHours.isValidOpeningHours(trimmedOpeningHours)) {
+            throw new ParseException(OpeningHours.MESSAGE_CONSTRAINTS);
+        }
+        return new OpeningHours(trimmedOpeningHours);
+    }
+
+    /**
+     * Parses a {@code String price} into a {@code Price}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code price} is invalid.
+     */
+    public static Price parsePrice(String price) throws ParseException {
+        requireNonNull(price);
+        String trimmedPrice = price.trim();
+        if (!Price.isValidPrice(trimmedPrice)) {
+            throw new ParseException(Price.MESSAGE_CONSTRAINTS);
+        }
+        return new Price(trimmedPrice);
     }
 
     /**
