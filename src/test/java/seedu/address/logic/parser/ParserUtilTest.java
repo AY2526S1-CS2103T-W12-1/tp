@@ -3,7 +3,6 @@ package seedu.address.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
-import static seedu.address.logic.parser.ParserUtil.parseComment;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ATTRACTION;
 
@@ -204,7 +203,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseComment_validCommentWithWhiteSpace_returnsTrimmedComment() throws Exception{
+    public void parseComment_validCommentWithWhiteSpace_returnsTrimmedComment() throws Exception {
         String commentWithWhiteSpace = WHITESPACE + VALID_COMMENT + WHITESPACE;
         assertEquals(ParserUtil.parseComment(commentWithWhiteSpace).toString(), VALID_COMMENT);
     }
@@ -221,7 +220,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseComments_collectionWithInvalidComments_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseComments(Arrays.asList(INVALID_COMMENT, INVALID_COMMENT)));
+        assertThrows(ParseException.class, () ->
+                ParserUtil.parseComments(Arrays.asList(INVALID_COMMENT, INVALID_COMMENT)));
     }
 
     @Test
@@ -232,7 +232,8 @@ public class ParserUtilTest {
     @Test
     public void parseComments_collectionWithValidComments_returnsTagSet() throws Exception {
         Set<Comment> actualComments = ParserUtil.parseComments(Arrays.asList(VALID_COMMENT, VALID_COMMENT));
-        Set<Comment> expectedComments = new HashSet<Comment>(Arrays.asList(new Comment(VALID_COMMENT), new Comment(VALID_COMMENT)));
+        Set<Comment> expectedComments = new HashSet<Comment>(
+                Arrays.asList(new Comment(VALID_COMMENT), new Comment(VALID_COMMENT)));
 
         assertEquals(expectedComments, actualComments);
     }
