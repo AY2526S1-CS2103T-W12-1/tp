@@ -2,6 +2,7 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ACTIVITIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
@@ -12,6 +13,7 @@ import java.util.Set;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditAttractionDescriptor;
 import seedu.address.model.attraction.Attraction;
+import seedu.address.model.attraction.Comment;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -39,6 +41,9 @@ public class AttractionUtil {
         attraction.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
+        attraction.getComments().stream().forEach(
+                s -> sb.append(PREFIX_COMMENT + s.comment + " ")
+        );
         return sb.toString();
     }
 
@@ -56,9 +61,17 @@ public class AttractionUtil {
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
-                sb.append(PREFIX_TAG);
+                sb.append(PREFIX_TAG + " ");
             } else {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
+            }
+        }
+        if (descriptor.getComments().isPresent()) {
+            Set<Comment> comments = descriptor.getComments().get();
+            if (comments.isEmpty()) {
+                sb.append(PREFIX_COMMENT);
+            } else {
+                comments.forEach(s -> sb.append(PREFIX_COMMENT).append(s.comment).append(" "));
             }
         }
         return sb.toString();

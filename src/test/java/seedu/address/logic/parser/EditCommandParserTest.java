@@ -8,7 +8,6 @@ import static seedu.address.logic.commands.CommandTestUtil.COMMENT_DESC_2;
 import static seedu.address.logic.commands.CommandTestUtil.CONTACT_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.CONTACT_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_COMMENT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_CONTACT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PRIORITY_DESC;
@@ -96,7 +95,6 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_CONTACT_DESC, Contact.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
-        assertParseFailure(parser, "1" + INVALID_COMMENT_DESC, Comment.MESSAGE_CONSTRAINTS); //invalid comment
 
         // invalid phone followed by valid email
         assertParseFailure(parser, "1" + INVALID_PRIORITY_DESC + CONTACT_DESC_AMY, Priority.MESSAGE_CONSTRAINTS);
@@ -232,5 +230,15 @@ public class EditCommandParserTest {
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
-    
+
+    @Test
+    public void parse_resetComments_success() {
+        Index targetIndex = INDEX_THIRD_ATTRACTION;
+        String userInput = targetIndex.getOneBased() + COMMENT_EMPTY;
+
+        EditCommand.EditAttractionDescriptor descriptor = new EditAttractionDescriptorBuilder().withComments().build();
+        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
 }

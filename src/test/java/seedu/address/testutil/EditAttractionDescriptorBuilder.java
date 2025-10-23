@@ -92,6 +92,10 @@ public class EditAttractionDescriptorBuilder {
         return this;
     }
 
+    /**
+     * Parses the {@code comments} into a {@code Set<Comment>} and set it to the {@code EditAttractionDescriptor}
+     * that we are building.
+     */
     public EditAttractionDescriptorBuilder withComments(String... comments) {
         Set<Comment> commentSet = Stream.of(comments).map(Comment::new).collect(Collectors.toSet());
         descriptor.setComments(commentSet);

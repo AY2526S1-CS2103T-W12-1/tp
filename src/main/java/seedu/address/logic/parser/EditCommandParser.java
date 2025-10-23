@@ -99,7 +99,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (comments.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> commentSet = comments.size() == 1 && comments.contains(" ")
+        Collection<String> commentSet = comments.size() == 1 && comments.contains("")
                 ? Collections.emptySet() : comments;
         return Optional.of(ParserUtil.parseComments(commentSet));
     }

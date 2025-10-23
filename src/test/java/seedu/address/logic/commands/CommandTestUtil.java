@@ -80,7 +80,8 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_ACTIVITIES_DESC = " " + PREFIX_ACTIVITIES + " "; //no empty string activities
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
-    public static final String INVALID_COMMENT_DESC = " " + PREFIX_COMMENT + " "; //Only white spaces are not allowed in comments
+    //Only white spaces are not allowed in comments
+    public static final String INVALID_COMMENT_DESC = " " + PREFIX_COMMENT + " ";
     public static final String INVALID_LOCATION_NAME_DESC = " " + PREFIX_LOCATION_NAME + "Sentosa&"; // '&' not allowed
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
