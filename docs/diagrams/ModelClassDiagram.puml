@@ -21,7 +21,7 @@ Package Model as ModelPackage <<Rectangle>> {
     Class Contact
     Class Priority
     Class Address
-    Class Activity
+    Class Activities
 
 
     ' ===== New Feature Classes =====
@@ -62,7 +62,7 @@ Attraction *--> Name
 Attraction *--> Contact
 Attraction *--> Priority
 Attraction *--> Address
-Attraction *--> "*" Activity
+Attraction *--> Activities
 
 ' ===== New feature compositions =====
 Maplet *--> "1" UniqueItineraryList

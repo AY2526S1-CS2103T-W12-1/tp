@@ -4,54 +4,89 @@ skinparam arrowThickness 1.1
 skinparam arrowColor UI_COLOR_T4
 skinparam classBackgroundColor UI_COLOR
 
-package UI <<Rectangle>>{
-Class "<<interface>>\nUi" as Ui
-Class "{abstract}\nUiPart" as UiPart
-Class UiManager
-Class MainWindow
-Class HelpWindow
-Class ResultDisplay
-Class PersonListPanel
-Class PersonCard
-Class StatusBarFooter
-Class CommandBox
+package UI <<Rectangle>> {
+  ' ===== Interfaces and Abstract Classes =====
+  Class "<<interface>>\nUi" as Ui
+  Class "{abstract}\nUiPart" as UiPart
+
+  ' ===== Core Classes =====
+  Class UiManager
+  Class MainWindow
+  Class HelpWindow
+  Class ResultDisplay
+  Class CommandBox
+  Class StatusBarFooter
+
+  ' ===== Attraction Tab =====
+  Class AttractionListPanel
+  Class AttractionCard
+
+  ' ===== Itinerary Tab =====
+  Class ItineraryListPanel
+  Class ItineraryAttractionListPanel
+  Class ItineraryCard
+
+  ' ===== Location Section =====
+  Class LocationListPanel
+  Class LocationCard
 }
 
 package Model <<Rectangle>> {
-Class HiddenModel #FFFFFF
+  Class HiddenModel #FFFFFF
 }
 
 package Logic <<Rectangle>> {
-Class HiddenLogic #FFFFFF
+  Class HiddenLogic #FFFFFF
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Ui
 
+' ===== Inheritance =====
 UiManager .left.|> Ui
-UiManager -down-> "1" MainWindow
-MainWindow *-down->  "1" CommandBox
-MainWindow *-down-> "1" ResultDisplay
-MainWindow *-down-> "1" PersonListPanel
-MainWindow *-down-> "1" StatusBarFooter
-MainWindow --> "0..1" HelpWindow
-
-PersonListPanel -down-> "*" PersonCard
-
 MainWindow -left-|> UiPart
-
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
-PersonListPanel --|> UiPart
-PersonCard --|> UiPart
+AttractionListPanel --|> UiPart
+AttractionCard --|> UiPart
+ItineraryListPanel --|> UiPart
+ItineraryAttractionListPanel --|> UiPart
+ItineraryCard --|> UiPart
+LocationListPanel --|> UiPart
+LocationCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
 
-PersonCard ..> Model
+' ===== Composition =====
+UiManager -down-> "1" MainWindow
+MainWindow *-down-> "1" CommandBox
+MainWindow *-down-> "1" ResultDisplay
+MainWindow *-down-> "1" StatusBarFooter
+MainWindow --> "0..1" HelpWindow
+
+' ===== Attractions tab =====
+MainWindow *--> "1" AttractionListPanel
+AttractionListPanel -down-> "*" AttractionCard
+
+' ===== Itinerary tab =====
+MainWindow *--> "1" ItineraryListPanel
+MainWindow *--> "1" ItineraryAttractionListPanel
+ItineraryListPanel -down-> "*" ItineraryCard
+ItineraryAttractionListPanel -down-> "*" AttractionCard
+
+' ===== Location section =====
+MainWindow *--> "1" LocationListPanel
+LocationListPanel -down-> "*" LocationCard
+
+' ===== Logical Dependencies =====
 UiManager -right-> Logic
 MainWindow -left-> Logic
+AttractionCard ..> Model
+ItineraryCard ..> Model
+LocationCard ..> Model
 
-PersonListPanel -[hidden]left- HelpWindow
+' ===== Layout alignment =====
+AttractionListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
