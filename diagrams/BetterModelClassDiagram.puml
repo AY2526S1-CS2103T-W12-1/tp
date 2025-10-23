@@ -4,18 +4,29 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-AddressBook *-right-> "1" UniquePersonList
-AddressBook *-right-> "1" UniqueTagList
-UniqueTagList -[hidden]down- UniquePersonList
-UniqueTagList -[hidden]down- UniquePersonList
+' ===== Core Collections =====
+Maplet *-down-> "1" UniqueAttractionList
 
-UniqueTagList -right-> "*" Tag
-UniquePersonList -right-> Person
 
-Person -up-> "*" Tag
+' ===== Attraction List =====
+UniqueAttractionList -right-> Attraction
 
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
+' ===== Attraction Composition =====
+Attraction *--> Activity
+Attraction *--> Name
+Attraction *--> Contact
+Attraction *--> Priority
+Attraction *--> Address
+
+' ===== Optional: Itinerary and Location structures =====
+Maplet *-down-> "1" UniqueItineraryList
+UniqueItineraryList -down-> "*" Itinerary
+Itinerary *--> ItineraryName
+Itinerary *--> "*" Attraction
+
+Maplet *-down-> "1" UniqueLocationList
+UniqueLocationList -down-> "*" Location
+Location *--> LocationName
+Location *--> "*" Attraction
+
 @enduml
