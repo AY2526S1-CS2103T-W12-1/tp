@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ACTIVITIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
@@ -25,6 +26,7 @@ import seedu.address.model.Model;
 import seedu.address.model.attraction.Activities;
 import seedu.address.model.attraction.Address;
 import seedu.address.model.attraction.Attraction;
+import seedu.address.model.attraction.Comment;
 import seedu.address.model.attraction.Contact;
 import seedu.address.model.attraction.Name;
 import seedu.address.model.attraction.Priority;
@@ -46,7 +48,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_CONTACT + "CONTACT] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_ACTIVITIES + "DESCRIPTION/ACTIVITY] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG] "
+            + "[" + PREFIX_COMMENT + "COMMENT]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PRIORITY + "5 "
             + PREFIX_CONTACT + "info@example.com "
@@ -107,9 +110,11 @@ public class EditCommand extends Command {
         Activities updatedActivities = editAttractionDescriptor
                 .getActivities().orElse(attractionToEdit.getActivities());
         Set<Tag> updatedTags = editAttractionDescriptor.getTags().orElse(attractionToEdit.getTags());
+        Set<Comment> updatedComments = editAttractionDescriptor.getComments().orElse(attractionToEdit.getComments());
 
         return new Attraction(
-                updatedName, updatedPriority, updatedContact, updatedAddress, updatedActivities, updatedTags);
+                updatedName, updatedPriority, updatedContact, updatedAddress, updatedActivities,
+                updatedTags, updatedComments);
     }
 
     @Override
@@ -148,6 +153,7 @@ public class EditCommand extends Command {
         private Address address;
         private Activities activities;
         private Set<Tag> tags;
+        private Set<Comment> comments;
 
         public EditAttractionDescriptor() {
         }
@@ -163,13 +169,14 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setActivities(toCopy.activities);
             setTags(toCopy.tags);
+            setComments(toCopy.comments);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, priority, contact, address, activities, tags);
+            return CollectionUtil.isAnyNonNull(name, priority, contact, address, activities, tags, comments);
         }
 
         public void setName(Name name) {
@@ -221,12 +228,31 @@ public class EditCommand extends Command {
         }
 
         /**
+         * Sets {@code comments} to this object's {@code comments}. A defensive copy of
+         * {@code comments} is used internally.
+         */
+        public void setComments(Set<Comment> comments) {
+            this.comments = (comments != null) ? new HashSet<>(comments) : null;
+        }
+
+
+
+        /**
          * Returns an unmodifiable tag set, which throws
          * {@code UnsupportedOperationException} if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
+        /**
+         * Returns an unmodifiable comment set, which throws
+         * {@code UnsupportedOperationException} if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code comment} is null.
+         */
+        public Optional<Set<Comment>> getComments() {
+            return (comments != null) ? Optional.of(Collections.unmodifiableSet(comments)) : Optional.empty();
         }
 
         @Override
@@ -246,7 +272,8 @@ public class EditCommand extends Command {
                     && Objects.equals(contact, otherEditAttractionDescriptor.contact)
                     && Objects.equals(address, otherEditAttractionDescriptor.address)
                     && Objects.equals(activities, otherEditAttractionDescriptor.activities)
-                    && Objects.equals(tags, otherEditAttractionDescriptor.tags);
+                    && Objects.equals(tags, otherEditAttractionDescriptor.tags)
+                    && Objects.equals(comments, otherEditAttractionDescriptor.comments);
         }
 
         @Override
@@ -258,6 +285,7 @@ public class EditCommand extends Command {
                     .add("address", address)
                     .add("activities", activities)
                     .add("tags", tags)
+                    .add("comments", comments)
                     .toString();
         }
     }
