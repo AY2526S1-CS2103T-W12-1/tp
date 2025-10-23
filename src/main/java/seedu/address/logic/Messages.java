@@ -51,7 +51,7 @@ public class Messages {
                 .append("; Tags: ");
         attraction.getTags().forEach(builder::append);
 
-        builder.append(";Comments: ");
+        builder.append("; Comments: ");
         attraction.getComments().forEach(builder::append);
 
         return builder.toString();
