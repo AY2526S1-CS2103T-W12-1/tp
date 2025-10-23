@@ -6,6 +6,7 @@ import java.util.Set;
 import seedu.address.model.attraction.Activities;
 import seedu.address.model.attraction.Address;
 import seedu.address.model.attraction.Attraction;
+import seedu.address.model.attraction.Comment;
 import seedu.address.model.attraction.Contact;
 import seedu.address.model.attraction.Name;
 import seedu.address.model.attraction.Priority;
@@ -29,6 +30,7 @@ public class AttractionBuilder {
     private Address address;
     private Activities activities;
     private Set<Tag> tags;
+    private Set<Comment> comments;
 
     /**
      * Creates a {@code AttractionBuilder} with the default details.
@@ -40,6 +42,7 @@ public class AttractionBuilder {
         address = new Address(DEFAULT_ADDRESS);
         activities = new Activities(DEFAULT_ACTIVITIES);
         tags = new HashSet<>();
+        comments = new HashSet<>();
     }
 
     /**
@@ -52,6 +55,7 @@ public class AttractionBuilder {
         address = attractionToCopy.getAddress();
         activities = attractionToCopy.getActivities();
         tags = new HashSet<>(attractionToCopy.getTags());
+        comments = new HashSet<>(attractionToCopy.getComments());
     }
 
     /**
@@ -101,8 +105,17 @@ public class AttractionBuilder {
         return this;
     }
 
+    /**
+     * Parses the {@code comments} into a {@code Set<Comment>}
+     * and set it to the {@code Attraction} that we are building.
+     */
+    public AttractionBuilder withComments(String ... comments) {
+        this.comments = SampleDataUtil.getCommentSet(comments);
+        return this;
+    }
+
     public Attraction build() {
-        return new Attraction(name, priority, contact, address, activities, tags);
+        return new Attraction(name, priority, contact, address, activities, tags, comments);
     }
 
 }
