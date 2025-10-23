@@ -91,6 +91,7 @@ public class SortCommandParser implements Parser<SortCommand> {
         if (argumentMultimap.getValue(PREFIX_TAG).isPresent()) {
             return PREFIX_TAG;
         }
+        // Code coverage cannot reach this line, defensive programming
         throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
     }
 
@@ -112,6 +113,7 @@ public class SortCommandParser implements Parser<SortCommand> {
         } else if (prefix.equals(PREFIX_TAG)) {
             // No comparator defined for tags yet
         }
+        // Code coverage cannot reach this line, defensive programming
         throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
     }
 }
