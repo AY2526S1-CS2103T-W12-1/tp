@@ -3,9 +3,12 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.COMMENT_DESC_1;
+import static seedu.address.logic.commands.CommandTestUtil.COMMENT_DESC_2;
 import static seedu.address.logic.commands.CommandTestUtil.CONTACT_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.CONTACT_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_COMMENT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_CONTACT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PRIORITY_DESC;
@@ -16,6 +19,8 @@ import static seedu.address.logic.commands.CommandTestUtil.PRIORITY_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COMMENT_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COMMENT_2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CONTACT_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PRIORITY_AMY;
@@ -23,6 +28,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PRIORITY_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -39,6 +45,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditAttractionDescriptor;
 import seedu.address.model.attraction.Address;
+import seedu.address.model.attraction.Comment;
 import seedu.address.model.attraction.Contact;
 import seedu.address.model.attraction.Name;
 import seedu.address.model.attraction.Priority;
@@ -48,6 +55,7 @@ import seedu.address.testutil.EditAttractionDescriptorBuilder;
 public class EditCommandParserTest {
 
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
+    private static final String COMMENT_EMPTY = " " + PREFIX_COMMENT;
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
@@ -88,6 +96,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_CONTACT_DESC, Contact.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
+        assertParseFailure(parser, "1" + INVALID_COMMENT_DESC, Comment.MESSAGE_CONSTRAINTS); //invalid comment
 
         // invalid phone followed by valid email
         assertParseFailure(parser, "1" + INVALID_PRIORITY_DESC + CONTACT_DESC_AMY, Priority.MESSAGE_CONSTRAINTS);
@@ -97,6 +106,13 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
+
+        //tag tests also apply to comment tests where you can reset comments when parsing {@code PREFIX_COMMENT} alone
+        //parsing together with a valid comment results in error
+        assertParseFailure(parser, "1" + COMMENT_DESC_1 + COMMENT_EMPTY, Comment.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + COMMENT_EMPTY + COMMENT_DESC_2, Comment.MESSAGE_CONSTRAINTS);
+
+
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_CONTACT_DESC
@@ -108,11 +124,13 @@ public class EditCommandParserTest {
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_ATTRACTION;
         String userInput = targetIndex.getOneBased() + PRIORITY_DESC_BOB + TAG_DESC_HUSBAND
-                + CONTACT_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
+                + CONTACT_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND
+                + COMMENT_DESC_1 + COMMENT_DESC_2;
 
         EditAttractionDescriptor descriptor = new EditAttractionDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPriority(VALID_PRIORITY_BOB).withContact(VALID_CONTACT_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+                .withComments(VALID_COMMENT_1, VALID_COMMENT_2).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -164,6 +182,12 @@ public class EditCommandParserTest {
         descriptor = new EditAttractionDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
+
+        //comments
+        userInput = targetIndex.getOneBased() + COMMENT_DESC_1;
+        descriptor = new EditAttractionDescriptorBuilder().withComments(VALID_COMMENT_1).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
@@ -208,4 +232,5 @@ public class EditCommandParserTest {
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
+    
 }
