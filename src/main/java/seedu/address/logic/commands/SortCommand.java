@@ -39,6 +39,7 @@ public class SortCommand extends Command{
      * Creates a SortCommand to sort the attractions by the given comparator.
      */
     public SortCommand(Comparator<Attraction> comparator) {
+        requireNonNull(comparator);
         this.comparator = comparator;
     }
 
