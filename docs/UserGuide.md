@@ -81,7 +81,7 @@ Action     | Format, Examples
 **Edit**   | `edit INDEX [n/NAME] [p/PRIORITY_NUMBER] [c/CONTACT] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/Golden Studios c/GoldenSS@example.com`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Golden Studios`
 **Add Location**   | `addlocation ln/LOCATION_NAME i/ATTRACTION_INDEX [i/ATTRACTION_INDEX]…`<br> e.g., `addlocation ln/Singapore i/1 i/2 i/3`
-**Delete Location**   | `delete ln/LOCATION_NAME`<br> e.g., `deletelocation ln/Singapore`
+**Delete Location**   | `deletelocation ln/LOCATION_NAME`<br> e.g., `deletelocation ln/Singapore`
 **List**   | `list`
 **Help**   | `help`
 
