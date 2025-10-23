@@ -20,8 +20,11 @@ public class OpeningHours {
             "(?<opensAt>([0-1][0-9]|2[0-3])[0-5][0-9])"
             + "\\s?-\\s?"
             + "(?<closesAt>([0-1][0-9]|2[0-3])[0-5][0-9])$";
+    // Valid times: 2359, 0000, 1900
+    // Invalid times: 2400, 2900
     public static final String TIME_VALIDATION_REGEX = "^([0-1][0-9]|2[0-3])[0-5][0-9]$";
     public static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HHmm");
+    public static final OpeningHours NON_SPECIFIED_HOURS = new OpeningHours();
     public final LocalTime opensAt;
     public final LocalTime closesAt;
     private final boolean pastMidnight;
@@ -40,6 +43,12 @@ public class OpeningHours {
         opensAt = LocalTime.parse(matcher.group("opensAt"), TIME_FORMATTER);
         closesAt = LocalTime.parse(matcher.group("closesAt"), TIME_FORMATTER);
         pastMidnight = opensAt.isAfter(closesAt);
+    }
+
+    private OpeningHours() {
+        this.opensAt = null;
+        this.closesAt = null;
+        this.pastMidnight = false;
     }
 
     /**
@@ -66,6 +75,9 @@ public class OpeningHours {
         requireNonNull(time);
         checkArgument(isValidTime(time), TIME_CONSTRAINTS);
         LocalTime timeQuery = LocalTime.parse(time, TIME_FORMATTER);
+        if (this.equals(NON_SPECIFIED_HOURS)) {
+            return true;
+        }
         if (pastMidnight) {
             return opensAt.isBefore(timeQuery) || closesAt.isAfter(timeQuery) || opensAt.equals(timeQuery);
         } else {
@@ -85,6 +97,10 @@ public class OpeningHours {
         }
 
         if (!(other instanceof OpeningHours)) {
+            return false;
+        }
+
+        if (other == NON_SPECIFIED_HOURS || this == NON_SPECIFIED_HOURS) {
             return false;
         }
 

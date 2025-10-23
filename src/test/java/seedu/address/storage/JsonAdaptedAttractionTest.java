@@ -132,15 +132,6 @@ public class JsonAdaptedAttractionTest {
     }
 
     @Test
-    public void toModelType_nullOpeningHours_throwsIllegalValueException() {
-        JsonAdaptedAttraction attraction = new JsonAdaptedAttraction(
-                VALID_NAME, VALID_PRIORITY, VALID_CONTACT, VALID_ADDRESS,
-                VALID_ACTIVITIES, null, VALID_PRICE, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, OpeningHours.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, attraction::toModelType);
-    }
-
-    @Test
     public void toModelType_invalidTags_throwsIllegalValueException() {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));

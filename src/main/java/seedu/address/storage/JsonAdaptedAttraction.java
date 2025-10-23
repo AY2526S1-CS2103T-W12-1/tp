@@ -127,14 +127,17 @@ class JsonAdaptedAttraction {
         }
         final Activities modelActivities = new Activities(activities);
 
-        if (openingHours == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    OpeningHours.class.getSimpleName()));
-        }
         if (!OpeningHours.isValidOpeningHours(openingHours)) {
             throw new IllegalValueException(OpeningHours.MESSAGE_CONSTRAINTS);
         }
-        final OpeningHours modelOpeningHours = new OpeningHours(openingHours);
+
+        final OpeningHours modelOpeningHours;
+        if (openingHours == null) {
+            modelOpeningHours = OpeningHours.NON_SPECIFIED_HOURS;
+        } else {
+            modelOpeningHours = new OpeningHours(openingHours);
+        }
+
 
         if (price == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Price.class.getSimpleName()));
