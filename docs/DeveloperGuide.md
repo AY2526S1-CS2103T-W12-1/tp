@@ -300,21 +300,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                | I want to …​                   | So that I can…​                                                                  |
 |----------|------------------------|--------------------------------|----------------------------------------------------------------------------------|
-| `* * *`  | user                   | add a attraction              | record information about an attraction                                           |
-| `* * *`  | user                   | delete a attraction           | remove unneeded / outdated information                                           |
+| `* * *`  | user                   | add a attraction               | record information about an attraction                                           |
+| `* * *`  | user                   | delete a attraction            | remove unneeded / outdated information                                           |
 | `* * *`  | user                   | list attractions               | locate details on that attraction without going through the entire list          |
 | `* * *`  | user                   | list all attractions           | keep track of all attractions of interest                                        |
-| `* *`    | user                   | Edit attraction details        | correct a error, or to add new information about an existing entry              |
+| `* *`    | user                   | Edit attraction details        | correct a error, or to add new information about an existing entry               |
 | `* *`    | user                   | Filter attractions by distance | find the closest attraction to me                                                |
 | `* *`    | user                   | Filter attractions             | find attractions that fit my specifications                                      |
 | `* *`    | user                   | Add attraction to location     | group attractions by location                                                    |
+| `* *`    | user                   | Delete attraction              | remove unneeded / outdated locations                                             |
 | `* *`    | user                   | compare locations              | see which location better fits my needs                                          |
 | `*`      | Financially aware user | Add cost (if applicable)       | See the cost related to each attraction for planning                             |
 | `*`      | Trip planner           | Add opening hours              | track when the location opens for future reference                               |
 | `*`      | Trip planner           | Edit opening hours             | update opening hours on new information / errors                                 |
 | `*`      | Trip planner           | Check opening hours            | check if the attraction is open at the time of my intended visit                 |
 | `*`      | Trip planner           | Add activities to attractions  | record the associated activities of an attraction                                |
-| `*`      | Trip planner           | Sort attractions by activities | Find available attractions for the activities to be planned                        |
+| `*`      | Trip planner           | Sort attractions by activities | Find available attractions for the activities to be planned                      |
 | `*`      | Trip planner           | create itinerary               | plan a list of activities and attractions for the day, verified by opening hours |
 | `*`      | Trip planner           | edit itinerary                 | edit a list of activities and attractions for the day, verified by opening hours |
 | `*`      | Trip planner           | delete itinerary               | remove a list of activities and attractions for the day                          |
@@ -441,7 +442,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Attraction**: A single place of interest
 * **Activity**: A thing to be done at a attraction
-* **Location**: A location ca contain any number of attractions
+* **Location**: A location can contain any number of attractions
 * **Itinerary**: An itenerary refers to a list of attractions to be visited, as well as the time spent at each attraction
 
 
