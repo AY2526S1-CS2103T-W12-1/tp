@@ -123,15 +123,14 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the Maplet data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as a unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* stores the Maplet data i.e., all `Attraction`, `Itinerary`, and `Location` objects.
+* exposes unmodifiable `ObservableList`s for attractions, itineraries, and locations so that the UI automatically updates when the data changes.
+* stores a `UserPrefs` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPrefs` object.
+* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components).
 
 <box type="info" seamless>
 
-**Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `Maplet`, which `Person` references. This allows `Maplet` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
+**Note:** **Location references:** A `Location` stores the `Name` objects of the attractions it groups instead of duplicating full `Attraction` instances. This keeps locations lightweight while ensuring they stay consistent with the attraction list.
 <puml src="diagrams/BetterModelClassDiagram.puml" width="450" />
 
 </box>
@@ -157,6 +156,32 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Location management feature
+
+The location management feature lets users group attractions under named locations so that related places stay together.
+
+#### Current implementation
+
+* `AddLocationCommand` and `DeleteLocationCommand` handle the respective commands. Their parsers enforce the `ln/` prefix and the presence of at least one attraction index where needed.
+* `Location`, `LocationName`, and `UniqueLocationList` represent the domain model. A `Location` wraps a `LocationName` and a set of attraction `Name`s.
+* `Model#addLocation`, `Model#deleteLocation`, and `Model#hasLocationName` delegate to `Maplet`, which maintains the `UniqueLocationList`.
+* Persistence is handled by `JsonSerializableMaplet` and `JsonAdaptedLocation`, which validate that every referenced attraction exists when reading from disk.
+* `LocationListPanel` and `LocationCard` render the list of locations in the UI.
+
+When a user executes `addlocation ln/Singapore i/1 i/2`:
+
+1. `MapletParser` chooses `AddLocationCommandParser`, which tokenises the prefixes and converts each `i/` value into an `Index`.
+2. The command retrieves each attraction from `Model#getFilteredAttractionList()` and collects their `Name` values, rejecting out-of-range indexes or duplicates.
+3. A new `Location` is created. `Location` enforces that at least one attraction is present and throws if the set is empty.
+4. `Model#hasLocationName` prevents duplicate location names before calling `Model#addLocation`, which stores the entry in the `UniqueLocationList`.
+
+The `deletelocation` command follows the same flow but calls `Model#deleteLocation(LocationName)` to remove the entry while leaving the attractions untouched.
+
+#### Design considerations
+
+* By storing attraction `Name`s instead of full attraction objects, locations stay synchronized with the attraction list without duplicating data.
+* All persistence checks happen during deserialization (`JsonAdaptedLocation#toModelType`) so invalid data never reaches the model.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -300,21 +325,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                | I want to …​                   | So that I can…​                                                                  |
 |----------|------------------------|--------------------------------|----------------------------------------------------------------------------------|
-| `* * *`  | user                   | add a attraction              | record information about an attraction                                           |
-| `* * *`  | user                   | delete a attraction           | remove unneeded / outdated information                                           |
+| `* * *`  | user                   | add a attraction               | record information about an attraction                                           |
+| `* * *`  | user                   | delete a attraction            | remove unneeded / outdated information                                           |
 | `* * *`  | user                   | list attractions               | locate details on that attraction without going through the entire list          |
 | `* * *`  | user                   | list all attractions           | keep track of all attractions of interest                                        |
-| `* *`    | user                   | Edit attraction details        | correct a error, or to add new information about an existing entry              |
+| `* *`    | user                   | Edit attraction details        | correct a error, or to add new information about an existing entry               |
 | `* *`    | user                   | Filter attractions by distance | find the closest attraction to me                                                |
 | `* *`    | user                   | Filter attractions             | find attractions that fit my specifications                                      |
 | `* *`    | user                   | Add attraction to location     | group attractions by location                                                    |
+| `* *`    | user                   | Delete attraction              | remove unneeded / outdated locations                                             |
 | `* *`    | user                   | compare locations              | see which location better fits my needs                                          |
 | `*`      | Financially aware user | Add cost (if applicable)       | See the cost related to each attraction for planning                             |
 | `*`      | Trip planner           | Add opening hours              | track when the location opens for future reference                               |
 | `*`      | Trip planner           | Edit opening hours             | update opening hours on new information / errors                                 |
 | `*`      | Trip planner           | Check opening hours            | check if the attraction is open at the time of my intended visit                 |
 | `*`      | Trip planner           | Add activities to attractions  | record the associated activities of an attraction                                |
-| `*`      | Trip planner           | Sort attractions by activities | Find available attractions for the activities to be planned                        |
+| `*`      | Trip planner           | Sort attractions by activities | Find available attractions for the activities to be planned                      |
 | `*`      | Trip planner           | create itinerary               | plan a list of activities and attractions for the day, verified by opening hours |
 | `*`      | Trip planner           | edit itinerary                 | edit a list of activities and attractions for the day, verified by opening hours |
 | `*`      | Trip planner           | delete itinerary               | remove a list of activities and attractions for the day                          |
@@ -441,7 +467,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Attraction**: A single place of interest
 * **Activity**: A thing to be done at a attraction
-* **Location**: A location ca contain any number of attractions
+* **Location**: A location can contain any number of attractions
 * **Itinerary**: An itenerary refers to a list of attractions to be visited, as well as the time spent at each attraction
 
 
