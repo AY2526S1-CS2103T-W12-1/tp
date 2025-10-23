@@ -443,7 +443,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: UC5 - Sort attractions**
+**Use case: UC5 - Edit attraction**
+
+**MSS**
+
+1.  User chooses to <u>list attractions (UC1)</u> to see index of attractions
+2.  User chooses to edit an attraction in the list
+3.  User enters index and details of attraction to edit
+4.  Maplet updates the attraction details
+
+    Use case ends.
+
+**Extensions** 
+
+* 3a. The given index is invalid.
+
+    * 3a1. Maplet prompts the user for valid index
+    * 3a2. User enters valid index
+
+      Steps 3a1-3a2 are repeated until index entered is valid.</br>
+      Use case resumes at step 4.
+
+* 3b. Details are in the wrong format
+
+    * 3b1. Maplet prompts the user for correct format
+    * 3b2. User enters correct attraction details
+
+      Steps 3b1-3b2 are repeated until the details entered are correct.</br>
+      Use case resumes at step 4.
+
+
+**Use case: UC6 - Sort attractions**
 
 **MSS**
 
