@@ -11,6 +11,7 @@ import static seedu.address.testutil.TypicalLocations.SINGAPORE;
 
 import java.nio.file.Path;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -137,6 +138,11 @@ public class DeleteLocationCommandTest {
 
         @Override
         public void updateFilteredAttractionList(Predicate<Attraction> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSortedAttractionList(Comparator<Attraction> comparator) {
             throw new AssertionError("This method should not be called.");
         }
 
