@@ -29,7 +29,7 @@ public class AddCommand extends Command {
             + PREFIX_CONTACT + "CONTACT "
             + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_ACTIVITIES + "DESCRIPTION/ACTIVITY "
-            + "[" + PREFIX_TAG + "TAG]"
+            + "[" + PREFIX_TAG + "TAG]..."
             + "[" + PREFIX_COMMENT + "COMMENT]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Gardens by the Bay "
