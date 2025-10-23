@@ -443,6 +443,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
+**Use case: UC5 - Sort attractions**
+
+**MSS**
+
+1.  User chooses to sort attractions by a criteria
+2.  User enters criteria
+3.  Maplet shows a list of attractions sorted by criteria
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Wrong criteria format is given.
+
+    * 2a1. Maplet prompts the user for valid criteria
+    * 2a2. User enters valid criteria
+
+      Steps 2a1-2a2 are repeated until criteria entered is valid.</br>
+      Use case resumes at step 3.
+
+* 3a. The list is empty
+
+    Use case ends.
 
 ### Non-Functional Requirements
 
