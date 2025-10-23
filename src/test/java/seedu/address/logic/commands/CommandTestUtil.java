@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ACTIVITIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION_ATTRACTION_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OPENING_HOURS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
@@ -45,6 +47,8 @@ public class CommandTestUtil {
     public static final String VALID_PRICE_BOB = "10";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_LOCATION_NAME_SINGAPORE = "Singapore";
+    public static final String VALID_LOCATION_NAME_SENTOSA = "Sentosa";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -62,6 +66,13 @@ public class CommandTestUtil {
     public static final String PRICE_DESC_BOB = " " + PREFIX_PRICE + VALID_PRICE_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String LOCATION_NAME_DESC_SINGAPORE = " "
+            + PREFIX_LOCATION_NAME + VALID_LOCATION_NAME_SINGAPORE;
+    public static final String LOCATION_NAME_DESC_SENTOSA = " " + PREFIX_LOCATION_NAME + VALID_LOCATION_NAME_SENTOSA;
+    public static final String LOCATION_ATTRACTION_INDEX_DESC_FIRST =
+            " " + PREFIX_LOCATION_ATTRACTION_INDEX + "1";
+    public static final String LOCATION_ATTRACTION_INDEX_DESC_SECOND =
+            " " + PREFIX_LOCATION_ATTRACTION_INDEX + "2";
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PRIORITY_DESC = " " + PREFIX_PRIORITY + "a"; // 'a' not allowed in priority
@@ -74,6 +85,7 @@ public class CommandTestUtil {
     public static final String INVALID_OPENING_HOURS_DESC = " " + PREFIX_OPENING_HOURS + "2500 - 3200"; // 24 hour only
     public static final String INVALID_PRICE_DESC = " " + PREFIX_PRICE + "abc"; // only digits allowed in price
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_LOCATION_NAME_DESC = " " + PREFIX_LOCATION_NAME + "Sentosa&"; // '&' not allowed
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

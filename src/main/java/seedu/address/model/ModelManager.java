@@ -4,15 +4,19 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.attraction.Attraction;
 import seedu.address.model.itinerary.Itinerary;
+import seedu.address.model.location.Location;
+import seedu.address.model.location.LocationName;
 
 /**
  * Represents the in-memory model of the Maplet data.
@@ -24,6 +28,7 @@ public class ModelManager implements Model {
     private final Maplet maplet;
     private final UserPrefs userPrefs;
     private final FilteredList<Attraction> filteredAttractions;
+    private final SortedList<Attraction> sortedAttractions;
     private final FilteredList<Itinerary> filteredItineraries;
 
     /**
@@ -36,7 +41,8 @@ public class ModelManager implements Model {
 
         this.maplet = new Maplet(maplet);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredAttractions = new FilteredList<>(this.maplet.getAttractionList());
+        sortedAttractions = new SortedList<>(this.maplet.getAttractionList());
+        filteredAttractions = new FilteredList<>(sortedAttractions);
         filteredItineraries = new FilteredList<>(this.maplet.getItineraryList());
     }
 
@@ -95,6 +101,20 @@ public class ModelManager implements Model {
         return maplet.hasAttraction(attraction);
     }
 
+
+
+    @Override
+    public boolean hasLocation(Location location) {
+        requireNonNull(location);
+        return maplet.hasLocation(location);
+    }
+
+    @Override
+    public boolean hasLocationName(LocationName locationName) {
+        requireNonNull(locationName);
+        return maplet.hasLocationName(locationName);
+    }
+
     @Override
     public void deleteAttraction(Attraction target) {
         maplet.removeAttraction(target);
@@ -107,10 +127,20 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addLocation(Location location) {
+        maplet.addLocation(location);
+    }
+
+    @Override
     public void setAttraction(Attraction target, Attraction editedAttraction) {
         requireAllNonNull(target, editedAttraction);
 
         maplet.setAttraction(target, editedAttraction);
+    }
+
+    @Override
+    public void deleteLocation(LocationName locationName) {
+        maplet.removeLocation(locationName);
     }
 
     // Logic duplication from attraction methods
@@ -148,11 +178,24 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Location> getLocationList() {
+        return maplet.getLocationList();
+    }
+
+    @Override
     public void updateFilteredAttractionList(Predicate<Attraction> predicate) {
         requireNonNull(predicate);
+        updateSortedAttractionList(null); // Reset sorting when filtering
         filteredAttractions.setPredicate(predicate);
     }
 
+    //=========== Sorted Attraction List Accessors =============================================================
+    @Override
+    public void updateSortedAttractionList(Comparator<Attraction> comparator) {
+        sortedAttractions.setComparator(comparator);
+    }
+
+    //=========== Filtered Itinerary List Accessors =============================================================
     @Override
     public ObservableList<Itinerary> getFilteredItineraryList() {
         return filteredItineraries;

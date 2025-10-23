@@ -21,6 +21,7 @@ public class JsonSerializableMapletTest {
     private static final Path DUPLICATE_ATTRACTION_FILE = TEST_DATA_FOLDER.resolve("duplicateAttractionMaplet.json");
     private static final Path INVALID_ITINERARY_FILE = TEST_DATA_FOLDER.resolve("invalidItineraryMaplet.json");
     private static final Path DUPLICATE_ITINERARY_FILE = TEST_DATA_FOLDER.resolve("duplicateItineraryMaplet.json");
+    private static final Path DUPLICATE_LOCATION_FILE = TEST_DATA_FOLDER.resolve("duplicateLocationMaplet.json");
 
     @Test
     public void toModelType_typicalAttractionsFile_success() throws Exception {
@@ -58,6 +59,14 @@ public class JsonSerializableMapletTest {
         JsonSerializableMaplet dataFromFile = JsonUtil.readJsonFile(DUPLICATE_ITINERARY_FILE,
                 JsonSerializableMaplet.class).get();
         assertThrows(IllegalValueException.class, JsonSerializableMaplet.MESSAGE_DUPLICATE_ITINERARY,
+                dataFromFile::toModelType);
+    }
+
+    @Test
+    public void toModelType_duplicateLocations_throwsIllegalValueException() throws Exception {
+        JsonSerializableMaplet dataFromFile = JsonUtil.readJsonFile(DUPLICATE_LOCATION_FILE,
+                JsonSerializableMaplet.class).get();
+        assertThrows(IllegalValueException.class, JsonSerializableMaplet.MESSAGE_DUPLICATE_LOCATION,
                 dataFromFile::toModelType);
     }
 

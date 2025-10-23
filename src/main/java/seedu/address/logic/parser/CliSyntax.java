@@ -15,5 +15,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_PRICE = new Prefix("pr/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_ITINERARY_ATTRACTION_INDEX = new Prefix("ai/");
+    public static final Prefix PREFIX_LOCATION_NAME = new Prefix("ln/");
+    public static final Prefix PREFIX_LOCATION_ATTRACTION_INDEX = new Prefix("i/");
 
 }

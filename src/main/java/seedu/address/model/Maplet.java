@@ -10,6 +10,9 @@ import seedu.address.model.attraction.Attraction;
 import seedu.address.model.attraction.UniqueAttractionList;
 import seedu.address.model.itinerary.Itinerary;
 import seedu.address.model.itinerary.UniqueItineraryList;
+import seedu.address.model.location.Location;
+import seedu.address.model.location.LocationName;
+import seedu.address.model.location.UniqueLocationList;
 
 /**
  * Wraps all data at the Maplet level. Duplicates are not allowed (by
@@ -19,6 +22,7 @@ public class Maplet implements ReadOnlyMaplet {
 
     private final UniqueAttractionList attractions;
     private final UniqueItineraryList itineraries;
+    private final UniqueLocationList locations;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -30,6 +34,8 @@ public class Maplet implements ReadOnlyMaplet {
     {
         attractions = new UniqueAttractionList();
         itineraries = new UniqueItineraryList();
+        locations = new UniqueLocationList();
+
     }
 
     public Maplet() {
@@ -54,6 +60,12 @@ public class Maplet implements ReadOnlyMaplet {
     }
 
     /**
+     *
+     */
+    public void setLocations(List<Location> locations) {
+        this.locations.setLocations(locations);
+    }
+    /**
      * Resets the existing data of this {@code Maplet} with {@code newData}.
      */
     public void resetData(ReadOnlyMaplet newData) {
@@ -61,6 +73,7 @@ public class Maplet implements ReadOnlyMaplet {
 
         setAttractions(newData.getAttractionList());
         setItineraries(newData.getItineraryList());
+        setLocations(newData.getLocationList());
     }
 
     //// attraction-level operations
@@ -74,7 +87,7 @@ public class Maplet implements ReadOnlyMaplet {
     }
 
     /**
-     * Adds a attraction to the Maplet. The attraction must not already exist in
+     * Adds an attraction to the Maplet. The attraction must not already exist in
      * the Maplet.
      */
     public void addAttraction(Attraction p) {
@@ -147,6 +160,40 @@ public class Maplet implements ReadOnlyMaplet {
         itineraries.remove(itinerary);
     }
 
+    //// location-level operations
+
+    /**
+     * Returns true if a location with the same identity as {@code location} exists in the Maplet.
+     */
+    public boolean hasLocation(Location location) {
+        requireNonNull(location);
+        return locations.contains(location);
+    }
+
+    /**
+     * Returns true if a location with the same name as {@code locationName} exists in the Maplet.
+     */
+    public boolean hasLocationName(LocationName locationName) {
+        requireNonNull(locationName);
+        return locations.containsLocationName(locationName);
+    }
+
+    /**
+     * Adds a location to the Maplet.
+     * The location must not already exist in the Maplet.
+     */
+    public void addLocation(Location location) {
+        locations.add(location);
+    }
+
+    /**
+     * Removes the location with {@code locationName} from this {@code Maplet}.
+     * {@code locationName} must exist in the Maplet.
+     */
+    public void removeLocation(LocationName locationName) {
+        locations.remove(locationName);
+    }
+
     //// util methods
 
     @Override
@@ -154,6 +201,7 @@ public class Maplet implements ReadOnlyMaplet {
         return new ToStringBuilder(this)
                 .add("attractions", attractions)
                 .add("itineraries", itineraries)
+                .add("locations", locations)
                 .toString();
     }
 
@@ -165,6 +213,11 @@ public class Maplet implements ReadOnlyMaplet {
     @Override
     public ObservableList<Itinerary> getItineraryList() {
         return itineraries.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Location> getLocationList() {
+        return locations.asUnmodifiableObservableList();
     }
 
     @Override
@@ -180,7 +233,8 @@ public class Maplet implements ReadOnlyMaplet {
 
         Maplet otherMaplet = (Maplet) other;
         return attractions.equals(otherMaplet.attractions)
-                && itineraries.equals(otherMaplet.itineraries);
+                && itineraries.equals(otherMaplet.itineraries)
+                && locations.equals(otherMaplet.locations);
     }
 
     @Override

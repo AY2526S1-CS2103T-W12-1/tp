@@ -27,6 +27,8 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.attraction.Attraction;
 import seedu.address.model.itinerary.Itinerary;
 import seedu.address.model.itinerary.ItineraryName;
+import seedu.address.model.location.Location;
+import seedu.address.model.location.LocationName;
 import seedu.address.testutil.AttractionBuilder;
 
 public class AddItineraryCommandTest {
@@ -207,6 +209,38 @@ public class AddItineraryCommandTest {
 
         @Override
         public void updateFilteredAttractionList(Predicate<Attraction> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        //===Location====
+        @Override
+        public boolean hasLocation(Location location) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasLocationName(LocationName locationName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addLocation(Location location) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Location> getLocationList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteLocation(LocationName locationName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        //===Itinerary===
+        @Override
+        public void updateSortedAttractionList(java.util.Comparator<Attraction> comparator) {
             throw new AssertionError("This method should not be called.");
         }
 

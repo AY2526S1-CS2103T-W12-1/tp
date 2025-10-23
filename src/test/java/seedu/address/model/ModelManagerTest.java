@@ -7,6 +7,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ATTRACTIONS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAttractions.ALICE;
 import static seedu.address.testutil.TypicalAttractions.BENSON;
+import static seedu.address.testutil.TypicalLocations.SINGAPORE;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -89,8 +90,35 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void hasLocation_nullLocation_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasLocation(null));
+    }
+
+    @Test
+    public void hasLocation_locationNotInMaplet_returnsFalse() {
+        assertFalse(modelManager.hasLocation(SINGAPORE));
+    }
+
+    @Test
+    public void hasLocation_locationInMaplet_returnsTrue() {
+        modelManager.addLocation(SINGAPORE);
+        assertTrue(modelManager.hasLocation(SINGAPORE));
+    }
+
+    @Test
+    public void hasLocationName_locationInMaplet_returnsTrue() {
+        modelManager.addLocation(SINGAPORE);
+        assertTrue(modelManager.hasLocationName(SINGAPORE.getName()));
+    }
+
+    @Test
     public void getFilteredAttractionList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredAttractionList().remove(0));
+    }
+
+    @Test
+    public void getLocationList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getLocationList().remove(0));
     }
 
     @Test
