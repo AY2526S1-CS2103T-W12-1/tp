@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -15,6 +16,16 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Attraction> PREDICATE_SHOW_ALL_ATTRACTIONS = unused -> true;
     Predicate<Itinerary> PREDICATE_SHOW_ALL_ITINERARIES = unused -> true;
+
+    /** {@code Comparator} that sorts attractions by name in ascending order */
+    Comparator<Attraction> COMPARATOR_SORT_BY_NAME_ASCENDING = (attr1, attr2) ->
+            attr1.getName().fullName.compareToIgnoreCase(attr2.getName().fullName);
+    Comparator<Attraction> COMPARATOR_SORT_BY_PRIORITY_DESCENDING = (attr1, attr2) ->
+            Integer.compare(Integer.parseInt(attr2.getPriority().value), Integer.parseInt(attr1.getPriority().value));
+    Comparator<Attraction> COMPARATOR_SORT_BY_CONTACT_ASCENDING = (attr1, attr2) ->
+            attr1.getContact().value.compareToIgnoreCase(attr2.getContact().value);
+    Comparator<Attraction> COMPARATOR_SORT_BY_ADDRESS_ASCENDING = (attr1, attr2) ->
+            attr1.getAddress().value.compareToIgnoreCase(attr2.getAddress().value);
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -87,6 +98,12 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredAttractionList(Predicate<Attraction> predicate);
+
+    /**
+     * Updates the sorted attraction list using the given {@code comparator}.
+     * @throws NullPointerException if {@code comparator} is null.
+     */
+    void updateSortedAttractionList(Comparator<Attraction> comparator);
 
     boolean hasItinerary(Itinerary itinerary);
 

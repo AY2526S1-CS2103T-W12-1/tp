@@ -1,6 +1,11 @@
 package seedu.address.logic.commands;
 
+import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.logic.parser.SortCommandParser;
 import seedu.address.model.Model;
+import seedu.address.model.attraction.Attraction;
+
+import java.util.Comparator;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
@@ -29,15 +34,43 @@ public class SortCommand extends Command{
 
     public static final String MESSAGE_SUCCESS = "Listed all attractions";
 
-    private final String sortFieldPrefix;
+    private final Comparator<Attraction> comparator;
 
-    public SortCommand(String sortFieldPrefix) {
-        this.sortFieldPrefix = sortFieldPrefix;
+    /**
+     * Creates a SortCommand to sort the attractions by the given comparator.
+     */
+    public SortCommand(Comparator<Attraction> comparator) {
+        this.comparator = comparator;
     }
 
+    @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredAttractionList(PREDICATE_SHOW_ALL_ATTRACTIONS);
+        //Must come after updating filtered list as line above resets sort.
+        model.updateSortedAttractionList(comparator);
         return new CommandResult(MESSAGE_SUCCESS);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof SortCommand)) {
+            return false;
+        }
+
+        SortCommand otherSortCommand = (SortCommand) other;
+        return comparator.equals(otherSortCommand.comparator);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("comparator", comparator)
+                .toString();
     }
 }

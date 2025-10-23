@@ -4,11 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.attraction.Attraction;
@@ -24,6 +26,7 @@ public class ModelManager implements Model {
     private final Maplet maplet;
     private final UserPrefs userPrefs;
     private final FilteredList<Attraction> filteredAttractions;
+    private final SortedList<Attraction> sortedAttractions;
     private final FilteredList<Itinerary> filteredItineraries;
 
     /**
@@ -36,7 +39,8 @@ public class ModelManager implements Model {
 
         this.maplet = new Maplet(maplet);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredAttractions = new FilteredList<>(this.maplet.getAttractionList());
+        sortedAttractions = new SortedList<>(this.maplet.getAttractionList());
+        filteredAttractions = new FilteredList<>(sortedAttractions);
         filteredItineraries = new FilteredList<>(this.maplet.getItineraryList());
     }
 
@@ -150,9 +154,17 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredAttractionList(Predicate<Attraction> predicate) {
         requireNonNull(predicate);
+        updateSortedAttractionList(null); // Reset sorting when filtering
         filteredAttractions.setPredicate(predicate);
     }
 
+    //=========== Sorted Attraction List Accessors =============================================================
+    @Override
+    public void updateSortedAttractionList(Comparator<Attraction> comparator) {
+        sortedAttractions.setComparator(comparator);
+    }
+
+    //=========== Filtered Itinerary List Accessors =============================================================
     @Override
     public ObservableList<Itinerary> getFilteredItineraryList() {
         return filteredItineraries;
