@@ -63,9 +63,6 @@ Attraction *--> Contact
 Attraction *--> Priority
 Attraction *--> Address
 Attraction *--> Activities
-Attraction *--> Tags
-Attraction *--> OpeningHours
-Attraction *--> Price
 
 ' ===== New feature compositions =====
 Maplet *--> "1" UniqueItineraryList
