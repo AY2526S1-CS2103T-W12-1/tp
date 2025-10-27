@@ -121,6 +121,8 @@
         "sorting-attractions-sort": "Sorting attractions : sort",
         "adding-a-location-addlocation": "Adding a location: addlocation",
         "deleting-a-location-deletelocation": "Deleting a location : deletelocation",
+        "adding-an-itinerary-additinerary": "Adding an itinerary: additinerary",
+        "deleting-an-itinerary-deleteitinerary": "Deleting an itinerary : deleteitinerary",
         "clearing-all-entries-clear": "Clearing all entries : clear",
         "exiting-the-program-exit": "Exiting the program : exit",
         "saving-the-data": "Saving the data",
