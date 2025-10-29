@@ -38,7 +38,9 @@ Maplet caters to individuals that are **planning to go overseas** or are **frequ
 
    * `exit` : Exits the app.
 
-   * `addlocation ln/Singapore i/1`: Adds attraction with index 1 to location Singapore
+   * `addlocation ln/Singapore i/1`: Adds attraction with index 1 to location Singapore.
+
+   * `additinerary n/Singapore Trip ai/1 ai/2`: Creates an itinerary called "Singapore Trip" with the attractions that are at index 1 and 2.
 
 
   * 5. Refer to the [Features](#features) below for details of each command.
@@ -80,8 +82,11 @@ Action     | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit**   | `edit INDEX [n/NAME] [p/PRIORITY_NUMBER] [c/CONTACT] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/Golden Studios c/GoldenSS@example.com`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Golden Studios`
+**Sort**   | `sort PREFIX`<br> e.g., `sort p/`
 **Add Location**   | `addlocation ln/LOCATION_NAME i/ATTRACTION_INDEX [i/ATTRACTION_INDEX]…`<br> e.g., `addlocation ln/Singapore i/1 i/2 i/3`
 **Delete Location**   | `deletelocation ln/LOCATION_NAME`<br> e.g., `deletelocation ln/Singapore`
+**Add Itinerary**   | `additinerary n/ITINERARY_NAME [ai/ATTRACTION_INDEX]…`<br> e.g., `additinerary n/Singapore Trip ai/1 ai/2`
+**Delete Itinerary**   | `deleteitinerary INDEX`<br> e.g., `deleteitinerary 1`
 **List**   | `list`
 **Help**   | `help`
 
@@ -167,6 +172,23 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd attraction in Maplet.
 * `find Cat Cafe` followed by `delete 1` deletes the 1st attraction in the results of the `find` command.
 
+### Sorting attractions : `sort`
+
+Sorts all attractions in Maplet based on the specified prefix.
+
+Format: `sort PREFIX`
+
+* Sorts all attractions in the following order depending on the specified `PREFIX`.
+* `PREFIX` can be one of the following:
+  * `n/` : Sorts attractions in alphabetical order of names (A to Z)
+  * `p/` : Sorts attractions in descending order of priority (Largest to Smallest)
+  * `c/` : Sorts attractions in alphabetical order of contact details (A to Z)
+  * `a/` : Sorts attractions in alphabetical order of addresses (A to Z)
+
+Examples:
+* `sort n/` sorts all attractions in alphabetical order of names (A to Z)
+* `sort p/` sorts all attractions in descending order of priority (Largest to Smallest)
+
 ### Adding a location: `addlocation`
 
 Adds an location to Maplet.
@@ -193,6 +215,36 @@ Format: `deletelocation ln/LOCATION_NAME`
 Examples:
 
 * `deletelocation ln/Singapore` deletes the location `Singapore`.
+
+### Adding an itinerary: `additinerary`
+
+Adds an itinerary to Maplet. An itinerary is a collection of attractions that the user plans on visiting together.
+
+Format: `additinerary n/ITINERARY_NAME [ai/ATTRACTION_INDEX]…​`
+
+* Creates a new itinerary with the specified `ITINERARY_NAME`.
+* You can add attractions to the itinerary by specifying their index numbers from the displayed attraction list.
+* Each attraction can only be added once to an itinerary.
+* The itinerary name must be unique (no two itineraries can have the same name).
+
+
+Examples:
+* `additinerary n/Singapore Trip ai/1 ai/2` creates an itinerary called "Singapore Runaround" with attractions at index 1 and 2
+* `additinerary n/Europe Tour ai/3 ai/5 ai/7` creates an itinerary called "Europe Tour" with attractions at index 3, 5, and 7
+
+### Deleting an itinerary : `deleteitinerary`
+
+Deletes the specified itinerary from Maplet.
+
+Format: `deleteitinerary INDEX`
+
+* Deletes the itinerary at the specified `INDEX`.
+* The index refers to the index number shown in the displayed itinerary list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `deleteitinerary 1` deletes the 1st itinerary in the itinerary list.
+* `deleteitinerary 3` deletes the 3rd itinerary in the itinerary list.
 
 ### Clearing all entries : `clear`
 
