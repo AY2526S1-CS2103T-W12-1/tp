@@ -23,14 +23,14 @@ Maplet caters to individuals that are **planning to go overseas** or are **frequ
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar maplet.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/UiAlpha.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all attractions.
 
-   * `add n/Eiffel Tower p/9 c/example@gmail.com, a/Paris, act/climb tower t/bucket list t/with friends`: Adds an attraction called Eiffel Tower
+   * `add n/Eiffel Tower p/9 c/example@gmail.com, a/Paris, act/climb tower t/bucket list t/with friends com/It's a really tall place!` : Adds an attraction called Eiffel Tower
 
    * `delete 3` : Deletes the 3rd attraction shown in the current list.
 
@@ -77,7 +77,7 @@ Maplet caters to individuals that are **planning to go overseas** or are **frequ
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PRIORITY_NUMBER c/CONTACT a/ADDRESS [t/TAG]…​` <br> e.g., `add n/Universal Village p/4 c/UniVillage@example.com a/123, Clementi Rd, 1234665 t/movies t/leisure`
+**Add**    | `add n/NAME p/PRIORITY_NUMBER c/CONTACT a/ADDRESS [t/TAG]…​` <br> e.g., `add n/Universal Village p/4 c/UniVillage@example.com a/123, Clementi Rd, 1234665 t/movies t/leisure com/This place has a lot of rides but they have long queues.`
 **Clear**  | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit**   | `edit INDEX [n/NAME] [p/PRIORITY_NUMBER] [c/CONTACT] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/Golden Studios c/GoldenSS@example.com`
@@ -104,16 +104,17 @@ Format: `help`
 
 Adds an attraction to Maplet.
 
-Format: `add n/NAME p/PRIORITY c/CONTACT a/ADDRESS act/ACTIVITIES [t/TAG]…​`
+Format: `add n/NAME p/PRIORITY c/CONTACT a/ADDRESS act/ACTIVITIES [t/TAG]… [com/COMMENT]…​`
 
 <box type="tip" seamless>
 
-**Tip:** An attraction can have any number of tags (including 0)
+**Tip:** An attraction can have any number of tags and comments (including 0)
 </box>
 
 Examples:
 * `add n/Big ben a/London, c/hello@gmail.com, p/5, act/listen to ben`
 * `add n/Eiffel Tower p/9 c/example@gmail.com, a/Paris, act/climb tower t/bucket list t/with friends`
+* `add n/Pisa Tower p/9 c/hey123@gmail.com, a/Italy, act/phototaking t/with friends com/It's leaning!`
 
 ### Listing all attractions : `list`
 
@@ -125,7 +126,7 @@ Format: `list`
 
 Edits an existing attraction in Maplet.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [c/CONTACT] [a/ADDRESS] [act/ACTIVITIES] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [c/CONTACT] [a/ADDRESS] [act/ACTIVITIES] [t/TAG]… [com/COMMENT]…​`
 
 * Edits the attraction at the specified `INDEX`. The index refers to the index number shown in the displayed attraction list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -133,6 +134,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [c/CONTACT] [a/ADDRESS] [act/ACTIVITIES] 
 * When editing tags, the existing tags of the attraction will be removed i.e adding of tags is not cumulative.
 * You can remove all the attraction’s tags by typing `t/` without
     specifying any tags after it.
+* You can also remove comments by typing `com/` without specifying any comments.
 
 Examples:
 *  `edit 1 p/9 c/orangerestaurant@example.com` Edits the priority value and contact detail of the 1st attraction to be `9` and `orangerestaurant@example.com` respectively.
