@@ -172,17 +172,17 @@ Sorts all attractions and itineraries in Maplet based on the specified prefix.
 
 Format: `sort PREFIX`
 
-* Sorts all attractions in the following order depending on the specified `PREFIX`.
+* Sorts all attractions and itineraries in the following order depending on the specified `PREFIX`.
 * `PREFIX` can be one of the following:
   * `n/` : Sorts attractions and itineraries in alphabetical order of names (A to Z) 
-  * `p/` : Sorts attractions in descending order of priority (Largest to Smallest), 
+  * `p/` : Sorts attractions in descending order of priority (High to Low), 
            and itineraries in descending order of their cumulative attractions' priority
   * `pr/` : Sorts attractions in ascending order of price (Cheapest to Most Expensive),
             and itineraries in ascending order of their cumulative attractions' price
 
 Examples:
 * `sort n/` sorts all attractions and itineraries in alphabetical order of names (A to Z)
-* `sort p/` sorts all attractions and itineraries in based on priority
+* `sort p/` sorts all attractions and itineraries in based on priority (High to Low)
 
 ### Adding a location: `addlocation`
 
