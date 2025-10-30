@@ -3,8 +3,13 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
+import java.util.Optional;
+
+import seedu.address.commons.core.index.Index;
 
 import seedu.address.commons.util.ToStringBuilder;
+
+import javax.swing.text.html.Option;
 
 /**
  * Represents the result of a command execution.
@@ -19,21 +24,37 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** Edit window should be displayed to the user.
+     *  index of the attraction to be editted*/
+    private final boolean showEditWindow;
+    private final Optional<Index> index;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
+                         boolean showEditWindow, Optional<Index> index) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.showEditWindow = showEditWindow;
+        this.index = index;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields,
+     * and other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+        this(feedbackToUser, showHelp, exit, false, Optional.empty());
     }
 
     /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
      * and other fields set to their default value.
      */
-    public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+    public CommandResult(String feedbackToUser) {this(feedbackToUser, false,
+            false, false, Optional.empty());
     }
 
     public String getFeedbackToUser() {
@@ -46,6 +67,14 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public boolean isShowEditWindow() {
+        return showEditWindow;
+    }
+
+    public Optional<Index> getIndex() {
+        return index;
     }
 
     @Override

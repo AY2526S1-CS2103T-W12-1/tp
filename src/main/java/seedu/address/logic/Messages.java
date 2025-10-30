@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.attraction.Attraction;
+import seedu.address.model.attraction.Comment;
 import seedu.address.model.attraction.Name;
 import seedu.address.model.location.Location;
 
@@ -75,5 +76,6 @@ public class Messages {
                 .append(attractionNames);
         return builder.toString();
     }
+
 
 }

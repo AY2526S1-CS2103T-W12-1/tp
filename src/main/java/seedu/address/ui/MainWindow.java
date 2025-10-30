@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -13,6 +14,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -38,6 +40,7 @@ public class MainWindow extends UiPart<Stage> {
     private LocationListPanel locationListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private EditWindow editWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -185,6 +188,20 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     * Displays edit window
+     * @return
+     */
+    @FXML
+    private void handleEditWindow(Index index) {
+        editWindow = new EditWindow(logic, this::executeCommand, index);
+        if (!editWindow.isShowing()) {
+            editWindow.show();
+        } else {
+            editWindow.focus();
+        }
+    }
+
     public AttractionListPanel getAttractionListPanel() {
         return attractionListPanel;
     }
@@ -221,6 +238,11 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isShowEditWindow()) {
+                Index index = commandResult.getIndex().get();
+                handleEditWindow(index);
             }
 
             return commandResult;
