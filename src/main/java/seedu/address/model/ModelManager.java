@@ -205,7 +205,6 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredAttractionList(Predicate<Attraction> predicate) {
         requireNonNull(predicate);
-        updateSortedAttractionList(null); // Reset sorting when filtering
         filteredAttractions.setPredicate(predicate);
     }
 
@@ -224,7 +223,6 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredItineraryList(Predicate<Itinerary> predicate) {
         requireNonNull(predicate);
-        updateSortedItineraryList(null);
         filteredItineraries.setPredicate(predicate);
     }
 

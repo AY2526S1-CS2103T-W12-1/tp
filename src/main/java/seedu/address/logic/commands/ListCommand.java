@@ -19,6 +19,7 @@ public class ListCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredAttractionList(PREDICATE_SHOW_ALL_ATTRACTIONS);
+        model.updateSortedAttractionList(null); //reset to default sorting
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

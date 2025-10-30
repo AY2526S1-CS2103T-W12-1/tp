@@ -32,7 +32,7 @@ public class SortCommand extends Command {
             + COMMAND_WORD + " "
             + PREFIX_PRICE;
 
-    public static final String MESSAGE_SUCCESS = "Listed all attractions";
+    public static final String MESSAGE_SUCCESS = "Sorted all Attractions and Itineraries";
 
     private final Comparator<Attraction> attractionComparator;
     private final Comparator<Itinerary> itineraryComparator;
@@ -52,7 +52,6 @@ public class SortCommand extends Command {
         requireNonNull(model);
         model.updateFilteredAttractionList(PREDICATE_SHOW_ALL_ATTRACTIONS);
         model.updateFilteredItineraryList(PREDICATE_SHOW_ALL_ITINERARIES);
-        //Must come after updating filtered list as line above resets sort.
         model.updateSortedAttractionList(attractionComparator);
         model.updateSortedItineraryList(itineraryComparator);
         return new CommandResult(MESSAGE_SUCCESS);
