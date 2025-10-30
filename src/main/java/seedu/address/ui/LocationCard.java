@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import seedu.address.model.attraction.Name;
 import seedu.address.model.location.Location;
@@ -36,6 +37,12 @@ public class LocationCard extends UiPart<Region> {
     public LocationCard(Location location, int displayedIndex) {
         super(FXML);
         this.location = location;
+        HBox.setHgrow(name, Priority.ALWAYS);
+        cardPane.setMinWidth(0);
+        name.setMinWidth(0);
+        attractionNames.setMinWidth(0);
+        attractionNames.prefWidthProperty().bind(cardPane.widthProperty());
+        attractionNames.prefWrapLengthProperty().bind(cardPane.widthProperty());
         id.setText(displayedIndex + ". ");
         name.setText(location.getName().value);
         attractionCount.setText(String.format("Attractions (%d)", location.getAttractionNames().size()));

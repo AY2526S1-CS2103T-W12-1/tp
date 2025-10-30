@@ -21,6 +21,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.attraction.Attraction;
 import seedu.address.testutil.ItineraryBuilder;
+import seedu.address.testutil.LocationBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -91,6 +92,17 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_ATTRACTION);
 
         assertCommandFailure(deleteCommand, modelWithItinerary, DeleteCommand.MESSAGE_ATTRACTION_IN_ITINERARY);
+    }
+
+    @Test
+    public void execute_attractionReferencedInLocation_throwsCommandException() {
+        Maplet mapletWithLocation = new Maplet();
+        mapletWithLocation.addAttraction(ALICE);
+        mapletWithLocation.addLocation(new LocationBuilder().withAttractionNames(ALICE.getName().fullName).build());
+        Model modelWithLocation = new ModelManager(mapletWithLocation, new UserPrefs());
+        DeleteCommand deleteCommand = new DeleteCommand(Index.fromOneBased(1));
+
+        assertCommandFailure(deleteCommand, modelWithLocation, DeleteCommand.MESSAGE_ATTRACTION_IN_LOCATION);
     }
 
     @Test

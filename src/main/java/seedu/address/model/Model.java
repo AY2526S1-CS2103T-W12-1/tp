@@ -94,6 +94,11 @@ public interface Model {
     boolean isAttractionInAnyItinerary(Attraction attraction);
 
     /**
+     * Return true if the given attraction is referenced in any location.
+     */
+    boolean isAttractionInAnyLocation(Attraction attraction);
+
+    /**
      * Deletes the given attraction.
      * The attraction must exist in the Maplet.
      */
