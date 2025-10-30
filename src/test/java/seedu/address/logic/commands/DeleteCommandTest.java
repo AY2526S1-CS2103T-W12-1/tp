@@ -20,6 +20,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.attraction.Attraction;
+import seedu.address.testutil.ItineraryBuilder;
 import seedu.address.testutil.LocationBuilder;
 
 /**
@@ -80,6 +81,17 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_ATTRACTION_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_attractionReferencedInItinerary_throwsCommandException() {
+        Maplet mapletWithItinerary = getTypicalMaplet();
+        mapletWithItinerary.addItinerary(new ItineraryBuilder().withAttractions(ALICE).build());
+        Model modelWithItinerary = new ModelManager(mapletWithItinerary, new UserPrefs());
+
+        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_ATTRACTION);
+
+        assertCommandFailure(deleteCommand, modelWithItinerary, DeleteCommand.MESSAGE_ATTRACTION_IN_ITINERARY);
     }
 
     @Test

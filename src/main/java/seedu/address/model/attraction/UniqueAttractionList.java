@@ -100,6 +100,24 @@ public class UniqueAttractionList implements Iterable<Attraction> {
     }
 
     /**
+     * Returns the cumulative price of all attractions in the list.
+     */
+    public double getCumulativeAttractionPrice() {
+        return internalList.stream()
+                .mapToDouble(attraction -> Double.parseDouble(attraction.getPrice().value))
+                .sum();
+    }
+
+    /**
+     * Returns the cumulative priority of all attractions in the list.
+     */
+    public int getCumulativeAttractionPriority() {
+        return internalList.stream()
+                .mapToInt(attraction -> Integer.parseInt(attraction.getPriority().value))
+                .sum();
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Attraction> asUnmodifiableObservableList() {

@@ -32,6 +32,20 @@ public class Itinerary {
         this.attractions.setAttractions(attractions);
     }
 
+    /**
+     * Returns the cumulative price of all attractions in the itinerary.
+     */
+    public double getCumulativeItineraryPrice() {
+        return attractions.getCumulativeAttractionPrice();
+    }
+
+    /**
+     * Returns the cumulative priority of all attractions in the itinerary.
+     */
+    public int getCumulativeItineraryPriority() {
+        return attractions.getCumulativeAttractionPriority();
+    }
+
     public ItineraryName getName() {
         return name;
     }

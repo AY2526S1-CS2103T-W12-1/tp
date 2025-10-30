@@ -25,6 +25,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.location.AddLocationCommand;
 import seedu.address.logic.commands.location.DeleteLocationCommand;
+import seedu.address.logic.commands.location.EditLocationCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.attraction.Attraction;
 import seedu.address.model.attraction.NameContainsKeywordsPredicate;
@@ -72,6 +73,14 @@ public class MapletParserTest {
         DeleteLocationCommand command = (DeleteLocationCommand) parser.parseCommand(
                 DeleteLocationCommand.COMMAND_WORD + " " + "ln/Singapore");
         assertEquals(new DeleteLocationCommand(new LocationName("Singapore")), command);
+    }
+
+    @Test
+    public void parseCommand_editLocation() throws Exception {
+        EditLocationCommand command = (EditLocationCommand) parser.parseCommand(
+                EditLocationCommand.COMMAND_WORD + " " + "ln/Singapore action/ADD i/1");
+        assertEquals(new EditLocationCommand(new LocationName("Singapore"), EditLocationCommand.Action.ADD,
+                Index.fromOneBased(1)), command);
     }
 
     @Test
