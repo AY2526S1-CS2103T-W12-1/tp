@@ -31,7 +31,7 @@ public class SortCommand extends Command {
             + COMMAND_WORD + " "
             + PREFIX_PRICE;
 
-    public static final String MESSAGE_SUCCESS = "Listed all attractions";
+    public static final String MESSAGE_SUCCESS = "Sorted all Attractions and Itineraries";
 
     private final Comparator<Attraction> attractionComparator;
     private final Comparator<Itinerary> itineraryComparator;
