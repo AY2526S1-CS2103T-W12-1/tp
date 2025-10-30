@@ -20,7 +20,8 @@ import seedu.address.model.attraction.Attraction;
 public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts all attractions in the Maplet by field PREFIX. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Sorts all attractions in the Maplet by field PREFIX, specifically Name, Priority or Price. "
             + "Parameters: "
             + "PREFIX\n"
             + "Examples: " + COMMAND_WORD + " "
