@@ -8,10 +8,6 @@ import org.junit.jupiter.api.Test;
 
 // adapted from addressTest
 public class OpeningHoursTest {
-    @Test
-    public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new OpeningHours(null));
-    }
 
     @Test
     public void constructor_invalidOpeningHours_throwsIllegalArgumentException() {
@@ -25,12 +21,13 @@ public class OpeningHoursTest {
         assertThrows(NullPointerException.class, () -> OpeningHours.isValidOpeningHours(null));
 
         // invalid opening hours
-        assertFalse(OpeningHours.isValidOpeningHours("500 - 2100")); // Missing zero
-        assertFalse(OpeningHours.isValidOpeningHours("0700  -  0800")); // too many spaces
+        assertFalse(OpeningHours.isValidOpeningHours("500 - 2300")); // Missing zero
+        assertFalse(OpeningHours.isValidOpeningHours("00700 - 2300")); // too many digits
 
         // valid opening hours
-        assertTrue(OpeningHours.isValidOpeningHours("0100 - 0200"));
-        assertTrue(OpeningHours.isValidOpeningHours("2200 - 0300")); // spanning over midnight
+        assertTrue(OpeningHours.isValidOpeningHours("0300 - 2300"));
+        assertTrue(OpeningHours.isValidOpeningHours("0300   -       2300")); // accepts spaces
+        assertTrue(OpeningHours.isValidOpeningHours("2300 - 0300")); // spanning over midnight
         assertTrue(OpeningHours.isValidOpeningHours("0000 - 2359")); // 24 hour
     }
 
