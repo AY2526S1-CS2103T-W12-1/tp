@@ -61,6 +61,10 @@ public class LocationName {
 
     @Override
     public int hashCode() {
+        /*
+         * Locale.ROOT is a Language-neutral locale to make Upper and Lower case behave
+         * consistently across every deployed environment
+        */
         return value.toLowerCase(Locale.ROOT).hashCode();
     }
 }
