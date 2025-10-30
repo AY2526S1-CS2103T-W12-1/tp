@@ -234,6 +234,11 @@ public class EditLocationCommandTest {
         }
 
         @Override
+        public boolean isAttractionInAnyLocation(Attraction attraction) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean isAttractionInAnyItinerary(Attraction attraction) {
             throw new AssertionError("This method should not be called.");
         }
