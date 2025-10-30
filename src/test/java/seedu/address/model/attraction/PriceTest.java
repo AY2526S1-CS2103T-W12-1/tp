@@ -15,7 +15,7 @@ public class PriceTest {
 
     @Test
     public void constructor_invalidPrice_throwsIllegalArgumentException() {
-        String invalidPrice = "abc200";
+        String invalidPrice = "%200";
         assertThrows(IllegalArgumentException.class, () -> new Price(invalidPrice));
     }
 
@@ -25,21 +25,29 @@ public class PriceTest {
         assertThrows(NullPointerException.class, () -> Price.isValidPrice(null));
 
         // invalid prices
-        assertFalse(Price.isValidPrice("abc2")); // Has alphabets
+        assertFalse(Price.isValidPrice("JP 2")); // Insufficient alphabets (3 letters required)
         assertFalse(Price.isValidPrice("")); // empty string
 
-        // valid opening hours
-        assertTrue(Price.isValidPrice("12"));
-        assertTrue(Price.isValidPrice("1500")); // very expensive
-        assertTrue(Price.isValidPrice("5")); // very cheap
+        // valid price
+        assertTrue(Price.isValidPrice("JPY 200")); // 3-letter iso code
+        assertTrue(Price.isValidPrice("$2")); // no space
+        assertTrue(Price.isValidPrice("USD 12.20")); // decimals
+        assertTrue(Price.isValidPrice("5 USD")); // Units at the end
+        assertTrue(Price.isValidPrice("5$")); // Units at the end
+        assertTrue(Price.isValidPrice("US$ 5")); // 3-letter iso code with D replaced by $
+        assertTrue(Price.isValidPrice("5")); // No units
+        assertTrue(Price.isValidPrice("5           US$")); // A lot of spaces
+        assertTrue(Price.isValidPrice("5")); // A lot of spaces
     }
 
     @Test
     public void equals() {
-        Price price = new Price("15");
+        Price price = new Price("15 USD");
 
         // same values -> returns true
-        assertTrue(price.equals(new Price("15")));
+        assertTrue(price.equals(new Price("15 USD")));
+        assertTrue(price.equals(new Price("USD 15")));
+        assertTrue(price.equals(new Price("USD 15.00")));
 
         // same object -> returns true
         assertTrue(price.equals(price));
@@ -51,6 +59,8 @@ public class PriceTest {
         assertFalse(price.equals(5.0f));
 
         // different values -> returns false
-        assertFalse(price.equals(new Price("12")));
+        assertFalse(price.equals(new Price("12 USD")));
+        assertFalse(price.equals(new Price("15 SGD")));
+        assertFalse(price.equals(new Price("$15")));
     }
 }
