@@ -12,11 +12,13 @@ Maplet *-down-> "1" UniqueAttractionList
 UniqueAttractionList -right-> Attraction
 
 ' ===== Attraction Composition =====
+Attraction *-down-> "0..*" Tag
 Attraction *--> Activity
 Attraction *--> Name
 Attraction *--> Contact
 Attraction *--> Priority
 Attraction *--> Address
+Attraction *-down-> "0..*"Comment
 
 ' ===== Optional: Itinerary and Location structures =====
 Maplet *-down-> "1" UniqueItineraryList
