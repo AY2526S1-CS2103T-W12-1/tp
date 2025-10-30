@@ -2,15 +2,14 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ACTIVITIES;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.COMPARATOR_SORT_BY_ADDRESS_ASCENDING;
-import static seedu.address.model.Model.COMPARATOR_SORT_BY_CONTACT_ASCENDING;
+import static seedu.address.model.Model.COMPARATOR_SORT_BY_CUMULATIVE_ITINERARY_PRICE_ASCENDING;
+import static seedu.address.model.Model.COMPARATOR_SORT_BY_CUMULATIVE_ITINERARY_PRIORITY_DESCENDING;
+import static seedu.address.model.Model.COMPARATOR_SORT_BY_ITINERARY_NAME_ASCENDING;
 import static seedu.address.model.Model.COMPARATOR_SORT_BY_NAME_ASCENDING;
+import static seedu.address.model.Model.COMPARATOR_SORT_BY_PRICE_ASCENDING;
 import static seedu.address.model.Model.COMPARATOR_SORT_BY_PRIORITY_DESCENDING;
 
 import java.util.Comparator;
@@ -18,8 +17,7 @@ import java.util.Comparator;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.attraction.Attraction;
-
-
+import seedu.address.model.itinerary.Itinerary;
 
 /**
  * Parses input arguments and creates a new SortCommand object
@@ -34,18 +32,21 @@ public class SortCommandParser implements Parser<SortCommand> {
     public SortCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PRIORITY, PREFIX_CONTACT,
-                        PREFIX_ADDRESS, PREFIX_ACTIVITIES, PREFIX_TAG);
-        if (!hasOnlyOnePrefix(argMultimap)) {
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PRIORITY, PREFIX_PRICE);
+        if (!hasOneSortablePrefix(argMultimap)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
-        return new SortCommand(getComparatorFromPrefix(getSortFieldPrefix(argMultimap)));
+
+        Prefix prefix = getSortFieldPrefix(argMultimap);
+        Comparator<Attraction> attractionComparator = getAttractionComparatorFromPrefix(prefix);
+        Comparator<Itinerary> itineraryComparator = getItineraryComparatorFromPrefix(prefix);
+        return new SortCommand(attractionComparator, itineraryComparator);
     }
 
     /**
-     * Returns true if only one of the prefixes is present in the given {@code ArgumentMultimap}.
+     * Returns true if exactly one prefix which is sortable is present in the given {@code ArgumentMultimap}.
      */
-    private static boolean hasOnlyOnePrefix(ArgumentMultimap argumentMultimap) {
+    private static boolean hasOneSortablePrefix(ArgumentMultimap argumentMultimap) {
         int count = 0;
         if (argumentMultimap.getValue(PREFIX_NAME).isPresent()) {
             count++;
@@ -53,16 +54,7 @@ public class SortCommandParser implements Parser<SortCommand> {
         if (argumentMultimap.getValue(PREFIX_PRIORITY).isPresent()) {
             count++;
         }
-        if (argumentMultimap.getValue(PREFIX_CONTACT).isPresent()) {
-            count++;
-        }
-        if (argumentMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            count++;
-        }
-        if (argumentMultimap.getValue(PREFIX_ACTIVITIES).isPresent()) {
-            count++;
-        }
-        if (argumentMultimap.getValue(PREFIX_TAG).isPresent()) {
+        if (argumentMultimap.getValue(PREFIX_PRICE).isPresent()) {
             count++;
         }
         return count == 1;
@@ -79,39 +71,40 @@ public class SortCommandParser implements Parser<SortCommand> {
         if (argumentMultimap.getValue(PREFIX_PRIORITY).isPresent()) {
             return PREFIX_PRIORITY;
         }
-        if (argumentMultimap.getValue(PREFIX_CONTACT).isPresent()) {
-            return PREFIX_CONTACT;
-        }
-        if (argumentMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            return PREFIX_ADDRESS;
-        }
-        if (argumentMultimap.getValue(PREFIX_ACTIVITIES).isPresent()) {
-            return PREFIX_ACTIVITIES;
-        }
-        if (argumentMultimap.getValue(PREFIX_TAG).isPresent()) {
-            return PREFIX_TAG;
+        if (argumentMultimap.getValue(PREFIX_PRICE).isPresent()) {
+            return PREFIX_PRICE;
         }
         // Code coverage cannot reach this line, defensive programming
         throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
     }
 
     /**
-     * Returns the comparator corresponding to the given prefix.
+     * Returns the attraction comparator corresponding to the given prefix.
      * @throws ParseException if no valid comparator is found.
      */
-    private static Comparator<Attraction> getComparatorFromPrefix(Prefix prefix) throws ParseException {
+    private static Comparator<Attraction> getAttractionComparatorFromPrefix(Prefix prefix) throws ParseException {
         if (prefix.equals(PREFIX_NAME)) {
             return COMPARATOR_SORT_BY_NAME_ASCENDING;
         } else if (prefix.equals(PREFIX_PRIORITY)) {
             return COMPARATOR_SORT_BY_PRIORITY_DESCENDING;
-        } else if (prefix.equals(PREFIX_CONTACT)) {
-            return COMPARATOR_SORT_BY_CONTACT_ASCENDING;
-        } else if (prefix.equals(PREFIX_ADDRESS)) {
-            return COMPARATOR_SORT_BY_ADDRESS_ASCENDING;
-        } else if (prefix.equals(PREFIX_ACTIVITIES)) {
-            // No comparator defined for activities yet
-        } else if (prefix.equals(PREFIX_TAG)) {
-            // No comparator defined for tags yet
+        } else if (prefix.equals(PREFIX_PRICE)) {
+            return COMPARATOR_SORT_BY_PRICE_ASCENDING;
+        }
+        // Code coverage cannot reach this line, defensive programming
+        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+    }
+
+    /**
+     * Returns the itinerary comparator corresponding to the given prefix.
+     * @throws ParseException if no valid comparator is found.
+     */
+    private static Comparator<Itinerary> getItineraryComparatorFromPrefix(Prefix prefix) throws ParseException {
+        if (prefix.equals(PREFIX_NAME)) {
+            return COMPARATOR_SORT_BY_ITINERARY_NAME_ASCENDING;
+        } else if (prefix.equals(PREFIX_PRIORITY)) {
+            return COMPARATOR_SORT_BY_CUMULATIVE_ITINERARY_PRIORITY_DESCENDING;
+        } else if (prefix.equals(PREFIX_PRICE)) {
+            return COMPARATOR_SORT_BY_CUMULATIVE_ITINERARY_PRICE_ASCENDING;
         }
         // Code coverage cannot reach this line, defensive programming
         throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));

@@ -160,6 +160,15 @@ public class Maplet implements ReadOnlyMaplet {
         itineraries.remove(itinerary);
     }
 
+    /**
+     * Returns true if the given attraction is referenced in any itinerary.
+     */
+    public boolean isAttractionInAnyItinerary(Attraction attraction) {
+        requireNonNull(attraction);
+        return itineraries.asUnmodifiableObservableList().stream()
+                .anyMatch(itinerary -> itinerary.hasAttraction(attraction));
+    }
+
     //// location-level operations
 
     /**
@@ -192,6 +201,16 @@ public class Maplet implements ReadOnlyMaplet {
      */
     public void removeLocation(LocationName locationName) {
         locations.remove(locationName);
+    }
+
+    /**
+     * Replaces the given location {@code target} with {@code editedLocation}.
+     * {@code target} must exist in the Maplet.
+     */
+    public void setLocation(Location target, Location editedLocation) {
+        requireNonNull(target);
+        requireNonNull(editedLocation);
+        locations.setLocation(target, editedLocation);
     }
 
     //// util methods

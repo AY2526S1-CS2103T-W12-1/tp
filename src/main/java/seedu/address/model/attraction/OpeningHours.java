@@ -18,7 +18,7 @@ public class OpeningHours {
     public static final String TIME_CONSTRAINTS = "Time should be in the HHMM 24-hour format";
     public static final String OPENING_HOURS_VALIDATION_REGEX =
             "(?<opensAt>([0-1][0-9]|2[0-3])[0-5][0-9])"
-            + "\\s?-\\s?"
+            + "\\s*-\\s*"
             + "(?<closesAt>([0-1][0-9]|2[0-3])[0-5][0-9])$";
     // Valid times: 2359, 0000, 1900
     // Invalid times: 2400, 2900

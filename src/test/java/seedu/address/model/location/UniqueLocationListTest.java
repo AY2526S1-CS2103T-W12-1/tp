@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalAttractions.BENSON;
 import static seedu.address.testutil.TypicalLocations.CBD;
 import static seedu.address.testutil.TypicalLocations.SINGAPORE;
 
@@ -52,6 +53,45 @@ public class UniqueLocationListTest {
     public void add_duplicateLocation_throwsDuplicateLocationException() {
         uniqueLocationList.add(SINGAPORE);
         assertThrows(DuplicateLocationException.class, () -> uniqueLocationList.add(SINGAPORE));
+    }
+
+    @Test
+    public void setLocation_nullTarget_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueLocationList.setLocation(null, SINGAPORE));
+        assertThrows(NullPointerException.class, () -> uniqueLocationList.setLocation(SINGAPORE, null));
+    }
+
+    @Test
+    public void setLocation_targetNotFound_throwsLocationNotFoundException() {
+        assertThrows(LocationNotFoundException.class, () -> uniqueLocationList.setLocation(SINGAPORE, CBD));
+    }
+
+    @Test
+    public void setLocation_duplicateLocation_throwsDuplicateLocationException() {
+        uniqueLocationList.add(SINGAPORE);
+        uniqueLocationList.add(CBD);
+        Location singaporeCopy = new LocationBuilder(SINGAPORE).build();
+        assertThrows(DuplicateLocationException.class, () -> uniqueLocationList.setLocation(CBD, singaporeCopy));
+    }
+
+    @Test
+    public void setLocation_existingLocation_replacesLocation() {
+        uniqueLocationList.add(SINGAPORE);
+        Location editedSingapore = new LocationBuilder(SINGAPORE)
+                .withAttractionNames(BENSON.getName().fullName)
+                .build();
+        uniqueLocationList.setLocation(SINGAPORE, editedSingapore);
+
+        UniqueLocationList expectedList = new UniqueLocationList();
+        expectedList.add(editedSingapore);
+        assertEquals(expectedList, uniqueLocationList);
+    }
+
+    @Test
+    public void add_locationWithSameNameDifferentCase_throwsDuplicateLocationException() {
+        uniqueLocationList.add(SINGAPORE);
+        Location singaporeLowerCase = new LocationBuilder(SINGAPORE).withLocationName("singapore").build();
+        assertThrows(DuplicateLocationException.class, () -> uniqueLocationList.add(singaporeLowerCase));
     }
 
     @Test

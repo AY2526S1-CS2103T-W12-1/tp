@@ -35,8 +35,7 @@ public class SortCommandParserTest {
         try {
             parser.parse(" n/");
             parser.parse(" p/");
-            parser.parse(" c/");
-            parser.parse(" a/");
+            parser.parse(" pr/");
         } catch (Exception e) {
             assert false : "Parsing valid arguments should not throw an exception.";
         }

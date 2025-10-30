@@ -16,6 +16,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PRIORITY_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PRIORITY_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.testutil.TypicalItineraries.getTypicalItineraries;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,6 +24,7 @@ import java.util.List;
 
 import seedu.address.model.Maplet;
 import seedu.address.model.attraction.Attraction;
+import seedu.address.model.itinerary.Itinerary;
 
 
 /**
@@ -84,6 +86,18 @@ public class TypicalAttractions {
         Maplet maplet = new Maplet();
         for (Attraction attraction : getTypicalAttractions()) {
             maplet.addAttraction(attraction);
+        }
+        return maplet;
+    }
+
+    public static Maplet getTypicalMapletWithItineraries() {
+        Maplet maplet = new Maplet();
+        for (Attraction attraction : getTypicalAttractions()) {
+            maplet.addAttraction(attraction);
+        }
+
+        for (Itinerary itinerary : getTypicalItineraries()) {
+            maplet.addItinerary(itinerary);
         }
         return maplet;
     }

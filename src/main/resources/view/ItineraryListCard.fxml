@@ -22,6 +22,6 @@
     </HBox>
     <Label fx:id="createdAt" styleClass="cell_small_label" text="\$createdAt" />
     <Label fx:id="attractionCount" styleClass="cell_small_label" text="\$count" />
-    <FlowPane fx:id="attractionNames" hgap="5" vgap="3" />
+    <VBox fx:id="attractionNames" spacing="3" />
   </VBox>
 </HBox>

@@ -117,6 +117,11 @@ public class DeleteLocationCommandTest {
         }
 
         @Override
+        public boolean isAttractionInAnyItinerary(Attraction attraction) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deleteAttraction(Attraction target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -163,6 +168,11 @@ public class DeleteLocationCommandTest {
         }
 
         @Override
+        public void setLocation(Location target, Location editedLocation) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Location> getLocationList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -200,6 +210,11 @@ public class DeleteLocationCommandTest {
 
         @Override
         public void updateFilteredItineraryList(Predicate<Itinerary> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSortedItineraryList(Comparator<Itinerary> comparator) {
             throw new AssertionError("This method should not be called.");
         }
     }
