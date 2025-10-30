@@ -85,7 +85,7 @@ public class AddCommentCommand extends Command {
      * @param comment comment to be added to the attraction to be replaced
      * @return attraction with the newly added comment
      */
-    public Attraction attractionWithComment(Attraction attractionToComment, Comment comment) {
+    private Attraction attractionWithComment(Attraction attractionToComment, Comment comment) {
         Name name = attractionToComment.getName();
         Priority priority = attractionToComment.getPriority();
         Contact contact = attractionToComment.getContact();

@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Optional;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.Model;
 
 /**
@@ -36,5 +37,12 @@ public class DetailedEditCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         return new CommandResult(SUCCESS_MESSAGE, false, false, true, Optional.of(index));
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("index", index)
+                .toString();
     }
 }
