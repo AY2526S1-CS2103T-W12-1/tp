@@ -133,6 +133,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setLocation(Location target, Location editedLocation) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setMaplet(ReadOnlyMaplet newData) {
             throw new AssertionError("This method should not be called.");
         }
@@ -154,6 +159,11 @@ public class AddCommandTest {
 
         @Override
         public boolean hasLocationName(LocationName locationName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean isAttractionInAnyItinerary(Attraction attraction) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -220,6 +230,11 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredItineraryList(Predicate<seedu.address.model.itinerary.Itinerary> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSortedItineraryList(Comparator<seedu.address.model.itinerary.Itinerary> comparator) {
             throw new AssertionError("This method should not be called.");
         }
     }

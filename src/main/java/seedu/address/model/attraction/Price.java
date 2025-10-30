@@ -3,29 +3,44 @@ package seedu.address.model.attraction;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.HashSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * Represents an attraction's expected cost in Maplet.
  * Guarantees: immutable; is valid as declared in {@link #isValidCost(String)}
  */
 public class Price {
-    public static final String MESSAGE_CONSTRAINTS = "Price should be a numerical value, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Price should be a numerical value "
+            + "with the currency symbol or the 3-letter ISO code, and it should not be blank";
 
     /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
+     * Accepts the 3-letter ISO code (USD, SGD), both before or after a numerical value (decimals allowed)
      */
-    public static final String VALIDATION_REGEX = "\\d+";
+    public static final String VALIDATION_REGEX = "^(?<units1>[A-Za-z]{3}|\\p{Sc}|[A-Za-z]{2}\\p{Sc})?"
+            + "\\s*(?<value>\\d+(\\.\\d+)?)\\s*"
+            + "(?<units2>[A-Za-z]{3}|\\p{Sc}|[A-Za-z]{2}\\p{Sc})?$";
 
     public final String value;
+    private final HashSet<String> units;
+    private final Double priceValue;
 
     /**
-     * Constructs an {@code Address}.
+     * Constructs a {@code Price}.
      *
-     * @param address A valid address.
+     * @param price A valid price.
      */
     public Price(String price) {
         requireNonNull(price);
         checkArgument(isValidPrice(price), MESSAGE_CONSTRAINTS);
+        final Pattern p = Pattern.compile(VALIDATION_REGEX);
+        final Matcher matcher = p.matcher(price);
+        matcher.matches();
+        units = new HashSet<>();
+        units.add(matcher.group("units1"));
+        units.add(matcher.group("units2"));
+        priceValue = Double.valueOf(matcher.group("value"));
         value = price;
     }
 
@@ -53,7 +68,7 @@ public class Price {
         }
 
         Price otherPrice = (Price) other;
-        return value.equals(otherPrice.value);
+        return units.equals(otherPrice.units) && priceValue.equals(otherPrice.priceValue);
     }
 
     @Override
