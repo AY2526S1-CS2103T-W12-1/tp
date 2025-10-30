@@ -1,9 +1,9 @@
 package seedu.address.logic.commands.location;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION_ATTRACTION_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION_ACTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION_ATTRACTION_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION_NAME;
 
 import java.util.HashSet;
 import java.util.Objects;
@@ -32,7 +32,7 @@ public class EditLocationCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the specified location by adding or removing "
             + "an attraction. "
-            + "Parameters: " + PREFIX_LOCATION_NAME +"LOCATION_NAME "
+            + "Parameters: " + PREFIX_LOCATION_NAME + "LOCATION_NAME "
             + PREFIX_LOCATION_ACTION + "ACTION " + PREFIX_LOCATION_ATTRACTION_INDEX + "ATTRACTION_INDEX\n"
             + "ACTION must be ADD or REMOVE.\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_LOCATION_NAME + "Singapore "

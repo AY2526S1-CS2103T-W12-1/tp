@@ -86,7 +86,6 @@ public class UniqueLocationListTest {
         expectedList.add(editedSingapore);
         assertEquals(expectedList, uniqueLocationList);
     }
-  
     @Test
     public void add_locationWithSameNameDifferentCase_throwsDuplicateLocationException() {
         uniqueLocationList.add(SINGAPORE);
