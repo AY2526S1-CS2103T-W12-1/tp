@@ -249,6 +249,11 @@ public class AddLocationCommandTest {
         public void updateFilteredItineraryList(Predicate<Itinerary> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void updateSortedItineraryList(Comparator<Itinerary> comparator) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     private static class ModelStubAcceptingLocationAdded extends ModelStub {
