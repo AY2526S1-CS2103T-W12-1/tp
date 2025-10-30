@@ -1,7 +1,8 @@
 package seedu.address.logic.commands;
 
-import java.util.List;
 import static java.util.Objects.requireNonNull;
+
+import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
@@ -23,8 +24,8 @@ public class DeleteCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_ATTRACTION_SUCCESS = "Deleted Attraction: %1$s";
-    public static final String MESSAGE_ATTRACTION_IN_ITINERARY
-            = "Cannot delete attraction as it is referenced in one or more itineraries. "
+    public static final String MESSAGE_ATTRACTION_IN_ITINERARY =
+            "Cannot delete attraction as it is referenced in one or more itineraries. "
             + "Please remove it from all itineraries first.";
 
     private final Index targetIndex;
