@@ -51,7 +51,6 @@ public class SortCommand extends Command {
         requireNonNull(model);
         model.updateFilteredAttractionList(PREDICATE_SHOW_ALL_ATTRACTIONS);
         model.updateFilteredItineraryList(PREDICATE_SHOW_ALL_ITINERARIES);
-        //Must come after updating filtered list as line above resets sort.
         model.updateSortedAttractionList(attractionComparator);
         model.updateSortedItineraryList(itineraryComparator);
         return new CommandResult(MESSAGE_SUCCESS);

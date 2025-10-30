@@ -193,7 +193,6 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredAttractionList(Predicate<Attraction> predicate) {
         requireNonNull(predicate);
-        updateSortedAttractionList(null); // Reset sorting when filtering
         filteredAttractions.setPredicate(predicate);
     }
 
