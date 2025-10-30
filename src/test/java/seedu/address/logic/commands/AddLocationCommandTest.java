@@ -191,6 +191,11 @@ public class AddLocationCommandTest {
         }
 
         @Override
+        public void setLocation(Location target, Location editedLocation) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setAttraction(Attraction target, Attraction editedAttraction) {
             throw new AssertionError("This method should not be called.");
         }

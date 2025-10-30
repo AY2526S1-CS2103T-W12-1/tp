@@ -140,6 +140,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setLocation(Location target, Location editedLocation) {
+        requireAllNonNull(target, editedLocation);
+        maplet.setLocation(target, editedLocation);
+    }
+
+    @Override
     public void setAttraction(Attraction target, Attraction editedAttraction) {
         requireAllNonNull(target, editedAttraction);
 
