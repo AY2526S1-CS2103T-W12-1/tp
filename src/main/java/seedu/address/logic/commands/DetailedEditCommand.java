@@ -2,11 +2,14 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Optional;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 
-import java.util.Optional;
-
+/**
+ * Command that returns a commandResult with the index of the attraction to be editted.
+ */
 public class DetailedEditCommand extends Command {
     public static final String COMMAND_WORD = "dedit";
 
@@ -20,7 +23,10 @@ public class DetailedEditCommand extends Command {
 
     private final Index index;
 
-
+    /**
+     * Initializes DetailedEditCommand object with the index of the attraction to be editted
+     * @param index of the attraction
+     */
     public DetailedEditCommand(Index index) {
         requireNonNull(index);
 

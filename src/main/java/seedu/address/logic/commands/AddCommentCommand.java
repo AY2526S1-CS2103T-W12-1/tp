@@ -1,6 +1,14 @@
 package seedu.address.logic.commands;
 
-import org.w3c.dom.Attr;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.commands.EditCommand.MESSAGE_DUPLICATE_ATTRACTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMENT;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ATTRACTIONS;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -17,23 +25,14 @@ import seedu.address.model.attraction.Price;
 import seedu.address.model.attraction.Priority;
 import seedu.address.model.tag.Tag;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.commands.EditCommand.MESSAGE_DUPLICATE_ATTRACTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMENT;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ATTRACTIONS;
-
 /**
  * Adds a comment to an attraction
  */
 public class AddCommentCommand extends Command {
     public static final String COMMAND_WORD = "comment";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a comment to an attraction." +
-            "Parameters: INDEX (Must be a positive integer) "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a comment to an attraction."
+            + "Parameters: INDEX (Must be a positive integer) "
             + PREFIX_COMMENT + "COMMENT\n"
             + "Example: " + COMMAND_WORD
             + " INDEX " + PREFIX_COMMENT
@@ -44,6 +43,12 @@ public class AddCommentCommand extends Command {
     private final Index index;
     private final Comment comment;
 
+    /**
+     * Constructor that initializes the AddCommentCommand obhect with the comment to be added and the index
+     * of the attraction
+     * @param index of the attraction to be modified
+     * @param comment to be added
+     */
     public AddCommentCommand(Index index, Comment comment) {
         requireNonNull(comment);
         requireNonNull(index);

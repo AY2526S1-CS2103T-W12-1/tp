@@ -1,26 +1,5 @@
 package seedu.address.ui;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
-import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
-
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.Logic;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.attraction.Attraction;
-import seedu.address.model.tag.Tag;
-
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.logging.Logger;
-
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ACTIVITIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMENT;
@@ -31,6 +10,29 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.logging.Logger;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
+import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Logic;
+import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.attraction.Attraction;
+import seedu.address.model.tag.Tag;
+
+/**
+ * Logic for displaying attraction values in a separate EditWindow
+ */
 public class EditWindow extends UiPart<Stage> {
     private static final String FXML = "EditWindow.fxml";
     private static final Logger logger = LogsCenter.getLogger(CommentWindow.class);
@@ -84,7 +86,7 @@ public class EditWindow extends UiPart<Stage> {
      * @param logic logicManager component of maplet which we will use to access attractions
      * @param index index to find the right attraction
      */
-    public EditWindow(Logic logic, CommandBox.CommandExecutor commandExecutor,Index index) {
+    public EditWindow(Logic logic, CommandBox.CommandExecutor commandExecutor, Index index) {
         this(new Stage(), logic, commandExecutor, index);
     }
 
