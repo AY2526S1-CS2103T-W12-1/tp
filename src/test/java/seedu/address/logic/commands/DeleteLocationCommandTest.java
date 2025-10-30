@@ -163,6 +163,11 @@ public class DeleteLocationCommandTest {
         }
 
         @Override
+        public void setLocation(Location target, Location editedLocation) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Location> getLocationList() {
             throw new AssertionError("This method should not be called.");
         }

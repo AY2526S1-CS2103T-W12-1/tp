@@ -57,6 +57,25 @@ public class UniqueLocationList implements Iterable<Location> {
     }
 
     /**
+     * Replaces the location {@code target} in the list with {@code editedLocation}.
+     * {@code target} must exist in the list.
+     */
+    public void setLocation(Location target, Location editedLocation) {
+        requireAllNonNull(target, editedLocation);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new LocationNotFoundException();
+        }
+
+        if (!target.isSameLocation(editedLocation) && contains(editedLocation)) {
+            throw new DuplicateLocationException();
+        }
+
+        internalList.set(index, editedLocation);
+    }
+
+    /**
      * Removes the equivalent location from the list.
      * The location must exist in the list.
      */

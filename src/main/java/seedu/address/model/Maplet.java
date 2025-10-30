@@ -194,6 +194,16 @@ public class Maplet implements ReadOnlyMaplet {
         locations.remove(locationName);
     }
 
+    /**
+     * Replaces the given location {@code target} with {@code editedLocation}.
+     * {@code target} must exist in the Maplet.
+     */
+    public void setLocation(Location target, Location editedLocation) {
+        requireNonNull(target);
+        requireNonNull(editedLocation);
+        locations.setLocation(target, editedLocation);
+    }
+
     //// util methods
 
     @Override

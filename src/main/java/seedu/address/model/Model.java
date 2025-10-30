@@ -107,13 +107,17 @@ public interface Model {
     void addLocation(Location location);
 
     /**
+     * Replaces the given location {@code target} with {@code editedLocation}.
+     * {@code target} must exist in the Maplet.
+     */
+    void setLocation(Location target, Location editedLocation);
+
+    /**
      * Replaces the given attraction {@code target} with {@code editedAttraction}.
      * {@code target} must exist in the Maplet.
      * The attraction identity of {@code editedAttraction} must not be the same as another existing attraction in the
      * Maplet.
      */
-
-
     void setAttraction(Attraction target, Attraction editedAttraction);
 
     /** Returns an unmodifiable view of the filtered attraction list */
