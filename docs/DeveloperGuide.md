@@ -183,6 +183,35 @@ The `deletelocation` command follows the same flow but calls `Model#deleteLocati
 * By storing attraction `Name`s instead of full attraction objects, locations stay synchronized with the attraction list without duplicating data.
 * All persistence checks happen during deserialization (`JsonAdaptedLocation#toModelType`) so invalid data never reaches the model.
 
+### Itinerary management feature
+
+The itinerary management feature allows users to create travel plans by grouping attractions into named itineraries.
+
+#### Current implementation
+
+* `AddItineraryCommand` and `DeleteItineraryCommand` handle the respective commands. Their parsers enforce the `n/` prefix for itinerary names and `ai/` prefix for the attraction indexes.
+* `Itinerary`, `ItineraryName`, and `UniqueItineraryList` represent the domain model. An `Itinerary` wraps an `ItineraryName`, a creation timestamp (`LocalDateTime`), and a `UniqueAttractionList` of attractions.
+* `Model#addItinerary`, `Model#deleteItinerary`, `Model#hasItinerary`, and `Model#setItinerary` delegate to `Maplet`, which maintains the `UniqueItineraryList`.
+* Persistence is handled by `JsonSerializableMaplet` and `JsonAdaptedItinerary`, which store attractions as names and validate that every referenced attraction exists.
+* `ItineraryListPanel` and `ItineraryCard` render the list of itineraries in the UI. When an itinerary is selected, its associated attractions are displayed in a separate panel managed by `MainWindow#showItineraryDetails`.
+
+When a user executes `additinerary n/Singapore Trip ai/1 ai/2`:
+
+1. `MapletParser` chooses `AddItineraryCommandParser`, which tokenizes the prefixes and converts each `ai/` value into an `Index`.
+2. The command retrieves each attraction from `Model#getFilteredAttractionList()` and collects the `Name` values, rejecting out-of-range indexes or duplicate references.
+3. A new `Itinerary` is created with the current timestamp (`LocalDateTime.now()`). The `Itinerary` constructor validates that attractions are unique and stores them in a `UniqueAttractionList`.
+4. `Model#hasItinerary` prevents duplicate itinerary names before calling `Model#addItinerary`, which stores the entry in the `UniqueItineraryList`.
+
+
+The `deleteitinerary` command follows a similar flow but uses an index-based approach. It retrieves the itinerary from `Model#getFilteredItineraryList()` and calls `Model#deleteItinerary(Itinerary)` to remove it while leaving the referenced attractions intact.
+
+#### Design considerations
+
+* Itineraries reference actual `Attraction` objects rather than just names, allowing direct access to attraction details without additional lookups.
+* Each itinerary maintains its own `UniqueAttractionList`, enforcing that an attraction can only appear once per itinerary.
+* The UI selection handler pattern enables interactive itinerary exploration, where selecting an itinerary displays its attractions in a separate panel.
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -443,6 +472,59 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
+**Use case: UC5 - Edit attraction**
+
+**MSS**
+
+1.  User chooses to <u>list attractions (UC1)</u> to see index of attractions
+2.  User chooses to edit an attraction in the list
+3.  User enters index and details of attraction to edit
+4.  Maplet updates the attraction details
+
+    Use case ends.
+
+**Extensions** 
+
+* 3a. The given index is invalid.
+
+    * 3a1. Maplet prompts the user for valid index
+    * 3a2. User enters valid index
+
+      Steps 3a1-3a2 are repeated until index entered is valid.</br>
+      Use case resumes at step 4.
+
+* 3b. Details are in the wrong format
+
+    * 3b1. Maplet prompts the user for correct format
+    * 3b2. User enters correct attraction details
+
+      Steps 3b1-3b2 are repeated until the details entered are correct.</br>
+      Use case resumes at step 4.
+
+
+**Use case: UC6 - Sort attractions**
+
+**MSS**
+
+1.  User chooses to sort attractions by a criteria
+2.  User enters criteria
+3.  Maplet shows a list of attractions sorted by criteria
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Wrong criteria format is given.
+
+    * 2a1. Maplet prompts the user for valid criteria
+    * 2a2. User enters valid criteria
+
+      Steps 2a1-2a2 are repeated until criteria entered is valid.</br>
+      Use case resumes at step 3.
+
+* 3a. The list is empty
+
+    Use case ends.
 
 ### Non-Functional Requirements
 

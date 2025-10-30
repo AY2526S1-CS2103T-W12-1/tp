@@ -30,6 +30,7 @@ public class ModelManager implements Model {
     private final FilteredList<Attraction> filteredAttractions;
     private final SortedList<Attraction> sortedAttractions;
     private final FilteredList<Itinerary> filteredItineraries;
+    private final SortedList<Itinerary> sortedItineraries;
 
     /**
      * Initializes a ModelManager with the given Maplet and userPrefs.
@@ -42,8 +43,9 @@ public class ModelManager implements Model {
         this.maplet = new Maplet(maplet);
         this.userPrefs = new UserPrefs(userPrefs);
         sortedAttractions = new SortedList<>(this.maplet.getAttractionList());
+        sortedItineraries = new SortedList<>(this.maplet.getItineraryList());
         filteredAttractions = new FilteredList<>(sortedAttractions);
-        filteredItineraries = new FilteredList<>(this.maplet.getItineraryList());
+        filteredItineraries = new FilteredList<>(sortedItineraries);
     }
 
     public ModelManager() {
@@ -113,6 +115,12 @@ public class ModelManager implements Model {
     public boolean hasLocationName(LocationName locationName) {
         requireNonNull(locationName);
         return maplet.hasLocationName(locationName);
+    }
+
+    @Override
+    public boolean isAttractionInAnyItinerary(Attraction attraction) {
+        requireNonNull(attraction);
+        return maplet.isAttractionInAnyItinerary(attraction);
     }
 
     @Override
@@ -210,7 +218,14 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredItineraryList(Predicate<Itinerary> predicate) {
         requireNonNull(predicate);
+        updateSortedItineraryList(null);
         filteredItineraries.setPredicate(predicate);
+    }
+
+    //=========== Sorted Itinerary List Accessors =============================================================
+    @Override
+    public void updateSortedItineraryList(Comparator<Itinerary> comparator) {
+        sortedItineraries.setComparator(comparator);
     }
 
     @Override

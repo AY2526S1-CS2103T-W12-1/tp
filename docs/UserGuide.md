@@ -30,7 +30,7 @@ Maplet caters to individuals that are **planning to go overseas** or are **frequ
 
    * `list` : Lists all attractions.
 
-   * `add n/Eiffel Tower p/9 c/example@gmail.com, a/Paris, act/climb tower t/bucket list t/with friends com/It's a really tall place!` : Adds an attraction called Eiffel Tower
+   * `add n/Eiffel Tower p/9 c/example@gmail.com, a/Paris, act/climb tower p/$200 t/bucket list t/with friends com/It's a really tall place!` : Adds an attraction called Eiffel Tower
 
    * `delete 3` : Deletes the 3rd attraction shown in the current list.
 
@@ -77,10 +77,10 @@ Maplet caters to individuals that are **planning to go overseas** or are **frequ
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PRIORITY_NUMBER c/CONTACT a/ADDRESS [t/TAG]…​` <br> e.g., `add n/Universal Village p/4 c/UniVillage@example.com a/123, Clementi Rd, 1234665 t/movies t/leisure com/This place has a lot of rides but they have long queues.`
+**Add**    | `add n/NAME p/PRIORITY_NUMBER c/CONTACT a/ADDRESS [o/OPENING_HOURS] pr/PRICE [t/TAG]…​` <br> e.g., `add n/Universal Village p/4 c/UniVillage@example.com a/123, Clementi Rd, 1234665 /p 10USD t/movies t/leisure com/This place has a lot of rides but they have long queues.`
 **Clear**  | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PRIORITY_NUMBER] [c/CONTACT] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/Golden Studios c/GoldenSS@example.com`
+**Edit**   | `edit INDEX [n/NAME] [p/PRIORITY_NUMBER] [c/CONTACT] [a/ADDRESS] [o/OPENING_HOURS] [pr/PRICE] [t/TAG]…​`<br> e.g.,`edit 2 n/Golden Studios c/GoldenSS@example.com`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Golden Studios`
 **Sort**   | `sort PREFIX`<br> e.g., `sort p/`
 **Add Location**   | `addlocation ln/LOCATION_NAME i/ATTRACTION_INDEX [i/ATTRACTION_INDEX]…`<br> e.g., `addlocation ln/Singapore i/1 i/2 i/3`
@@ -104,7 +104,7 @@ Format: `help`
 
 Adds an attraction to Maplet.
 
-Format: `add n/NAME p/PRIORITY c/CONTACT a/ADDRESS act/ACTIVITIES [t/TAG]… [com/COMMENT]…​`
+Format: `add n/NAME p/PRIORITY c/CONTACT a/ADDRESS act/ACTIVITIES [o/OPENING_HOURS] pr/PRICE [t/TAG]… [com/COMMENT]…​`
 
 <box type="tip" seamless>
 
@@ -112,9 +112,9 @@ Format: `add n/NAME p/PRIORITY c/CONTACT a/ADDRESS act/ACTIVITIES [t/TAG]… [co
 </box>
 
 Examples:
-* `add n/Big ben a/London, c/hello@gmail.com, p/5, act/listen to ben`
-* `add n/Eiffel Tower p/9 c/example@gmail.com, a/Paris, act/climb tower t/bucket list t/with friends`
-* `add n/Pisa Tower p/9 c/hey123@gmail.com, a/Italy, act/phototaking t/with friends com/It's leaning!`
+* `add n/Big ben a/London, c/hello@gmail.com, p/5, act/listen to ben pr/SGD5`
+* `add n/Eiffel Tower p/9 c/example@gmail.com, a/Paris, act/climb tower 0/1200-1500 pr/500 t/bucket list t/with friends`
+* `add n/Pisa Tower p/9 c/hey123@gmail.com, a/Italy, act/phototaking pr/US$2 t/with friends com/It's leaning!`
 
 ### Listing all attractions : `list`
 
@@ -126,7 +126,7 @@ Format: `list`
 
 Edits an existing attraction in Maplet.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [c/CONTACT] [a/ADDRESS] [act/ACTIVITIES] [t/TAG]… [com/COMMENT]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [c/CONTACT] [a/ADDRESS] [act/ACTIVITIES] [o/OPENING_HOURS] [pr/PRICE] [t/TAG]… [com/COMMENT]…​`
 
 * Edits the attraction at the specified `INDEX`. The index refers to the index number shown in the displayed attraction list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.

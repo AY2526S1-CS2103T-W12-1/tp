@@ -2,6 +2,8 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -17,7 +19,9 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.attraction.Attraction;
 import seedu.address.model.itinerary.Itinerary;
+import seedu.address.model.location.Location;
 
 /**
  * The Main Window. Provides the basic application layout containing a menu bar
@@ -56,6 +60,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane locationListPanelPlaceholder;
+
+    @FXML
+    private StackPane locationAttractionListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -132,8 +139,10 @@ public class MainWindow extends UiPart<Stage> {
         itineraryListPanelPlaceholder.getChildren().add(itineraryListPanel.getRoot());
         showItineraryDetails(null);
 
-        locationListPanel = new LocationListPanel(logic.getLocationList());
+        locationListPanel = new LocationListPanel(logic.getLocationList(), this::showLocationDetails);
         locationListPanelPlaceholder.getChildren().add(locationListPanel.getRoot());
+        showLocationDetails(null);
+
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -191,6 +200,30 @@ public class MainWindow extends UiPart<Stage> {
 
     public LocationListPanel getLocationListPanel() {
         return locationListPanel;
+    }
+
+    private void showLocationDetails(Location location) {
+        locationAttractionListPanelPlaceholder.getChildren().clear();
+        if (location == null) {
+            locationAttractionListPanelPlaceholder.getChildren()
+                    .add(new Label("Select a location to view its attractions."));
+            return;
+        }
+
+        ObservableList<Attraction> matchingAttractions = FXCollections.observableArrayList();
+        logic.getFilteredAttractionList().stream()
+                .filter(attraction -> location.getAttractionNames().contains(attraction.getName()))
+                .forEach(matchingAttractions::add);
+
+        if (matchingAttractions.isEmpty()) {
+            locationAttractionListPanelPlaceholder.getChildren()
+                    .add(new Label("No matching attractions found for this location."));
+            return;
+        }
+
+        AttractionListPanel locationAttractionListPanel = new AttractionListPanel(matchingAttractions);
+        locationAttractionListPanelPlaceholder.getChildren()
+                .add(locationAttractionListPanel.getRoot());
     }
 
     private void showItineraryDetails(Itinerary itinerary) {
