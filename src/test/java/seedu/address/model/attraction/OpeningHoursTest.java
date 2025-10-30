@@ -9,6 +9,12 @@ import org.junit.jupiter.api.Test;
 // adapted from addressTest
 public class OpeningHoursTest {
 
+    // The static NON_SPECIFIED_HOURS should be used instead of a null constructor.
+    @Test
+    public void constructor_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new OpeningHours(null));
+    }
+
     @Test
     public void constructor_invalidOpeningHours_throwsIllegalArgumentException() {
         String invalidOpeningHours = "1300 - 2500";
@@ -50,6 +56,7 @@ public class OpeningHoursTest {
     public void isOpen() {
         OpeningHours normalHours = new OpeningHours("1200 - 1800");
         OpeningHours pastMidnight = new OpeningHours("2200 - 0600");
+        OpeningHours nullOpeningHours = OpeningHours.NON_SPECIFIED_HOURS;
 
         // outside of opening hours
         assertFalse(normalHours.isOpen("1100")); // Too early
@@ -58,6 +65,8 @@ public class OpeningHoursTest {
         // within opening hours
         assertTrue(normalHours.isOpen("1400"));
         assertTrue(pastMidnight.isOpen("0400"));
+        assertTrue(nullOpeningHours.isOpen("0000"));
+        assertTrue(nullOpeningHours.isOpen("1200"));
     }
 
     @Test
@@ -78,5 +87,17 @@ public class OpeningHoursTest {
 
         // different values -> returns false
         assertFalse(openingHours.equals(new OpeningHours("1300 - 1200")));
+
+        OpeningHours nullOpeningHours = OpeningHours.NON_SPECIFIED_HOURS;
+
+        // null and null -> returns true
+        assertTrue(nullOpeningHours.equals(OpeningHours.NON_SPECIFIED_HOURS));
+
+        // same object -> returns true
+        assertTrue(nullOpeningHours.equals(nullOpeningHours));
+
+        // different values -> returns false
+        assertFalse(nullOpeningHours.equals(new OpeningHours("1300 - 1200")));
+
     }
 }

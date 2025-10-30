@@ -122,7 +122,9 @@ public class ParserUtil {
      * @throws ParseException if the given {@code openingHours} is invalid.
      */
     public static OpeningHours parseOpeningHours(String openingHours) throws ParseException {
-        requireNonNull(openingHours);
+        if (openingHours == null) {
+            return OpeningHours.NON_SPECIFIED_HOURS;
+        }
         String trimmedOpeningHours = openingHours.trim();
         if (!OpeningHours.isValidOpeningHours(trimmedOpeningHours)) {
             throw new ParseException(OpeningHours.MESSAGE_CONSTRAINTS);

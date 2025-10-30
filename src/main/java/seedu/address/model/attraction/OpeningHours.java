@@ -24,6 +24,7 @@ public class OpeningHours {
     // Invalid times: 2400, 2900
     public static final String TIME_VALIDATION_REGEX = "^([0-1][0-9]|2[0-3])[0-5][0-9]$";
     public static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HHmm");
+    public static final String FULL_DAY_OPENING_HOURS = "24-Hour";
     public static final OpeningHours NON_SPECIFIED_HOURS = new OpeningHours();
     public final LocalTime opensAt;
     public final LocalTime closesAt;
@@ -87,6 +88,9 @@ public class OpeningHours {
 
     @Override
     public String toString() {
+        if (this == NON_SPECIFIED_HOURS) {
+            return FULL_DAY_OPENING_HOURS;
+        }
         return opensAt.format(TIME_FORMATTER) + " - " + closesAt.format(TIME_FORMATTER);
     }
 

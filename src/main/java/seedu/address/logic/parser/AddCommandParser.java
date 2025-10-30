@@ -48,7 +48,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS,
-                PREFIX_PRIORITY, PREFIX_CONTACT, PREFIX_ACTIVITIES, PREFIX_OPENING_HOURS, PREFIX_PRICE)
+                PREFIX_PRIORITY, PREFIX_CONTACT, PREFIX_ACTIVITIES, PREFIX_PRICE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
@@ -60,7 +60,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         Contact contact = ParserUtil.parseContact(argMultimap.getValue(PREFIX_CONTACT).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Activities activities = ParserUtil.parseActivities(argMultimap.getValue(PREFIX_ACTIVITIES).get());
-        OpeningHours openingHours = ParserUtil.parseOpeningHours(argMultimap.getValue(PREFIX_OPENING_HOURS).get());
+        OpeningHours openingHours = ParserUtil.parseOpeningHours(
+                argMultimap.getValue(PREFIX_OPENING_HOURS).orElse(null));
         Price price = ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Set<Comment> commentList = ParserUtil.parseComments(argMultimap.getAllValues(PREFIX_COMMENT));
