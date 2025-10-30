@@ -1,8 +1,8 @@
 package seedu.address.logic.commands.location;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION_ATTRACTION_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION_NAME;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -32,9 +32,9 @@ public class AddLocationCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a location to the maplet. "
             + "Parameters: "
             + PREFIX_LOCATION_NAME + "LOCATION_NAME "
-            + PREFIX_LOCATION_ATTRACTION_INDEX+ "ATTRACTION_INDEX " + "[" + PREFIX_LOCATION_ATTRACTION_INDEX +
-            "ATTRACTION_INDEX]...\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_LOCATION_NAME+ "Singapore "
+            + PREFIX_LOCATION_ATTRACTION_INDEX + "ATTRACTION_INDEX " + "[" + PREFIX_LOCATION_ATTRACTION_INDEX
+            + "ATTRACTION_INDEX]...\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_LOCATION_NAME + "Singapore "
             + PREFIX_LOCATION_ATTRACTION_INDEX + "1 " + PREFIX_LOCATION_ATTRACTION_INDEX + "2";
 
     public static final String MESSAGE_SUCCESS = "New location added: %1$s";
