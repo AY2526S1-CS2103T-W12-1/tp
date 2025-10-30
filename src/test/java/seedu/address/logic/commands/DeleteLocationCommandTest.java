@@ -117,6 +117,11 @@ public class DeleteLocationCommandTest {
         }
 
         @Override
+        public boolean isAttractionInAnyItinerary(Attraction attraction) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deleteAttraction(Attraction target) {
             throw new AssertionError("This method should not be called.");
         }
