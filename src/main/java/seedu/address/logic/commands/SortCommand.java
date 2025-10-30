@@ -21,7 +21,8 @@ import seedu.address.model.itinerary.Itinerary;
 public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts all attractions in the Maplet by field PREFIX. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Sorts all attractions in the Maplet by PREFIX, specifically Name(n/), Priority(p/) or Price(pr/). "
             + "Parameters: "
             + "PREFIX\n"
             + "Examples: " + COMMAND_WORD + " "
