@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -20,13 +22,23 @@ public class LocationListPanel extends UiPart<Region> {
     @FXML
     private ListView<Location> locationListView;
 
+    private final Consumer<Location> selectionHandler;
+
     /**
-     * Creates a {@code LocationListPanel} with the given {@code ObservableList}.
+     * Creates a {@code LocationListPanel} that displays the given list of locations and
+     * notifies the given {@code selectionHandler} whenever the user selects a location.
+     *
+     * @param locationList     list of locations to show in the panel
+     * @param selectionHandler callback to run when a location is selected; receives the selected location
      */
-    public LocationListPanel(ObservableList<Location> locationList) {
+    public LocationListPanel(ObservableList<Location> locationList, Consumer<Location> selectionHandler) {
         super(FXML);
         locationListView.setItems(locationList);
+        this.selectionHandler = Objects.requireNonNull(selectionHandler);
         locationListView.setCellFactory(listView -> new LocationListViewCell());
+        locationListView.getSelectionModel().selectedItemProperty()
+                .addListener((observable, oldValue, newValue)
+                -> this.selectionHandler.accept(newValue));
     }
 
     /**
