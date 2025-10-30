@@ -116,6 +116,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean isAttractionInAnyItinerary(Attraction attraction) {
+        requireNonNull(attraction);
+        return maplet.isAttractionInAnyItinerary(attraction);
+    }
+
+    @Override
     public void deleteAttraction(Attraction target) {
         maplet.removeAttraction(target);
     }
