@@ -38,7 +38,7 @@ public class LocationListPanel extends UiPart<Region> {
         locationListView.setCellFactory(listView -> new LocationListViewCell());
         locationListView.getSelectionModel().selectedItemProperty()
                 .addListener((observable, oldValue, newValue)
-                -> this.selectionHandler.accept(newValue));
+                    -> this.selectionHandler.accept(newValue));
     }
 
     /**
