@@ -21,6 +21,7 @@ public class CommentWindow extends UiPart<Stage> {
     @FXML
     private VBox commentWindow;
 
+
     private Set<Comment> comments;
 
     /**
