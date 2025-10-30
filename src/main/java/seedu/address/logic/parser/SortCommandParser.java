@@ -5,8 +5,11 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static seedu.address.model.Model.COMPARATOR_SORT_BY_CUMULATIVE_ITINERARY_PRICE_ASCENDING;
+import static seedu.address.model.Model.COMPARATOR_SORT_BY_CUMULATIVE_ITINERARY_PRIORITY_DESCENDING;
+import static seedu.address.model.Model.COMPARATOR_SORT_BY_ITINERARY_NAME_ASCENDING;
 import static seedu.address.model.Model.COMPARATOR_SORT_BY_NAME_ASCENDING;
-import static seedu.address.model.Model.COMPARATOR_SORT_BY_PRICE_DESCENDING;
+import static seedu.address.model.Model.COMPARATOR_SORT_BY_PRICE_ASCENDING;
 import static seedu.address.model.Model.COMPARATOR_SORT_BY_PRIORITY_DESCENDING;
 
 import java.util.Comparator;
@@ -14,8 +17,7 @@ import java.util.Comparator;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.attraction.Attraction;
-
-
+import seedu.address.model.itinerary.Itinerary;
 
 /**
  * Parses input arguments and creates a new SortCommand object
@@ -36,8 +38,9 @@ public class SortCommandParser implements Parser<SortCommand> {
         }
 
         Prefix prefix = getSortFieldPrefix(argMultimap);
-        Comparator<Attraction> comparator = getComparatorFromPrefix(prefix);
-        return new SortCommand(comparator);
+        Comparator<Attraction> attractionComparator = getAttractionComparatorFromPrefix(prefix);
+        Comparator<Itinerary> itineraryComparator = getItineraryComparatorFromPrefix(prefix);
+        return new SortCommand(attractionComparator, itineraryComparator);
     }
 
     /**
@@ -76,16 +79,32 @@ public class SortCommandParser implements Parser<SortCommand> {
     }
 
     /**
-     * Returns the comparator corresponding to the given prefix.
+     * Returns the attraction comparator corresponding to the given prefix.
      * @throws ParseException if no valid comparator is found.
      */
-    private static Comparator<Attraction> getComparatorFromPrefix(Prefix prefix) throws ParseException {
+    private static Comparator<Attraction> getAttractionComparatorFromPrefix(Prefix prefix) throws ParseException {
         if (prefix.equals(PREFIX_NAME)) {
             return COMPARATOR_SORT_BY_NAME_ASCENDING;
         } else if (prefix.equals(PREFIX_PRIORITY)) {
             return COMPARATOR_SORT_BY_PRIORITY_DESCENDING;
         } else if (prefix.equals(PREFIX_PRICE)) {
-            return COMPARATOR_SORT_BY_PRICE_DESCENDING;
+            return COMPARATOR_SORT_BY_PRICE_ASCENDING;
+        }
+        // Code coverage cannot reach this line, defensive programming
+        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+    }
+
+    /**
+     * Returns the itinerary comparator corresponding to the given prefix.
+     * @throws ParseException if no valid comparator is found.
+     */
+    private static Comparator<Itinerary> getItineraryComparatorFromPrefix(Prefix prefix) throws ParseException {
+        if (prefix.equals(PREFIX_NAME)) {
+            return COMPARATOR_SORT_BY_ITINERARY_NAME_ASCENDING;
+        } else if (prefix.equals(PREFIX_PRIORITY)) {
+            return COMPARATOR_SORT_BY_CUMULATIVE_ITINERARY_PRIORITY_DESCENDING;
+        } else if (prefix.equals(PREFIX_PRICE)) {
+            return COMPARATOR_SORT_BY_CUMULATIVE_ITINERARY_PRICE_ASCENDING;
         }
         // Code coverage cannot reach this line, defensive programming
         throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));

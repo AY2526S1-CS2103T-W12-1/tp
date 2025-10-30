@@ -273,6 +273,11 @@ public class AddItineraryCommandTest {
         public void updateFilteredItineraryList(Predicate<Itinerary> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void updateSortedItineraryList(java.util.Comparator<Itinerary> comparator) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

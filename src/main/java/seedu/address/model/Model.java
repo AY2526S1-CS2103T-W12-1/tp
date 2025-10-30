@@ -19,13 +19,23 @@ public interface Model {
     Predicate<Attraction> PREDICATE_SHOW_ALL_ATTRACTIONS = unused -> true;
     Predicate<Itinerary> PREDICATE_SHOW_ALL_ITINERARIES = unused -> true;
 
-    /** {@code Comparator} that sorts attractions by name in ascending order */
+    /** {@code Comparator} that sorts attractions based on Prefix */
     Comparator<Attraction> COMPARATOR_SORT_BY_NAME_ASCENDING = (attr1, attr2) ->
             attr1.getName().fullName.compareToIgnoreCase(attr2.getName().fullName);
     Comparator<Attraction> COMPARATOR_SORT_BY_PRIORITY_DESCENDING = (attr1, attr2) ->
             Integer.compare(Integer.parseInt(attr2.getPriority().value), Integer.parseInt(attr1.getPriority().value));
-    Comparator<Attraction> COMPARATOR_SORT_BY_PRICE_DESCENDING = (attr1, attr2) ->
-            Double.compare(Double.parseDouble(attr2.getPrice().value), Double.parseDouble(attr1.getPrice().value));
+    Comparator<Attraction> COMPARATOR_SORT_BY_PRICE_ASCENDING = (attr1, attr2) ->
+            Double.compare(Double.parseDouble(attr1.getPrice().value), Double.parseDouble(attr2.getPrice().value));
+
+    /** {@code Comparator} that sorts itineraries based on Prefix */
+    Comparator<Itinerary> COMPARATOR_SORT_BY_ITINERARY_NAME_ASCENDING = (itinerary1, itinerary2) ->
+            itinerary1.getName().toString().compareToIgnoreCase(itinerary2.getName().toString());
+    Comparator<Itinerary> COMPARATOR_SORT_BY_CUMULATIVE_ITINERARY_PRICE_ASCENDING =
+            (itinerary1, itinerary2) ->
+            Double.compare(itinerary1.getCumulativeItineraryPrice(), itinerary2.getCumulativeItineraryPrice());
+    Comparator<Itinerary> COMPARATOR_SORT_BY_CUMULATIVE_ITINERARY_PRIORITY_DESCENDING =
+            (itinerary1, itinerary2) ->
+            Integer.compare(itinerary2.getCumulativeItineraryPriority(), itinerary1.getCumulativeItineraryPriority());
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -143,4 +153,6 @@ public interface Model {
     ObservableList<Itinerary> getFilteredItineraryList();
 
     void updateFilteredItineraryList(Predicate<Itinerary> predicate);
+
+    void updateSortedItineraryList(Comparator<Itinerary> comparator);
 }

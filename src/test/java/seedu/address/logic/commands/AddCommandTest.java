@@ -222,6 +222,11 @@ public class AddCommandTest {
         public void updateFilteredItineraryList(Predicate<seedu.address.model.itinerary.Itinerary> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void updateSortedItineraryList(Comparator<seedu.address.model.itinerary.Itinerary> comparator) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
