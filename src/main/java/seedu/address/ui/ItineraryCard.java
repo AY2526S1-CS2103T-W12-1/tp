@@ -4,9 +4,9 @@ import java.time.format.DateTimeFormatter;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.model.itinerary.Itinerary;
 
 /**
@@ -31,7 +31,7 @@ public class ItineraryCard extends UiPart<Region> {
     @FXML
     private Label attractionCount;
     @FXML
-    private FlowPane attractionNames;
+    private VBox attractionNames;
 
     /**
      * Creates a {@code ItineraryCard} with the given {@code Itinerary} and
@@ -46,7 +46,9 @@ public class ItineraryCard extends UiPart<Region> {
         int numberOfAttractions = itinerary.getAttractions().size();
         attractionCount.setText("Stops: " + numberOfAttractions);
         itinerary.getAttractions()
-                .forEach(attraction -> attractionNames.getChildren()
-                .add(new Label(attraction.getName().fullName)));
+                .forEach(attraction -> {
+                    Label attractionLabel = new Label(attraction.getName().fullName);
+                    attractionNames.getChildren().add(attractionLabel);
+                });
     }
 }
