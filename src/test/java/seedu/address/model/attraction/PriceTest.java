@@ -29,12 +29,12 @@ public class PriceTest {
         assertFalse(Price.isValidPrice("")); // empty string
 
         // valid price
-        assertTrue(Price.isValidPrice("JPY 200"));// 3 Letter currency code
+        assertTrue(Price.isValidPrice("JPY 200")); // 3-letter iso code
         assertTrue(Price.isValidPrice("$2")); // no space
         assertTrue(Price.isValidPrice("USD 12.20")); // decimals
         assertTrue(Price.isValidPrice("5 USD")); // Units at the end
         assertTrue(Price.isValidPrice("5$")); // Units at the end
-        assertTrue(Price.isValidPrice("US$ 5")); // 2-letter iso code with D replaced by $
+        assertTrue(Price.isValidPrice("US$ 5")); // 3-letter iso code with D replaced by $
         assertTrue(Price.isValidPrice("5")); // No units
         assertTrue(Price.isValidPrice("5           US$")); // A lot of spaces
         assertTrue(Price.isValidPrice("5")); // A lot of spaces
