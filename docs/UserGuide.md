@@ -77,10 +77,10 @@ Maplet caters to individuals that are **planning to go overseas** or are **frequ
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PRIORITY_NUMBER c/CONTACT a/ADDRESS [o/OPENING_HOURS] pr/PRICE [t/TAG]…​` <br> e.g., `add n/Universal Village p/4 c/UniVillage@example.com a/123, Clementi Rd, 1234665 /p 10USD t/movies t/leisure com/This place has a lot of rides but they have long queues.`
+**Add**    | `add n/NAME p/PRIORITY_NUMBER c/CONTACT a/ADDRESS [o/OPENING_HOURS] pr/PRICE [t/TAG]… [com/COMMENT]…​` <br> e.g., `add n/Universal Village p/4 c/UniVillage@example.com a/123, Clementi Rd, 1234665 /p 10USD t/movies t/leisure com/This place has a lot of rides but they have long queues.`
 **Clear**  | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PRIORITY_NUMBER] [c/CONTACT] [a/ADDRESS] [o/OPENING_HOURS] [pr/PRICE] [t/TAG]…​`<br> e.g.,`edit 2 n/Golden Studios c/GoldenSS@example.com`
+**Edit**   | `edit INDEX [n/NAME] [p/PRIORITY_NUMBER] [c/CONTACT] [a/ADDRESS] [o/OPENING_HOURS] [pr/PRICE] [t/TAG]… [c/COMMENT]…​`<br> e.g.,`edit 2 n/Golden Studios c/GoldenSS@example.com`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Golden Studios`
 **Sort**   | `sort PREFIX`<br> e.g., `sort p/`
 **Add Location**   | `addlocation ln/LOCATION_NAME i/ATTRACTION_INDEX [i/ATTRACTION_INDEX]…`<br> e.g., `addlocation ln/Singapore i/1 i/2 i/3`
@@ -139,6 +139,20 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [c/CONTACT] [a/ADDRESS] [act/ACTIVITIES] 
 Examples:
 *  `edit 1 p/9 c/orangerestaurant@example.com` Edits the priority value and contact detail of the 1st attraction to be `9` and `orangerestaurant@example.com` respectively.
 *  `edit 2 n/Golden Star t/` Edits the name of the 2nd attraction to be `Golden Star` and clears all existing tags.
+
+### Detailed editing of an attraction: `dedit`
+
+Edits the existing details of an attraction instead of replace the attributes.
+
+Format : `dedit INDEX`
+
+* Opens up a window with the attribute values of the attraction at the specified `INDEX`. The index refers to the index number shown in the displayed attraction list. The index **must be a positive integer** 1, 2, 3, …​
+* You can hit ENTER after editing the field values to close the window and update the attraction.
+* If you have provided invalid values for certain attributes, hitting ENTER will not close the window and an error message will be displayed in the status bar.
+
+Examples:
+* `dedit 1` Opens the edit window for attraction 1.
+
 
 ### Locating attractions by name: `find`
 
@@ -246,6 +260,20 @@ Format: `deleteitinerary INDEX`
 Examples:
 * `deleteitinerary 1` deletes the 1st itinerary in the itinerary list.
 * `deleteitinerary 3` deletes the 3rd itinerary in the itinerary list.
+
+### Adding a comment: `comment`
+
+Adds a comment to the specified attraction
+
+Format: `comment INDEX com/COMMENT`
+
+* Add the comment specified as `COMMENT` to the attraction at INDEX.
+* INDEX refers to the index number shown in the attraction list.
+* INDEX **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `comment 1 com/Expensive place` Adds the comment "Expensive place" to the attraction at index 1.
+* `comment 2 com/Terrible service` Adds the comment "Terrible service" to the attraction at index 2.
 
 ### Clearing all entries : `clear`
 
