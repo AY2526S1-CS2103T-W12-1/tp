@@ -172,22 +172,23 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd attraction in Maplet.
 * `find Cat Cafe` followed by `delete 1` deletes the 1st attraction in the results of the `find` command.
 
-### Sorting attractions : `sort`
+### Sorting attractions and itineraries: `sort`
 
-Sorts all attractions in Maplet based on the specified prefix.
+Sorts all attractions and itineraries in Maplet based on the specified prefix.
 
 Format: `sort PREFIX`
 
-* Sorts all attractions in the following order depending on the specified `PREFIX`.
+* Sorts all attractions and itineraries in the following order depending on the specified `PREFIX`.
 * `PREFIX` can be one of the following:
-  * `n/` : Sorts attractions in alphabetical order of names (A to Z)
-  * `p/` : Sorts attractions in descending order of priority (Largest to Smallest)
-  * `c/` : Sorts attractions in alphabetical order of contact details (A to Z)
-  * `a/` : Sorts attractions in alphabetical order of addresses (A to Z)
+  * `n/` : Sorts attractions and itineraries in alphabetical order of names (A to Z) 
+  * `p/` : Sorts attractions in descending order of priority (High to Low), 
+           and itineraries in descending order of their cumulative attractions' priority
+  * `pr/` : Sorts attractions in ascending order of price (Cheapest to Most Expensive),
+            and itineraries in ascending order of their cumulative attractions' price
 
 Examples:
-* `sort n/` sorts all attractions in alphabetical order of names (A to Z)
-* `sort p/` sorts all attractions in descending order of priority (Largest to Smallest)
+* `sort n/` sorts all attractions and itineraries in alphabetical order of names (A to Z)
+* `sort p/` sorts all attractions and itineraries in based on priority (High to Low)
 
 ### Adding a location: `addlocation`
 
