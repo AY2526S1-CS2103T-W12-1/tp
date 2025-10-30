@@ -31,7 +31,7 @@ public class AddCommand extends Command {
             + PREFIX_CONTACT + "CONTACT "
             + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_ACTIVITIES + "DESCRIPTION/ACTIVITY "
-            + PREFIX_OPENING_HOURS + "OPENING_HOURS "
+            + "[" + PREFIX_OPENING_HOURS + "OPENING_HOURS] "
             + PREFIX_PRICE + "PRICE "
             + "[" + PREFIX_TAG + "TAG]..."
             + "[" + PREFIX_COMMENT + "COMMENT]...\n"
