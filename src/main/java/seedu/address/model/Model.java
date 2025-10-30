@@ -24,10 +24,8 @@ public interface Model {
             attr1.getName().fullName.compareToIgnoreCase(attr2.getName().fullName);
     Comparator<Attraction> COMPARATOR_SORT_BY_PRIORITY_DESCENDING = (attr1, attr2) ->
             Integer.compare(Integer.parseInt(attr2.getPriority().value), Integer.parseInt(attr1.getPriority().value));
-    Comparator<Attraction> COMPARATOR_SORT_BY_CONTACT_ASCENDING = (attr1, attr2) ->
-            attr1.getContact().value.compareToIgnoreCase(attr2.getContact().value);
-    Comparator<Attraction> COMPARATOR_SORT_BY_ADDRESS_ASCENDING = (attr1, attr2) ->
-            attr1.getAddress().value.compareToIgnoreCase(attr2.getAddress().value);
+    Comparator<Attraction> COMPARATOR_SORT_BY_PRICE_DESCENDING = (attr1, attr2) ->
+            Double.compare(Double.parseDouble(attr2.getPrice().value), Double.parseDouble(attr1.getPrice().value));
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.

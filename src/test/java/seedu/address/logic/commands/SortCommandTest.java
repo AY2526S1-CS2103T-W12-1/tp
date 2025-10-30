@@ -3,8 +3,8 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.model.Model.COMPARATOR_SORT_BY_ADDRESS_ASCENDING;
 import static seedu.address.model.Model.COMPARATOR_SORT_BY_NAME_ASCENDING;
+import static seedu.address.model.Model.COMPARATOR_SORT_BY_PRICE_DESCENDING;
 import static seedu.address.model.Model.COMPARATOR_SORT_BY_PRIORITY_DESCENDING;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAttractions.ALICE;
@@ -78,21 +78,13 @@ public class SortCommandTest {
                 model.getFilteredAttractionList());
     }
 
-    @Test
-    public void execute_addressAscendingComparator_success() {
-        SortCommand sortCommand = new SortCommand(COMPARATOR_SORT_BY_ADDRESS_ASCENDING);
-        sortCommand.execute(model);
-        assertEquals(
-                Arrays.asList(DANIEL, ALICE, BENSON, GEORGE, FIONA, ELLE, CARL),
-                model.getFilteredAttractionList());
-    }
 
     @Test
-    public void execute_contactAscendingComparator_success() {
-        SortCommand sortCommand = new SortCommand(Model.COMPARATOR_SORT_BY_CONTACT_ASCENDING);
+    public void execute_priceDescendingComparator_success() {
+        SortCommand sortCommand = new SortCommand(COMPARATOR_SORT_BY_PRICE_DESCENDING);
         sortCommand.execute(model);
         assertEquals(
-                Arrays.asList(ALICE, GEORGE, DANIEL, CARL, BENSON, FIONA, ELLE),
+                Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE),
                 model.getFilteredAttractionList());
     }
 
