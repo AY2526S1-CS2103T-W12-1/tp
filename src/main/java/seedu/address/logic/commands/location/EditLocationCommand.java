@@ -1,6 +1,9 @@
 package seedu.address.logic.commands.location;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION_ATTRACTION_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION_ACTION;
 
 import java.util.HashSet;
 import java.util.Objects;
@@ -29,9 +32,11 @@ public class EditLocationCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the specified location by adding or removing "
             + "an attraction. "
-            + "Parameters: ln/LOCATION_NAME action/ACTION i/ATTRACTION_INDEX\n"
+            + "Parameters: " + PREFIX_LOCATION_NAME +"LOCATION_NAME "
+            + PREFIX_LOCATION_ACTION + "ACTION " + PREFIX_LOCATION_ATTRACTION_INDEX + "ATTRACTION_INDEX\n"
             + "ACTION must be ADD or REMOVE.\n"
-            + "Example: " + COMMAND_WORD + " ln/Singapore action/ADD i/3";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_LOCATION_NAME + "Singapore "
+            + PREFIX_LOCATION_ACTION + "ADD " + PREFIX_LOCATION_ATTRACTION_INDEX + "3";
 
     public static final String MESSAGE_LOCATION_NOT_FOUND = "The specified location does not exist in the maplet.";
     public static final String MESSAGE_INVALID_ACTION = "Action must be either ADD or REMOVE.";

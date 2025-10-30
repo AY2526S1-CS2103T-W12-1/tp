@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.location;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION_NAME;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -16,8 +17,8 @@ public class DeleteLocationCommand extends Command {
     public static final String COMMAND_WORD = "deletelocation";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes the specified location. "
-            + "Parameters: ln/LOCATION_NAME\n"
-            + "Example: " + COMMAND_WORD + " ln/Singapore";
+            + "Parameters: " + PREFIX_LOCATION_NAME + "LOCATION_NAME\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_LOCATION_NAME + "Singapore";
 
     public static final String MESSAGE_DELETE_LOCATION_SUCCESS = "Deleted location: %1$s";
     public static final String MESSAGE_LOCATION_NOT_FOUND = "The specified location does not exist in the maplet.";
