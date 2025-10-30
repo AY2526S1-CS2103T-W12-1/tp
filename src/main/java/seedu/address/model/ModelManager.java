@@ -211,7 +211,6 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredItineraryList(Predicate<Itinerary> predicate) {
         requireNonNull(predicate);
-        updateSortedItineraryList(null);
         filteredItineraries.setPredicate(predicate);
     }
 
