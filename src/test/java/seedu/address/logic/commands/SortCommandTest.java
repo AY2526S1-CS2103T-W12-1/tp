@@ -3,10 +3,24 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.model.Model.*;
+import static seedu.address.model.Model.COMPARATOR_SORT_BY_CUMULATIVE_ITINERARY_PRICE_ASCENDING;
+import static seedu.address.model.Model.COMPARATOR_SORT_BY_CUMULATIVE_ITINERARY_PRIORITY_DESCENDING;
+import static seedu.address.model.Model.COMPARATOR_SORT_BY_ITINERARY_NAME_ASCENDING;
+import static seedu.address.model.Model.COMPARATOR_SORT_BY_NAME_ASCENDING;
+import static seedu.address.model.Model.COMPARATOR_SORT_BY_PRICE_ASCENDING;
+import static seedu.address.model.Model.COMPARATOR_SORT_BY_PRIORITY_DESCENDING;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalAttractions.*;
-import static seedu.address.testutil.TypicalItineraries.*;
+import static seedu.address.testutil.TypicalAttractions.ALICE;
+import static seedu.address.testutil.TypicalAttractions.BENSON;
+import static seedu.address.testutil.TypicalAttractions.CARL;
+import static seedu.address.testutil.TypicalAttractions.DANIEL;
+import static seedu.address.testutil.TypicalAttractions.ELLE;
+import static seedu.address.testutil.TypicalAttractions.FIONA;
+import static seedu.address.testutil.TypicalAttractions.GEORGE;
+import static seedu.address.testutil.TypicalAttractions.getTypicalMapletWithItineraries;
+import static seedu.address.testutil.TypicalItineraries.EUROPE_TOUR;
+import static seedu.address.testutil.TypicalItineraries.JAPAN_TRIP;
+import static seedu.address.testutil.TypicalItineraries.SINGAPORE_VISIT;
 
 import java.util.Arrays;
 

@@ -30,11 +30,9 @@ public interface Model {
     /** {@code Comparator} that sorts itineraries based on Prefix */
     Comparator<Itinerary> COMPARATOR_SORT_BY_ITINERARY_NAME_ASCENDING = (itinerary1, itinerary2) ->
             itinerary1.getName().toString().compareToIgnoreCase(itinerary2.getName().toString());
-    Comparator<Itinerary> COMPARATOR_SORT_BY_CUMULATIVE_ITINERARY_PRICE_ASCENDING =
-            (itinerary1, itinerary2) ->
+    Comparator<Itinerary> COMPARATOR_SORT_BY_CUMULATIVE_ITINERARY_PRICE_ASCENDING = (itinerary1, itinerary2) ->
             Double.compare(itinerary1.getCumulativeItineraryPrice(), itinerary2.getCumulativeItineraryPrice());
-    Comparator<Itinerary> COMPARATOR_SORT_BY_CUMULATIVE_ITINERARY_PRIORITY_DESCENDING =
-            (itinerary1, itinerary2) ->
+    Comparator<Itinerary> COMPARATOR_SORT_BY_CUMULATIVE_ITINERARY_PRIORITY_DESCENDING = (itinerary1, itinerary2) ->
             Integer.compare(itinerary2.getCumulativeItineraryPriority(), itinerary1.getCumulativeItineraryPriority());
 
     /**
