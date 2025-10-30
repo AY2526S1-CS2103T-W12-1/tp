@@ -25,6 +25,9 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_ATTRACTION_SUCCESS = "Deleted Attraction: %1$s";
 
+    public static final String MESSAGE_ATTRACTION_IN_LOCATION = "This attraction is referenced in one or more"
+                    + " locations. Please remove it from all locations first.";;
+
     private final Index targetIndex;
 
     public DeleteCommand(Index targetIndex) {
@@ -41,6 +44,11 @@ public class DeleteCommand extends Command {
         }
 
         Attraction attractionToDelete = lastShownList.get(targetIndex.getZeroBased());
+
+        if (model.isAttractionInAnyLocation(attractionToDelete)) {
+            throw new CommandException(MESSAGE_ATTRACTION_IN_LOCATION);
+        }
+
         model.deleteAttraction(attractionToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_ATTRACTION_SUCCESS, Messages.format(attractionToDelete)));
     }

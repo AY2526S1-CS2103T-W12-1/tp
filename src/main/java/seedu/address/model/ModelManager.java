@@ -116,6 +116,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean isAttractionInAnyLocation(Attraction attraction) {
+        requireNonNull(attraction);
+        return maplet.isAttractionInAnyLocation(attraction);
+    }
+
+    @Override
     public void deleteAttraction(Attraction target) {
         maplet.removeAttraction(target);
     }

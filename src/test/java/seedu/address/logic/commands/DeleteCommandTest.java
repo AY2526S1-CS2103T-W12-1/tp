@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showAttractionAtIndex;
+import static seedu.address.testutil.TypicalAttractions.ALICE;
 import static seedu.address.testutil.TypicalAttractions.getTypicalMaplet;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ATTRACTION;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ATTRACTION;
@@ -14,10 +15,12 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
+import seedu.address.model.Maplet;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.attraction.Attraction;
+import seedu.address.testutil.LocationBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -77,6 +80,17 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_ATTRACTION_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_attractionReferencedInLocation_throwsCommandException() {
+        Maplet mapletWithLocation = new Maplet();
+        mapletWithLocation.addAttraction(ALICE);
+        mapletWithLocation.addLocation(new LocationBuilder().withAttractionNames(ALICE.getName().fullName).build());
+        Model modelWithLocation = new ModelManager(mapletWithLocation, new UserPrefs());
+        DeleteCommand deleteCommand = new DeleteCommand(Index.fromOneBased(1));
+
+        assertCommandFailure(deleteCommand, modelWithLocation, DeleteCommand.MESSAGE_ATTRACTION_IN_LOCATION);
     }
 
     @Test

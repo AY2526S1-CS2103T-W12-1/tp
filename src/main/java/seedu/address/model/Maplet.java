@@ -163,6 +163,15 @@ public class Maplet implements ReadOnlyMaplet {
     //// location-level operations
 
     /**
+     * Returns true if the given attraction is referenced in any location.
+     */
+    public boolean isAttractionInAnyLocation(Attraction attraction) {
+        requireNonNull(attraction);
+        return locations.asUnmodifiableObservableList().stream()
+                .anyMatch(location -> location.getAttractionNames().contains(attraction.getName()));
+    }
+
+    /**
      * Returns true if a location with the same identity as {@code location} exists in the Maplet.
      */
     public boolean hasLocation(Location location) {

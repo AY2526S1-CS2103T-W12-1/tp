@@ -260,6 +260,11 @@ public class AddItineraryCommandTest {
         }
 
         @Override
+        public boolean isAttractionInAnyLocation(Attraction attraction) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setItinerary(Itinerary target, Itinerary editedItinerary) {
             throw new AssertionError("This method should not be called.");
         }
