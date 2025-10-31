@@ -163,9 +163,9 @@ The location management feature lets users group attractions under named locatio
 
 #### Current implementation
 
-* `AddLocationCommand` and `DeleteLocationCommand` handle the respective commands. Their parsers enforce the `ln/` prefix and the presence of at least one attraction index where needed.
+* `AddLocationCommand`, `EditLocationCommand`, and `DeleteLocationCommand` handle the respective commands. Their parsers enforce the `ln/` prefix, the presence of at least one attraction index where needed, and a valid `action/` value for edits.
 * `Location`, `LocationName`, and `UniqueLocationList` represent the domain model. A `Location` wraps a `LocationName` and a set of attraction `Name`s.
-* `Model#addLocation`, `Model#deleteLocation`, and `Model#hasLocationName` delegate to `Maplet`, which maintains the `UniqueLocationList`.
+* `Model#addLocation`, `Model#setLocation`, `Model#deleteLocation`, and `Model#hasLocationName` delegate to `Maplet`, which maintains the `UniqueLocationList`. `Model#deleteLocation`, and `Model#hasLocationName` delegate to `Maplet`, which maintains the `UniqueLocationList`.
 * Persistence is handled by `JsonSerializableMaplet` and `JsonAdaptedLocation`, which validate that every referenced attraction exists when reading from disk.
 * `LocationListPanel` and `LocationCard` render the list of locations in the UI.
 
@@ -176,12 +176,19 @@ When a user executes `addlocation ln/Singapore i/1 i/2`:
 3. A new `Location` is created. `Location` enforces that at least one attraction is present and throws if the set is empty.
 4. `Model#hasLocationName` prevents duplicate location names before calling `Model#addLocation`, which stores the entry in the `UniqueLocationList`.
 
-The `deletelocation` command follows the same flow but calls `Model#deleteLocation(LocationName)` to remove the entry while leaving the attractions untouched.
+When a user executes `editlocation ln/Singapore action/ADD i/3`:
 
+1. `MapletParser` chooses `EditLocationCommandParser`, which tokenises the prefixes, checks that each is present exactly once, and converts `i/` into an `Index`.
+2. `EditLocationCommand` obtains the attraction at index 3 from `Model#getFilteredAttractionList()` to avoid editing attractions that are currently hidden from the user.
+3. The command locates the existing `Location` by name, clones its attraction `Name` set, and either adds or removes the selected attraction depending on the requested action. Attempting to add a duplicate, remove a non-existent attraction, or leave the location empty raises a `CommandException`.
+4. A new `Location` is constructed with the updated attraction set and persisted via `Model#setLocation`, ensuring that list observers are notified of the change.
+
+The `deletelocation` command follows a similar flow but calls `Model#deleteLocation(LocationName)` to remove the entry while leaving the attractions untouched.
 #### Design considerations
 
 * By storing attraction `Name`s instead of full attraction objects, locations stay synchronized with the attraction list without duplicating data.
 * All persistence checks happen during deserialization (`JsonAdaptedLocation#toModelType`) so invalid data never reaches the model.
+* Re-creating `Location` instances during edits keeps them immutable, which simplifies UI updates and equality checks while preventing shared mutable state between locations and attractions.
 
 ### Itinerary management feature
 

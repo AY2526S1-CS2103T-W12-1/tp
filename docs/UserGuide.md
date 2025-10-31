@@ -85,6 +85,7 @@ Action     | Format, Examples
 **Sort**   | `sort PREFIX`<br> e.g., `sort p/`
 **Add Location**   | `addlocation ln/LOCATION_NAME i/ATTRACTION_INDEX [i/ATTRACTION_INDEX]…`<br> e.g., `addlocation ln/Singapore i/1 i/2 i/3`
 **Delete Location**   | `deletelocation ln/LOCATION_NAME`<br> e.g., `deletelocation ln/Singapore`
+**Edit Location**   | `editlocation ln/LOCATION_NAME action/ACTION i/ATTRACTION_INDEX`<br> e.g., `editlocation ln/Singapore action/ADD i/5`
 **Add Itinerary**   | `additinerary n/ITINERARY_NAME [ai/ATTRACTION_INDEX]…`<br> e.g., `additinerary n/Singapore Trip ai/1 ai/2`
 **Delete Itinerary**   | `deleteitinerary INDEX`<br> e.g., `deleteitinerary 1`
 **List**   | `list`
@@ -206,18 +207,33 @@ Examples:
 
 ### Adding a location: `addlocation`
 
-Adds an location to Maplet.
+Adds a location to Maplet so you can group related attractions together.
 
-Format: `addlocation ln/LOCATION_NAME i/ATTRACTION_INDEX [i/ATTRACTION_INDEX ]…​`
+Format: `addlocation ln/LOCATION_NAME i/ATTRACTION_INDEX [i/ATTRACTION_INDEX]…​`
 
 <box type="tip" seamless>
 
-**Tip:** An Attraction can belong many Location, but in one Location, a Attraction is unique.
+**Tip:** An attraction can belong to many locations, but each location can only list an attraction once.
 </box>
 
 Examples:
-* `addlocation ln/Singpore i/1 i/2`
-* `addlocation n/Paris i/5 i/7 i/9`
+* `addlocation ln/Singapore i/1 i/2`
+* `addlocation ln/Paris i/5 i/7 i/9`
+
+### Editing a location: `editlocation`
+
+Updates an existing location by adding or removing a single attraction using its index in the displayed attraction list.
+
+Format: `editlocation ln/LOCATION_NAME action/ACTION i/ATTRACTION_INDEX`
+
+* `ACTION` must be either `ADD` or `REMOVE` (case-insensitive).
+* The attraction index refers to the current attraction list shown in the application.
+* Adding an attraction that is already linked to the location is not allowed.
+* Removing an attraction that is not part of the location, or removing the last attraction in the location, will show an error.
+
+Examples:
+* `editlocation ln/Singapore action/ADD i/5` adds the attraction at index 5 into the `Singapore` location.
+* `editlocation ln/Singapore action/remove i/2` removes the attraction at index 2 from the `Singapore` location, as long as at least one attraction remains afterwards.
 
 ### Deleting a location : `deletelocation`
 
