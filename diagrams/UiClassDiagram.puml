@@ -16,10 +16,12 @@ package UI <<Rectangle>> {
   Class ResultDisplay
   Class CommandBox
   Class StatusBarFooter
+  Class EditWindow
 
   ' ===== Attraction Tab =====
   Class AttractionListPanel
   Class AttractionCard
+  Class CommentWindow
 
   ' ===== Itinerary Tab =====
   Class ItineraryListPanel
@@ -56,6 +58,8 @@ LocationListPanel --|> UiPart
 LocationCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
+EditWindow --|> UiPart
+CommentWindow --|> UiPart
 
 ' ===== Composition =====
 UiManager -down-> "1" MainWindow
@@ -63,10 +67,12 @@ MainWindow *-down-> "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
 MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
+MainWindow --> "0..1" EditWindow
 
 ' ===== Attractions tab =====
 MainWindow *--> "1" AttractionListPanel
 AttractionListPanel -down-> "*" AttractionCard
+AttractionCard --> CommentWindow
 
 ' ===== Itinerary tab =====
 MainWindow *--> "1" ItineraryListPanel
