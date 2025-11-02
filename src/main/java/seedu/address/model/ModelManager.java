@@ -1,8 +1,10 @@
 package seedu.address.model;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.nio.file.Path;
 import java.util.Comparator;
-import static java.util.Objects.requireNonNull;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,7 +13,6 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import seedu.address.model.attraction.Attraction;
 import seedu.address.model.itinerary.Itinerary;
 import seedu.address.model.location.Location;
