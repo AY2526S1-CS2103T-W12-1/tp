@@ -77,7 +77,7 @@ Maplet caters to individuals that are **planning to go overseas** or are **frequ
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PRIORITY_NUMBER c/CONTACT a/ADDRESS [o/OPENING_HOURS] pr/PRICE [t/TAG]… [com/COMMENT]…​` <br> e.g., `add n/Universal Village p/4 c/UniVillage@example.com a/123, Clementi Rd, 1234665 /p 10USD t/movies t/leisure com/This place has a lot of rides but they have long queues.`
+**Add**    | `add n/NAME p/PRIORITY_NUMBER c/CONTACT a/ADDRESS [o/OPENING_HOURS] pr/PRICE [t/TAG]… [com/COMMENT]…​` <br> e.g., `add n/Universal Village p/4 c/UniVillage@example.com a/123, Clementi Rd, 1234665 act/Date pr/ 10USD t/movies t/leisure com/This place has a lot of rides but they have long queues.`
 **Clear**  | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit**   | `edit INDEX [n/NAME] [p/PRIORITY_NUMBER] [c/CONTACT] [a/ADDRESS] [o/OPENING_HOURS] [pr/PRICE] [t/TAG]… [c/COMMENT]…​`<br> e.g.,`edit 2 n/Golden Studios c/GoldenSS@example.com`
@@ -113,9 +113,9 @@ Format: `add n/NAME p/PRIORITY c/CONTACT a/ADDRESS act/ACTIVITIES [o/OPENING_HOU
 </box>
 
 Examples:
-* `add n/Big ben a/London, c/hello@gmail.com, p/5, act/listen to ben pr/SGD5`
-* `add n/Eiffel Tower p/9 c/example@gmail.com, a/Paris, act/climb tower 0/1200-1500 pr/500 t/bucket list t/with friends`
-* `add n/Pisa Tower p/9 c/hey123@gmail.com, a/Italy, act/phototaking pr/US$2 t/with friends com/It's leaning!`
+* `add n/Big ben a/London c/hello@gmail.com p/5 act/listen to ben pr/SGD5`
+* `add n/Eiffel Tower p/9 c/example@gmail.com a/Paris act/climb tower o/1200-1500 pr/500 t/bucketList t/friends`
+* `add n/Pisa Tower p/9 c/hey123@gmail.com a/Italy act/phototaking pr/US$2 t/friends com/It's leaning!`
 
 ### Listing all attractions : `list`
 
