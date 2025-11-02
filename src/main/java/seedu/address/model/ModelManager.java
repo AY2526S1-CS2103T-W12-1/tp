@@ -103,8 +103,6 @@ public class ModelManager implements Model {
         return maplet.hasAttraction(attraction);
     }
 
-
-
     @Override
     public boolean hasLocation(Location location) {
         requireNonNull(location);
@@ -156,6 +154,14 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedAttraction);
 
         maplet.setAttraction(target, editedAttraction);
+
+        for (Itinerary itinerary : maplet.getItineraryList()) {
+            if (itinerary.hasAttraction(target)) {
+                itinerary.removeAttraction(target);
+                itinerary.addAttraction(editedAttraction);
+            }
+        }
+
     }
 
     @Override
