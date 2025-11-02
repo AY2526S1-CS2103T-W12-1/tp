@@ -30,8 +30,8 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.ActiveTab;
+import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -180,10 +180,13 @@ public class EditLocationCommandTest {
 
     private static class ModelStub implements Model {
         @Override
-        public void setActiveTab(ActiveTab activeTab) {}
+        public void setActiveTab(ActiveTab activeTab) {
+        }
 
         @Override
-        public ActiveTab getActiveTab() { return ActiveTab.ATTRACTIONS; }
+        public ActiveTab getActiveTab() {
+            return ActiveTab.ATTRACTIONS;
+        }
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
