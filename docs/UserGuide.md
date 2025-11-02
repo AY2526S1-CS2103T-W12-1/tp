@@ -5,10 +5,39 @@
 ---
 
 # Maplet User Guide
+Welcome to Maplet, your goto solution for trip planning.
 
-Maplet caters to individuals that are **planning to go overseas** or are **frequent travellers**. Maplet is a **desktop app for managing places you want to visit**, optimized for use via a **Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Maplet can get your trip planning tasks done faster than traditional GUI apps.
 <!-- * Table of Contents -->
 <page-nav-print />
+
+-------------------------------------------------------------------------------------------------------------------
+
+## Introduction
+If you find yourself struggling to remember that one attraction you came across online, or you just can't decide which attraction to visit, Maplet is the solution for you.
+
+Maplet is perfect for frequent travellers that have lots of locations they want to visit, or for a group of friends that need to balance fun with budget. It is a desktop application designed for helping individuals take down locations of interest that they come across online or from other sources. It gives the user freedom
+to organize attractions into groups while taking into account cost, opening hours and other factors.
+
+Maplet is a **desktop app for managing places you want to visit**, optimized for use via a **Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Maplet can get your trip planning tasks done faster than traditional GUI apps.
+
+#### Main features
+
+**Attraction list**
+* Add attractions of interest that you come across online with ease
+* An attraction consists of many customizable fields such as priority and cost, to facilitate trip planning
+* Sort attractions according to different parameters
+* Find attractions by keywords
+
+**Location grouping**
+* When travelling, it is often more efficient and enjoyable to visit attractions in the same general area
+* Group **attractions** by **location** to identify which attractions you might want to visit at each location
+* Add and remove attractions from locations based on preference
+* Create new locations to group relevant attractions
+
+**Itinerary planning**
+* Create a custom itinerary for each trip
+* Add attractions to an itinerary to plan out your trip in detail
+* Sort itineraries based on priority/cost to compare different trip plans
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -30,7 +59,7 @@ Maplet caters to individuals that are **planning to go overseas** or are **frequ
 
    * `list` : Lists all attractions.
 
-   * `add n/Eiffel Tower p/9 c/example@gmail.com, a/Paris, act/climb tower p/$200 t/bucket list t/with friends com/It's a really tall place!` : Adds an attraction called Eiffel Tower
+   * `add n/Eiffel Tower p/9 c/example@gmail.com a/Paris, act/climb tower p/$200 t/landmark com/It's a really tall place!` : Adds an attraction called Eiffel Tower
 
    * `delete 3` : Deletes the 3rd attraction shown in the current list.
 
@@ -43,7 +72,7 @@ Maplet caters to individuals that are **planning to go overseas** or are **frequ
    * `additinerary n/Singapore Trip ai/1 ai/2`: Creates an itinerary called "Singapore Trip" with the attractions that are at index 1 and 2.
 
 
-  * 5. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -77,7 +106,7 @@ Maplet caters to individuals that are **planning to go overseas** or are **frequ
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PRIORITY_NUMBER c/CONTACT a/ADDRESS [o/OPENING_HOURS] pr/PRICE [t/TAG]… [com/COMMENT]…​` <br> e.g., `add n/Universal Village p/4 c/UniVillage@example.com a/123, Clementi Rd, 1234665 act/Date pr/ 10USD t/movies t/leisure com/This place has a lot of rides but they have long queues.`
+**Add**    | `add n/NAME p/PRIORITY_NUMBER c/CONTACT a/ADDRESS act/ACTIVITIES [o/OPENING_HOURS] pr/PRICE [t/TAG]… [com/COMMENT]…​` <br> e.g., `add n/Universal Village p/4 c/UniVillage@example.com a/123, Clementi Rd, 1234665 act/Date pr/ 10USD t/movies t/leisure com/This place has a lot of rides but they have long queues.`
 **Clear**  | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit**   | `edit INDEX [n/NAME] [p/PRIORITY_NUMBER] [c/CONTACT] [a/ADDRESS] [o/OPENING_HOURS] [pr/PRICE] [t/TAG]… [c/COMMENT]…​`<br> e.g.,`edit 2 n/Golden Studios c/GoldenSS@example.com`
@@ -91,6 +120,24 @@ Action     | Format, Examples
 **List**   | `list`
 **Help**   | `help`
 
+## Parameter prefixes
+Prefixes are used before parameters to help the program differentiate between different types of parameters. Below is a comprehensive list of prefix-parameter pairs.
+
+Prefix            |          Parameter
+------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------
+n/                | NAME
+p/                | PRIORITY_NUMBER
+c/                | CONTACT
+a/                | ADDRESS
+act/              | ACTIVITIES
+o/                | OPENING_HOURS
+pr/               | PRICE
+t/                | TAG
+c/                | COMMENT
+i/                | ATTRACTION_INDEX (LOCATIONS)
+ai/               | ATTRACTION_INDEX (ITINERARY)
+
+
 
 ### Viewing help : `help`
 
@@ -100,6 +147,12 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
+<box type="tip" seamless>
+
+**Tip:** Not sure if your command worked or not? Refer to the status box right below the command textbox
+
+![status box](images/statusBox.png)
+</box>
 
 ### Adding an attraction: `add`
 
