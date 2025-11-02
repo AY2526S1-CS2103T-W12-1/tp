@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.ActiveTab;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -141,6 +142,11 @@ public class AddItineraryCommandTest {
      * A default model stub that have all of the methods failing.
      */
     private static class ModelStub implements Model {
+        @Override
+        public void setActiveTab(ActiveTab activeTab) {}
+
+        @Override
+        public ActiveTab getActiveTab() { return ActiveTab.ATTRACTIONS; }
 
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {

@@ -3,6 +3,7 @@ package seedu.address.logic;
 import java.nio.file.Path;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.ActiveTab;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -61,4 +62,9 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Sets the active tab so commands can behave contextually.
+     */
+    void setActiveTab(ActiveTab activeTab);
 }

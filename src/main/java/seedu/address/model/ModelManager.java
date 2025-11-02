@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import seedu.address.commons.core.ActiveTab;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.attraction.Attraction;
@@ -31,6 +32,7 @@ public class ModelManager implements Model {
     private final SortedList<Attraction> sortedAttractions;
     private final FilteredList<Itinerary> filteredItineraries;
     private final SortedList<Itinerary> sortedItineraries;
+    private ActiveTab activeTab = ActiveTab.ATTRACTIONS;
 
     /**
      * Initializes a ModelManager with the given Maplet and userPrefs.
@@ -236,6 +238,17 @@ public class ModelManager implements Model {
     @Override
     public void updateSortedItineraryList(Comparator<Itinerary> comparator) {
         sortedItineraries.setComparator(comparator);
+    }
+
+    @Override
+    public void setActiveTab(ActiveTab activeTab) {
+        requireNonNull(activeTab);
+        this.activeTab = activeTab;
+    }
+
+    @Override
+    public ActiveTab getActiveTab() {
+        return activeTab;
     }
 
     @Override

@@ -20,6 +20,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.ActiveTab;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.location.DeleteLocationCommand;
 import seedu.address.model.Model;
@@ -71,6 +72,11 @@ public class DeleteLocationCommandTest {
     }
 
     private static class ModelStub implements Model {
+        @Override
+        public void setActiveTab(ActiveTab activeTab) {}
+
+        @Override
+        public ActiveTab getActiveTab() { return ActiveTab.ATTRACTIONS; }
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");

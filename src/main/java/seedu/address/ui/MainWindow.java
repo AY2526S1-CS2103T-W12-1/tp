@@ -8,11 +8,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import seedu.address.commons.core.ActiveTab;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
@@ -71,6 +73,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private TabPane contentTabPane;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and
@@ -145,7 +150,6 @@ public class MainWindow extends UiPart<Stage> {
         locationListPanelPlaceholder.getChildren().add(locationListPanel.getRoot());
         showLocationDetails(null);
 
-
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -154,6 +158,12 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        contentTabPane.getSelectionModel().selectedIndexProperty().addListener((obs, oldIdx, newIdx) -> {
+            if (newIdx != null) {
+                logic.setActiveTab(ActiveTab.values()[newIdx.intValue()]);
+            }
+        });
     }
 
     /**
@@ -198,6 +208,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Displays edit window
+     *
      * @return
      */
     @FXML
