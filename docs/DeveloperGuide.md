@@ -361,22 +361,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                | I want to …​                   | So that I can…​                                                                  |
 |----------|------------------------|--------------------------------|----------------------------------------------------------------------------------|
-| `* * *`  | user                   | add a attraction               | record information about an attraction                                           |
-| `* * *`  | user                   | delete a attraction            | remove unneeded / outdated information                                           |
-| `* * *`  | user                   | list attractions               | locate details on that attraction without going through the entire list          |
-| `* * *`  | user                   | list all attractions           | keep track of all attractions of interest                                        |
-| `* *`    | user                   | Edit attraction details        | correct a error, or to add new information about an existing entry               |
-| `* *`    | user                   | Filter attractions by distance | find the closest attraction to me                                                |
-| `* *`    | user                   | Filter attractions             | find attractions that fit my specifications                                      |
-| `* *`    | user                   | Add attraction to location     | group attractions by location                                                    |
-| `* *`    | user                   | Delete attraction              | remove unneeded / outdated locations                                             |
-| `* *`    | user                   | compare locations              | see which location better fits my needs                                          |
-| `*`      | Financially aware user | Add cost (if applicable)       | See the cost related to each attraction for planning                             |
-| `*`      | Trip planner           | Add opening hours              | track when the location opens for future reference                               |
-| `*`      | Trip planner           | Edit opening hours             | update opening hours on new information / errors                                 |
-| `*`      | Trip planner           | Check opening hours            | check if the attraction is open at the time of my intended visit                 |
-| `*`      | Trip planner           | Add activities to attractions  | record the associated activities of an attraction                                |
-| `*`      | Trip planner           | Sort attractions by activities | Find available attractions for the activities to be planned                      |
+| `* * *`  | User                   | add a attraction               | record information about an attraction                                           |
+| `* * *`  | User                   | delete a attraction            | remove unneeded / outdated information                                           |
+| `* * *`  | User                   | list attractions               | locate details on that attraction without going through the entire list          |
+| `* * *`  | User                   | list all attractions           | keep track of all attractions of interest                                        |
+| `* *`    | User                   | edit attraction details        | correct a error, or to add new information about an existing entry               |
+| `* *`    | User                   | filter attractions by distance | find the closest attraction to me                                                |
+| `* *`    | User                   | filter attractions             | find attractions that fit my specifications                                      |
+| `* *`    | User                   | add attraction to location     | group attractions by location                                                    |
+| `* *`    | User                   | delete attraction              | remove unneeded / outdated locations                                             |
+| `* *`    | User                   | compare locations              | see which location better fits my needs                                          |
+| `*`      | Financially aware user | add cost (if applicable)       | see the cost related to each attraction for planning                             |
+| `*`      | Trip planner           | add opening hours              | track when the location opens for future reference                               |
+| `*`      | Trip planner           | edit opening hours             | update opening hours on new information / errors                                 |
+| `*`      | Trip planner           | check opening hours            | check if the attraction is open at the time of my intended visit                 |
+| `*`      | Trip planner           | add activities to attractions  | record the associated activities of an attraction                                |
+| `*`      | Trip planner           | sort attractions by activities | find available attractions for the activities to be planned                      |
 | `*`      | Trip planner           | create itinerary               | plan a list of activities and attractions for the day, verified by opening hours |
 | `*`      | Trip planner           | edit itinerary                 | edit a list of activities and attractions for the day, verified by opening hours |
 | `*`      | Trip planner           | delete itinerary               | remove a list of activities and attractions for the day                          |
@@ -536,17 +536,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 attractions without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands tha using the mouse.
 4. When retrieving or saving location data, the system should respond within 2 seconds.
 5. When the user filters locations based on a order (distance, rating, …), the system should take less than 3 seconds
 6. The system must should be able to handle 100 simultaneous users query without degradation
 7. All user data (travel plans, ratings, reviews, …) should be stored securely in the database
 8. The system should require user authentication before retrieve personal data
-9. The system should be able to handle 1000 users in the database without failing the performance NFRs.
-10. The system should be able to handle growing number of locations and user-content
-11. New user should take less tha 5 minutes to set up account and start using application’s features
-12. User with disabilities should have access to all features
+9. The system should be able to handle up to 1000 locations and user-content
+10. New user should take less than 5 minutes to set up account and start using application’s features
+11. User with disabilities should have access to all features
 
 
 *{More to be added}*
@@ -557,7 +556,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Attraction**: A single place of interest
 * **Activity**: A thing to be done at a attraction
 * **Location**: A location can contain any number of attractions
-* **Itinerary**: An itenerary refers to a list of attractions to be visited, as well as the time spent at each attraction
+* **Itinerary**: An itinerary refers to a list of attractions to be visited, as well as the time spent at each attraction
 
 
 --------------------------------------------------------------------------------------------------------------------
