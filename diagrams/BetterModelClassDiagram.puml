@@ -23,11 +23,11 @@ Attraction *-down-> "0..*" Comment
 Maplet *-down-> "1" UniqueItineraryList
 UniqueItineraryList -down-> "*" Itinerary
 Itinerary *--> ItineraryName
-Itinerary *--> "*" Attraction
+Itinerary *--> "1..*" Attraction
 
 Maplet *-down-> "1" UniqueLocationList
 UniqueLocationList -down-> "*" Location
 Location *--> LocationName
-Location *--> "*" Attraction
+Location --> "1..*" Attraction
 
 @enduml
