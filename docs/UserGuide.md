@@ -290,6 +290,7 @@ Examples:
 After adding an attraction successfully you will be able to see the following output as the status message.
 
 ![Add Command](images/AddCommand.png)
+*Figure 5. `add` command example*
 
 
 ##### Listing all attractions : `list`
@@ -332,6 +333,7 @@ Examples:
 After a successful edit the status message should be as shown:
 
 ![EditCommand](images/EditCommand.png)
+*Figure 6. `edit` command example.*
 
 
 
@@ -349,6 +351,7 @@ Format : `dedit INDEX`
 Below is the sample window:
 
 ![image](images/DeditCommand.png)
+*Figure 7. `dedit` command example.*
 
 <box type="tip" seamless>
 
@@ -377,6 +380,7 @@ Examples:
 * `find Golden` returns `Golden Studios` and `Golden Fries`
 * `find Coffee Tea` returns `Runalds Coffee`, `Milk Tea Central`<br>
   ![result for 'find Coffee Tea'](images/findCoffeeTeaResult.png)
+  *Figure 8. `find` command example.*
 
 ##### Deleting an attraction : `delete`
 
@@ -458,6 +462,7 @@ Examples:
 If you have successfully added the itinerary you should see the following status message.
 
 ![image](images/AddItineraryCommand.png)
+*Figure 9. `additinerary` command example.*
 
 
 
@@ -506,6 +511,7 @@ Examples:
 Upon successfully adding a location you should see the following status message.
 
 ![image](images/AddLocation.png)
+*Figure 10. `addlocation` command example.*
 
 
 ##### Editing a location: `editlocation`
@@ -550,6 +556,7 @@ These commands are responsible for general system operations.
 Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
+*Figure 11. `help` command example.*
 
 Format: `help`
 
@@ -559,6 +566,7 @@ Format: `help`
 **Tip:** Not sure if your command worked or not? Refer to the status box right below the command textbox
 
 ![status box](images/statusBox.png)
+*Figure 12. Status box example*
 </box>
 
 
