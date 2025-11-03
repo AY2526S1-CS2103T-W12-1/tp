@@ -51,6 +51,10 @@ public class Price {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public double getPriceValue() {
+        return priceValue;
+    }
+
     @Override
     public String toString() {
         return value;
