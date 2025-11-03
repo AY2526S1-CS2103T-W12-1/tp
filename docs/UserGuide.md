@@ -13,31 +13,54 @@ Welcome to Maplet, your goto solution for trip planning.
 -------------------------------------------------------------------------------------------------------------------
 
 ## Introduction
-If you find yourself struggling to remember that one attraction you came across online, or you just can't decide which attraction to visit, Maplet is the solution for you.
+If you often find yourself bookmarking attractions online but forgetting them later, or struggling to prioritize destinations for a trip, **Maplet** is built for you.
 
-Maplet is perfect for frequent travellers that have lots of locations they want to visit, or for a group of friends that need to balance fun with budget. It is a desktop application designed for helping individuals take down locations of interest that they come across online or from other sources. It gives the user freedom
-to organize attractions into groups while taking into account cost, opening hours and other factors.
+It’s a **desktop app for managing travel attractions and itineraries**, designed for efficiency through a **Command Line Interface (CLI)** paired with a **Graphical User Interface (GUI)** allowing you to type commands quickly while still visualizing your data.
 
-Maplet is a **desktop app for managing places you want to visit**, optimized for use via a **Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Maplet can get your trip planning tasks done faster than traditional GUI apps.
+Maybe you’re a **travel blogger** categorizing attractions for content, a **student** planning your next overseas trip with friends, Maplet helps you plan smarter and faster.
 
-#### Main features
+### 🎯 Target Audience
+Maplet is designed for:
+- **Travel enthusiasts** who want to plan and organize trips efficiently.  
+- **Frequent flyers and planners** who handle multiple destinations and itineraries.
+- **Anyone** looking for a quick and easy way to plan an upcoming trip.
 
-**Attraction list**
-* Add attractions of interest that you come across online with ease
-* An attraction consists of many customizable fields such as priority and cost, to facilitate trip planning
-* Sort attractions according to different parameters
-* Find attractions by keywords
+You’ll get the most out of Maplet if you:
+- Can navigate a terminal (e.g., use `cd` or `java -jar`).  
+- Have **Java 17 or higher** installed on your computer.
 
-**Location grouping**
-* When travelling, it is often more efficient and enjoyable to visit attractions in the same general area
-* Group **attractions** by **location** to identify which attractions you might want to visit at each location
-* Add and remove attractions from locations based on preference
-* Create new locations to group relevant attractions
+Unsure on the above? Fret not! Refer to our [Quick start](#quick-start) guide to get you started!
 
-**Itinerary planning**
-* Create a custom itinerary for each trip
-* Add attractions to an itinerary to plan out your trip in detail
-* Sort itineraries based on priority/cost to compare different trip plans
+### 🌟 What You Can Do with Maplet
+
+### 🌆 Attraction List
+
+| What You Can Do | Description |
+|-----------------|-------------|
+| **Add attractions** | Record any new attraction you come across online with a single command. |
+| **Customize details** | Each attraction has editable fields such as priority, cost to help you plan effectively. |
+| **Sort by criteria** | Sort attractions by name, price, or priority to focus on what matters most. |
+| **Find by keyword** | Quickly search through attractions using relevant keywords. |
+
+---
+
+### 📍 Location Grouping
+
+| What You Can Do | Description |
+|-----------------|-------------|
+| **Group attractions** | Combine attractions that are in the same area. |
+| **Add or remove** | Add or remove attractions from a location as your plans change. |
+| **Create new locations** | Build your own custom location groups for better organization. |
+
+---
+
+### 🧭 Itinerary Planning
+
+| What You Can Do | Description |
+|-----------------|-------------|
+| **Create itineraries** | Plan custom trips by grouping attractions into one itinerary. |
+| **Add attractions** | Include specific attractions to map out your day-by-day plan. |
+| **Sort for optimization** | Sort itineraries by total cost or average priority to compare plans. |
 
 --------------------------------------------------------------------------------------------------------------------
 
