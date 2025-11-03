@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.Scene?>
@@ -8,7 +9,11 @@
 <?import javafx.scene.control.ScrollPane?>
 <fx:root title="Comments" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
     <scene>
-        <Scene width="400" height="300">
+        <Scene fx:id="windowScene" width="400" height="300">
+            <stylesheets>
+                <URL value="@DarkTheme.css" />
+                <URL value="@Extensions.css" />
+            </stylesheets>
             <ScrollPane fitToWidth="true">
                 <VBox fx:id="commentWindow" spacing="10" style="-fx-font-size: 16px;">
                     <padding>

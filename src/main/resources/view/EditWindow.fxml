@@ -3,6 +3,7 @@
 <?import javafx.scene.Scene?>
 <?import javafx.stage.Stage?>
 
+<?import java.net.URL?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.GridPane?>
@@ -11,7 +12,11 @@
 
 <fx:root title="Edit" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
     <scene>
-        <Scene width="400" height="300">
+        <Scene width="600" height="600" >
+            <stylesheets>
+                <URL value="@DarkTheme.css" />
+                <URL value="@Extensions.css" />
+            </stylesheets>
             <ScrollPane fitToWidth="true">
                 <Label text="Edit Contact" styleClass="edit-title" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
 
