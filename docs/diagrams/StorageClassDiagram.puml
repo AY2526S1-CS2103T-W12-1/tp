@@ -15,11 +15,13 @@ Class "<<interface>>\nStorage" as Storage
 Class StorageManager
 
 package "Maplet Storage" #F4F6F6{
-Class "<<interface>>\nMapletStorage" as MapletStorage
-Class JsonMapletStorage
-Class JsonSerializableMaplet
-Class JsonAdaptedAttraction
-Class JsonAdaptedTag
+  Class "<<interface>>\nMapletStorage" as MapletStorage
+    Class JsonMapletStorage
+    Class JsonSerializableMaplet
+    Class JsonAdaptedAttraction
+    Class JsonAdaptedTag
+    Class JsonAdaptedLocation
+    Class JsonAdaptedItinerary
 }
 
 }
@@ -38,6 +40,8 @@ JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonMapletStorage .up.|> MapletStorage
 JsonMapletStorage ..> JsonSerializableMaplet
 JsonSerializableMaplet --> "*" JsonAdaptedAttraction
+JsonSerializableMaplet --> "*" JsonAdaptedLocation
+JsonSerializableMaplet --> "*" JsonAdaptedItinerary
 JsonAdaptedAttraction --> "*" JsonAdaptedTag
 
 @enduml
