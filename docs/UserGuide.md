@@ -77,7 +77,7 @@ Ensure you have **Java 17 or higher** installed.
 > **Mac users:**  
 > Follow the official [installation guide](https://se-education.org/guides/tutorials/javaInstallationMac.html) for the correct JDK version.
 
-You can verify your version by running:
+You can verify your version by running in your terminal:
 ```bash
 java -version
 ```
@@ -128,9 +128,10 @@ Type commands in the command box and press **Enter**:
 
 
 <box type="tip" seamless>
+
 **Tip 1:** Use the `help` command anytime to see all available actions.
  
-**Tip 2:** Refer to the [Commands](#features) below for details of each command.
+**Tip 2:** Refer to the [Commands](#command-summary) below for details of each command.
 </box>
 ---
 
@@ -207,7 +208,8 @@ Commands are the main method for perform operation in the **Maplet** application
 | **Extra Parameters Ignored** | Commands like `help`, `list`, and `exit` ignore extra text. | `help 123` → works like `help` |
 
 
-> Warning for PDF Users: Be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+> **WARNING**
+ For PDF Users: Be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
 ### Command summary
@@ -528,6 +530,12 @@ Format: `editlocation ln/LOCATION_NAME action/ACTION i/ATTRACTION_INDEX`
 Examples:
 * `editlocation ln/Singapore action/ADD i/5` adds the attraction at index 5 into the `Singapore` location.
 * `editlocation ln/Singapore action/remove i/2` removes the attraction at index 2 from the `Singapore` location, as long as at least one attraction remains afterwards.
+
+<box type="tip" seamless>
+
+**Note:** The `ATTRACTION_INDEX` refers to the index of the Attraction in the Attractions tab.
+
+</box>
 
 ##### Deleting a location : `deletelocation`
 
