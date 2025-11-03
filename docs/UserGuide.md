@@ -17,9 +17,10 @@ If you often find yourself bookmarking attractions online but forgetting them la
 
 It’s a **desktop app for managing travel attractions and itineraries**, designed for efficiency through a **Command Line Interface (CLI)** paired with a **Graphical User Interface (GUI)** allowing you to type commands quickly while still visualizing your data.
 
-Maybe you’re a **travel blogger** categorizing attractions for content, a **student** planning your next overseas trip with friends, Maplet helps you plan smarter and faster.
+Whether you’re a **travel content creator** categorizing attractions for your next viral trip or a **student planning your next overseas trip with friends**, Maplet helps you plan smarter and faster.
 
-### 🎯 Target Audience
+
+### Target Audience
 Maplet is designed for:
 - **Travel enthusiasts** who want to plan and organize trips efficiently.  
 - **Frequent flyers and planners** who handle multiple destinations and itineraries.
@@ -31,9 +32,9 @@ You’ll get the most out of Maplet if you:
 
 Unsure on the above? Fret not! Refer to our [Quick start](#quick-start) guide to get you started!
 
-### 🌟 What You Can Do with Maplet
+### What You Can Do with Maplet
 
-### 🌆 Attraction List
+### Attraction List
 
 | What You Can Do | Description |
 |-----------------|-------------|
@@ -44,7 +45,7 @@ Unsure on the above? Fret not! Refer to our [Quick start](#quick-start) guide to
 
 ---
 
-### 📍 Location Grouping
+### Location Grouping
 
 | What You Can Do | Description |
 |-----------------|-------------|
@@ -54,7 +55,7 @@ Unsure on the above? Fret not! Refer to our [Quick start](#quick-start) guide to
 
 ---
 
-### 🧭 Itinerary Planning
+### Itinerary Planning
 
 | What You Can Do | Description |
 |-----------------|-------------|
@@ -64,38 +65,77 @@ Unsure on the above? Fret not! Refer to our [Quick start](#quick-start) guide to
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Quick Start
 
-1. Ensure you have Java `17` or above installed in your Computer.<br>
-   **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
+Follow these simple steps to install and start using **Maplet**.
 
-1. Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-W12-1/tp/releases).
+---
 
-1. Copy the file to the folder you want to use as the _home folder_ for Maplet.
+### 1. Check your Java setup
+Ensure you have **Java 17 or higher** installed.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar maplet.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/UiAlpha.png)
+> **Mac users:**  
+> Follow the official [installation guide](https://se-education.org/guides/tutorials/javaInstallationMac.html) for the correct JDK version.
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+You can verify your version by running:
+```bash
+java -version
+```
 
-   * `list` : Lists all attractions.
+Ensure you see something like:
+```
+openjdk version "17.x.x" 2025-01-21 LTS
+```
+---
 
-   * `add n/Eiffel Tower p/9 c/example@gmail.com a/Paris, act/climb tower p/$200 t/landmark com/It's a really tall place!` : Adds an attraction called Eiffel Tower
+### 2. Download Maplet
+Download the latest `.jar` file from the [Maplet GitHub Releases page](https://github.com/AY2526S1-CS2103T-W12-1/tp/releases).
 
-   * `delete 3` : Deletes the 3rd attraction shown in the current list.
+Download it to a folder of your choice, this will be your **home folder** where all your data will be automatically saved.
 
-   * `clear` : Deletes all attractions.
+> **Warning:**  
+> Keep the file name as `maplet.jar` to avoid any compatibility issues.
 
-   * `exit` : Exits the app.
+---
 
-   * `addlocation ln/Singapore i/1`: Adds attraction with index 1 to location Singapore.
+### 3. Launch Maplet
+Open your terminal and run:
+```bash
+cd [your-folder-name]
+java -jar maplet.jar
+```
+After a few seconds, Maplet will appear with sample attractions preloaded.
 
-   * `additinerary n/Singapore Trip ai/1 ai/2`: Creates an itinerary called "Singapore Trip" with the attractions that are at index 1 and 2.
+![Maplet Interface](images/UiAlpha.png)
+*Figure 1. Maplet interface showing sample data.*
+
+---
+
+### 4. Try a few commands
+Type commands in the command box and press **Enter**:
+
+| Command | Description |
+|----------|--------------|
+| `help` | Opens the help window. |
+| `list` | Displays all attractions. |
+| `add n/Eiffel Tower p/9 a/Paris act/climb tower pr/$200` | Adds an attraction called **Eiffel Tower**. |
+| `delete 3` | Deletes the attraction at index 3 shown in the current list. |
+| `addlocation ln/Singapore i/1` | dds attraction with index 1 to location "Singapore". |
+| `addlocation ln/Singapore i/1` | dds attraction with index 1 to location "Singapore". |
+| `additinerary n/Singapore Trip ai/1 ai/2` | Creates an itinerary called "Singapore Trip" with the attractions that are at index 1 and 2. |
+| `clear` | Deletes all attractions. |
+| `exit` | Closes the app. |
 
 
-1. Refer to the [Commands](#features) below for details of each command.
+> **Tip 1:** Use the `help` command anytime to see all available actions.
+> **Tip 2:** Refer to the [Commands](#features) below for details of each command.
+
+---
+
+### You’re ready to go!
+Start adding attractions, group them by location, and build your first itinerary.  
+Next, visit the [Navigation](#navigation) section to explore how each panel works.
+
 
 --------------------------------------------------------------------------------------------------------------------
 ## Navigation
