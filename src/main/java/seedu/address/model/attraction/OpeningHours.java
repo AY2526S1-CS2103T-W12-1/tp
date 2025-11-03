@@ -14,7 +14,8 @@ import java.util.regex.Pattern;
  */
 public class OpeningHours {
 
-    public static final String MESSAGE_CONSTRAINTS = "Opening hours should be in the HHMM - HHMM 24-hour format";
+    public static final String MESSAGE_CONSTRAINTS = "Opening hours should be in the HHMM - HHMM 24-hour format. "
+            + "24-Hour (case sensitive) can be used to indicate an attraction without specified opening hours.";
     public static final String TIME_CONSTRAINTS = "Time should be in the HHMM 24-hour format";
     public static final String OPENING_HOURS_VALIDATION_REGEX =
             "(?<opensAt>([0-1][0-9]|2[0-3])[0-5][0-9])"
@@ -57,7 +58,7 @@ public class OpeningHours {
      */
     public static boolean isValidOpeningHours(String test) {
         requireNonNull(test);
-        return test.matches(OPENING_HOURS_VALIDATION_REGEX);
+        return test.matches(OPENING_HOURS_VALIDATION_REGEX) || test.equals("24-Hour");
     }
 
     /**

@@ -149,7 +149,7 @@ class JsonAdaptedAttraction {
         }
 
         final OpeningHours modelOpeningHours;
-        if (openingHours == null) {
+        if (openingHours == null || openingHours.equals("24-Hour")) {
             modelOpeningHours = OpeningHours.NON_SPECIFIED_HOURS;
         } else {
             modelOpeningHours = new OpeningHours(openingHours);

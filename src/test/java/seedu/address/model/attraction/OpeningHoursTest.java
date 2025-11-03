@@ -35,6 +35,7 @@ public class OpeningHoursTest {
         assertTrue(OpeningHours.isValidOpeningHours("0300   -       2300")); // accepts spaces
         assertTrue(OpeningHours.isValidOpeningHours("2300 - 0300")); // spanning over midnight
         assertTrue(OpeningHours.isValidOpeningHours("0000 - 2359")); // 24 hour
+        assertTrue(OpeningHours.isValidOpeningHours("24-Hour")); // 24 hour
     }
 
     @Test
