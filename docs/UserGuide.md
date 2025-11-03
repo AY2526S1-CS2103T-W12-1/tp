@@ -179,35 +179,29 @@ Finally, navigate to the **Location Panel** by clicking the *Location* button or
 | **Location List** | Lists all user defined location. |
 | **Attraction List** | Displays attractions assigned to the selected location. |
 
-> 💡 **Tip:** To add a location refer to the [add a location](#adding-a-location-addlocation) section.
+> **Tip:** To add a location refer to the [add a location](#adding-a-location-addlocation) section.
 
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## Commands
 
-Commands are the main method for perform operation in the Maplet application. 
+Commands are the main method for perform operation in the **Maplet** application. 
 
 <box type="info" seamless>
 
 **Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/Eiffel Tower`.
+| Format Element | Description | Example |
+|----------------|--------------|----------|
+| **UPPER_CASE** | Placeholder for a parameter to be supplied by you. | `add n/NAME` -> `add n/Eiffel Tower` where `NAME` is replaced with `Eiffel Tower`|
+| **[Square Brackets]** | Optional parameter. | `n/NAME [t/TAG]` → `n/Eiffel Tower t/bucketlist` or just `n/Eiffel Tower` |
+| **Ellipsis `…`** | Parameter can any amount of times. | `[t/TAG]…` → `t/movies t/leisure` or `t/`|
+| **Order Flexibility** | Parameters can appear in any order. | `p/PRIORITY n/NAME` works like `n/NAME p/PRIORITY` |
+| **Extra Parameters Ignored** | Commands like `help`, `list`, and `exit` ignore extra text. | `help 123` → works like `help` |
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/Eiffel Tower t/bucket list` or as `n/Eiffel Tower`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/bucket list`, `t/bucket list t/with friends` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PRIORITY`, `p/PRIORITY n/NAME` is also acceptable.
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
-* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+> Warning for PDF Users: Be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
 ### Command summary
