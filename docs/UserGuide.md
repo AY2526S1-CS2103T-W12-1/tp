@@ -120,8 +120,8 @@ Type commands in the command box and press **Enter**:
 | `list` | Displays all attractions. |
 | `add n/Eiffel Tower p/9 a/Paris act/climb tower pr/$200` | Adds an attraction called **Eiffel Tower**. |
 | `delete 3` | Deletes the attraction at index 3 shown in the current list. |
-| `addlocation ln/Singapore i/1` | dds attraction with index 1 to location "Singapore". |
-| `addlocation ln/Singapore i/1` | dds attraction with index 1 to location "Singapore". |
+| `addlocation ln/Singapore i/1` | Adds attraction with index 1 to location "Singapore". |
+| `addlocation ln/Singapore i/1` | Adds attraction with index 1 to location "Singapore". |
 | `additinerary n/Singapore Trip ai/1 ai/2` | Creates an itinerary called "Singapore Trip" with the attractions that are at index 1 and 2. |
 | `clear` | Deletes all attractions. |
 | `exit` | Closes the app. |
