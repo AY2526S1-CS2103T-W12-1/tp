@@ -25,7 +25,7 @@ public interface Model {
     Comparator<Attraction> COMPARATOR_SORT_BY_PRIORITY_DESCENDING = (attr1, attr2) ->
             Integer.compare(Integer.parseInt(attr2.getPriority().value), Integer.parseInt(attr1.getPriority().value));
     Comparator<Attraction> COMPARATOR_SORT_BY_PRICE_ASCENDING = (attr1, attr2) ->
-            Double.compare(Double.parseDouble(attr1.getPrice().value), Double.parseDouble(attr2.getPrice().value));
+            Double.compare(attr1.getPrice().getPriceValue(), attr2.getPrice().getPriceValue());
 
     /** {@code Comparator} that sorts itineraries based on Prefix */
     Comparator<Itinerary> COMPARATOR_SORT_BY_ITINERARY_NAME_ASCENDING = (itinerary1, itinerary2) ->
