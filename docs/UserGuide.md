@@ -131,7 +131,7 @@ Type commands in the command box and press **Enter**:
 
 **Tip 1:** Use the `help` command anytime to see all available actions.
  
-**Tip 2:** Refer to the [Commands](#command-summary) below for details of each command.
+**Tip 2:** Refer to the [Commands](#commands) below for details of each command.
 </box>
 ---
 
