@@ -110,9 +110,11 @@
       "title": "User Guide",
       "headings": {
         "maplet-user-guide": "Maplet User Guide",
+        "introduction": "Introduction",
         "quick-start": "Quick start",
         "features": "Features",
         "command-summary": "Command summary",
+        "parameter-prefixes": "Parameter prefixes",
         "viewing-help-help": "Viewing help : help",
         "adding-an-attraction-add": "Adding an attraction: add",
         "listing-all-attractions-list": "Listing all attractions : list",
