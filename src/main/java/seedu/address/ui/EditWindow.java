@@ -78,6 +78,10 @@ public class EditWindow extends UiPart<Stage> {
             if (event.getCode() == KeyCode.ENTER) {
                 saveFields();
             }
+
+            if (event.getCode() == KeyCode.ESCAPE) {
+                hide();
+            }
         });
     }
 

@@ -4,7 +4,9 @@ import java.util.Set;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
@@ -21,6 +23,8 @@ public class CommentWindow extends UiPart<Stage> {
     @FXML
     private VBox commentWindow;
 
+    @FXML
+    private Scene windowScene;
 
     private Set<Comment> comments;
 
@@ -39,6 +43,13 @@ public class CommentWindow extends UiPart<Stage> {
         this(new Stage());
         this.comments = comments;
         addCommentsToWindow();
+
+        //Initialize commentWindow to close on ESCAPE keypress.
+        this.windowScene.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ESCAPE) {
+                hide();
+            }
+        });
     }
 
     private void addCommentsToWindow() {
