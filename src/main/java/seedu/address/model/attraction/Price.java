@@ -12,14 +12,14 @@ import java.util.regex.Pattern;
  * Guarantees: immutable; is valid as declared in {@link #isValidCost(String)}
  */
 public class Price {
-    public static final String MESSAGE_CONSTRAINTS = "Price should be a numerical value "
-            + "with the currency symbol or the 3-letter ISO code, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Price should be a numerical value, with 0 to 3 decimal places. "
+            + "It can have a 3-letter or a 2-letter and symbol prefix and / or suffix to indicate its currency.";
 
     /*
      * Accepts the 3-letter ISO code (USD, SGD), both before or after a numerical value (decimals allowed)
      */
     public static final String VALIDATION_REGEX = "^(?<units1>[A-Za-z]{3}|\\p{Sc}|[A-Za-z]{2}\\p{Sc})?"
-            + "\\s*(?<value>\\d+(\\.\\d+)?)\\s*"
+            + "\\s*(?<value>\\d+(\\.\\d{1,3})?)\\s*"
             + "(?<units2>[A-Za-z]{3}|\\p{Sc}|[A-Za-z]{2}\\p{Sc})?$";
 
     public final String value;
