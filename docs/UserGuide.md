@@ -219,19 +219,22 @@ Commands are the main method for perform operation in the **Maplet** application
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PRIORITY_NUMBER c/CONTACT a/ADDRESS act/ACTIVITIES [o/OPENING_HOURS] pr/PRICE [t/TAG]… [com/COMMENT]…​` <br> e.g., `add n/Universal Village p/4 c/UniVillage@example.com a/123, Clementi Rd, 1234665 act/Date pr/ 10USD t/movies t/leisure com/This place has a lot of rides but they have long queues.`
-**Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PRIORITY_NUMBER] [c/CONTACT] [a/ADDRESS] [o/OPENING_HOURS] [pr/PRICE] [t/TAG]… [c/COMMENT]…​`<br> e.g.,`edit 2 n/Golden Studios c/GoldenSS@example.com`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Golden Studios`
-**Sort**   | `sort PREFIX`<br> e.g., `sort p/`
-**Add Location**   | `addlocation ln/LOCATION_NAME i/ATTRACTION_INDEX [i/ATTRACTION_INDEX]…`<br> e.g., `addlocation ln/Singapore i/1 i/2 i/3`
-**Delete Location**   | `deletelocation ln/LOCATION_NAME`<br> e.g., `deletelocation ln/Singapore`
-**Edit Location**   | `editlocation ln/LOCATION_NAME action/ACTION i/ATTRACTION_INDEX`<br> e.g., `editlocation ln/Singapore action/ADD i/5`
-**Add Itinerary**   | `additinerary n/ITINERARY_NAME [ai/ATTRACTION_INDEX]…`<br> e.g., `additinerary n/Singapore Trip ai/1 ai/2`
-**Delete Itinerary**   | `deleteitinerary INDEX`<br> e.g., `deleteitinerary 1`
-**List**   | `list`
-**Help**   | `help`
+[**Add**](#adding-an-attraction-add)    | `add n/NAME p/PRIORITY_NUMBER c/CONTACT a/ADDRESS act/ACTIVITIES [o/OPENING_HOURS] pr/PRICE [t/TAG]… [com/COMMENT]…​` <br> e.g., `add n/Universal Village p/4 c/UniVillage@example.com a/123, Clementi Rd, 1234665 act/Date pr/ 10USD t/movies t/leisure com/This place has a lot of rides but they have long queues.`
+[**List**](#listing-all-attractions--list)   | `list`
+[**Edit**](#editing-an-attraction--edit)   | `edit INDEX [n/NAME] [p/PRIORITY_NUMBER] [c/CONTACT] [a/ADDRESS] [o/OPENING_HOURS] [pr/PRICE] [t/TAG]… [c/COMMENT]…​`<br> e.g.,`edit 2 n/Golden Studios c/GoldenSS@example.com`
+[**Detailed Edit**](#detailed-editing-of-an-attraction-dedit)   | `dedit INDEX`<br> e.g., `dedit 1`
+[**Find**](#locating-attractions-by-name-find)   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Golden Studios`
+[**Delete**](#deleting-an-attraction--delete) | `delete INDEX`<br> e.g., `delete 3`
+[**Clear**](#clearing-all-entries--clear)  | `clear`
+[**Comment**](#adding-a-comment-comment)   | `comment INDEX com/COMMENT`<br> e.g., `comment 2 com/Amazing place!`
+[**Add Itinerary**](#adding-an-itinerary-additinerary)   | `additinerary n/ITINERARY_NAME [ai/ATTRACTION_INDEX]…`<br> e.g., `additinerary n/Singapore Trip ai/1 ai/2`
+[**Delete Itinerary**](#deleting-an-itinerary--deleteitinerary)   | `deleteitinerary INDEX`<br> e.g., `deleteitinerary 1`
+[**Add Location**](#adding-a-location-addlocation)   | `addlocation ln/LOCATION_NAME i/ATTRACTION_INDEX [i/ATTRACTION_INDEX]…`<br> e.g., `addlocation ln/Singapore i/1 i/2 i/3`
+[**Edit Location**](#editing-a-location-editlocation)   | `editlocation ln/LOCATION_NAME action/ACTION i/ATTRACTION_INDEX`<br> e.g., `editlocation ln/Singapore action/ADD i/5`
+[**Delete Location**](#deleting-a-location--deletelocation)   | `deletelocation ln/LOCATION_NAME`<br> e.g., `deletelocation ln/Singapore`
+[**Sort**](#sorting-attractions-and-itineraries-sort)   | `sort PREFIX`<br> e.g., `sort p/`
+[**Help**](#viewing-help--help)   | `help`
+[**Exit**](#exiting-the-program--exit)   | `exit`
 
 ### Parameter prefixes
 Prefixes are used before parameters to help the program differentiate between different types of parameters. Below is a comprehensive list of prefix-parameter pairs.
