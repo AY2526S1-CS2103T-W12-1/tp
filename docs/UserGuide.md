@@ -161,7 +161,7 @@ The **Attraction Panel** appears first when launching the application. It has **
 </box>
 
 ### Itinerary Panel
-To open the **Itinerary Panel**, click on the *Itinerary* button above the attraction list, or use the `Tab` and arrow keys to navigate there.
+To open the **Itinerary Panel**, click on the *Itinerary* button above the attraction list, or use the `Tab` and arrow keys to navigate there (press tab until the `Attraction` button is highlighted before using arrow keys for navigation).
 ![Itinerary Panel Navigation Guide](images/NavGuideItinerary.png)
 *Figure 3. Itinerary Panel overview.*
 
@@ -175,7 +175,7 @@ To open the **Itinerary Panel**, click on the *Itinerary* button above the attra
 </box>
 
 ### Location Panel
-Finally, navigate to the **Location Panel** by clicking the *Location* button or using the `Tab` and arrow keys.
+Finally, navigate to the **Location Panel** by clicking the *Location* button or using the `Tab` and arrow keys (press tab until the `Attraction` button is highlighted before using arrow keys for navigation).
 
 ![Location Panel Navigation Guide](images/NavGuideLocation.png)
 *Figure 4. Location Panel overview.*
@@ -186,7 +186,9 @@ Finally, navigate to the **Location Panel** by clicking the *Location* button or
 | **Attraction List** | Displays attractions assigned to the selected location. |
 
 <box type="tip" seamless>
+
 **Tip:** To add a location refer to the [add a location](#adding-a-location-addlocation) section.
+
 </box>
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -210,6 +212,7 @@ Commands are the main method for perform operation in the **Maplet** application
 
 > **WARNING**
  For PDF Users: Be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+ 
 </box>
 
 ### Command summary
