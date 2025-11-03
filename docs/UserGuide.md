@@ -128,6 +128,7 @@ Type commands in the command box and press **Enter**:
 
 
 > **Tip 1:** Use the `help` command anytime to see all available actions.
+> 
 > **Tip 2:** Refer to the [Commands](#features) below for details of each command.
 
 ---
@@ -139,60 +140,47 @@ Next, visit the [Navigation](#navigation) section to explore how each panel work
 
 --------------------------------------------------------------------------------------------------------------------
 ## Navigation
-This section details different parts of the Maplet application
+This section guides you through the main panel options of **Maplet** so you can move between **attractions, itineraries and locations**. 
 
 
 #### Attraction Panel
 ![Attraction Panel Navigation Guide](images/NavGuideAttraction.png)
+*Figure 2. Attraction Panel*
 
-You will be greeted by the attraction panel when first launching the application. The attraction panel consists of three
-main sections
+The **Attraction Panel** appears first when launching the application. It has **3** main components:
+| Section | Description |
+|----------|--------------|
+| **User Input** | Enter your commands here to manage your attractions. |
+| **Status Bar** | Displays messages confirming whether your command was successful or not. If there’s an error, the message explains what went wrong. |
+| **Attraction List** | Shows all the attractions you’ve added. Each entry contains user-defined information such as name, cost, and priority. |
 
-**User Input**
+> **Tip:** To start adding attractions, refer to the [Adding an Attraction](#adding-an-attraction-add) section.
 
-Here you enter different commands to manage your attractions
-
-**Status Bar**
-
-The status bar informs you of whether you command was successful or not. It provides details on what went wrong if your command
-did not go through.
-
-**Attraction List**
-
-Here is where your attractions will appear once you add them through commands. They store user-defined information in a list format.
-To add an attraction refer to the [add an attraction](#adding-an-attraction-add) section.
-
-#### Itinerary Panel
-
-If you click on the itinerary button located above the attraction list or use ```tab``` and arrow keys to select the itinerary button,
-you will be greeted by the itinerary panel.
-
+### Itinerary Panel
+To open the **Itinerary Panel**, click on the *Itinerary* button above the attraction list, or use the `Tab` and arrow keys to navigate there.
 ![Itinerary Panel Navigation Guide](images/NavGuideItinerary.png)
+*Figure 3. Itinerary Panel overview.*
 
-**Itinerary List**
+| Section | Description |
+|----------|--------------|
+| **Itinerary List** | Displays all your saved itineraries. |
+| **Attraction List** | Shows the attractions linked to the selected itinerary. |
+ 
+> **Tip:** To add an itinerary refer to the [add an itinerary](#adding-an-itinerary-additinerary) section.
 
-A list of currently user defined itineraries. You can add new itineraries by keying commands into the user input above.
-To add an itinerary refer to the [add an itinerary](#adding-an-itinerary-additinerary) section.
-
-**Attraction List**
-
-These are the attractions for the currently selected itinerary. If none are selected this section will be empty.
-
-#### Location Panel
-
-Finally, if you click on the location button located above the itinerary list of use ```tab``` and arrow keys to select the location button,
-you will be greeted by the location panel.
+### Location Panel
+Finally, navigate to the **Location Panel** by clicking the *Location* button or using the `Tab` and arrow keys.
 
 ![Location Panel Navigation Guide](images/NavGuideLocation.png)
+*Figure 4. Location Panel overview.*
 
-**Location List**
+| Section | Description |
+|----------|--------------|
+| **Location List** | Lists all user defined location. |
+| **Attraction List** | Displays attractions assigned to the selected location. |
 
-A list of currently user defined locations. You can add new locations by keying commands into the user input above.
-To add a location refer to the [add a location](#adding-a-location-addlocation) section.
+> 💡 **Tip:** To add a location refer to the [add a location](#adding-a-location-addlocation) section.
 
-**Attraction List**
-
-These are the attractions for the currently selected location. If none are selected this section will be empty.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 
