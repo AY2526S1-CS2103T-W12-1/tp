@@ -213,32 +213,6 @@ COMMENT                | Any value as long as it's not blank (Optional field)
 ATTRACTION_INDEX (LOCATIONS)            | The index of each attraction. Must correspond to an existing attraction and cannot be negative.
 ATTRACTION_INDEX (ITINERARY)               | The index of each attraction. Must correspond to an existing attraction and cannot be negative.
 
-### General Commands
-These commands are responsible for general system operations.
-
-##### Viewing help : `help`
-
-Shows a message explaining how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
-
-<box type="tip" seamless>
-
-**Tip:** Not sure if your command worked or not? Refer to the status box right below the command textbox
-
-![status box](images/statusBox.png)
-</box>
-
-
-##### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
-
 
 ### Attraction Commands
 These commands are responsible to adding, editing and deleting attractions.
@@ -319,18 +293,17 @@ Format : `dedit INDEX`
 * Opens up a window with the attribute values of the attraction at the specified `INDEX`. The index refers to the index number shown in the displayed attraction list. The index **must be a positive integer** 1, 2, 3, …​
 * You can hit ENTER after editing the field values to close the window and update the attraction.
 * If you have provided invalid values for certain attributes, hitting ENTER will not close the window and an error message will be displayed in the status bar.
+* You can press escape if you do not wish to discard changes.
 
 Below is the sample window:
 
-
-
+![image](images/DeditCommand.png)
 
 <box type="tip" seamless>
 
-**Tip:**To avoid clicking on the fields to edit them one by one, consider using the `tab` key instead to swap between fields effortlessly!
+**Tip:** To avoid clicking on the fields to edit them one by one, consider using the `tab` key instead to swap between fields effortlessly!
 
 </box>
-
 
 Examples:
 * `dedit 1` Opens the edit window for attraction 1.
@@ -368,29 +341,26 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd attraction in Maplet.
 * `find Cat Cafe` followed by `delete 1` deletes the 1st attraction in the results of the `find` command.
 
+<box type="info" seamless>
+
+**WARNING**
+* This action is irreversible!
+
+</box>
+
 ##### Clearing all entries : `clear`
 
 Clears all entries from Maplet.
 
 Format: `clear`
 
-##### Sorting attractions and itineraries: `sort`
+<box type="info" seamless>
 
-Sorts all attractions and itineraries in Maplet based on the specified prefix.
+**WARNING**
+* This action is irreversible!
+* This will remove ALL attractions from Maplet.
 
-Format: `sort PREFIX`
-
-* Sorts all attractions and itineraries in the following order depending on the specified `PREFIX`.
-* `PREFIX` can be one of the following:
-    * `n/` : Sorts attractions and itineraries in alphabetical order of names (A to Z)
-    * `p/` : Sorts attractions in descending order of priority (High to Low),
-      and itineraries in descending order of their cumulative attractions' priority
-    * `pr/` : Sorts attractions in ascending order of price (Cheapest to Most Expensive),
-      and itineraries in ascending order of their cumulative attractions' price
-
-Examples:
-* `sort n/` sorts all attractions and itineraries in alphabetical order of names (A to Z)
-* `sort p/` sorts all attractions and itineraries in based on priority (High to Low)
+</box>
 
 ##### Adding a comment: `comment`
 
@@ -405,6 +375,14 @@ Format: `comment INDEX com/COMMENT`
 Examples:
 * `comment 1 com/Expensive place` Adds the comment "Expensive place" to the attraction at index 1.
 * `comment 2 com/Terrible service` Adds the comment "Terrible service" to the attraction at index 2.
+
+<box type="tip" seamless>
+
+**Tip:** Instead of clicking on the view comments button, you can use `tab` to select the button and press `enter`
+to view the comments instead!
+
+</box>
+
 
 
 ### Itinerary Commands
@@ -426,6 +404,12 @@ Examples:
 * `additinerary n/Singapore Trip ai/1 ai/2` creates an itinerary called "Singapore Runaround" with attractions at index 1 and 2
 * `additinerary n/Europe Tour ai/3 ai/5 ai/7` creates an itinerary called "Europe Tour" with attractions at index 3, 5, and 7
 
+If you have successfully added the itinerary you should see the following status message.
+
+![image](images/AddItineraryCommand.png)
+
+
+
 ##### Deleting an itinerary : `deleteitinerary`
 
 Deletes the specified itinerary from Maplet.
@@ -439,6 +423,14 @@ Format: `deleteitinerary INDEX`
 Examples:
 * `deleteitinerary 1` deletes the 1st itinerary in the itinerary list.
 * `deleteitinerary 3` deletes the 3rd itinerary in the itinerary list.
+
+
+<box type="info" seamless>
+
+**WARNING**
+* This action is irreversible!
+
+</box>
 
 
 ### Location Commands
@@ -458,6 +450,12 @@ Format: `addlocation ln/LOCATION_NAME i/ATTRACTION_INDEX [i/ATTRACTION_INDEX]…
 Examples:
 * `addlocation ln/Singapore i/1 i/2`
 * `addlocation ln/Paris i/5 i/7 i/9`
+
+
+Upon successfully adding a location you should see the following status message.
+
+![image](images/AddLocation.png)
+
 
 ##### Editing a location: `editlocation`
 
@@ -485,6 +483,71 @@ Format: `deletelocation ln/LOCATION_NAME`
 Examples:
 
 * `deletelocation ln/Singapore` deletes the location `Singapore`.
+
+<box type="info" seamless>
+
+**WARNING**
+* This action is irreversible!
+
+</box>
+
+### General Commands
+These commands are responsible for general system operations.
+
+##### Viewing help : `help`
+
+Shows a message explaining how to access the help page.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
+
+
+<box type="tip" seamless>
+
+**Tip:** Not sure if your command worked or not? Refer to the status box right below the command textbox
+
+![status box](images/statusBox.png)
+</box>
+
+
+##### Sorting attractions and itineraries: `sort`
+
+Sorts all attractions and itineraries in Maplet based on the specified prefix.
+
+Format: `sort PREFIX`
+
+* Sorts all attractions and itineraries in the following order depending on the specified `PREFIX`.
+* `PREFIX` can be one of the following:
+    * `n/` : Sorts attractions and itineraries in alphabetical order of names (A to Z)
+    * `p/` : Sorts attractions in descending order of priority (High to Low),
+      and itineraries in descending order of their cumulative attractions' priority
+    * `pr/` : Sorts attractions in ascending order of price (Cheapest to Most Expensive),
+      and itineraries in ascending order of their cumulative attractions' price
+
+Examples:
+* `sort n/` sorts all attractions and itineraries in alphabetical order of names (A to Z)
+* `sort p/` sorts all attractions and itineraries in based on priority (High to Low)
+
+<box type="tip" seamless>
+
+**Tip:** This command is great for finding which attractions or trip plans are most suitable for you.
+
+</box>
+
+
+##### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
+<box type="tip" seamless>
+
+When exiting Maplet will save your attractions automatically!
+
+</box>
+
 
 
 ## Other Features
@@ -514,6 +577,11 @@ _Details coming soon ..._
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Maplet home folder.
+
+**Q**: Why is my command not working?
+**A**: Refer to the status message for details! Note that commands keywords are case-sensitive.
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
