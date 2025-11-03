@@ -25,6 +25,6 @@
             </Label>
         </HBox>
         <Label fx:id="attractionCount" styleClass="cell_small_label" />
-        <FlowPane fx:id="attractionNames" hgap="6" vgap="6" />
+        <VBox fx:id="attractionNames" spacing="3" />
     </VBox>
 </HBox>

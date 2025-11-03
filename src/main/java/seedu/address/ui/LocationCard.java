@@ -4,10 +4,10 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.model.attraction.Name;
 import seedu.address.model.location.Location;
 
@@ -29,7 +29,7 @@ public class LocationCard extends UiPart<Region> {
     @FXML
     private Label attractionCount;
     @FXML
-    private FlowPane attractionNames;
+    private VBox attractionNames;
 
     /**
      * Creates a {@code LocationCard} with the given {@code Location} and index to display.
@@ -42,7 +42,6 @@ public class LocationCard extends UiPart<Region> {
         name.setMinWidth(0);
         attractionNames.setMinWidth(0);
         attractionNames.prefWidthProperty().bind(cardPane.widthProperty());
-        attractionNames.prefWrapLengthProperty().bind(cardPane.widthProperty());
         id.setText(displayedIndex + ". ");
         name.setText(location.getName().value);
         attractionCount.setText(String.format("Attractions (%d)", location.getAttractionNames().size()));
@@ -55,6 +54,8 @@ public class LocationCard extends UiPart<Region> {
     private void addAttractionLabel(Name attractionName) {
         Label attractionLabel = new Label(attractionName.fullName);
         attractionLabel.getStyleClass().add("cell_small_label");
+        attractionLabel.setWrapText(true);
+        attractionLabel.setMaxWidth(Double.MAX_VALUE);
         attractionNames.getChildren().add(attractionLabel);
     }
 }
