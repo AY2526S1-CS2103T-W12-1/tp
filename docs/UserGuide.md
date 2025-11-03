@@ -13,150 +13,206 @@ Welcome to Maplet, your goto solution for trip planning.
 -------------------------------------------------------------------------------------------------------------------
 
 ## Introduction
-If you find yourself struggling to remember that one attraction you came across online, or you just can't decide which attraction to visit, Maplet is the solution for you.
+If you often find yourself bookmarking attractions online but forgetting them later, or struggling to prioritize destinations for a trip, **Maplet** is built for you.
 
-Maplet is perfect for frequent travellers that have lots of locations they want to visit, or for a group of friends that need to balance fun with budget. It is a desktop application designed for helping individuals take down locations of interest that they come across online or from other sources. It gives the user freedom
-to organize attractions into groups while taking into account cost, opening hours and other factors.
+It’s a **desktop app for managing travel attractions and itineraries**, designed for efficiency through a **Command Line Interface (CLI)** paired with a **Graphical User Interface (GUI)** allowing you to type commands quickly while still visualizing your data.
 
-Maplet is a **desktop app for managing places you want to visit**, optimized for use via a **Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Maplet can get your trip planning tasks done faster than traditional GUI apps.
+Whether you’re a **travel content creator** categorizing attractions for your next viral trip or a **student planning your next overseas trip with friends**, Maplet helps you plan smarter and faster.
 
-#### Main features
 
-**Attraction list**
-* Add attractions of interest that you come across online with ease
-* An attraction consists of many customizable fields such as priority and cost, to facilitate trip planning
-* Sort attractions according to different parameters
-* Find attractions by keywords
+### Target Audience
+Maplet is designed for:
+- **Travel enthusiasts** who want to plan and organize trips efficiently.  
+- **Frequent flyers and planners** who handle multiple destinations and itineraries.
+- **Anyone** looking for a quick and easy way to plan an upcoming trip.
 
-**Location grouping**
-* When travelling, it is often more efficient and enjoyable to visit attractions in the same general area
-* Group **attractions** by **location** to identify which attractions you might want to visit at each location
-* Add and remove attractions from locations based on preference
-* Create new locations to group relevant attractions
+You’ll get the most out of Maplet if you:
+- Can navigate a terminal (e.g., use `cd` or `java -jar`).  
+- Have **Java 17 or higher** installed on your computer.
 
-**Itinerary planning**
-* Create a custom itinerary for each trip
-* Add attractions to an itinerary to plan out your trip in detail
-* Sort itineraries based on priority/cost to compare different trip plans
+Unsure on the above? Fret not! Refer to our [Quick start](#quick-start) guide to get you started!
+
+### What You Can Do with Maplet
+
+### Attraction List
+
+| What You Can Do | Description |
+|-----------------|-------------|
+| **Add attractions** | Record any new attraction you come across online with a single command. |
+| **Customize details** | Each attraction has editable fields such as priority, cost to help you plan effectively. |
+| **Sort by criteria** | Sort attractions by name, price, or priority to focus on what matters most. |
+| **Find by keyword** | Quickly search through attractions using relevant keywords. |
+
+---
+
+### Location Grouping
+
+| What You Can Do | Description |
+|-----------------|-------------|
+| **Group attractions** | Combine attractions that are in the same area. |
+| **Add or remove** | Add or remove attractions from a location as your plans change. |
+| **Create new locations** | Build your own custom location groups for better organization. |
+
+---
+
+### Itinerary Planning
+
+| What You Can Do | Description |
+|-----------------|-------------|
+| **Create itineraries** | Plan custom trips by grouping attractions into one itinerary. |
+| **Add attractions** | Include specific attractions to map out your day-by-day plan. |
+| **Sort for optimization** | Sort itineraries by total cost or average priority to compare plans. |
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Quick Start
 
-1. Ensure you have Java `17` or above installed in your Computer.<br>
-   **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
+Follow these simple steps to install and start using **Maplet**.
 
-1. Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-W12-1/tp/releases).
+---
 
-1. Copy the file to the folder you want to use as the _home folder_ for Maplet.
+### 1. Check your Java setup
+Ensure you have **Java 17 or higher** installed.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar maplet.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/UiAlpha.png)
+> **Mac users:**  
+> Follow the official [installation guide](https://se-education.org/guides/tutorials/javaInstallationMac.html) for the correct JDK version.
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+You can verify your version by running in your terminal:
+```bash
+java -version
+```
 
-   * `list` : Lists all attractions.
+Ensure you see something like:
+```
+openjdk version "17.x.x" 2025-01-21 LTS
+```
+---
 
-   * `add n/Eiffel Tower p/9 c/example@gmail.com a/Paris, act/climb tower p/$200 t/landmark com/It's a really tall place!` : Adds an attraction called Eiffel Tower
+### 2. Download Maplet
+Download the latest `.jar` file from the [Maplet GitHub Releases page](https://github.com/AY2526S1-CS2103T-W12-1/tp/releases).
 
-   * `delete 3` : Deletes the 3rd attraction shown in the current list.
+Download it to a folder of your choice, this will be your **home folder** where all your data will be automatically saved.
 
-   * `clear` : Deletes all attractions.
+> **Warning:**  
+> Keep the file name as `maplet.jar` to avoid any compatibility issues.
 
-   * `exit` : Exits the app.
+---
 
-   * `addlocation ln/Singapore i/1`: Adds attraction with index 1 to location Singapore.
+### 3. Launch Maplet
+Open your terminal and run:
+```bash
+cd [your-folder-name]
+java -jar maplet.jar
+```
+After a few seconds, Maplet will appear with sample attractions preloaded.
 
-   * `additinerary n/Singapore Trip ai/1 ai/2`: Creates an itinerary called "Singapore Trip" with the attractions that are at index 1 and 2.
+![Maplet Interface](images/UiAlpha.png)
+*Figure 1. Maplet interface showing sample data.*
+
+---
+
+### 4. Try a few commands
+Type commands in the command box and press **Enter**:
+
+| Command | Description |
+|----------|--------------|
+| `help` | Opens the help window. |
+| `list` | Displays all attractions. |
+| `add n/Eiffel Tower p/9 a/Paris act/climb tower pr/$200` | Adds an attraction called **Eiffel Tower**. |
+| `delete 3` | Deletes the attraction at index 3 shown in the current list. |
+| `addlocation ln/Singapore i/1` | Adds attraction with index 1 to location "Singapore". |
+| `addlocation ln/Singapore i/1` | Adds attraction with index 1 to location "Singapore". |
+| `additinerary n/Singapore Trip ai/1 ai/2` | Creates an itinerary called "Singapore Trip" with the attractions that are at index 1 and 2. |
+| `clear` | Deletes all attractions. |
+| `exit` | Closes the app. |
 
 
-1. Refer to the [Commands](#features) below for details of each command.
+<box type="tip" seamless>
+
+**Tip 1:** Use the `help` command anytime to see all available actions.
+ 
+**Tip 2:** Refer to the [Commands](#commands) below for details of each command.
+</box>
+---
+
+### You’re ready to go!
+Start adding attractions, group them by location, and build your first itinerary.  
+Next, visit the [Navigation](#navigation) section to explore how each panel works.
+
 
 --------------------------------------------------------------------------------------------------------------------
 ## Navigation
-This section details different parts of the Maplet application
+This section guides you through the main panel options of **Maplet** so you can move between **attractions, itineraries and locations**. 
 
 
 #### Attraction Panel
 ![Attraction Panel Navigation Guide](images/NavGuideAttraction.png)
+*Figure 2. Attraction Panel*
 
-You will be greeted by the attraction panel when first launching the application. The attraction panel consists of three
-main sections
+The **Attraction Panel** appears first when launching the application. It has **3** main components:
+| Section | Description |
+|----------|--------------|
+| **User Input** | Enter your commands here to manage your attractions. |
+| **Status Bar** | Displays messages confirming whether your command was successful or not. If there’s an error, the message explains what went wrong. |
+| **Attraction List** | Shows all the attractions you’ve added. Each entry contains user-defined information such as name, cost, and priority. |
 
-**User Input**
+<box type="tip" seamless>
+**Tip:** To start adding attractions, refer to the [Adding an Attraction](#adding-an-attraction-add) section.
+</box>
 
-Here you enter different commands to manage your attractions
-
-**Status Bar**
-
-The status bar informs you of whether you command was successful or not. It provides details on what went wrong if your command
-did not go through.
-
-**Attraction List**
-
-Here is where your attractions will appear once you add them through commands. They store user-defined information in a list format.
-To add an attraction refer to the [add an attraction](#adding-an-attraction-add) section.
-
-#### Itinerary Panel
-
-If you click on the itinerary button located above the attraction list or use ```tab``` and arrow keys to select the itinerary button,
-you will be greeted by the itinerary panel.
-
+### Itinerary Panel
+To open the **Itinerary Panel**, click on the *Itinerary* button above the attraction list, or use the `Tab` and arrow keys to navigate there (press tab until the `Attraction` button is highlighted before using arrow keys for navigation).
 ![Itinerary Panel Navigation Guide](images/NavGuideItinerary.png)
+*Figure 3. Itinerary Panel overview.*
 
-**Itinerary List**
+| Section | Description |
+|----------|--------------|
+| **Itinerary List** | Displays all your saved itineraries. |
+| **Attraction List** | Shows the attractions linked to the selected itinerary. |
 
-A list of currently user defined itineraries. You can add new itineraries by keying commands into the user input above.
-To add an itinerary refer to the [add an itinerary](#adding-an-itinerary-additinerary) section.
+<box type="tip" seamless> 
+**Tip:** To add an itinerary refer to the [add an itinerary](#adding-an-itinerary-additinerary) section.
+</box>
 
-**Attraction List**
-
-These are the attractions for the currently selected itinerary. If none are selected this section will be empty.
-
-#### Location Panel
-
-Finally, if you click on the location button located above the itinerary list of use ```tab``` and arrow keys to select the location button,
-you will be greeted by the location panel.
+### Location Panel
+Finally, navigate to the **Location Panel** by clicking the *Location* button or using the `Tab` and arrow keys (press tab until the `Attraction` button is highlighted before using arrow keys for navigation).
 
 ![Location Panel Navigation Guide](images/NavGuideLocation.png)
+*Figure 4. Location Panel overview.*
 
-**Location List**
+| Section | Description |
+|----------|--------------|
+| **Location List** | Lists all user defined location. |
+| **Attraction List** | Displays attractions assigned to the selected location. |
 
-A list of currently user defined locations. You can add new locations by keying commands into the user input above.
-To add a location refer to the [add a location](#adding-a-location-addlocation) section.
+<box type="tip" seamless>
 
-**Attraction List**
+**Tip:** To add a location refer to the [add a location](#adding-a-location-addlocation) section.
 
-These are the attractions for the currently selected location. If none are selected this section will be empty.
+</box>
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## Commands
 
-Commands are the main method for perform operation in the Maplet application. 
+Commands are the main method for perform operation in the **Maplet** application. 
 
 <box type="info" seamless>
 
 **Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/Eiffel Tower`.
+| Format Element | Description | Example |
+|----------------|--------------|----------|
+| **UPPER_CASE** | Placeholder for a parameter to be supplied by you. | `add n/NAME` -> `add n/Eiffel Tower` where `NAME` is replaced with `Eiffel Tower`|
+| **[Square Brackets]** | Optional parameter. | `n/NAME [t/TAG]` → `n/Eiffel Tower t/bucketlist` or just `n/Eiffel Tower` |
+| **Ellipsis `…`** | Parameter can any amount of times. | `[t/TAG]…` → `t/movies t/leisure` or `t/`|
+| **Order Flexibility** | Parameters can appear in any order. | `p/PRIORITY n/NAME` works like `n/NAME p/PRIORITY` |
+| **Extra Parameters Ignored** | Commands like `help`, `list`, and `exit` ignore extra text. | `help 123` → works like `help` |
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/Eiffel Tower t/bucket list` or as `n/Eiffel Tower`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/bucket list`, `t/bucket list t/with friends` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PRIORITY`, `p/PRIORITY n/NAME` is also acceptable.
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
-* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+> **WARNING**
+ For PDF Users: Be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+ 
 </box>
 
 ### Command summary
@@ -239,6 +295,7 @@ Examples:
 After adding an attraction successfully you will be able to see the following output as the status message.
 
 ![Add Command](images/AddCommand.png)
+*Figure 5. `add` command example*
 
 
 ##### Listing all attractions : `list`
@@ -281,6 +338,7 @@ Examples:
 After a successful edit the status message should be as shown:
 
 ![EditCommand](images/EditCommand.png)
+*Figure 6. `edit` command example.*
 
 
 
@@ -298,6 +356,7 @@ Format : `dedit INDEX`
 Below is the sample window:
 
 ![image](images/DeditCommand.png)
+*Figure 7. `dedit` command example.*
 
 <box type="tip" seamless>
 
@@ -326,6 +385,7 @@ Examples:
 * `find Golden` returns `Golden Studios` and `Golden Fries`
 * `find Coffee Tea` returns `Runalds Coffee`, `Milk Tea Central`<br>
   ![result for 'find Coffee Tea'](images/findCoffeeTeaResult.png)
+  *Figure 8. `find` command example.*
 
 ##### Deleting an attraction : `delete`
 
@@ -407,6 +467,7 @@ Examples:
 If you have successfully added the itinerary you should see the following status message.
 
 ![image](images/AddItineraryCommand.png)
+*Figure 9. `additinerary` command example.*
 
 
 
@@ -455,6 +516,7 @@ Examples:
 Upon successfully adding a location you should see the following status message.
 
 ![image](images/AddLocation.png)
+*Figure 10. `addlocation` command example.*
 
 
 ##### Editing a location: `editlocation`
@@ -471,6 +533,12 @@ Format: `editlocation ln/LOCATION_NAME action/ACTION i/ATTRACTION_INDEX`
 Examples:
 * `editlocation ln/Singapore action/ADD i/5` adds the attraction at index 5 into the `Singapore` location.
 * `editlocation ln/Singapore action/remove i/2` removes the attraction at index 2 from the `Singapore` location, as long as at least one attraction remains afterwards.
+
+<box type="tip" seamless>
+
+**Note:** The `ATTRACTION_INDEX` refers to the index of the Attraction in the Attractions tab.
+
+</box>
 
 ##### Deleting a location : `deletelocation`
 
@@ -499,6 +567,7 @@ These commands are responsible for general system operations.
 Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
+*Figure 11. `help` command example.*
 
 Format: `help`
 
@@ -508,6 +577,7 @@ Format: `help`
 **Tip:** Not sure if your command worked or not? Refer to the status box right below the command textbox
 
 ![status box](images/statusBox.png)
+*Figure 12. Status box example*
 </box>
 
 
