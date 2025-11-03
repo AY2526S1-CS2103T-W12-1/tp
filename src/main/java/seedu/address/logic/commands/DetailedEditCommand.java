@@ -6,6 +6,8 @@ import java.util.Optional;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 
 /**
@@ -35,7 +37,12 @@ public class DetailedEditCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
+
+        if (index.getZeroBased() >= model.getFilteredAttractionList().size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_ATTRACTION_DISPLAYED_INDEX);
+        }
+
         return new CommandResult(SUCCESS_MESSAGE, false, false, true, Optional.of(index));
     }
 
