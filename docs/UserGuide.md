@@ -127,10 +127,11 @@ Type commands in the command box and press **Enter**:
 | `exit` | Closes the app. |
 
 
-> **Tip 1:** Use the `help` command anytime to see all available actions.
-> 
-> **Tip 2:** Refer to the [Commands](#features) below for details of each command.
-
+<box type="tip" seamless>
+**Tip 1:** Use the `help` command anytime to see all available actions.
+ 
+**Tip 2:** Refer to the [Commands](#features) below for details of each command.
+</box>
 ---
 
 ### You’re ready to go!
@@ -154,7 +155,9 @@ The **Attraction Panel** appears first when launching the application. It has **
 | **Status Bar** | Displays messages confirming whether your command was successful or not. If there’s an error, the message explains what went wrong. |
 | **Attraction List** | Shows all the attractions you’ve added. Each entry contains user-defined information such as name, cost, and priority. |
 
-> **Tip:** To start adding attractions, refer to the [Adding an Attraction](#adding-an-attraction-add) section.
+<box type="tip" seamless>
+**Tip:** To start adding attractions, refer to the [Adding an Attraction](#adding-an-attraction-add) section.
+</box>
 
 ### Itinerary Panel
 To open the **Itinerary Panel**, click on the *Itinerary* button above the attraction list, or use the `Tab` and arrow keys to navigate there.
@@ -165,8 +168,10 @@ To open the **Itinerary Panel**, click on the *Itinerary* button above the attra
 |----------|--------------|
 | **Itinerary List** | Displays all your saved itineraries. |
 | **Attraction List** | Shows the attractions linked to the selected itinerary. |
- 
-> **Tip:** To add an itinerary refer to the [add an itinerary](#adding-an-itinerary-additinerary) section.
+
+<box type="tip" seamless> 
+**Tip:** To add an itinerary refer to the [add an itinerary](#adding-an-itinerary-additinerary) section.
+</box>
 
 ### Location Panel
 Finally, navigate to the **Location Panel** by clicking the *Location* button or using the `Tab` and arrow keys.
@@ -179,8 +184,9 @@ Finally, navigate to the **Location Panel** by clicking the *Location* button or
 | **Location List** | Lists all user defined location. |
 | **Attraction List** | Displays attractions assigned to the selected location. |
 
-> **Tip:** To add a location refer to the [add a location](#adding-a-location-addlocation) section.
-
+<box type="tip" seamless>
+**Tip:** To add a location refer to the [add a location](#adding-a-location-addlocation) section.
+</box>
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 
