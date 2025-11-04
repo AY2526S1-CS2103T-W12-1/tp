@@ -317,6 +317,23 @@ _{more aspects and alternatives to be added}_
 _{Explain here how the data archiving feature will be implemented}_
 
 
+
+### Planned Enhancements
+
+1. Editing of itinerary
+Currently there is no way to conveniently edit an itinerary. The use will have to create a new itinerary using the `additinerary` command with the desired attractions and delete the old itinerary.
+This can become tedious especially when the itinerary contains many attractions. We plan to add an `edititinerary` command that takes in a `ITINERARY_NAME`, `action/ACTION` and `ai/ATTRACTION_INDEX` parameter. 
+This works similarly to `editlocation` where you can add/remove attractions from a corresponding location.
+
+2. Viewing comments
+Currently you can view comments by clicking on the "View Comments" button with a mouse, or using the `tab` key to select the button and pressing `enter`. This can be rather inconvenient especially when the 
+attraction list gets very large. To resolve we plan to add a `viewcomment` command which takes in an `INDEX` parameter and opens the comment window for the attraction corresponding to `INDEX`.
+
+3. Switch tabs
+Currently you can switch between attraction, location and itinerary tabs by either clicking on the tab buttons with a mouse, or using the `tab` key to select the buttons and navigating with arrows keys.
+This is inconvenient and unintuitive for users and can be improved on by adding a `switch` command which takes in a `KEYWORD` parameter. This `KEYWORD` parameter can take on three values: "attraction", "location" and "itinerary"
+and allow the user to switch between the different tabs through commands.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
