@@ -133,7 +133,6 @@ Type commands in the command box and press **Enter**:
  
 **Tip 2:** Refer to the [Commands](#commands) below for details of each command.
 </box>
----
 
 ### You’re ready to go!
 Start adding attractions, group them by location, and build your first itinerary.  
@@ -157,7 +156,9 @@ The **Attraction Panel** appears first when launching the application. It has **
 | **Attraction List** | Shows all the attractions you’ve added. Each entry contains user-defined information such as name, cost, and priority. |
 
 <box type="tip" seamless>
+
 **Tip:** To start adding attractions, refer to the [Adding an Attraction](#adding-an-attraction-add) section.
+
 </box>
 
 ### Itinerary Panel
@@ -171,7 +172,9 @@ To open the **Itinerary Panel**, click on the *Itinerary* button above the attra
 | **Attraction List** | Shows the attractions linked to the selected itinerary. |
 
 <box type="tip" seamless> 
+
 **Tip:** To add an itinerary refer to the [add an itinerary](#adding-an-itinerary-additinerary) section.
+
 </box>
 
 ### Location Panel
